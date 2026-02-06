@@ -1,75 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ISCC竞赛——模拟微型工厂赛道分享</title>
-    <url>/2026/01/28/ISCC%E5%BE%AE%E5%9E%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%81%93%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</url>
-    <content><![CDATA[<h1 id="ISCC竞赛——模拟微型工厂赛道分享"><a href="#ISCC竞赛——模拟微型工厂赛道分享" class="headerlink" title="ISCC竞赛——模拟微型工厂赛道分享"></a>ISCC竞赛——模拟微型工厂赛道分享</h1><h2 id="1-赛道分析"><a href="#1-赛道分析" class="headerlink" title="1.赛道分析"></a>1.赛道分析</h2><p>​	该赛道如题，微型工厂模拟，主要的过程就是通过写电路程序（软件是西门子的博图V16），然后通过仿真软件（博达特）进行工厂的模拟，然后使用触摸屏的组态软件写一个触摸屏系统，去控制一下仿真软件的启动与停止，之后进行加密，保证在信号传输的过程中不会泄密和被攻击（说明一下，由于比赛可以由多台电脑完成，所以我的加密过程和我队友写程序的过程是同步的）。</p>
-<p>​	所用软件如下图，图1是博途V16，图2为博达特仿真软件（图标没了，我就截图一下名字），图3为Xshell（加密软件），图4为触摸屏组态软件</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153637363.png" alt="202510302237217"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153424299.png" alt="202510302239071"><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153024507.png" alt="202510302239408"><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153701723.png" alt="202510302239595"></p>
-<h2 id="2-书写电路程序（30分）"><a href="#2-书写电路程序（30分）" class="headerlink" title="2.书写电路程序（30分）"></a>2.书写电路程序（30分）</h2><p>​	这一过程是最考验耐心和细心的，何出此言？在我们比赛的过程中，我的两位队友是负责这个过程的，我有时做完了加密的工作，他们还在写电路程序。写完一个符合要求的电路程序的时间大概是一个小时，看你的熟练程度。这个过程很枯燥，很考验你的耐心。当他们写完之后，还需要检查一下延时的合理性等等。</p>
-<p>​	我们在初赛之时（初赛的参加形式是线上参加，录制视频，两个半小时之内完成要求），第一遍视频，我加密做完之后，我的队友写好程序还有一段时间，我在一旁就写触摸屏系统。我两个都做好之后，我的队友刚刚写完，我们检查了一遍程序，就开始了在仿真软件绑定地址的过程，等这一切都做完，我们启动了程序，在第一个台子出料的时候卡住了，此时他们又开始改程序，这个时候已经消耗了一个小时四十五分钟左右。在改完程序之后，大概已经两个小时十分钟了，时间所剩不多。我们得在剩余的时间内完成仿真的正常运行和触摸屏对仿真系统的控制。好在，我们在两个小时二十八分的时候完成了所有内容的操作。但我们仍不满意，所以我们进行了第二遍视频的录制。这一次，我们的程序用了一个小时就完成了。可以看出，程序对于比赛的进程影响是很大的。</p>
-<p>​	在写完程序后，需要用网线连接电脑与plc，把程序下载到plc中。</p>
-<p>​	该过程通过反复练习，是可以做到熟练并且无错误的。</p>
-<p>​	附加一个学习链接【西门子1200PLC速成——全程无废话】<a href="https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3">https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3</a></p>
-<p>​	下图为部分程序的截图</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153708161.png" alt="202510302249914"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153710035.png" alt="202510302249350"></p>
-<h2 id="3-通过仿真软件进行模拟（20分）"><a href="#3-通过仿真软件进行模拟（20分）" class="headerlink" title="3.通过仿真软件进行模拟（20分）"></a>3.通过仿真软件进行模拟（20分）</h2><p>​	由于该系统需要插加密狗才可以使用，仅分享该流程，无法提供工具使用。	</p>
-<p>​	在写完程序之后，进行编译，各个数据块里会出现对应的地址，需要在博达特的数据采集软件中绑定好地址，如图所示。</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153714905.png" alt="202510302253265"></p>
-<p>​	这个过程需要注意的有几项：</p>
-<p>​		1.注意绑定的数据块。如图，可以看到，DB10.DBX0.0这种地址，DBN（N指代一个数字）是数据块的位置，这个在编译之后会出现，如果程序只有一个DB块，可以不考虑这个问题，你不会写成别的DB块。但由于这个仿真软件有四个台子，有的同学会为了方便，会写四个DB块，这样每个台子都会有一个，它们的N是不一样的，要注意这个问题。</p>
-<p>​		2.注意绑定的台子。在绑定时，会有不同的的台子选择，如果数据采集软件的台子选择有问题，在仿真软件中去绑定具体的东西的时候，会出现某个台子缺一个或多个地址的情况，无法绑定具体的东西，以至于无法进行仿真过程。</p>
-<p>​		3.注意视觉化的绑定（上图的视觉化展示一栏）。该比赛的得分项中有一个“视觉化展示”，需要在物料送到对应库位后，点开数据采集软件的的“视觉化展示”，把有物料的库位变绿之后的画面给评委看。如果没有绑定视觉化展示，会出现不得分的情况。</p>
-<p>​	这个过程可能会出现的问题：</p>
-<p>​		1.软件崩掉。软件的底层代码有些问题，有时候内存一大就会崩，需要重进</p>
-<p>​		2.加密狗过热出现卡顿。放一会儿加密狗</p>
-<h2 id="4-触摸屏系统（与仿真这一步分数上绑定，20分）"><a href="#4-触摸屏系统（与仿真这一步分数上绑定，20分）" class="headerlink" title="4.触摸屏系统（与仿真这一步分数上绑定，20分）"></a>4.触摸屏系统（与仿真这一步分数上绑定，20分）</h2><p>​	使用的软件是昆仑通态触摸屏的软件——Mcgspro组态软件。</p>
-<p>​	在这个过程中，我们要添加一下设备进入组态，如下图，同时父设备需要更改ip地址，本地ip为触摸屏的地址，在plc的触摸屏界面可以更改；远程ip为plc设备的地址，需要在博图中更改，之后下载到plc设备中，这样才能完成更改。</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153718601.png" alt="202510302323548"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153720905.png" alt="202510302324387"></p>
-<p>​	如下图，需要做的几个按钮。</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153733770.png" alt="image-20251030232228736"></p>
-<p>​	如何做呢？要在变量表添加，根据你放在程序中的地址，如果在DB块内</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153740139.png" alt="202510302355290"></p>
-<p>​	这个过程有可能会出问题的地方：忘记改ip。把触摸屏系统下载到plc的触摸屏上的时候，如果没有改ip，通信不成功，无法下载</p>
-<h2 id="5-数据加密技术实现（30分）"><a href="#5-数据加密技术实现（30分）" class="headerlink" title="5. 数据加密技术实现（30分）"></a>5. 数据加密技术实现（30分）</h2><p>这一部分是整个赛道的灵魂，主要通过两个加密盒子（Server 端和 Client 端）建立 VPN 隧道，保证 PC 与 PLC 之间通信的安全。</p>
-<h3 id="1-硬件连接与-Xshell-环境准备"><a href="#1-硬件连接与-Xshell-环境准备" class="headerlink" title="1. 硬件连接与 Xshell 环境准备"></a>1. 硬件连接与 Xshell 环境准备</h3><ul>
-<li><strong>Xshell 配置</strong>：将串口模块插好，在设备管理器确认端口号（比如 COM3）。在 Xshell 新建会话时，<strong>协议必须选 SERIAL</strong>，端口号要对上，否则连不上盒子。</li>
-<li><strong>提一嘴盒子的连接</strong>：eth0是要连设备的，eth1是两个盒子互相连接的</li>
-</ul>
-<h3 id="2-人脸录入与认证"><a href="#2-人脸录入与认证" class="headerlink" title="2. 人脸录入与认证"></a>2. 人脸录入与认证</h3><p>上电后，很多盒子会卡在人脸识别脚本。第一次使用没信息会由于“系统阻塞”进不去命令行。</p>
-<ul>
-<li><strong>按键操作</strong>：模组背面有三个键。短按 <strong>S1</strong> 注册（脸离摄像头 <strong>50cm</strong>），<strong>S2</strong> 识别，<strong>S3</strong> 复位。</li>
-<li><strong>跳过阻塞</strong>：认证成功出现 Verify ok 才能操作。为了防止反复重启报错，建议先用 ps -a 查看进程，把 wlan 连接和异常检测脚本 kill 掉，然后用 vi &#x2F;etc&#x2F;init.d&#x2F;rcS 把人脸识别等脚本暂时注释掉（前面加 #）。</li>
-</ul>
-<h3 id="3-网络-IP-配置（eth0-设置）"><a href="#3-网络-IP-配置（eth0-设置）" class="headerlink" title="3. 网络 IP 配置（eth0 设置）"></a>3. 网络 IP 配置（eth0 设置）</h3><p>为了让设备互相 Ping 通，需要修改 &#x2F;etc&#x2F;network&#x2F;interfaces 文件。</p>
-<ul>
-<li><strong>Server 端</strong>：根据电脑网段设置，如电脑是 192.168.2.2，Server 的 eth0 就设为 192.168.2.1。</li>
-<li><strong>Client 端</strong>：要和PLC 保持同网段，比如设为 192.168.44.1。</li>
-</ul>
-<h3 id="4-无线与-VPN-加密隧道连接"><a href="#4-无线与-VPN-加密隧道连接" class="headerlink" title="4. 无线与 VPN 加密隧道连接"></a>4. 无线与 VPN 加密隧道连接</h3><p>这是最核心的配置，涉及 wpa_supplicant.conf 的 SSID&#x2F;密码设置，以及 VPN 隧道的建立。</p>
-<ul>
-<li><strong>VPN 配置文件</strong>：Server 端修改 server.conf1，Client 端修改 client.conf1。</li>
-<li><strong>网段对应</strong>：这里最容易出错。local_addrs 不能与 eth0 网段冲突。local_ts 和 remote_ts 必须严格对应两端的以太网网段（如 192.168.2.0&#x2F;24 和 192.168.44.0&#x2F;24）。</li>
-</ul>
-<h3 id="5-脚本更换与自动化启动"><a href="#5-脚本更换与自动化启动" class="headerlink" title="5. 脚本更换与自动化启动"></a>5. 脚本更换与自动化启动</h3><p>文档提供了 S100wlan0 和 guard 两个脚本内容。</p>
-<ul>
-<li><strong>避坑点</strong>：删除旧文件新建时，粘贴要注意。有时候第一行的 local 会变成 cal，少两个字母脚本就废了，必须手动补齐。</li>
-<li><strong>auto_defconfig</strong>：在这个文件里选好模式（mode&#x3D;eth1 或 wlan）。</li>
-<li><strong>恢复自启</strong>：全部配置完，回到 &#x2F;etc&#x2F;init.d&#x2F;rcS 把之前注释掉的脚本取消注释，这样重启后盒子就会自动运行加密和连接程序。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>比赛</category>
-      </categories>
-      <tags>
-        <tag>比赛</tag>
-        <tag>ISCC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>智能车日记；YOLOV5模型训练</title>
     <url>/2026/01/29/YOLOv5%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</url>
     <content><![CDATA[<h1 id="YOLOV5模型训练"><a href="#YOLOV5模型训练" class="headerlink" title="YOLOV5模型训练"></a>YOLOV5模型训练</h1><h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h2><h3 id="1-安装软件"><a href="#1-安装软件" class="headerlink" title="1.安装软件"></a>1.安装软件</h3><p>（1）安装Anaconda：这个没有什么难度，唯一要注意的就是<strong>路径不要有中文</strong>（碎碎念一句，很多国外软件都不接受中文路径，会报错）</p>
@@ -223,6 +154,75 @@
       <tags>
         <tag>技术</tag>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ISCC竞赛——模拟微型工厂赛道分享</title>
+    <url>/2026/01/28/ISCC%E5%BE%AE%E5%9E%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%81%93%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</url>
+    <content><![CDATA[<h1 id="ISCC竞赛——模拟微型工厂赛道分享"><a href="#ISCC竞赛——模拟微型工厂赛道分享" class="headerlink" title="ISCC竞赛——模拟微型工厂赛道分享"></a>ISCC竞赛——模拟微型工厂赛道分享</h1><h2 id="1-赛道分析"><a href="#1-赛道分析" class="headerlink" title="1.赛道分析"></a>1.赛道分析</h2><p>​	该赛道如题，微型工厂模拟，主要的过程就是通过写电路程序（软件是西门子的博图V16），然后通过仿真软件（博达特）进行工厂的模拟，然后使用触摸屏的组态软件写一个触摸屏系统，去控制一下仿真软件的启动与停止，之后进行加密，保证在信号传输的过程中不会泄密和被攻击（说明一下，由于比赛可以由多台电脑完成，所以我的加密过程和我队友写程序的过程是同步的）。</p>
+<p>​	所用软件如下图，图1是博途V16，图2为博达特仿真软件（图标没了，我就截图一下名字），图3为Xshell（加密软件），图4为触摸屏组态软件</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153637363.png" alt="202510302237217"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153424299.png" alt="202510302239071"><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153024507.png" alt="202510302239408"><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153701723.png" alt="202510302239595"></p>
+<h2 id="2-书写电路程序（30分）"><a href="#2-书写电路程序（30分）" class="headerlink" title="2.书写电路程序（30分）"></a>2.书写电路程序（30分）</h2><p>​	这一过程是最考验耐心和细心的，何出此言？在我们比赛的过程中，我的两位队友是负责这个过程的，我有时做完了加密的工作，他们还在写电路程序。写完一个符合要求的电路程序的时间大概是一个小时，看你的熟练程度。这个过程很枯燥，很考验你的耐心。当他们写完之后，还需要检查一下延时的合理性等等。</p>
+<p>​	我们在初赛之时（初赛的参加形式是线上参加，录制视频，两个半小时之内完成要求），第一遍视频，我加密做完之后，我的队友写好程序还有一段时间，我在一旁就写触摸屏系统。我两个都做好之后，我的队友刚刚写完，我们检查了一遍程序，就开始了在仿真软件绑定地址的过程，等这一切都做完，我们启动了程序，在第一个台子出料的时候卡住了，此时他们又开始改程序，这个时候已经消耗了一个小时四十五分钟左右。在改完程序之后，大概已经两个小时十分钟了，时间所剩不多。我们得在剩余的时间内完成仿真的正常运行和触摸屏对仿真系统的控制。好在，我们在两个小时二十八分的时候完成了所有内容的操作。但我们仍不满意，所以我们进行了第二遍视频的录制。这一次，我们的程序用了一个小时就完成了。可以看出，程序对于比赛的进程影响是很大的。</p>
+<p>​	在写完程序后，需要用网线连接电脑与plc，把程序下载到plc中。</p>
+<p>​	该过程通过反复练习，是可以做到熟练并且无错误的。</p>
+<p>​	附加一个学习链接【西门子1200PLC速成——全程无废话】<a href="https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3">https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3</a></p>
+<p>​	下图为部分程序的截图</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153708161.png" alt="202510302249914"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153710035.png" alt="202510302249350"></p>
+<h2 id="3-通过仿真软件进行模拟（20分）"><a href="#3-通过仿真软件进行模拟（20分）" class="headerlink" title="3.通过仿真软件进行模拟（20分）"></a>3.通过仿真软件进行模拟（20分）</h2><p>​	由于该系统需要插加密狗才可以使用，仅分享该流程，无法提供工具使用。	</p>
+<p>​	在写完程序之后，进行编译，各个数据块里会出现对应的地址，需要在博达特的数据采集软件中绑定好地址，如图所示。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153714905.png" alt="202510302253265"></p>
+<p>​	这个过程需要注意的有几项：</p>
+<p>​		1.注意绑定的数据块。如图，可以看到，DB10.DBX0.0这种地址，DBN（N指代一个数字）是数据块的位置，这个在编译之后会出现，如果程序只有一个DB块，可以不考虑这个问题，你不会写成别的DB块。但由于这个仿真软件有四个台子，有的同学会为了方便，会写四个DB块，这样每个台子都会有一个，它们的N是不一样的，要注意这个问题。</p>
+<p>​		2.注意绑定的台子。在绑定时，会有不同的的台子选择，如果数据采集软件的台子选择有问题，在仿真软件中去绑定具体的东西的时候，会出现某个台子缺一个或多个地址的情况，无法绑定具体的东西，以至于无法进行仿真过程。</p>
+<p>​		3.注意视觉化的绑定（上图的视觉化展示一栏）。该比赛的得分项中有一个“视觉化展示”，需要在物料送到对应库位后，点开数据采集软件的的“视觉化展示”，把有物料的库位变绿之后的画面给评委看。如果没有绑定视觉化展示，会出现不得分的情况。</p>
+<p>​	这个过程可能会出现的问题：</p>
+<p>​		1.软件崩掉。软件的底层代码有些问题，有时候内存一大就会崩，需要重进</p>
+<p>​		2.加密狗过热出现卡顿。放一会儿加密狗</p>
+<h2 id="4-触摸屏系统（与仿真这一步分数上绑定，20分）"><a href="#4-触摸屏系统（与仿真这一步分数上绑定，20分）" class="headerlink" title="4.触摸屏系统（与仿真这一步分数上绑定，20分）"></a>4.触摸屏系统（与仿真这一步分数上绑定，20分）</h2><p>​	使用的软件是昆仑通态触摸屏的软件——Mcgspro组态软件。</p>
+<p>​	在这个过程中，我们要添加一下设备进入组态，如下图，同时父设备需要更改ip地址，本地ip为触摸屏的地址，在plc的触摸屏界面可以更改；远程ip为plc设备的地址，需要在博图中更改，之后下载到plc设备中，这样才能完成更改。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153718601.png" alt="202510302323548"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153720905.png" alt="202510302324387"></p>
+<p>​	如下图，需要做的几个按钮。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153733770.png" alt="image-20251030232228736"></p>
+<p>​	如何做呢？要在变量表添加，根据你放在程序中的地址，如果在DB块内</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153740139.png" alt="202510302355290"></p>
+<p>​	这个过程有可能会出问题的地方：忘记改ip。把触摸屏系统下载到plc的触摸屏上的时候，如果没有改ip，通信不成功，无法下载</p>
+<h2 id="5-数据加密技术实现（30分）"><a href="#5-数据加密技术实现（30分）" class="headerlink" title="5. 数据加密技术实现（30分）"></a>5. 数据加密技术实现（30分）</h2><p>这一部分是整个赛道的灵魂，主要通过两个加密盒子（Server 端和 Client 端）建立 VPN 隧道，保证 PC 与 PLC 之间通信的安全。</p>
+<h3 id="1-硬件连接与-Xshell-环境准备"><a href="#1-硬件连接与-Xshell-环境准备" class="headerlink" title="1. 硬件连接与 Xshell 环境准备"></a>1. 硬件连接与 Xshell 环境准备</h3><ul>
+<li><strong>Xshell 配置</strong>：将串口模块插好，在设备管理器确认端口号（比如 COM3）。在 Xshell 新建会话时，<strong>协议必须选 SERIAL</strong>，端口号要对上，否则连不上盒子。</li>
+<li><strong>提一嘴盒子的连接</strong>：eth0是要连设备的，eth1是两个盒子互相连接的</li>
+</ul>
+<h3 id="2-人脸录入与认证"><a href="#2-人脸录入与认证" class="headerlink" title="2. 人脸录入与认证"></a>2. 人脸录入与认证</h3><p>上电后，很多盒子会卡在人脸识别脚本。第一次使用没信息会由于“系统阻塞”进不去命令行。</p>
+<ul>
+<li><strong>按键操作</strong>：模组背面有三个键。短按 <strong>S1</strong> 注册（脸离摄像头 <strong>50cm</strong>），<strong>S2</strong> 识别，<strong>S3</strong> 复位。</li>
+<li><strong>跳过阻塞</strong>：认证成功出现 Verify ok 才能操作。为了防止反复重启报错，建议先用 ps -a 查看进程，把 wlan 连接和异常检测脚本 kill 掉，然后用 vi &#x2F;etc&#x2F;init.d&#x2F;rcS 把人脸识别等脚本暂时注释掉（前面加 #）。</li>
+</ul>
+<h3 id="3-网络-IP-配置（eth0-设置）"><a href="#3-网络-IP-配置（eth0-设置）" class="headerlink" title="3. 网络 IP 配置（eth0 设置）"></a>3. 网络 IP 配置（eth0 设置）</h3><p>为了让设备互相 Ping 通，需要修改 &#x2F;etc&#x2F;network&#x2F;interfaces 文件。</p>
+<ul>
+<li><strong>Server 端</strong>：根据电脑网段设置，如电脑是 192.168.2.2，Server 的 eth0 就设为 192.168.2.1。</li>
+<li><strong>Client 端</strong>：要和PLC 保持同网段，比如设为 192.168.44.1。</li>
+</ul>
+<h3 id="4-无线与-VPN-加密隧道连接"><a href="#4-无线与-VPN-加密隧道连接" class="headerlink" title="4. 无线与 VPN 加密隧道连接"></a>4. 无线与 VPN 加密隧道连接</h3><p>这是最核心的配置，涉及 wpa_supplicant.conf 的 SSID&#x2F;密码设置，以及 VPN 隧道的建立。</p>
+<ul>
+<li><strong>VPN 配置文件</strong>：Server 端修改 server.conf1，Client 端修改 client.conf1。</li>
+<li><strong>网段对应</strong>：这里最容易出错。local_addrs 不能与 eth0 网段冲突。local_ts 和 remote_ts 必须严格对应两端的以太网网段（如 192.168.2.0&#x2F;24 和 192.168.44.0&#x2F;24）。</li>
+</ul>
+<h3 id="5-脚本更换与自动化启动"><a href="#5-脚本更换与自动化启动" class="headerlink" title="5. 脚本更换与自动化启动"></a>5. 脚本更换与自动化启动</h3><p>文档提供了 S100wlan0 和 guard 两个脚本内容。</p>
+<ul>
+<li><strong>避坑点</strong>：删除旧文件新建时，粘贴要注意。有时候第一行的 local 会变成 cal，少两个字母脚本就废了，必须手动补齐。</li>
+<li><strong>auto_defconfig</strong>：在这个文件里选好模式（mode&#x3D;eth1 或 wlan）。</li>
+<li><strong>恢复自启</strong>：全部配置完，回到 &#x2F;etc&#x2F;init.d&#x2F;rcS 把之前注释掉的脚本取消注释，这样重启后盒子就会自动运行加密和连接程序。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>比赛</category>
+      </categories>
+      <tags>
+        <tag>比赛</tag>
+        <tag>ISCC</tag>
       </tags>
   </entry>
   <entry>
