@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 江南的碎碎念
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
+author: 江南
+language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://jiangnanqing188.github.io/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -102,5 +102,12 @@ theme: anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://<TOKEN>@github.com/jiangnanging188/jiangnanging188.github.io.git
+  repo: git@github.com:jiangnanqing188/jiangnanqing188.github.io.git
   branch: main
+
+# 搜索插件配置
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html

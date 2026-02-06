@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>ISCC竞赛——模拟微型工厂赛道分享</title>
+    <url>/2026/01/28/ISCC%E5%BE%AE%E5%9E%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%81%93%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</url>
+    <content><![CDATA[<h1 id="ISCC竞赛——模拟微型工厂赛道分享"><a href="#ISCC竞赛——模拟微型工厂赛道分享" class="headerlink" title="ISCC竞赛——模拟微型工厂赛道分享"></a>ISCC竞赛——模拟微型工厂赛道分享</h1><h2 id="1-赛道分析"><a href="#1-赛道分析" class="headerlink" title="1.赛道分析"></a>1.赛道分析</h2><p>​	该赛道如题，微型工厂模拟，主要的过程就是通过写电路程序（软件是西门子的博图V16），然后通过仿真软件（博达特）进行工厂的模拟，然后使用触摸屏的组态软件写一个触摸屏系统，去控制一下仿真软件的启动与停止，之后进行加密，保证在信号传输的过程中不会泄密和被攻击（说明一下，由于比赛可以由多台电脑完成，所以我的加密过程和我队友写程序的过程是同步的）。</p>
+<p>​	所用软件如下图，图1是博途V16，图2为博达特仿真软件（图标没了，我就截图一下名字），图3为Xshell（加密软件），图4为触摸屏组态软件</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153637363.png" alt="202510302237217"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153424299.png" alt="202510302239071"><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153024507.png" alt="202510302239408"><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153701723.png" alt="202510302239595"></p>
+<h2 id="2-书写电路程序（30分）"><a href="#2-书写电路程序（30分）" class="headerlink" title="2.书写电路程序（30分）"></a>2.书写电路程序（30分）</h2><p>​	这一过程是最考验耐心和细心的，何出此言？在我们比赛的过程中，我的两位队友是负责这个过程的，我有时做完了加密的工作，他们还在写电路程序。写完一个符合要求的电路程序的时间大概是一个小时，看你的熟练程度。这个过程很枯燥，很考验你的耐心。当他们写完之后，还需要检查一下延时的合理性等等。</p>
+<p>​	我们在初赛之时（初赛的参加形式是线上参加，录制视频，两个半小时之内完成要求），第一遍视频，我加密做完之后，我的队友写好程序还有一段时间，我在一旁就写触摸屏系统。我两个都做好之后，我的队友刚刚写完，我们检查了一遍程序，就开始了在仿真软件绑定地址的过程，等这一切都做完，我们启动了程序，在第一个台子出料的时候卡住了，此时他们又开始改程序，这个时候已经消耗了一个小时四十五分钟左右。在改完程序之后，大概已经两个小时十分钟了，时间所剩不多。我们得在剩余的时间内完成仿真的正常运行和触摸屏对仿真系统的控制。好在，我们在两个小时二十八分的时候完成了所有内容的操作。但我们仍不满意，所以我们进行了第二遍视频的录制。这一次，我们的程序用了一个小时就完成了。可以看出，程序对于比赛的进程影响是很大的。</p>
+<p>​	在写完程序后，需要用网线连接电脑与plc，把程序下载到plc中。</p>
+<p>​	该过程通过反复练习，是可以做到熟练并且无错误的。</p>
+<p>​	附加一个学习链接【西门子1200PLC速成——全程无废话】<a href="https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3">https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3</a></p>
+<p>​	下图为部分程序的截图</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153708161.png" alt="202510302249914"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153710035.png" alt="202510302249350"></p>
+<h2 id="3-通过仿真软件进行模拟（20分）"><a href="#3-通过仿真软件进行模拟（20分）" class="headerlink" title="3.通过仿真软件进行模拟（20分）"></a>3.通过仿真软件进行模拟（20分）</h2><p>​	由于该系统需要插加密狗才可以使用，仅分享该流程，无法提供工具使用。	</p>
+<p>​	在写完程序之后，进行编译，各个数据块里会出现对应的地址，需要在博达特的数据采集软件中绑定好地址，如图所示。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153714905.png" alt="202510302253265"></p>
+<p>​	这个过程需要注意的有几项：</p>
+<p>​		1.注意绑定的数据块。如图，可以看到，DB10.DBX0.0这种地址，DBN（N指代一个数字）是数据块的位置，这个在编译之后会出现，如果程序只有一个DB块，可以不考虑这个问题，你不会写成别的DB块。但由于这个仿真软件有四个台子，有的同学会为了方便，会写四个DB块，这样每个台子都会有一个，它们的N是不一样的，要注意这个问题。</p>
+<p>​		2.注意绑定的台子。在绑定时，会有不同的的台子选择，如果数据采集软件的台子选择有问题，在仿真软件中去绑定具体的东西的时候，会出现某个台子缺一个或多个地址的情况，无法绑定具体的东西，以至于无法进行仿真过程。</p>
+<p>​		3.注意视觉化的绑定（上图的视觉化展示一栏）。该比赛的得分项中有一个“视觉化展示”，需要在物料送到对应库位后，点开数据采集软件的的“视觉化展示”，把有物料的库位变绿之后的画面给评委看。如果没有绑定视觉化展示，会出现不得分的情况。</p>
+<p>​	这个过程可能会出现的问题：</p>
+<p>​		1.软件崩掉。软件的底层代码有些问题，有时候内存一大就会崩，需要重进</p>
+<p>​		2.加密狗过热出现卡顿。放一会儿加密狗</p>
+<h2 id="4-触摸屏系统（与仿真这一步分数上绑定，20分）"><a href="#4-触摸屏系统（与仿真这一步分数上绑定，20分）" class="headerlink" title="4.触摸屏系统（与仿真这一步分数上绑定，20分）"></a>4.触摸屏系统（与仿真这一步分数上绑定，20分）</h2><p>​	使用的软件是昆仑通态触摸屏的软件——Mcgspro组态软件。</p>
+<p>​	在这个过程中，我们要添加一下设备进入组态，如下图，同时父设备需要更改ip地址，本地ip为触摸屏的地址，在plc的触摸屏界面可以更改；远程ip为plc设备的地址，需要在博图中更改，之后下载到plc设备中，这样才能完成更改。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153718601.png" alt="202510302323548"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153720905.png" alt="202510302324387"></p>
+<p>​	如下图，需要做的几个按钮。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153733770.png" alt="image-20251030232228736"></p>
+<p>​	如何做呢？要在变量表添加，根据你放在程序中的地址，如果在DB块内</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153740139.png" alt="202510302355290"></p>
+<p>​	这个过程有可能会出问题的地方：忘记改ip。把触摸屏系统下载到plc的触摸屏上的时候，如果没有改ip，通信不成功，无法下载</p>
+<h2 id="5-数据加密技术实现（30分）"><a href="#5-数据加密技术实现（30分）" class="headerlink" title="5. 数据加密技术实现（30分）"></a>5. 数据加密技术实现（30分）</h2><p>这一部分是整个赛道的灵魂，主要通过两个加密盒子（Server 端和 Client 端）建立 VPN 隧道，保证 PC 与 PLC 之间通信的安全。</p>
+<h3 id="1-硬件连接与-Xshell-环境准备"><a href="#1-硬件连接与-Xshell-环境准备" class="headerlink" title="1. 硬件连接与 Xshell 环境准备"></a>1. 硬件连接与 Xshell 环境准备</h3><ul>
+<li><strong>Xshell 配置</strong>：将串口模块插好，在设备管理器确认端口号（比如 COM3）。在 Xshell 新建会话时，<strong>协议必须选 SERIAL</strong>，端口号要对上，否则连不上盒子。</li>
+<li><strong>提一嘴盒子的连接</strong>：eth0是要连设备的，eth1是两个盒子互相连接的</li>
+</ul>
+<h3 id="2-人脸录入与认证"><a href="#2-人脸录入与认证" class="headerlink" title="2. 人脸录入与认证"></a>2. 人脸录入与认证</h3><p>上电后，很多盒子会卡在人脸识别脚本。第一次使用没信息会由于“系统阻塞”进不去命令行。</p>
+<ul>
+<li><strong>按键操作</strong>：模组背面有三个键。短按 <strong>S1</strong> 注册（脸离摄像头 <strong>50cm</strong>），<strong>S2</strong> 识别，<strong>S3</strong> 复位。</li>
+<li><strong>跳过阻塞</strong>：认证成功出现 Verify ok 才能操作。为了防止反复重启报错，建议先用 ps -a 查看进程，把 wlan 连接和异常检测脚本 kill 掉，然后用 vi &#x2F;etc&#x2F;init.d&#x2F;rcS 把人脸识别等脚本暂时注释掉（前面加 #）。</li>
+</ul>
+<h3 id="3-网络-IP-配置（eth0-设置）"><a href="#3-网络-IP-配置（eth0-设置）" class="headerlink" title="3. 网络 IP 配置（eth0 设置）"></a>3. 网络 IP 配置（eth0 设置）</h3><p>为了让设备互相 Ping 通，需要修改 &#x2F;etc&#x2F;network&#x2F;interfaces 文件。</p>
+<ul>
+<li><strong>Server 端</strong>：根据电脑网段设置，如电脑是 192.168.2.2，Server 的 eth0 就设为 192.168.2.1。</li>
+<li><strong>Client 端</strong>：要和PLC 保持同网段，比如设为 192.168.44.1。</li>
+</ul>
+<h3 id="4-无线与-VPN-加密隧道连接"><a href="#4-无线与-VPN-加密隧道连接" class="headerlink" title="4. 无线与 VPN 加密隧道连接"></a>4. 无线与 VPN 加密隧道连接</h3><p>这是最核心的配置，涉及 wpa_supplicant.conf 的 SSID&#x2F;密码设置，以及 VPN 隧道的建立。</p>
+<ul>
+<li><strong>VPN 配置文件</strong>：Server 端修改 server.conf1，Client 端修改 client.conf1。</li>
+<li><strong>网段对应</strong>：这里最容易出错。local_addrs 不能与 eth0 网段冲突。local_ts 和 remote_ts 必须严格对应两端的以太网网段（如 192.168.2.0&#x2F;24 和 192.168.44.0&#x2F;24）。</li>
+</ul>
+<h3 id="5-脚本更换与自动化启动"><a href="#5-脚本更换与自动化启动" class="headerlink" title="5. 脚本更换与自动化启动"></a>5. 脚本更换与自动化启动</h3><p>文档提供了 S100wlan0 和 guard 两个脚本内容。</p>
+<ul>
+<li><strong>避坑点</strong>：删除旧文件新建时，粘贴要注意。有时候第一行的 local 会变成 cal，少两个字母脚本就废了，必须手动补齐。</li>
+<li><strong>auto_defconfig</strong>：在这个文件里选好模式（mode&#x3D;eth1 或 wlan）。</li>
+<li><strong>恢复自启</strong>：全部配置完，回到 &#x2F;etc&#x2F;init.d&#x2F;rcS 把之前注释掉的脚本取消注释，这样重启后盒子就会自动运行加密和连接程序。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>比赛</category>
+      </categories>
+      <tags>
+        <tag>比赛</tag>
+        <tag>ISCC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能车日记；YOLOV5模型训练</title>
+    <url>/2026/01/29/YOLOv5%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</url>
+    <content><![CDATA[<h1 id="YOLOV5模型训练"><a href="#YOLOV5模型训练" class="headerlink" title="YOLOV5模型训练"></a>YOLOV5模型训练</h1><h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h2><h3 id="1-安装软件"><a href="#1-安装软件" class="headerlink" title="1.安装软件"></a>1.安装软件</h3><p>（1）安装Anaconda：这个没有什么难度，唯一要注意的就是<strong>路径不要有中文</strong>（碎碎念一句，很多国外软件都不接受中文路径，会报错）</p>
+<p><a href="https://www.anaconda.com/products/distribution">https://www.anaconda.com/products/distribution</a></p>
+<p>（2）安装pycharm</p>
+<p><a href="https://blog.csdn.net/2302_79334848/article/details/132128699">https://blog.csdn.net/2302_79334848/article/details/132128699</a></p>
+<p>（3）安装pytorch</p>
+<p>【1】查看CUDA版本</p>
+<p>这个需要看你电脑上CUDA的版本，看你电脑上英伟达独立显卡的版本</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p>这个代码查看你的CUDA版本</p>
+<p>【2】创建环境（这个步骤是因为有一些代码或者是项目，用的版本可能不同，所以要创建一个对应版本的）</p>
+<p>环境以yolo命名为例，此过程在Anaconda上进行</p>
+<p>在电脑上搜索Anaconda Powershell Prompt</p>
+<p>输入代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n yolo python==3.9</span><br></pre></td></tr></table></figure>
+
+<p>-n 和python之间是名字，想叫什么都可以，一般是项目名字，我们这里是使用的YOLOV5，所以取yolo</p>
+<p>然后进入刚才的环境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda activate yolo</span><br></pre></td></tr></table></figure>
+
+<p>yolo的位置同样是名字，和你创建的环境名字统一</p>
+<p>【3】选择pytorch版本</p>
+<p><a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
+<p>我们要选择的几个地方就是</p>
+<p>Package 一栏选择 Conda（没有用pip也可以，操作一样，conda里用pip也合规）</p>
+<p>Language 一栏选择 Python</p>
+<p>Compute Platform 选择你电脑对应的，<strong>如果没有对应的版本，选最接近你CUDA版本并且更新了一些的版本，</strong> <strong>如果你没有英伟达独显，下载cpu版本的</strong></p>
+<p>【4】换源（可换可不换，速度取决于你网速，可以挂梯子）</p>
+<p>代码如下，在Anaconda Powershell Prompt 里输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span><br><span class="line"></span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+
+<p>【5】然后复制pytorch的安装指令（在你创建的环境中）</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260130212945856.png" alt="image-20260130212938735"></p>
+<p>最底下那一行</p>
+<p>【6】然后输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line"></span><br><span class="line">import torch</span><br><span class="line"></span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
+
+<p>返回True就对了，然后输入exit()推出python</p>
+<h2 id="2-YOLOV5使用和部署"><a href="#2-YOLOV5使用和部署" class="headerlink" title="2.YOLOV5使用和部署"></a>2.YOLOV5使用和部署</h2><p>（1）源码下载：<strong><a href="https://github.com/ultralytics/yolov5">https://github.com/ultralytics/yolov5</a></strong></p>
+<p>（2）完成环境搭建</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">这个是一个代码，不是两个，显示问题</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260130213935489.png" alt="image-20260130213935407"></p>
+<p>输入一个 <strong>detect.py</strong> 去测试，去看一下runs&#x2F;detect&#x2F;exp x（x是正整数）里有没有一些图片</p>
+<p>（3）数据采集</p>
+<p>【1】用小车摄像头采集</p>
+<p>执行小车的代码（截止2026.1.30 我还没用过，先不说）</p>
+<p>【2】用手机拍摄</p>
+<p>提供两个方法：一个就是拍一段视频，然后让AI写一个抽帧的脚本，每10或15帧一抽，这样获得图片；另一个就是一张一张拍</p>
+<p>（4）标记（最最最最最痛苦的一步！！！！！）</p>
+<p>依旧提供两个方式</p>
+<p>【1】makesense网站</p>
+<p><a href="https://www.makesense.ai/">https://www.makesense.ai/</a></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100702954.png" alt="屏幕截图 2026-01-30 215200"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131101024149.png" alt="屏幕截图 2026-01-30 215246"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100807882.png" alt="屏幕截图 2026-01-30 215426"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131101035429.png" alt="屏幕截图 2026-01-30 215624"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100746841.png" alt="屏幕截图 2026-01-30 215653"></p>
+<p>4和5的过程需要重复，你需要添加完所有你需要的标签之后，再去点6</p>
+<p>8是导出标签，需要你标记玩完所有图片之后再点（我第一次是2600张照片，加油，慢慢标）</p>
+<p>【2】X-AnyLabeling</p>
+<p>先介绍一下工具：AnyLabeling是一款标注软件，跟makesense一样，X-AnyLabeling是基于AnyLabeling开发的，主要是加载了一些AI模型，通过AI标注</p>
+<p><a href="https://pan.baidu.com/s/1pgaw02inCvbEgOme9ajDJA?pwd=e528">https://pan.baidu.com/s/1pgaw02inCvbEgOme9ajDJA?pwd=e528</a></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191800427.png" alt="屏幕截图 2026-01-31 122625"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191818873.png" alt="屏幕截图 2026-01-31 123917"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191831847.png" alt="屏幕截图 2026-01-31 191613"></p>
+<p>这个软件是按R之后进行标注的，具体的用法可以自己去网上查一下</p>
+<p>软件的优点就是快捷键可以提高标注效率，同时，你有一个自己的模型之后，可以通过使用模型标注数据，再在该模型的基础上训练，可以不断修正模型。</p>
+<p>选择模型的时候，选择的是一个yml文件，以下文件供参考，如果格式不对，模型是没法选择的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 1. 模型架构 (你是yolov5，这里必须写 yolov5，不能照抄图片的yolov8)</span><br><span class="line">type: yolov5</span><br><span class="line"></span><br><span class="line"># 2. 模型显示的名字 (随便起)</span><br><span class="line">name: my_smartcar_model</span><br><span class="line">display_name: SmartCar_Best</span><br><span class="line"></span><br><span class="line"># 3. 你的ONNX文件路径 (⚠️非常重要！反斜杠 / 防止报错)</span><br><span class="line"># 请务必确认 filenames 是 best.onnx（转ONNX代码自己搜一下）</span><br><span class="line">model_path: F:/SmartCar/yolov5-master/runs/train/exp8/weights/best.onnx</span><br><span class="line"></span><br><span class="line"># 4. 检测参数 (照抄图片里的标准参数)</span><br><span class="line">nms_threshold: 0.45</span><br><span class="line">confidence_threshold: 0.25</span><br><span class="line"></span><br><span class="line"># 5. 你的8个类别 (顺序必须对！)</span><br><span class="line">classes:</span><br><span class="line">  - apple</span><br><span class="line">  - pepper</span><br><span class="line">  - pumpkin</span><br><span class="line">  - pear</span><br><span class="line">  - tomato</span><br><span class="line">  - onion</span><br><span class="line">  - good</span><br><span class="line">  - bad</span><br></pre></td></tr></table></figure>
+
+<p>【3】建议训练方式</p>
+<p>建议先用几百张或一千张照片训练出一个可以认出一些图片的模型来，然后用AI标注，之后更改标注有误或漏检的图片。我认为这样是比较高效的，一次性标注五六千张照片，我更认为你会有想死的想法。</p>
+<p>（5）训练</p>
+<p>【1】代码</p>
+<p>以下文件是我更改过的，比较重要的文件</p>
+<table>
+<thead>
+<tr>
+<th align="left">文件名</th>
+<th align="left">下载链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>train.py</strong></td>
+<td align="left"><a href="/downloads/train.py">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>val.py</strong></td>
+<td align="left"><a href="/downloads/val.py">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>mydata.yaml</strong></td>
+<td align="left"><a href="/downloads/mydata.yaml">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>mydata_yolov5s.yaml</strong></td>
+<td align="left"><a href="/downloads/mydata_yolov5s.yaml">点击下载</a></td>
+</tr>
+</tbody></table>
+<p>特意提一下，train里有个多线程的选择，建议单线程，多线程可能会有报错然后中断，这不是代码问题，是多线程本身的问题</p>
+<p>【2】终端训练代码</p>
+<p>以下代码是从头训练或初次训练使用的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python train.py --weights yolov5s.pt --epochs 300 --batch-size 16 --data my_data/mydata.yaml --workers 0</span><br></pre></td></tr></table></figure>
+
+<p>以下代码是迭代训练使用的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python train.py --weights runs/train/exp9/weights/best.pt --epochs 100 --batch-size 16 --data my_data/mydata.yaml --workers 0</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数 (Argument)</th>
+<th>设置</th>
+<th>含义与避坑指南 (Description)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>–weights</strong></td>
+<td>best.pt 或 yolov5s.pt</td>
+<td><strong>初始权重</strong>。<br>微调时指向上一轮效果最好的模型（站在巨人的肩膀上）；<br>重练时指向官方预训练模型。</td>
+</tr>
+<tr>
+<td><strong>–data</strong></td>
+<td>mydata.yaml</td>
+<td><strong>数据集配置文件</strong>。<br>告诉代码去哪里找图片，以及标签有哪 8 类。</td>
+</tr>
+<tr>
+<td><strong>–epochs</strong></td>
+<td>100 &#x2F; 300</td>
+<td><strong>训练轮数</strong>。<br>微调通常 100 轮足够收敛；从头练建议 300 轮以学得更透彻。</td>
+</tr>
+<tr>
+<td><strong>–batch-size</strong></td>
+<td>16</td>
+<td><strong>批处理大小</strong>。<br>决定一次塞给显卡多少张图。对于 RTX 4060 (8G显存)，设为 16 是性价比最高的选择。</td>
+</tr>
+<tr>
+<td><strong>–workers</strong></td>
+<td><strong>0</strong></td>
+<td><strong>数据加载线程数 (⚠️重点)<strong>。<br>Windows 系统下</strong>必须设为 0</strong>（强制单线程），否则会报 DataLoader worker exited 导致训练崩溃。</td>
+</tr>
+</tbody></table>
+<p>【3】迭代训练</p>
+<p>用已有模型去标注新一轮图片，然后迭代，我认为效率最高的方式，这样，你就在使用“数据飞轮”了</p>
+]]></content>
+      <categories>
+        <category>比赛</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>py学习笔记</title>
+    <url>/2025/07/27/py%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="python学习"><a href="#python学习" class="headerlink" title="python学习"></a>python学习</h1><h2 id="一-函数"><a href="#一-函数" class="headerlink" title="一.函数"></a>一.函数</h2><h3 id="1-print——输出函数"><a href="#1-print——输出函数" class="headerlink" title="(1)print——输出函数"></a>(1)print——输出函数</h3><p>print(“     “) 打印引号内的内容</p>
+<p>print（变量）打印变量的内容</p>
+<p>print（“格式化字符串” % 变量1）</p>
+<p>print（“格式化字符串” % （变量1，变量2……））</p>
+<p>print（”xx”,end&#x3D;”xx”）不希望换行，这样可以让后一个输出紧紧跟着前一个输出</p>
+<p>print（”% n d”）可以使得格式对齐</p>
+<h3 id="2-type——查看变量类型"><a href="#2-type——查看变量类型" class="headerlink" title="(2)type——查看变量类型"></a>(2)type——查看变量类型</h3><p>type（xx） </p>
+<h3 id="3-input——输入函数（输入的是字符串）"><a href="#3-input——输入函数（输入的是字符串）" class="headerlink" title="(3)input——输入函数（输入的是字符串）"></a>(3)input——输入函数（输入的是字符串）</h3><p>字符串变量&#x3D;input（“ 提示信息：”）</p>
+<p>input输入的都是字符串</p>
+<h3 id="4-int，float——类型转换函数"><a href="#4-int，float——类型转换函数" class="headerlink" title="(4)int，float——类型转换函数"></a>(4)int，float——类型转换函数</h3><p>xx&#x3D;int（x）将x转化为一个整数</p>
+<p>xx&#x3D;float（x）将x转化为一个浮点数</p>
+<p>xx&#x3D;float&#x2F;int（input（“ 提示信息：”））</p>
+<h3 id="5-自定义函数"><a href="#5-自定义函数" class="headerlink" title="(5)自定义函数"></a>(5)自定义函数</h3><p>1.定义函数（把函数封装）</p>
+<p>def  xxx()【括号里可填写参数，定义时的参数为形参】 :</p>
+<p> “”“ xxx”“”（这样写注释 用ctrl+q可以查看函数的注释 ）</p>
+<p>（正常这里有一个tab缩进）</p>
+<p>在定义时，可以</p>
+<p>def  xxxx（xxx，xxx&#x3D;True&#x2F;False）这样可以定义一个参数默认值，定义的参数默认值应该在参数列表的末尾</p>
+<p>2.调用函数（使用已经封装好的函数 ）</p>
+<p>import  xxx（文件名）</p>
+<p>xxx.xxx() [前者为文件名，后者为函数名，括号内放置实参]</p>
+<p>定义函数和调用函数的文件要在一个文件夹</p>
+<p>当有多个缺省参数时，调用的时候，需要表明，比如：</p>
+<p>def print_info（name,title&#x3D;””,gender&#x3D;true）:</p>
+<p>xxx</p>
+<p>print_info（name,title&#x3D;”student”,gender&#x3D;true）</p>
+<p>3.多值参数（在一个参数能够处理的参数个数时不确定的时候，要用多值参数）</p>
+<p>*加参数名可以接受元组</p>
+<p>**加参数名可以接受字典</p>
+<p>一般在给多值参数命名的时候，习惯args存放元组，kwargs存放字典</p>
+<p>元组和字典的拆包：</p>
+<p>拆包的操作：在传递的元组前边加一个*</p>
+<p>​					   在传递的字典前边加两个*</p>
+<p>例子：</p>
+<p>def demo( * args,**kwargs)：</p>
+<p>​	print(args)</p>
+<p>​	print(kwargs)</p>
+<p>gl_nums&#x3D;(1,2,3)</p>
+<p>gl_xiaoming&#x3D;{“name”:”小明”,”age”:18}</p>
+<p>demo(*gl_nums,**gl_xiaoming)</p>
+<p>拆包可以让对应的数据类型传进去</p>
+<h3 id="6-return——返回值函数"><a href="#6-return——返回值函数" class="headerlink" title="(6)return——返回值函数"></a>(6)return——返回值函数</h3><p>return 之后的代码不会被执行</p>
+<p>函数内  return xxx</p>
+<p>函数外  xxx&#x3D;xxx（）【第一个xxx是个变量，第二个xxx是函数】</p>
+<p>return 后如果无值，会返回到函数调用的位置</p>
+<h3 id="7-list-tuple——转换函数"><a href="#7-list-tuple——转换函数" class="headerlink" title="(7)list&#x2F;tuple——转换函数"></a>(7)list&#x2F;tuple——转换函数</h3><p>list（放元组）可以把元组转换成数组</p>
+<p>tuple（放数组）可以把数组转换成元组</p>
+<p>xxx&#x3D;list&#x2F;tuple(xxx)</p>
+<h2 id="二-变量"><a href="#二-变量" class="headerlink" title="二.变量"></a>二.变量</h2><h3 id="1-变量的定义"><a href="#1-变量的定义" class="headerlink" title="1.变量的定义"></a>1.变量的定义</h3><p>变量名 &#x3D; 值</p>
+<p>变量可以出现在等式中</p>
+<h3 id="2-变量的类型"><a href="#2-变量的类型" class="headerlink" title="2.变量的类型"></a>2.变量的类型</h3><h4 id="（1）数字型"><a href="#（1）数字型" class="headerlink" title="（1）数字型"></a>（1）数字型</h4><p>整数（int）</p>
+<p>浮点数（float）</p>
+<p>布尔类型（真假，bool，真用true是非0，假用false是0） </p>
+<p>复数型（complex）</p>
+<h4 id="（2）非数字型"><a href="#（2）非数字型" class="headerlink" title="（2）非数字型"></a>（2）非数字型</h4><h5 id="1-特点"><a href="#1-特点" class="headerlink" title="1.特点"></a>1.特点</h5><p>1-6：都是一个序列，也就是容器；都可以用【】取值；</p>
+<p>都可以遍历，计算长度，取最大&#x2F;最小值，比较，删除，连接+或重复，还可以切片</p>
+<h5 id="2-种类"><a href="#2-种类" class="headerlink" title="2.种类"></a>2.种类</h5><h6 id="1）字符串（str，不可变）（用“-x”-或者’-x’-引起来，字符串内再要用引号用另外一种引号）：带有-的字符串为格式化字符串。"><a href="#1）字符串（str，不可变）（用“-x”-或者’-x’-引起来，字符串内再要用引号用另外一种引号）：带有-的字符串为格式化字符串。" class="headerlink" title="1）字符串（str，不可变）（用“ x” 或者’ x’ 引起来，字符串内再要用引号用另外一种引号）：带有%的字符串为格式化字符串。"></a>1）字符串（str，不可变）（用“ x” 或者’ x’ 引起来，字符串内再要用引号用另外一种引号）：带有%的字符串为格式化字符串。</h6><p>%s——字符串，%d十进制整数（%6d表示输出的数显示位数，不足的地方用0补全），%f浮点数（% .n表示小数点后显示n位），%%输出%</p>
+<p>len(字符串)获取字符串长度</p>
+<p>字符串.count（字符串）可以查看小字符串在大字符串中出现的次数</p>
+<p>字符串【下标】从字符串中去除单个字符</p>
+<p>字符串.index（字符串）获得小字符串第一次出现的下标</p>
+<p>index与find不同在，index不存在就报错，find不存在就返回-1</p>
+<table>
+<thead>
+<tr>
+<th>xxx.capitalize</th>
+<th>xxx.isidentifier</th>
+<th>xxx.rindex</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.casefold</td>
+<td>xxx.islower</td>
+<td>xxx.rjust</td>
+</tr>
+<tr>
+<td>xxx.center</td>
+<td>xxx.isnumeric</td>
+<td>xxx.rpartition</td>
+</tr>
+<tr>
+<td>xxx.count</td>
+<td>xxx.isprintable</td>
+<td>xxx.rsplit</td>
+</tr>
+<tr>
+<td>xxx.encode</td>
+<td>xxx.isspace</td>
+<td>xxx.rstrip</td>
+</tr>
+<tr>
+<td>xxx.endswith</td>
+<td>xxx.istitle</td>
+<td>xxx.spilt</td>
+</tr>
+<tr>
+<td>xxx.expandtabs</td>
+<td>xxx.isupper</td>
+<td>xxx.splitlines</td>
+</tr>
+<tr>
+<td>xxx.find</td>
+<td>xxx.join</td>
+<td>xxx.startsith</td>
+</tr>
+<tr>
+<td>xxx.format</td>
+<td>xxx.ljust</td>
+<td>xxx.strip</td>
+</tr>
+<tr>
+<td>xxx.format_map</td>
+<td>xxx.lower</td>
+<td>xxx.swapcase</td>
+</tr>
+<tr>
+<td>xxx.index</td>
+<td>xxx.lstrip</td>
+<td>xxx.title</td>
+</tr>
+<tr>
+<td>xxx.isalnum</td>
+<td>xxx.maketrans</td>
+<td>xxx.translate</td>
+</tr>
+<tr>
+<td>xxx.isalpha</td>
+<td>xxx.partition</td>
+<td>xxx.upper</td>
+</tr>
+<tr>
+<td>xxx.isdecimal</td>
+<td>xxx.replace</td>
+<td>xxx.zfill</td>
+</tr>
+<tr>
+<td>xxx.isdigit</td>
+<td>xxx.rfind</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>判断类型</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>string.isspace()</code></td>
+<td>如果 string 中只包含空格，则返回 True</td>
+</tr>
+<tr>
+<td><code>string.isalnum()</code></td>
+<td>如果 string 至少有一个字符并且所有字符都是字母或数字则返回 True</td>
+</tr>
+<tr>
+<td><code>string.isalpha()</code></td>
+<td>如果 string 至少有一个字符并且所有字符都是字母则返回 True</td>
+</tr>
+<tr>
+<td><code>string.isdecimal()</code></td>
+<td>如果 string 只包含数字则返回 True，全角数字</td>
+</tr>
+<tr>
+<td><code>string.isdigit()</code></td>
+<td>如果 string 只包含数字则返回 True，全角数字、⑴、\u00b2</td>
+</tr>
+<tr>
+<td><code>string.isnumeric()</code></td>
+<td>如果 string 只包含数字则返回 True，全角数字，汉字数字</td>
+</tr>
+<tr>
+<td><code>string.istitle()</code></td>
+<td>如果 string 是标题化的(每个单词的首字母大写)则返回 True</td>
+</tr>
+<tr>
+<td><code>string.islower()</code></td>
+<td>如果 string 中包含至少一个区分大小写的字符，并且所有这些(区分大小写的)字符都是小写，则返回 True</td>
+</tr>
+<tr>
+<td><code>string.isupper()</code></td>
+<td>如果 string 中包含至少一个区分大小写的字符，并且所有这些(区分大小写的)字符都是大写，则返回 True</td>
+</tr>
+</tbody></table>
+<p>查找与替换</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>string.startswith(str)</code></td>
+<td>检查字符串是否以 str 开头，是则返回 True</td>
+</tr>
+<tr>
+<td><code>string.endswith(str)</code></td>
+<td>检查字符串是否以 str 结束，是则返回 True</td>
+</tr>
+<tr>
+<td><code>string.find(str, start=0, end=len(string))</code></td>
+<td>检测 str 是否包含在 string 中，如果指定范围则检查是否在范围内，找到返回开始的索引值，否则返回 -1</td>
+</tr>
+<tr>
+<td><code>string.rfind(str, start=0, end=len(string))</code></td>
+<td>类似于 find() 函数，从右边开始查找</td>
+</tr>
+<tr>
+<td><code>string.index(str, start=0, end=len(string))</code></td>
+<td>跟 find() 方法类似，但 str 不存在时会报错</td>
+</tr>
+<tr>
+<td><code>string.rindex(str, start=0, end=len(string))</code></td>
+<td>类似于 index()，从右边开始</td>
+</tr>
+<tr>
+<td><code>string.replace(old_str, new_str, num=string.count(old))</code></td>
+<td>将 string 中的 old_str 替换成 new_str，如果指定 num 则替换不超过 num 次</td>
+</tr>
+</tbody></table>
+<p>大小写转换</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.capitalize()</td>
+<td>把字符串的第一个字符大写</td>
+</tr>
+<tr>
+<td>xxx.title()</td>
+<td>把字符串的每个单词首字母大写</td>
+</tr>
+<tr>
+<td>xxx.lower()</td>
+<td>转换xxx中所有大写字符为小写</td>
+</tr>
+<tr>
+<td>xxx.upper()</td>
+<td>转换xxx中的小写字符为大学</td>
+</tr>
+<tr>
+<td>xxx.swapcase()</td>
+<td>反转string中的大小写</td>
+</tr>
+</tbody></table>
+<p>文本对齐</p>
+<p>string.xxx(width,”   “)【引号内可以用任意字符】</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.ljust(width)</td>
+<td>返回一个原字符串左对齐，并用空格填充至长度width的新字符串</td>
+</tr>
+<tr>
+<td>xxx.rjust(width)</td>
+<td>返回一个原字符串右对齐，并用空格填充至长度width的新字符串</td>
+</tr>
+<tr>
+<td>xxx.center(width)</td>
+<td>返回一个原字符串居中，并用空格填充至长度width的新字符串</td>
+</tr>
+</tbody></table>
+<p>去除空白字符</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.lstrip()</td>
+<td>截掉xxx左边（开始）的空白字符</td>
+</tr>
+<tr>
+<td>xxx.retrip()</td>
+<td>截掉xxx右边（末尾）的空白字符</td>
+</tr>
+<tr>
+<td>xxx.strip()</td>
+<td>截掉xxx左右两边的空白字符</td>
+</tr>
+</tbody></table>
+<p>拆分和连接</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.partition(yyy)</td>
+<td>把字符串xxx分成一个三元素的元组（yyy前边,yyy,yyy后边）</td>
+</tr>
+<tr>
+<td>xxx.rpartition(yyy)</td>
+<td>类似于partintion()函数，不过是从右边开始查找</td>
+</tr>
+<tr>
+<td>xxx.split(yyy&#x3D;” “,num)</td>
+<td>以yyy为分隔符切片xxx，如果num有指定值，则仅分隔num+1个子字符串，yyy默认包含“\r” “\t” “\n” 和空格</td>
+</tr>
+<tr>
+<td>xxx.splitlines()</td>
+<td>按照行(“\r”,”\n”,”\r\n”)分隔，返回一个包含各行作为元素的列表</td>
+</tr>
+<tr>
+<td>xxx.join()</td>
+<td>以xxx作为分隔符，将yyy中的所有的元素（的字符串表示）合并为一个新的字符串</td>
+</tr>
+</tbody></table>
+<p>字符串切片[开始下标（空出来从最前开始）：结束下标（空出来切到最后）：长度（如果是负数，可以逆序切）]（最终切片结果不包含结束下标对应的字符）（也可以倒序，正序索引从0开始，倒叙从-1（倒数第二个）开始）</p>
+<h6 id="2）列表（即数组）：一般保存相同类型的信息，下标从0开始"><a href="#2）列表（即数组）：一般保存相同类型的信息，下标从0开始" class="headerlink" title="2）列表（即数组）：一般保存相同类型的信息，下标从0开始"></a>2）列表（即数组）：一般保存相同类型的信息，下标从0开始</h6><p>xxx&#x3D;[]  (定义数组，不用规定大小，定义可以直接写，也可以循环input（）</p>
+<table>
+<thead>
+<tr>
+<th>xxx.append</th>
+<th>xxx.count</th>
+<th>xxx.insert</th>
+<th>xxx.reverse</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.clear</td>
+<td>xxx.extend</td>
+<td>xxx.pop</td>
+<td>xxx.sort</td>
+</tr>
+<tr>
+<td>xxx.copy</td>
+<td>xxx.index</td>
+<td>xxx.remove</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>分类</th>
+<th>关键字&#x2F;函数&#x2F;方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>增加</td>
+<td>xxx.insert(下标，数据)</td>
+<td>在指定位置插入数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.append(数据)</td>
+<td>在末尾追加数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>列表1.extend(列表2)</td>
+<td>将列表2的数据追加到列表1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>修改</td>
+<td>xxx[下标]&#x3D;数据</td>
+<td>修改指定下标的数据</td>
+</tr>
+<tr>
+<td>3</td>
+<td>删除</td>
+<td>del xxx[下标]</td>
+<td>删除指定下标的数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.remove[数据]</td>
+<td>删除第一个出现的指定数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.pop</td>
+<td>删除末尾数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.pop(下标)</td>
+<td>删除指定下标数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.clear</td>
+<td>清空列表</td>
+</tr>
+<tr>
+<td>4</td>
+<td>统计</td>
+<td>len(xxx)</td>
+<td>列表长度</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.count()</td>
+<td>数据在列表中出现的次数</td>
+</tr>
+<tr>
+<td>5</td>
+<td>排序</td>
+<td>xxx.sort()</td>
+<td>升序排序</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.sort(reverse&#x3D;True)</td>
+<td>降序排序</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.reverse</td>
+<td>逆序、反转</td>
+</tr>
+<tr>
+<td>6</td>
+<td>查询</td>
+<td>xxx.index(数据)</td>
+<td>查询下标</td>
+</tr>
+</tbody></table>
+<p>列表 +&#x3D; 列表 等于调用extend方法</p>
+<p>extend 和append 的区别，extend在添加数据时（尤其是数组），是把数组拆开成多个元素添加，而append则是当时一个完整的元素添加</p>
+<h6 id="3）元组（元组元素后续不可修改）：用（）定义，下标从0开始，一般保存不同类型的数据"><a href="#3）元组（元组元素后续不可修改）：用（）定义，下标从0开始，一般保存不同类型的数据" class="headerlink" title="3）元组（元组元素后续不可修改）：用（）定义，下标从0开始，一般保存不同类型的数据"></a>3）元组（元组元素后续不可修改）：用（）定义，下标从0开始，一般保存不同类型的数据</h6><p>多用于传递多个参数，或者返回多个数值，还可以保护数组的数据不被修改。格式字符串后的%（）本质是一个元组</p>
+<p>tuple.count     tuple.index</p>
+<p>tuple&#x3D;()   特殊的单元组tuple&#x3D;（xxx，）</p>
+<p>xxx(变量)&#x3D;”%x %x %x” %tuple</p>
+<p>print（xxx(变量)）</p>
+<h6 id="4）字典（除数组外最灵活的类型）：一般存储描述一个物体的相关信息，且信息无序，字典用-定义。字典中的key只能使用不可变类型"><a href="#4）字典（除数组外最灵活的类型）：一般存储描述一个物体的相关信息，且信息无序，字典用-定义。字典中的key只能使用不可变类型" class="headerlink" title="4）字典（除数组外最灵活的类型）：一般存储描述一个物体的相关信息，且信息无序，字典用{}定义。字典中的key只能使用不可变类型"></a>4）字典（除数组外最灵活的类型）：一般存储描述一个物体的相关信息，且信息无序，字典用{}定义。字典中的key只能使用不可变类型</h6><p>key 是索引，value是数据，键 值中间用 ：隔开</p>
+<p>键是字典内唯一的</p>
+<p>值可以取任何数据类，但键只能用字符串、数字和元组</p>
+<p>xxx&#x3D;{“key 1”:”xxx”，</p>
+<p>​		 “key 2”:xxx}</p>
+<p>方法：</p>
+<table>
+<thead>
+<tr>
+<th>xxx.clear</th>
+<th>xxx.items</th>
+<th>xxx.setdefault</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.copy</td>
+<td>xxx.keys</td>
+<td>xxx.update</td>
+</tr>
+<tr>
+<td>xxx.fromkeys</td>
+<td>xxx.pop</td>
+<td>xxx.values</td>
+</tr>
+<tr>
+<td>xxx.get</td>
+<td>xxx.popitem</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>xxx.keys()</th>
+<th>展现所有key列表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.values()</td>
+<td>展现所有value列表</td>
+</tr>
+<tr>
+<td>xxx.items()</td>
+<td>展现所有（key,value）元组列表</td>
+</tr>
+<tr>
+<td>xxx.get(key)</td>
+<td>可以从字典中取值，key不存在不会报错</td>
+</tr>
+<tr>
+<td>xxx.pop(key)</td>
+<td>删除指定键值对，key不存在会报错</td>
+</tr>
+<tr>
+<td>xxx.popitem()</td>
+<td>随机删除一个键值对</td>
+</tr>
+<tr>
+<td>xxx.clear()</td>
+<td>清空字典</td>
+</tr>
+<tr>
+<td>xxx[key]</td>
+<td>可以从字典中取值，key不存在会报错</td>
+</tr>
+<tr>
+<td>xxx[key] &#x3D; value</td>
+<td>如果key存在，修改数据；反之，新建键值对</td>
+</tr>
+<tr>
+<td>xxx.setdefault(key,value)</td>
+<td>如果key存在，不会修改数据‘；反之，新建键值对</td>
+</tr>
+<tr>
+<td>字典1.update(字典2)</td>
+<td>将字典2的数据合并到字典1</td>
+</tr>
+<tr>
+<td>del xxx[key]</td>
+<td>删除指定键值对，key不存在会报错</td>
+</tr>
+</tbody></table>
+<p>多个字典可以放在一个数组里</p>
+<h5 id="3-公共方法"><a href="#3-公共方法" class="headerlink" title="3.公共方法"></a>3.公共方法</h5><p>内置的函数</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len(item)</td>
+<td>计算容器中元素的个数</td>
+<td></td>
+</tr>
+<tr>
+<td>del(item)</td>
+<td>删除变量</td>
+<td>del有两种方式</td>
+</tr>
+<tr>
+<td>max(item)</td>
+<td>返回容器中元素最大值</td>
+<td>如果是字典，只针对key比较</td>
+</tr>
+<tr>
+<td>min(item)</td>
+<td>返回容器中元素最小值</td>
+<td>如果是字典，只针对key比较</td>
+</tr>
+<tr>
+<td>cmp(item1,item2)</td>
+<td>比较两个值，返回值：-1小于&#x2F;&#x2F;0等于&#x2F;&#x2F;1大于</td>
+<td>python 3.x已经取消了cmp函数</td>
+</tr>
+</tbody></table>
+<p>字符串的比较规则：“0”&lt;“A”&lt;“a”</p>
+<p>del a[i] 等价于 del (a[i])：前者是当关键字，后者是当函数</p>
+<h6 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h6><table>
+<thead>
+<tr>
+<th>描述</th>
+<th>表达式</th>
+<th>结果</th>
+<th>可用的数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>切片</td>
+<td>“0123456789”[开始下标（空出来从最前开始）：结束下标（空出来切到最后）：长度（如果是负数，可以逆序切）]（最终切片结果不包含结束下标对应的字符）（也可以倒序，正序索引从0开始，倒叙从-1（倒数第二个）开始）</td>
+<td>“97531”</td>
+<td>字符串、列表、元组</td>
+</tr>
+</tbody></table>
+<p>切片使用<strong>下标</strong>来限定范围，从一个大的<strong>字符串</strong>中切除小的<strong>字符串</strong></p>
+<p><strong>列表和元组</strong>都是<strong>有序</strong>的集合，可以通过<strong>下标</strong>来获取对应的数据</p>
+<p><strong>字典</strong>是一个<strong>无序</strong>的集合，使用<strong>键值对</strong>保存数据</p>
+<h6 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h6><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>表达式</th>
+<th>结果</th>
+<th>描述</th>
+<th>可用的数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>[1,2]+[3,4]</td>
+<td>[1,2,3,4]</td>
+<td>合并</td>
+<td>字符串、列表、元组</td>
+</tr>
+<tr>
+<td>*</td>
+<td>[“HI!”]</td>
+<td>[“HI!”,”HI!”,”HI!”,”HI!”]</td>
+<td>重复</td>
+<td>字符串、列表、元组</td>
+</tr>
+<tr>
+<td>in</td>
+<td>3 in (1,2,3)</td>
+<td>True</td>
+<td>元素是否存在</td>
+<td>字符串、列表、元组、字典</td>
+</tr>
+<tr>
+<td>not in</td>
+<td>4 not in(1,2,3)</td>
+<td>True</td>
+<td>元素是否不存在</td>
+<td>字符串、列表、元组、字典</td>
+</tr>
+<tr>
+<td>&gt;,&gt;&#x3D;,&#x3D;&#x3D;,&lt;,&lt;&#x3D;</td>
+<td>(1,2,3)&lt;(2,2,3)</td>
+<td>True</td>
+<td>元素比较</td>
+<td>字符串、列表、元组</td>
+</tr>
+</tbody></table>
+<h3 id="3-变量的命名"><a href="#3-变量的命名" class="headerlink" title="3.变量的命名"></a>3.变量的命名</h3><h4 id="（1）标识符（只能有字母，下划线和数字，同时开头不可以是数字，不能与关键字重名）"><a href="#（1）标识符（只能有字母，下划线和数字，同时开头不可以是数字，不能与关键字重名）" class="headerlink" title="（1）标识符（只能有字母，下划线和数字，同时开头不可以是数字，不能与关键字重名）"></a>（1）标识符（只能有字母，下划线和数字，同时开头不可以是数字，不能与关键字重名）</h4><p>要见名知意</p>
+<p>需要多个单词，最好都小写，用下划线连接，或者几个单词的第一个字母大写</p>
+<h4 id="（2）关键字"><a href="#（2）关键字" class="headerlink" title="（2）关键字"></a>（2）关键字</h4><p>python内置的标识符</p>
+<p>import可以导入各种库</p>
+<h3 id="4-变量的引用（记录数据的地址就叫引用）"><a href="#4-变量的引用（记录数据的地址就叫引用）" class="headerlink" title="4.变量的引用（记录数据的地址就叫引用）"></a>4.变量的引用（记录数据的地址就叫引用）</h3><p>id(xxx)  可以查看数据所在的内存地址</p>
+<h3 id="5-局部变量与全局变量"><a href="#5-局部变量与全局变量" class="headerlink" title="5.局部变量与全局变量"></a>5.局部变量与全局变量</h3><p>局部变量定义在函数内，出了函数就失效</p>
+<p>全局变量不定义在函数变量，随时可用</p>
+<p>直接在函数中使用赋值语句去修改全局变量，就是在函数内部出现一个与全局变量相同名字的局部变量</p>
+<p>想在函数内直接修改，则需要：</p>
+<p>global xxx</p>
+<p>xxx&#x3D;xxx</p>
+<h2 id="三-语法"><a href="#三-语法" class="headerlink" title="三.语法"></a>三.语法</h2><h3 id="1-判断语句-（if，else，elif）（同缩进的if-else-elif是一组）"><a href="#1-判断语句-（if，else，elif）（同缩进的if-else-elif是一组）" class="headerlink" title="(1)判断语句 （if，else，elif）（同缩进的if else elif是一组）"></a>(1)判断语句 （if，else，elif）（同缩进的if else elif是一组）</h3><p>if xxx：</p>
+<p>（四个空格，或者一下tab）条件成立要做的事</p>
+<p>else：</p>
+<p>多个条件可以这样改，让格式整齐，让代码有可读性</p>
+<p>if（（）</p>
+<p>​	or（）</p>
+<p>​	or（））：</p>
+<h3 id="2-循环（while循环：while-，break，continue-）（最好从0开始计数）"><a href="#2-循环（while循环：while-，break，continue-）（最好从0开始计数）" class="headerlink" title="(2)循环（while循环：while ，break，continue ）（最好从0开始计数）"></a>(2)循环（while循环：while ，break，continue ）（最好从0开始计数）</h3><p>while 条件（判断 计数器 是否达到 目标次数）：</p>
+<p>​	xxxx</p>
+<p>​	处理条件（计数器变化）</p>
+<p>break ：满足一个条件，退出循环，后续不再执行循环</p>
+<p>continue（使用之前注意下计数是否更改，否则可能死循环）： 满足一个条件，退出本次循环，后续循环仍执行</p>
+<p>while True&#x2F;False(无限循环，由用户决定何时退出循环):</p>
+<h3 id="3-for循环（用于迭代遍历）"><a href="#3-for循环（用于迭代遍历）" class="headerlink" title="(3)for循环（用于迭代遍历）"></a>(3)for循环（用于迭代遍历）</h3><p>for xxx in xxx：(前一个是变量，后一个是数组&#x2F;元组&#x2F;字典，每次循环都会把数组的元素放在变量里，没有元素就会结束)</p>
+<p>  还没写代码时，可以先写pass，pass表示一个占位符，能保证代码结构正确。</p>
+<p>else:(遍历完成之后,else再执行，当for中有break退出之后，else不会再执行)</p>
+<p>特殊的，字典的遍历：</p>
+<p>for key in xxx:</p>
+<p>​	print(“%s : %s “% (key,xxx))</p>
+<h3 id="4-一行输入多个变量"><a href="#4-一行输入多个变量" class="headerlink" title="(4)一行输入多个变量"></a>(4)一行输入多个变量</h3><p>i&#x3D;1</p>
+<p>M,D,C&#x3D;[],[],[]</p>
+<p>while i&lt;&#x3D;N:</p>
+<p>  m,d,c&#x3D;map(int,input().split())</p>
+<p>  M.append(m)</p>
+<p>  D.append(d)</p>
+<p>  C.append(c)</p>
+<p>  i+&#x3D;1</p>
+<h2 id="四-算法"><a href="#四-算法" class="headerlink" title="四.算法"></a>四.算法</h2><p>1.循环计算</p>
+<p>i&#x3D;0（可改）</p>
+<p>sum&#x3D;0</p>
+<p>while i&lt;101（可改）:</p>
+<p>  sum+&#x3D;i</p>
+<p>  i+&#x3D;1</p>
+<p>print(sum)</p>
+<p>2.哈希</p>
+<p>hash（）</p>
+<p><img src="https://gitee.com/jiangnanqing/jiang-nuqing/raw/master/202507222214361.png" alt="image-20250722221405256"></p>
+<p>3.一次接受多个return变量</p>
+<p>x1,x2,…,xn&#x3D;函数（），这样可以在返回值是元组时简单处理</p>
+<p>4.变量交换</p>
+<p>a&#x3D;1</p>
+<p>b&#x3D;2</p>
+<p>（1）用其他变量</p>
+<p>c&#x3D;a</p>
+<p>a&#x3D;b</p>
+<p>b&#x3D;c</p>
+<p>（2）不用其他变量</p>
+<p>a&#x3D;a+b</p>
+<p>b&#x3D;a-b</p>
+<p>a&#x3D;a-b</p>
+<p>第一行左侧的a等于二者的和，第二行左侧的b在新a减去原b后，等于原a，第三行左侧的a在新a减去新b（原a）后等于原来的b</p>
+<p>（3）Python特有</p>
+<p>a,b&#x3D;(b,a)</p>
+<p>等于是接受返回值是元组的情况</p>
+<p>5.函数的递归（函数内部自己调用自己）</p>
+<p>特点： 1.函数的内部代码相同，但针对的参数不同，处理的结果不同</p>
+<p>​			2.当参数满足一个条件的时候，函数不再执行（如果没有出口，会出现死循环）</p>
+<p>例子：</p>
+<p>def sum_numbers(num):</p>
+<p>​	print(num)</p>
+<p>​	if num&#x3D;&#x3D;1:</p>
+<p>​		return</p>
+<p>​		sum_numbers(num-1)</p>
+<p>sum_numbers(3)</p>
+<h2 id="五-常见bug"><a href="#五-常见bug" class="headerlink" title="五.常见bug"></a>五.常见bug</h2><p>（1）手误拼错</p>
+<p>（2）一行写多个函数</p>
+<p>（3）缩进错误（python对于缩进要求极为严苛，可以直接tab）</p>
+<p>（4）python2.x不支持中文（选错ide）</p>
+<h2 id="六-注释（不要描述代码，要注释代码的作用）"><a href="#六-注释（不要描述代码，要注释代码的作用）" class="headerlink" title="六.注释（不要描述代码，要注释代码的作用）"></a>六.注释（不要描述代码，要注释代码的作用）</h2><h3 id="（1）单行注释"><a href="#（1）单行注释" class="headerlink" title="（1）单行注释"></a>（1）单行注释</h3><p> #xxxxxx（也可以在#后添加一个空格，可与代码同一行，也可与代码不同行）</p>
+<h3 id="（2）多行注释（块注释）"><a href="#（2）多行注释（块注释）" class="headerlink" title="（2）多行注释（块注释）"></a>（2）多行注释（块注释）</h3><p>“””（三个双引号）</p>
+<p>xxxxx </p>
+<p>“””（三个双引号）</p>
+<h3 id="（3）TODO注释"><a href="#（3）TODO注释" class="headerlink" title="（3）TODO注释"></a>（3）TODO注释</h3><p>#TODO xxx   会高显，在完成之后去掉todo，这是为了提醒哪些功能没做完</p>
+<h2 id="七-运算符"><a href="#七-运算符" class="headerlink" title="七.运算符"></a>七.运算符</h2><h3 id="1-算术运算符（括号可改变运算顺序）"><a href="#1-算术运算符（括号可改变运算顺序）" class="headerlink" title="1.算术运算符（括号可改变运算顺序）"></a>1.算术运算符（括号可改变运算顺序）</h3><h4 id="最低优先级"><a href="#最低优先级" class="headerlink" title="最低优先级"></a>最低优先级</h4><p>+加法运算（加号可以直接拼接字符串）</p>
+<p>-减法运算</p>
+<h4 id="第二优先级"><a href="#第二优先级" class="headerlink" title="第二优先级"></a>第二优先级</h4><p>*乘法运算</p>
+<p>&#x2F;除法运算</p>
+<p>&#x2F;&#x2F;取整除（好像是向下取整）</p>
+<p>%取余数</p>
+<h4 id="最高优先级"><a href="#最高优先级" class="headerlink" title="最高优先级"></a>最高优先级</h4><p>**幂次运算（）</p>
+<h4 id="特殊用法"><a href="#特殊用法" class="headerlink" title="特殊用法"></a>特殊用法</h4><p>” xx “ * n（字符串 * 次数）表示字符串重复n次</p>
+<h3 id="2-逻辑运算符"><a href="#2-逻辑运算符" class="headerlink" title="2.逻辑运算符"></a>2.逻辑运算符</h3><p>and 与运算</p>
+<p>or    或运算 </p>
+<p>not  非运算</p>
+<p>&#x3D;&#x3D; 判断是否等于</p>
+<p>!&#x3D; 判断是否不等于</p>
+<h3 id="3-赋值运算符"><a href="#3-赋值运算符" class="headerlink" title="3.赋值运算符"></a>3.赋值运算符</h3><p>&#x3D;	直接赋值 	c&#x3D;a</p>
+<p>+&#x3D;  	c&#x3D;c+a    c+&#x3D;a</p>
+<p>-&#x3D;	   c&#x3D;c-a     c-&#x3D;a</p>
+<p> ×&#x3D;      c&#x3D;c×a    c*×&#x3D;a（×应该是星号）		</p>
+<p>&#x2F;&#x3D;      c&#x3D;c&#x2F;a    c&#x2F;&#x3D;a</p>
+<p>&#x2F;&#x2F;&#x3D;     取整赋值  c&#x3D;c&#x2F;&#x2F;a    c&#x2F;&#x3D;a</p>
+<p>%&#x3D;     取余赋值  c&#x3D;c%a    c%&#x3D;a</p>
+<p>**&#x3D;    幂次赋值  c&#x3D;c××a   c××&#x3D;a（×应该是星号）</p>
+<h3 id="4-处理非数字型数据的运算符"><a href="#4-处理非数字型数据的运算符" class="headerlink" title="4.处理非数字型数据的运算符"></a>4.处理非数字型数据的运算符</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>表达式</th>
+<th>结果</th>
+<th>描述</th>
+<th>可用的数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>[1,2]+[3,4]</td>
+<td>[1,2,3,4]</td>
+<td>合并</td>
+<td>字符串、列表、元组</td>
+</tr>
+<tr>
+<td>*</td>
+<td>[“HI!”]</td>
+<td>[“HI!”,”HI!”,”HI!”,”HI!”]</td>
+<td>重复</td>
+<td>字符串、列表、元组</td>
+</tr>
+<tr>
+<td>in</td>
+<td>3 in (1,2,3)</td>
+<td>True</td>
+<td>元素是否存在</td>
+<td>字符串、列表、元组、字典</td>
+</tr>
+<tr>
+<td>not in</td>
+<td>4 not in(1,2,3)</td>
+<td>True</td>
+<td>元素是否不存在</td>
+<td>字符串、列表、元组、字典</td>
+</tr>
+<tr>
+<td>&gt;,&gt;&#x3D;,&#x3D;&#x3D;,&lt;,&lt;&#x3D;</td>
+<td>(1,2,3)&lt;(2,2,3)</td>
+<td>True</td>
+<td>元素比较</td>
+<td>字符串、列表、元组</td>
+</tr>
+</tbody></table>
+<p>in 在对字典操作的时候，判断的是 字典的键</p>
+<p>in 和not in 叫做成员运算符</p>
+<h2 id="八-转义字符"><a href="#八-转义字符" class="headerlink" title="八.转义字符"></a>八.转义字符</h2><p>\t  打出一个tab</p>
+<p>\n 换行</p>
+<p>\r  回车</p>
+<p>以上三者都是空白字符</p>
+<p>\ \  反斜杠符号</p>
+<p>\ ‘  单引号</p>
+<p>\ “ 双引号</p>
+<h2 id="九-工具库"><a href="#九-工具库" class="headerlink" title="九.工具库"></a>九.工具库</h2><p> <a href="https://www.runoob.com/python3/python3-tutorial.html">https://www.runoob.com/python3/python3-tutorial.html</a> </p>
+]]></content>
+      <categories>
+        <category>AI学习</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+</search>

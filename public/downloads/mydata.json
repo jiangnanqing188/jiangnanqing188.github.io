@@ -1,0 +1,1 @@
+{"path":"./datasets/doll_dataset","train":"images/train","val":"images/val","nc":8,"names":["apple","pepper","pumpkin","pear","tomato","onion","good","bad"]}
