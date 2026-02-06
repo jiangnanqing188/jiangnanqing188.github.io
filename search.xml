@@ -1,162 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>智能车日记；YOLOV5模型训练</title>
-    <url>/2026/01/29/YOLOv5%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</url>
-    <content><![CDATA[<h1 id="YOLOV5模型训练"><a href="#YOLOV5模型训练" class="headerlink" title="YOLOV5模型训练"></a>YOLOV5模型训练</h1><h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h2><h3 id="1-安装软件"><a href="#1-安装软件" class="headerlink" title="1.安装软件"></a>1.安装软件</h3><p>（1）安装Anaconda：这个没有什么难度，唯一要注意的就是<strong>路径不要有中文</strong>（碎碎念一句，很多国外软件都不接受中文路径，会报错）</p>
-<p><a href="https://www.anaconda.com/products/distribution">https://www.anaconda.com/products/distribution</a></p>
-<p>（2）安装pycharm</p>
-<p><a href="https://blog.csdn.net/2302_79334848/article/details/132128699">https://blog.csdn.net/2302_79334848/article/details/132128699</a></p>
-<p>（3）安装pytorch</p>
-<p>【1】查看CUDA版本</p>
-<p>这个需要看你电脑上CUDA的版本，看你电脑上英伟达独立显卡的版本</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
-
-<p>这个代码查看你的CUDA版本</p>
-<p>【2】创建环境（这个步骤是因为有一些代码或者是项目，用的版本可能不同，所以要创建一个对应版本的）</p>
-<p>环境以yolo命名为例，此过程在Anaconda上进行</p>
-<p>在电脑上搜索Anaconda Powershell Prompt</p>
-<p>输入代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n yolo python==3.9</span><br></pre></td></tr></table></figure>
-
-<p>-n 和python之间是名字，想叫什么都可以，一般是项目名字，我们这里是使用的YOLOV5，所以取yolo</p>
-<p>然后进入刚才的环境</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda activate yolo</span><br></pre></td></tr></table></figure>
-
-<p>yolo的位置同样是名字，和你创建的环境名字统一</p>
-<p>【3】选择pytorch版本</p>
-<p><a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
-<p>我们要选择的几个地方就是</p>
-<p>Package 一栏选择 Conda（没有用pip也可以，操作一样，conda里用pip也合规）</p>
-<p>Language 一栏选择 Python</p>
-<p>Compute Platform 选择你电脑对应的，<strong>如果没有对应的版本，选最接近你CUDA版本并且更新了一些的版本，</strong> <strong>如果你没有英伟达独显，下载cpu版本的</strong></p>
-<p>【4】换源（可换可不换，速度取决于你网速，可以挂梯子）</p>
-<p>代码如下，在Anaconda Powershell Prompt 里输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span><br><span class="line"></span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
-
-<p>【5】然后复制pytorch的安装指令（在你创建的环境中）</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260130212945856.png" alt="image-20260130212938735"></p>
-<p>最底下那一行</p>
-<p>【6】然后输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line"></span><br><span class="line">import torch</span><br><span class="line"></span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
-
-<p>返回True就对了，然后输入exit()推出python</p>
-<h2 id="2-YOLOV5使用和部署"><a href="#2-YOLOV5使用和部署" class="headerlink" title="2.YOLOV5使用和部署"></a>2.YOLOV5使用和部署</h2><p>（1）源码下载：<strong><a href="https://github.com/ultralytics/yolov5">https://github.com/ultralytics/yolov5</a></strong></p>
-<p>（2）完成环境搭建</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">这个是一个代码，不是两个，显示问题</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260130213935489.png" alt="image-20260130213935407"></p>
-<p>输入一个 <strong>detect.py</strong> 去测试，去看一下runs&#x2F;detect&#x2F;exp x（x是正整数）里有没有一些图片</p>
-<p>（3）数据采集</p>
-<p>【1】用小车摄像头采集</p>
-<p>执行小车的代码（截止2026.1.30 我还没用过，先不说）</p>
-<p>【2】用手机拍摄</p>
-<p>提供两个方法：一个就是拍一段视频，然后让AI写一个抽帧的脚本，每10或15帧一抽，这样获得图片；另一个就是一张一张拍</p>
-<p>（4）标记（最最最最最痛苦的一步！！！！！）</p>
-<p>依旧提供两个方式</p>
-<p>【1】makesense网站</p>
-<p><a href="https://www.makesense.ai/">https://www.makesense.ai/</a></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100702954.png" alt="屏幕截图 2026-01-30 215200"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131101024149.png" alt="屏幕截图 2026-01-30 215246"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100807882.png" alt="屏幕截图 2026-01-30 215426"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131101035429.png" alt="屏幕截图 2026-01-30 215624"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100746841.png" alt="屏幕截图 2026-01-30 215653"></p>
-<p>4和5的过程需要重复，你需要添加完所有你需要的标签之后，再去点6</p>
-<p>8是导出标签，需要你标记玩完所有图片之后再点（我第一次是2600张照片，加油，慢慢标）</p>
-<p>【2】X-AnyLabeling</p>
-<p>先介绍一下工具：AnyLabeling是一款标注软件，跟makesense一样，X-AnyLabeling是基于AnyLabeling开发的，主要是加载了一些AI模型，通过AI标注</p>
-<p><a href="https://pan.baidu.com/s/1pgaw02inCvbEgOme9ajDJA?pwd=e528">https://pan.baidu.com/s/1pgaw02inCvbEgOme9ajDJA?pwd=e528</a></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191800427.png" alt="屏幕截图 2026-01-31 122625"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191818873.png" alt="屏幕截图 2026-01-31 123917"></p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191831847.png" alt="屏幕截图 2026-01-31 191613"></p>
-<p>这个软件是按R之后进行标注的，具体的用法可以自己去网上查一下</p>
-<p>软件的优点就是快捷键可以提高标注效率，同时，你有一个自己的模型之后，可以通过使用模型标注数据，再在该模型的基础上训练，可以不断修正模型。</p>
-<p>选择模型的时候，选择的是一个yml文件，以下文件供参考，如果格式不对，模型是没法选择的。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 1. 模型架构 (你是yolov5，这里必须写 yolov5，不能照抄图片的yolov8)</span><br><span class="line">type: yolov5</span><br><span class="line"></span><br><span class="line"># 2. 模型显示的名字 (随便起)</span><br><span class="line">name: my_smartcar_model</span><br><span class="line">display_name: SmartCar_Best</span><br><span class="line"></span><br><span class="line"># 3. 你的ONNX文件路径 (⚠️非常重要！反斜杠 / 防止报错)</span><br><span class="line"># 请务必确认 filenames 是 best.onnx（转ONNX代码自己搜一下）</span><br><span class="line">model_path: F:/SmartCar/yolov5-master/runs/train/exp8/weights/best.onnx</span><br><span class="line"></span><br><span class="line"># 4. 检测参数 (照抄图片里的标准参数)</span><br><span class="line">nms_threshold: 0.45</span><br><span class="line">confidence_threshold: 0.25</span><br><span class="line"></span><br><span class="line"># 5. 你的8个类别 (顺序必须对！)</span><br><span class="line">classes:</span><br><span class="line">  - apple</span><br><span class="line">  - pepper</span><br><span class="line">  - pumpkin</span><br><span class="line">  - pear</span><br><span class="line">  - tomato</span><br><span class="line">  - onion</span><br><span class="line">  - good</span><br><span class="line">  - bad</span><br></pre></td></tr></table></figure>
-
-<p>【3】建议训练方式</p>
-<p>建议先用几百张或一千张照片训练出一个可以认出一些图片的模型来，然后用AI标注，之后更改标注有误或漏检的图片。我认为这样是比较高效的，一次性标注五六千张照片，我更认为你会有想死的想法。</p>
-<p>（5）训练</p>
-<p>【1】代码</p>
-<p>以下文件是我更改过的，比较重要的文件</p>
-<table>
-<thead>
-<tr>
-<th align="left">文件名</th>
-<th align="left">下载链接</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>train.py</strong></td>
-<td align="left"><a href="/downloads/train.py">点击下载</a></td>
-</tr>
-<tr>
-<td align="left"><strong>val.py</strong></td>
-<td align="left"><a href="/downloads/val.py">点击下载</a></td>
-</tr>
-<tr>
-<td align="left"><strong>mydata.yaml</strong></td>
-<td align="left"><a href="/downloads/mydata.yaml">点击下载</a></td>
-</tr>
-<tr>
-<td align="left"><strong>mydata_yolov5s.yaml</strong></td>
-<td align="left"><a href="/downloads/mydata_yolov5s.yaml">点击下载</a></td>
-</tr>
-</tbody></table>
-<p>特意提一下，train里有个多线程的选择，建议单线程，多线程可能会有报错然后中断，这不是代码问题，是多线程本身的问题</p>
-<p>【2】终端训练代码</p>
-<p>以下代码是从头训练或初次训练使用的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python train.py --weights yolov5s.pt --epochs 300 --batch-size 16 --data my_data/mydata.yaml --workers 0</span><br></pre></td></tr></table></figure>
-
-<p>以下代码是迭代训练使用的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python train.py --weights runs/train/exp9/weights/best.pt --epochs 100 --batch-size 16 --data my_data/mydata.yaml --workers 0</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数 (Argument)</th>
-<th>设置</th>
-<th>含义与避坑指南 (Description)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>–weights</strong></td>
-<td>best.pt 或 yolov5s.pt</td>
-<td><strong>初始权重</strong>。<br>微调时指向上一轮效果最好的模型（站在巨人的肩膀上）；<br>重练时指向官方预训练模型。</td>
-</tr>
-<tr>
-<td><strong>–data</strong></td>
-<td>mydata.yaml</td>
-<td><strong>数据集配置文件</strong>。<br>告诉代码去哪里找图片，以及标签有哪 8 类。</td>
-</tr>
-<tr>
-<td><strong>–epochs</strong></td>
-<td>100 &#x2F; 300</td>
-<td><strong>训练轮数</strong>。<br>微调通常 100 轮足够收敛；从头练建议 300 轮以学得更透彻。</td>
-</tr>
-<tr>
-<td><strong>–batch-size</strong></td>
-<td>16</td>
-<td><strong>批处理大小</strong>。<br>决定一次塞给显卡多少张图。对于 RTX 4060 (8G显存)，设为 16 是性价比最高的选择。</td>
-</tr>
-<tr>
-<td><strong>–workers</strong></td>
-<td><strong>0</strong></td>
-<td><strong>数据加载线程数 (⚠️重点)<strong>。<br>Windows 系统下</strong>必须设为 0</strong>（强制单线程），否则会报 DataLoader worker exited 导致训练崩溃。</td>
-</tr>
-</tbody></table>
-<p>【3】迭代训练</p>
-<p>用已有模型去标注新一轮图片，然后迭代，我认为效率最高的方式，这样，你就在使用“数据飞轮”了</p>
-]]></content>
-      <categories>
-        <category>比赛</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ISCC竞赛——模拟微型工厂赛道分享</title>
     <url>/2026/01/28/ISCC%E5%BE%AE%E5%9E%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%81%93%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</url>
     <content><![CDATA[<h1 id="ISCC竞赛——模拟微型工厂赛道分享"><a href="#ISCC竞赛——模拟微型工厂赛道分享" class="headerlink" title="ISCC竞赛——模拟微型工厂赛道分享"></a>ISCC竞赛——模拟微型工厂赛道分享</h1><h2 id="1-赛道分析"><a href="#1-赛道分析" class="headerlink" title="1.赛道分析"></a>1.赛道分析</h2><p>​	该赛道如题，微型工厂模拟，主要的过程就是通过写电路程序（软件是西门子的博图V16），然后通过仿真软件（博达特）进行工厂的模拟，然后使用触摸屏的组态软件写一个触摸屏系统，去控制一下仿真软件的启动与停止，之后进行加密，保证在信号传输的过程中不会泄密和被攻击（说明一下，由于比赛可以由多台电脑完成，所以我的加密过程和我队友写程序的过程是同步的）。</p>
@@ -1036,6 +880,252 @@
       <tags>
         <tag>Python</tag>
         <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能车日记；YOLOV5模型训练</title>
+    <url>/2026/01/29/YOLOv5%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</url>
+    <content><![CDATA[<h1 id="YOLOV5模型训练"><a href="#YOLOV5模型训练" class="headerlink" title="YOLOV5模型训练"></a>YOLOV5模型训练</h1><h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h2><h3 id="1-安装软件"><a href="#1-安装软件" class="headerlink" title="1.安装软件"></a>1.安装软件</h3><p>（1）安装Anaconda：这个没有什么难度，唯一要注意的就是<strong>路径不要有中文</strong>（碎碎念一句，很多国外软件都不接受中文路径，会报错）</p>
+<p><a href="https://www.anaconda.com/products/distribution">https://www.anaconda.com/products/distribution</a></p>
+<p>（2）安装pycharm</p>
+<p><a href="https://blog.csdn.net/2302_79334848/article/details/132128699">https://blog.csdn.net/2302_79334848/article/details/132128699</a></p>
+<p>（3）安装pytorch</p>
+<p>【1】查看CUDA版本</p>
+<p>这个需要看你电脑上CUDA的版本，看你电脑上英伟达独立显卡的版本</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p>这个代码查看你的CUDA版本</p>
+<p>【2】创建环境（这个步骤是因为有一些代码或者是项目，用的版本可能不同，所以要创建一个对应版本的）</p>
+<p>环境以yolo命名为例，此过程在Anaconda上进行</p>
+<p>在电脑上搜索Anaconda Powershell Prompt</p>
+<p>输入代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n yolo python==3.9</span><br></pre></td></tr></table></figure>
+
+<p>-n 和python之间是名字，想叫什么都可以，一般是项目名字，我们这里是使用的YOLOV5，所以取yolo</p>
+<p>然后进入刚才的环境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda activate yolo</span><br></pre></td></tr></table></figure>
+
+<p>yolo的位置同样是名字，和你创建的环境名字统一</p>
+<p>【3】选择pytorch版本</p>
+<p><a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
+<p>我们要选择的几个地方就是</p>
+<p>Package 一栏选择 Conda（没有用pip也可以，操作一样，conda里用pip也合规）</p>
+<p>Language 一栏选择 Python</p>
+<p>Compute Platform 选择你电脑对应的，<strong>如果没有对应的版本，选最接近你CUDA版本并且更新了一些的版本，</strong> <strong>如果你没有英伟达独显，下载cpu版本的</strong></p>
+<p>【4】换源（可换可不换，速度取决于你网速，可以挂梯子）</p>
+<p>代码如下，在Anaconda Powershell Prompt 里输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span><br><span class="line"></span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+
+<p>【5】然后复制pytorch的安装指令（在你创建的环境中）</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260130212945856.png" alt="image-20260130212938735"></p>
+<p>最底下那一行</p>
+<p>【6】然后输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line"></span><br><span class="line">import torch</span><br><span class="line"></span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
+
+<p>返回True就对了，然后输入exit()推出python</p>
+<h2 id="2-YOLOV5使用和部署"><a href="#2-YOLOV5使用和部署" class="headerlink" title="2.YOLOV5使用和部署"></a>2.YOLOV5使用和部署</h2><p>（1）源码下载：<strong><a href="https://github.com/ultralytics/yolov5">https://github.com/ultralytics/yolov5</a></strong></p>
+<p>（2）完成环境搭建</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">这个是一个代码，不是两个，显示问题</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260130213935489.png" alt="image-20260130213935407"></p>
+<p>输入一个 <strong>detect.py</strong> 去测试，去看一下runs&#x2F;detect&#x2F;exp x（x是正整数）里有没有一些图片</p>
+<p>（3）数据采集</p>
+<p>【1】用小车摄像头采集</p>
+<p>执行小车的代码（截止2026.1.30 我还没用过，先不说）</p>
+<p>【2】用手机拍摄</p>
+<p>提供两个方法：一个就是拍一段视频，然后让AI写一个抽帧的脚本，每10或15帧一抽，这样获得图片；另一个就是一张一张拍</p>
+<p>（4）标记（最最最最最痛苦的一步！！！！！）</p>
+<p>依旧提供两个方式</p>
+<p>【1】makesense网站</p>
+<p><a href="https://www.makesense.ai/">https://www.makesense.ai/</a></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100702954.png" alt="屏幕截图 2026-01-30 215200"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131101024149.png" alt="屏幕截图 2026-01-30 215246"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100807882.png" alt="屏幕截图 2026-01-30 215426"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131101035429.png" alt="屏幕截图 2026-01-30 215624"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100746841.png" alt="屏幕截图 2026-01-30 215653"></p>
+<p>4和5的过程需要重复，你需要添加完所有你需要的标签之后，再去点6</p>
+<p>8是导出标签，需要你标记玩完所有图片之后再点（我第一次是2600张照片，加油，慢慢标）</p>
+<p>【2】X-AnyLabeling</p>
+<p>先介绍一下工具：AnyLabeling是一款标注软件，跟makesense一样，X-AnyLabeling是基于AnyLabeling开发的，主要是加载了一些AI模型，通过AI标注</p>
+<p><a href="https://pan.baidu.com/s/1pgaw02inCvbEgOme9ajDJA?pwd=e528">https://pan.baidu.com/s/1pgaw02inCvbEgOme9ajDJA?pwd=e528</a></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191800427.png" alt="屏幕截图 2026-01-31 122625"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191818873.png" alt="屏幕截图 2026-01-31 123917"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191831847.png" alt="屏幕截图 2026-01-31 191613"></p>
+<p>这个软件是按R之后进行标注的，具体的用法可以自己去网上查一下</p>
+<p>软件的优点就是快捷键可以提高标注效率，同时，你有一个自己的模型之后，可以通过使用模型标注数据，再在该模型的基础上训练，可以不断修正模型。</p>
+<p>选择模型的时候，选择的是一个yml文件，以下文件供参考，如果格式不对，模型是没法选择的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 1. 模型架构 (你是yolov5，这里必须写 yolov5，不能照抄图片的yolov8)</span><br><span class="line">type: yolov5</span><br><span class="line"></span><br><span class="line"># 2. 模型显示的名字 (随便起)</span><br><span class="line">name: my_smartcar_model</span><br><span class="line">display_name: SmartCar_Best</span><br><span class="line"></span><br><span class="line"># 3. 你的ONNX文件路径 (⚠️非常重要！反斜杠 / 防止报错)</span><br><span class="line"># 请务必确认 filenames 是 best.onnx（转ONNX代码自己搜一下）</span><br><span class="line">model_path: F:/SmartCar/yolov5-master/runs/train/exp8/weights/best.onnx</span><br><span class="line"></span><br><span class="line"># 4. 检测参数 (照抄图片里的标准参数)</span><br><span class="line">nms_threshold: 0.45</span><br><span class="line">confidence_threshold: 0.25</span><br><span class="line"></span><br><span class="line"># 5. 你的8个类别 (顺序必须对！)</span><br><span class="line">classes:</span><br><span class="line">  - apple</span><br><span class="line">  - pepper</span><br><span class="line">  - pumpkin</span><br><span class="line">  - pear</span><br><span class="line">  - tomato</span><br><span class="line">  - onion</span><br><span class="line">  - good</span><br><span class="line">  - bad</span><br></pre></td></tr></table></figure>
+
+<p>【3】建议训练方式</p>
+<p>建议先用几百张或一千张照片训练出一个可以认出一些图片的模型来，然后用AI标注，之后更改标注有误或漏检的图片。我认为这样是比较高效的，一次性标注五六千张照片，我更认为你会有想死的想法。</p>
+<p>（5）训练</p>
+<p>【1】代码</p>
+<p>以下文件是我更改过的，比较重要的文件</p>
+<table>
+<thead>
+<tr>
+<th align="left">文件名</th>
+<th align="left">下载链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>train.py</strong></td>
+<td align="left"><a href="/downloads/train.py">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>val.py</strong></td>
+<td align="left"><a href="/downloads/val.py">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>mydata.yaml</strong></td>
+<td align="left"><a href="/downloads/mydata.yaml">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>mydata_yolov5s.yaml</strong></td>
+<td align="left"><a href="/downloads/mydata_yolov5s.yaml">点击下载</a></td>
+</tr>
+</tbody></table>
+<p>特意提一下，train里有个多线程的选择，建议单线程，多线程可能会有报错然后中断，这不是代码问题，是多线程本身的问题</p>
+<p>【2】终端训练代码</p>
+<p>以下代码是从头训练或初次训练使用的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python train.py --weights yolov5s.pt --epochs 300 --batch-size 16 --data my_data/mydata.yaml --workers 0</span><br></pre></td></tr></table></figure>
+
+<p>以下代码是迭代训练使用的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python train.py --weights runs/train/exp9/weights/best.pt --epochs 100 --batch-size 16 --data my_data/mydata.yaml --workers 0</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数 (Argument)</th>
+<th>设置</th>
+<th>含义与避坑指南 (Description)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>–weights</strong></td>
+<td>best.pt 或 yolov5s.pt</td>
+<td><strong>初始权重</strong>。<br>微调时指向上一轮效果最好的模型（站在巨人的肩膀上）；<br>重练时指向官方预训练模型。</td>
+</tr>
+<tr>
+<td><strong>–data</strong></td>
+<td>mydata.yaml</td>
+<td><strong>数据集配置文件</strong>。<br>告诉代码去哪里找图片，以及标签有哪 8 类。</td>
+</tr>
+<tr>
+<td><strong>–epochs</strong></td>
+<td>100 &#x2F; 300</td>
+<td><strong>训练轮数</strong>。<br>微调通常 100 轮足够收敛；从头练建议 300 轮以学得更透彻。</td>
+</tr>
+<tr>
+<td><strong>–batch-size</strong></td>
+<td>16</td>
+<td><strong>批处理大小</strong>。<br>决定一次塞给显卡多少张图。对于 RTX 4060 (8G显存)，设为 16 是性价比最高的选择。</td>
+</tr>
+<tr>
+<td><strong>–workers</strong></td>
+<td><strong>0</strong></td>
+<td><strong>数据加载线程数 (⚠️重点)<strong>。<br>Windows 系统下</strong>必须设为 0</strong>（强制单线程），否则会报 DataLoader worker exited 导致训练崩溃。</td>
+</tr>
+</tbody></table>
+<p>【3】迭代训练</p>
+<p>用已有模型去标注新一轮图片，然后迭代，我认为效率最高的方式，这样，你就在使用“数据飞轮”了</p>
+]]></content>
+      <categories>
+        <category>比赛</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法学习日记:python</title>
+    <url>/2026/02/04/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="算法学习"><a href="#算法学习" class="headerlink" title="算法学习"></a>算法学习</h1><h2 id="1-迭代与递归"><a href="#1-迭代与递归" class="headerlink" title="1.迭代与递归"></a>1.迭代与递归</h2><ul>
+<li><p><strong>迭代</strong>：“自下而上”地解决问题。从最基础的步骤开始，然后不断重复或累加这些步骤，直到任务完成。迭代是用循环去迭代。</p>
+</li>
+<li><p><strong>递归</strong>：“自上而下”地解决问题。将原问题分解为更小的子问题，这些子问题和原问题具有相同的形式。接下来将子问题继续分解为更小的子问题，直到基本情况时停止（基本情况的解是已知的）。递归是函数自己调用自己</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th>迭代</th>
+<th>递归</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">实现方式</td>
+<td>循环结构</td>
+<td>函数调用自身</td>
+</tr>
+<tr>
+<td align="center">时间效率</td>
+<td>效率通常较高，无函数调用开销</td>
+<td>每次函数调用都会产生开销</td>
+</tr>
+<tr>
+<td align="center">内存使用</td>
+<td>通常使用固定大小的内存空间</td>
+<td>累积函数调用可能使用大量的栈帧空间</td>
+</tr>
+<tr>
+<td align="center">适用问题</td>
+<td>适用于简单循环任务，代码直观、可读性好</td>
+<td>适用于子问题分解，如树、图、分治、回溯等，代码结构简洁、清晰</td>
+</tr>
+</tbody></table>
+<h2 id="2-数据结构"><a href="#2-数据结构" class="headerlink" title="2.数据结构"></a>2.数据结构</h2><h3 id="（1）分类"><a href="#（1）分类" class="headerlink" title="（1）分类"></a>（1）分类</h3><p>常见的数据结构包括数组、链表、栈、队列、哈希表、树、堆、图。</p>
+<p>【1】逻辑结构：线性与非线性</p>
+<p><strong>逻辑结构揭示了数据元素之间的逻辑关系</strong>。在数组和链表中，数据按照一定顺序排列，体现了数据之间的线性关系；而在树中，数据从顶部向下按层次排列，表现出“祖先”与“后代”之间的派生关系；图则由节点和边构成，反映了复杂的网络关系。</p>
+<p>线性结构比较直观，指数据在逻辑关系上呈线性排列；非线性结构则相反，呈非线性排列。</p>
+<ul>
+<li><p><strong>线性数据结构</strong>：数组、链表、栈、队列、哈希表，元素之间是一对一的顺序关系。</p>
+</li>
+<li><p><strong>非线性数据结构</strong>：树、堆、图、哈希表。</p>
+</li>
+</ul>
+<p>非线性数据结构可以进一步划分为树形结构和网状结构。</p>
+<ul>
+<li><strong>树形结构</strong>：树、堆、哈希表，元素之间是一对多的关系。</li>
+<li><strong>网状结构</strong>：图，元素之间是多对多的关系。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260204220710437.png" alt="classification_logic_structure"></p>
+<p>【2】物理结构：连续与分散</p>
+<p>可分为连续空间存储（数组）和分散空间存储（链表）。物理结构从底层决定了数据的访问、更新、增删等操作方法，两种物理结构在时间效率和空间效率方面呈现出互补的特点。</p>
+<p><strong>所有数据结构都是基于数组、链表或二者的组合实现的</strong>。</p>
+<ul>
+<li><p><strong>基于数组可实现</strong>：栈、队列、哈希表、树、堆、图、矩阵、张量（维度 ≥3 的数组）等。</p>
+</li>
+<li><p><strong>基于链表可实现</strong>：栈、队列、哈希表、树、堆、图等。</p>
+</li>
+</ul>
+<h3 id="（2）基本数据类型"><a href="#（2）基本数据类型" class="headerlink" title="（2）基本数据类型"></a>（2）基本数据类型</h3><p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260204222820191.png" alt="image-20260204222820140"></p>
+<ul>
+<li>在 Python 中，整数类型 <code>int</code> 可以是任意大小，只受限于可用内存；浮点数 <code>float</code> 是双精度 64 位；没有 <code>char</code> 类型，单个字符实际上是长度为 1 的字符串 <code>str</code> 。</li>
+<li>C 和 C++ 未明确规定基本数据类型的大小，而因实现和平台各异。</li>
+<li>字符 <code>char</code> 的大小在 C 和 C++ 中为 1 字节，在大多数编程语言中取决于特定的字符编码方法</li>
+<li>即使表示布尔量仅需 1 位（0 或 1），它在内存中通常也存储为 1 字节。这是因为现代计算机 CPU 通常将 1 字节作为最小寻址内存单元。</li>
+</ul>
+<h2 id="3-数组与链表"><a href="#3-数组与链表" class="headerlink" title="3.数组与链表"></a>3.数组与链表</h2><h3 id="（1）数组"><a href="#（1）数组" class="headerlink" title="（1）数组"></a>（1）数组</h3><p>【1】初始化</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化数组</span></span><br><span class="line">arr: <span class="built_in">list</span>[<span class="built_in">int</span>] = [<span class="number">0</span>] * <span class="number">5</span>  <span class="comment"># [ 0, 0, 0, 0, 0 ]</span></span><br><span class="line">nums: <span class="built_in">list</span>[<span class="built_in">int</span>] = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<p>【2】访问</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260205175339067.png" alt="image-20260205175333178"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def random_access(nums: list[int]) -&gt; int:</span><br><span class="line">    &quot;&quot;&quot;随机访问元素&quot;&quot;&quot;</span><br><span class="line">    # 在区间 [0, len(nums)-1] 中随机抽取一个数字</span><br><span class="line">    random_index = random.randint(0, len(nums) - 1)</span><br><span class="line">    # 获取并返回随机元素</span><br><span class="line">    random_num = nums[random_index]</span><br><span class="line">    return random_num</span><br></pre></td></tr></table></figure>
+
+<p>【3】插入元素</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260205181015771.png" alt="image-20260205180828558"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def insert(nums: list[int], num: int, index: int):</span><br><span class="line">    &quot;&quot;&quot;在数组的索引 index 处插入元素 num&quot;&quot;&quot;</span><br><span class="line">    # 把索引 index 以及之后的所有元素向后移动一位</span><br><span class="line">    for i in range(len(nums) - 1, index, -1):</span><br><span class="line">        nums[i] = nums[i - 1]</span><br><span class="line">    # 将 num 赋给 index 处的元素</span><br><span class="line">    nums[index] = num</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>AI学习</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>python</tag>
       </tags>
   </entry>
 </search>
