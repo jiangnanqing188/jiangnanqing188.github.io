@@ -110,7 +110,7 @@ theme: anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:jiangnanqing188/jiangnanqing188.github.io.git
+  repo: https://github.com/jiangnanqing188/jiangnanqing188.github.io.git
   branch: main
 
 # 搜索插件配置
