@@ -1,0 +1,16 @@
+# Dependencies
+/node_modules/
+
+# Hexo generated output and cache
+/public/
+/.deploy_git/
+/db.json
+
+# Local rollback snapshots
+/backups/
+
+# Logs and operating-system metadata
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
