@@ -1,0 +1,1391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>从Ctrl+V工程师到让AI自己调小车，我的AI使用体验</title>
+    <url>/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/</url>
+    <content><![CDATA[<h2 id="经历"><a href="#经历" class="headerlink" title="经历"></a>经历</h2><p>我第一次大规模使用AI，应该是在2025年11月。</p>
+<p>当时要做C++课程设计。因为上课一直玩手机，没怎么认真听课，所以真到自己打开Visual Studio的时候，基本属于两眼一黑。这个状态，可能也算不少大学生的日常了。。。</p>
+<p>经学长推荐，我开始使用Google的Gemini。具体是哪个版本，现在已经记不清了，只记得第一次用的时候非常惊艳。我把课程设计的要求发给它，再描述一下自己遇到的问题，它就能直接给出代码。程序报错了，我也不用怎么分析，复制错误信息，粘贴过去，再等它回复。</p>
+<p>那段时间的我，就是一个非常标准的Ctrl+V工程师。</p>
+<p>现在回头看，我当时其实谈不上会用AI，更像是在用一个答案生成器。我不知道它为什么这么改，也很少主动检查代码结构，只要程序最后能跑起来，我就觉得它很厉害。</p>
+<p>但即使是这样，那种体验依然很新鲜。以前遇到不会的问题，我得翻书、搜博客、看视频，再从一堆内容里拼出一个答案。Gemini出现以后，我只需要把问题讲清楚，它就会顺着我的问题继续往下做。</p>
+<p>它第一次让我感觉到，写代码这件事，好像真的变了。</p>
+<p>再一次大规模使用AI，是2026年3月。那时我开始准备中国机器人及人工智能大赛，用的还是Gemini，但体验已经没有第一次那么好了。</p>
+<p>我当时甚至怀疑，是不是Google觉得数据收集得差不多了，所以不仅Token消耗变快，模型也没有以前聪明了。当然，现在回头看，也不一定是模型的问题。</p>
+<p>C++课程设计的代码只需要在电脑上运行，环境相对简单。机器人比赛的代码却要放到真实的小车上，牵扯ROS、传感器、网络、底盘和各种硬件状态。偏偏我能给Gemini看的还不是完整代码库，只有零零散散的几个主要文件。</p>
+<p>它看不到完整环境，也拿不到真实反馈，改起来自然有点盲人摸象。</p>
+<p>这种状态一直持续到2026年5月。后来我转去做另一个赛道，也就是智慧药房，AI在我手里的角色才真正发生了变化。</p>
+<p>智慧药房是我和另一个同学合作完成的。那也是我第一次接触正儿八经能在项目里干活的编程Agent，我用的是Claude Code，接入DeepSeek V4。</p>
+<p>第一次看到它直接在目录里读代码、改文件、执行命令，那种感觉很奇妙。我只是说了几句话，等了一会儿，再打开文件，工作已经完成了。</p>
+<p>真的，感觉太好了。</p>
+<p>和我合作的同学用的是Trae和GLM。单从我们当时合作的体验看，我觉得GLM的表现要比DeepSeek V4更好一些。不过坦率地讲，当时根本没有时间让我慢慢对比哪个模型强、哪个模型性价比高。</p>
+<p>那次任务是真的重。</p>
+<p>没有可以继承的代码，相关知识储备也不够，留给我们的时间只有两周左右。写功能、补知识、上车测试、处理报错，所有事情全挤在一起。那时对我来说，能不能在规定时间里把东西做出来，比研究模型排行榜重要多了。</p>
+<p>智慧药房初赛结束后，我休息了一段时间。之后还是和这个同学合作，我们又去做了睿抗比赛。我继续用Claude Code加DeepSeek V4，他继续用Trae加GLM。</p>
+<p>这一次的过程明显顺畅了很多。</p>
+<p>我先一点点搭出Gazebo地图，再把后续修改交给Claude Code。我说清楚要求，它负责完成。因为目录结构和代码都是我们自己从头建立的，AI能看到更完整的项目，也更容易理解我们前面做过什么，所以改起来没有之前那么痛苦。</p>
+<p>这段经历也让我第一次很直观地意识到，同一个模型好不好用，不只取决于模型本身。</p>
+<p>你给它多少上下文，项目结构是否清楚，它能不能拿到运行结果，都会直接影响最终效果。AI再强，如果只看到几个互不相干的文件，也很难凭空猜出整台小车现在到底是什么状态。</p>
+<p>也是在这个阶段，我的DeepSeek账单已经涨到120多元。我突然觉得，既然每个月已经要花这么多，为什么不试试能力更强的国外模型？</p>
+<p>我一开始更倾向Claude，但当时看到不少封号相关的事情，心里多少有点担心，后来还是选择了ChatGPT。</p>
+<p>放假以后，我购买了ChatGPT Plus。</p>
+<p>一开始我其实不太情愿从Claude Code换到Codex CLI。原因也很简单，我在Claude Code里已经配了不少Skills，想到换一套环境又要重新配置，就觉得麻烦。对于一个懒人来说，能不折腾当然不想折腾。</p>
+<p>但Claude Code接入GPT比较麻烦，而且两边能调用的模型和思考强度也有差别。我担心硬接进去以后效果不好，干脆直接告诉Codex CLI，让它读取我原来的Skills目录，再自己完成迁移和配置。</p>
+<p>大概半个小时，基本就弄好了。</p>
+<p>这个过程挺惊艳的。以前迁移一套环境，光是找教程、对路径、改配置，可能就要折腾很久。现在我只需要告诉它目标，它会自己检查目录、读取说明，再把缺的东西补上。</p>
+<p>然后，我很快就为这种惊艳交了一次学费。</p>
+<p>因为Ubuntu分配的硬盘空间比较小，我让GPT帮我清理磁盘。它确实清掉了很多东西，效果好到把我比赛要用的Docker镜像也一起删了。</p>
+<p>是的，镜像没了。</p>
+<p>当时距离调试已经很近，我看到环境消失的那一刻，是真的有点崩溃。AI执行命令的速度很快，删东西也一样快。你给它权限，它就会认真完成任务，至于它理解的垃圾和你理解的垃圾是不是同一批东西，那是另一个问题。</p>
+<p>当天，我只能让GPT-5.5根据之前遗留的命令、配置和代码，重新复刻Docker镜像。大约一个小时后，镜像重新做了出来，只是主从机还没有配置。</p>
+<p>第二天实际测试时，那套镜像真的通过了指令。</p>
+<p>有点离谱。</p>
+<p>一边是它刚把我的环境删掉，另一边又靠遗留信息把环境重新搭了回来。我一时间甚至不知道该生气还是该惊喜。</p>
+<p>后面的使用就稳定了不少。Codex开始读取代码、修改代码、执行测试，这些慢慢变成了日常。再后来，GPT-5.6发布。那时我一直想体验更强的模型，只是前几天都在智慧农业那边陪队友调试，没有真正拿它干重活。</p>
+<p>我正式用GPT-5.6处理智慧药房的工作，应该是在2026年7月9日。</p>
+<p>实话讲，它给了我一种很像当初第一次使用Gemini的感觉。</p>
+<p>很强。</p>
+<p>因为以前用Gemini时，它经常忘记前面做过什么，所以我养成了每天结束后保存工作记录的习惯。我也让GPT-5.6照着这个习惯继续做，按日期记录当天的问题、尝试过的方案、已经完成的修改和后面还要处理的事情。</p>
+<p>我看过它生成的记录，部分术语不算特别专业，但内容很完整。第二天重新开始工作时，把记录交给它，它很快就能对接上前一天的进度。</p>
+<p>到这里，我和AI的关系已经跟最开始完全不同了。</p>
+<p>2025年11月，我把报错复制给Gemini，等它吐出一段代码。到了2026年7月，我开始让Codex进入真实项目，读取整个目录、执行命令、保存工作记录，甚至参与实体小车的测试。</p>
+<p>从问答案，到一起干活，中间其实只过了大半年。</p>
+<h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>用AI编程以后，我最明显的变化，是开始习惯先构建框架。</p>
+<p>不怕大家笑话，以前我手写程序时，很少认真想过总体结构。通常是想到哪里写到哪里，觉得这里缺个功能就添一点，那里出现问题再补一个判断。代码短的时候好像没什么，项目一大，前面随手做的决定就会在后面追着你要债。</p>
+<p>我在这件事上吃过两次亏。</p>
+<p>有一版程序就是在不断修修补补中变得破烂不堪。每改一个地方，旁边就跟着出问题。等我把所有报错和需求都交给AI以后，它几乎把整个版本重新构建了一遍。</p>
+<p>功能最后是跑起来了，但旧代码已经没有多少可读性和可维护性。</p>
+<p>所以这次做智慧药房，我没有再急着让GPT直接写。我先把初赛遇到的问题、自己想优化的方向和实际限制告诉它，让它针对不同方案给出总体框架。我再结合比赛要求和小车状态，判断哪些可行，确认以后才开始落到代码。</p>
+<p>以前我是边写边想，现在更像是先把地图画出来，再决定从哪条路走。</p>
+<p>这不是因为AI天然会写出好架构。恰恰相反，如果最开始的方向就有问题，它只会以非常高的效率，把错误方向修得越来越完整。</p>
+<p>另一个收获，是留存工作记录。</p>
+<p>以前写几十行的小程序，我几乎没有总结的习惯。今天写完，明天接着看，靠脑子记住就行。但机器人项目不是几十行代码，里面有不同节点、参数、硬件状态和测试结果，很多问题不是当场就能解决。</p>
+<p>我对大模型底层原理的理解还不算深入，也不敢把幻觉解释得多专业。我自己的体感是，对话一长、上下文发生压缩以后，AI有时会突然多出一些并不存在的认识。</p>
+<p>我们之前明明只讨论过一个功能，还没有真正完成。聊得久了，它却可能默认这个功能已经做好，再沿着这个错误前提继续往下改。</p>
+<p>麻烦的地方就在这里。它说得往往很自然，如果人也忘了前面的进度，很容易跟着一起走偏。</p>
+<p>发现这个问题以后，我开始在上下文压缩前让它输出工作记录。一天结束时，再留一份完整记录，把已经解决的问题、采用的方案、没有解决的风险和下一步计划全部写清楚。</p>
+<p>这有点像给项目留下存档点。</p>
+<p>模型可以换，对话可以重新开，甚至开发环境都可能重建，但只要记录还在，工作就不至于完全断掉。前面那个被误删的Docker镜像能够较快复刻出来，其实也证明了遗留信息到底有多重要。</p>
+<p>还有一个教训也很直接。</p>
+<p>AI能力越强，权限边界越重要。</p>
+<p>它只能聊天时，答错一道题最多浪费一点时间。它能读取文件、执行命令、控制设备以后，一个判断失误影响的就可能是整个环境，甚至是真实的小车。</p>
+<p>清理磁盘那次以后，我不再觉得把所有权限都给AI是一件单纯省事的事情。涉及删除、覆盖和实车运动的操作，范围必须讲清楚，关键步骤也应该保留确认和急停手段。</p>
+<p>方向盘可以交出去，但刹车得在自己手里。</p>
+<h2 id="惊喜之处"><a href="#惊喜之处" class="headerlink" title="惊喜之处"></a>惊喜之处</h2><p>使用AI以来，最让我惊喜的一次，还是让GPT-5.6 Sol自主测试并调整单车的TEB参数。</p>
+<p>那时我接手比赛的时间很紧，对ROS的知识储备也不够。AI改代码的时候，我只能挤时间看一点视频，尽量补上自己欠缺的东西。</p>
+<p>大家都知道磨刀不误砍柴工，但我当时的状态不是要不要先磨刀，而是再不砍柴，人就快被冻死了。。。</p>
+<p>TEB参数就是摆在我面前的一道坎。</p>
+<p>我知道调参大概率要控制变量，一轮一轮对比效果。问题是，愚钝如我，连应该先动哪个参数、往哪个方向调都没有头绪。如果完全靠自己摸索，不仅慢，而且每一次测试可能都不知道该观察什么。</p>
+<p>ROS已经发展很多年，网上有大量资料和论文，GPT也能查阅相关信息。于是我干了一件自己现在回想起来依然觉得很疯狂的事。</p>
+<p>我让GPT-5.6 Sol自己调度小车，自己测试TEB参数。</p>
+<p>指令发出去以后，它开始写整圈测试脚本，再根据测试情况调整参数。我没有一直盯着终端，也没有在中途干预，而是跑去刷手机了。</p>
+<p>等我注意到小车已经没有动静时，大概过去了两个小时。</p>
+<p>这两个小时里，我没有给它补充任何指令。</p>
+<p>后来我又让它连续测试了4圈。实际效果出奇地好，当然不能说已经完美，但肯定比我自己盲目调参更好，效率也高得多。</p>
+<p>我惊喜的不只是参数调好了。</p>
+<p>更重要的是，它不再只给我一个建议，然后等我自己去验证。它开始把写测试脚本、运行小车、观察结果、调整参数和再次测试串成一个闭环。</p>
+<p>我后来觉得，这大概就是Loop Engineering最吸引我的地方。不是把一个问题丢给AI，拿到一段看起来正确的答案就结束，而是让它进入真实环境，持续获得反馈，再根据反馈修正下一步动作。</p>
+<p>在控制系统里，开环和闭环的差别就在反馈。以前我问Gemini该怎么调参数，Gemini给出一组建议，这更像开环。建议到底有没有用，它不知道。现在GPT-5.6 Sol可以运行测试，再看测试结果继续调整，它才真正摸到了这台小车的状态。</p>
+<p>这一下，我对AI的看法变了。</p>
+<p>以前我觉得它更像一个适合写作业、查资料、改报错的聪明玩具。后来它能进入代码库，变成了一个效率很高的编程助手。直到那次TEB测试，我才突然意识到，它已经开始通过代码、命令和反馈碰到物理世界了。</p>
+<p>当然，这不代表AI已经可以随便接管机器人。</p>
+<p>那次任务能够跑通，也离不开ROS相对成熟、测试目标比较明确、参数范围相对有限，而且现场还有人可以随时停止小车。换一个更开放、更危险的环境，我肯定不敢跑去刷两个小时手机。</p>
+<p>但那个雏形已经出现了。</p>
+<p>从算法，到代码，再到实体小车，AI和真实世界之间原来隔着很厚的一堵墙。现在，工具调用、自动测试和环境反馈正在一点点把墙凿开。</p>
+<p>2025年11月，我还是一个把报错复制给Gemini的Ctrl+V工程师。</p>
+<p>2026年7月，我坐在实验室里，看着GPT-5.6 Sol自己把小车跑起来，再一轮轮调整TEB参数。</p>
+<p>大半年，不算很长。</p>
+<p>我不知道再过半年，它还能做到什么。说实话，我自己的知识和能力也远远没有跟上这些变化。</p>
+<p>但我现在已经很确定，AI早就不只是一个拿来小打小闹的玩具了。它正在变成一套很强的生产力系统，而我们要学的，也不只是怎么向它提问。</p>
+<p>我们还要学会怎么给它上下文，怎么搭建反馈，怎么判断结果，以及怎么在它跑得越来越快的时候，始终知道刹车在哪里。</p>
+]]></content>
+      <categories>
+        <category>成长记录</category>
+      </categories>
+      <tags>
+        <tag>AI编程</tag>
+        <tag>Codex</tag>
+        <tag>ROS</tag>
+        <tag>TEB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ISCC 竞赛：模拟微型工厂赛道经验分享</title>
+    <url>/2026/01/28/ISCC%E5%BE%AE%E5%9E%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%81%93%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</url>
+    <content><![CDATA[<h2 id="1-赛道分析"><a href="#1-赛道分析" class="headerlink" title="1.赛道分析"></a>1.赛道分析</h2><p>​	该赛道以微型工厂为对象，主要流程包括：在西门子TIA Portal V16（博途V16）中编写PLC控制程序，通过博达特仿真软件模拟工厂生产流程，使用HMI组态软件设计触摸屏控制界面，实现仿真系统的启动与停止，最后配置通信加密，保障PC与PLC之间的数据传输安全（说明一下，由于比赛允许使用多台电脑，我负责的加密配置与队友编写PLC程序是同步进行的）。</p>
+<p>​	所用软件如下图，图1为TIA Portal V16（博途V16），图2为博达特仿真软件（图标没了，我就截图一下名字），图3为Xshell串口终端工具，图4为HMI组态软件</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153637363.png" alt="202510302237217"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153424299.png" alt="202510302239071"><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153024507.png" alt="202510302239408"><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153701723.png" alt="202510302239595"></p>
+<h2 id="2-编写PLC控制程序（30分）"><a href="#2-编写PLC控制程序（30分）" class="headerlink" title="2.编写PLC控制程序（30分）"></a>2.编写PLC控制程序（30分）</h2><p>​	这一过程最考验耐心和细心，何出此言？在比赛过程中，我的两位队友负责PLC控制程序，有时我完成了加密配置，他们还在编写程序。完成一套符合要求的PLC程序大约需要一个小时，具体取决于熟练程度。这个过程比较枯燥，也很考验耐心。程序完成后，还需要检查定时器参数、工序衔接和互锁逻辑是否合理。</p>
+<p>​	初赛采用线上参赛、录制视频的形式，要求在两个半小时内完成任务。第一次录制时，我完成加密配置后，队友的PLC程序还没有写完，于是我又开始制作HMI组态工程。当这两部分都完成时，队友也刚好写完程序。我们检查了一遍控制逻辑，随后在仿真软件中进行变量地址映射。启动系统后，第一个工位在出料环节发生了流程卡滞，队友只好继续修改程序，此时已经过去约一小时四十五分钟。程序修改完成时已接近两小时十分钟，我们需要在剩余时间内完成仿真系统运行以及HMI对系统的控制。好在最终于两小时二十八分完成全部操作。但我们对结果仍不满意，因此又录制了第二遍。这一次，PLC程序只用一个小时就完成了。可以看出，程序编写和调试效率会直接影响比赛进度。</p>
+<p>​	程序编写完成后，需要用网线连接工程师站与PLC，再将编译后的程序下载到PLC。</p>
+<p>​	这一过程可以通过反复练习提高熟练度，并尽量减少逻辑和操作错误。</p>
+<p>​	附加一个学习链接【西门子1200PLC速成——全程无废话】<a href="https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3">https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3</a></p>
+<p>​	下图为部分程序的截图</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153708161.png" alt="202510302249914"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153710035.png" alt="202510302249350"></p>
+<h2 id="3-通过仿真软件进行模拟（20分）"><a href="#3-通过仿真软件进行模拟（20分）" class="headerlink" title="3.通过仿真软件进行模拟（20分）"></a>3.通过仿真软件进行模拟（20分）</h2><p>​	由于该系统需要插加密狗才可以使用，仅分享该流程，无法提供工具使用。	</p>
+<p>​	PLC程序编写完成后先进行编译，数据块中会生成相应的变量地址。随后需要在博达特数据采集软件中完成变量地址映射，如图所示。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153714905.png" alt="202510302253265"></p>
+<p>​	这个过程需要注意以下几项：</p>
+<p>​		1.注意数据块编号。如图，<code>DB10.DBX0.0</code>表示DB10数据块中偏移量为0字节、0位的布尔变量。<code>DBN</code>中的<code>N</code>代表数据块编号，编译后可以在TIA Portal中确认。如果程序只使用一个DB块，通常不容易选错；但仿真系统包含四个工位，有的同学会为每个工位分别建立DB块，此时必须确认数据块编号与变量地址完全对应。</p>
+<p>​		2.注意工位选择。进行地址映射时，需要选择对应的工位。如果数据采集软件中的工位选错，后续在仿真软件中绑定执行器或传感器变量时，可能出现某个工位缺少一个或多个地址的情况，导致仿真流程无法正常运行。</p>
+<p>​		3.注意可视化变量的绑定（上图的“视觉化展示”一栏）。该比赛有“视觉化展示”评分项，需要在物料送达对应库位后，打开数据采集软件中的“视觉化展示”界面，向评委展示已存放物料的库位变为绿色。如果没有完成相应变量绑定，可能无法获得该项分数。</p>
+<p>​	这个过程可能会出现的问题：</p>
+<p>​		1.软件异常退出。运行过程中可能出现崩溃，建议及时保存工程并重新启动软件</p>
+<p>​		2.USB加密狗温度过高时可能出现响应变慢，可以断开设备，待其降温后再重新连接</p>
+<h2 id="4-HMI触摸屏组态（与仿真这一步分数上绑定，20分）"><a href="#4-HMI触摸屏组态（与仿真这一步分数上绑定，20分）" class="headerlink" title="4.HMI触摸屏组态（与仿真这一步分数上绑定，20分）"></a>4.HMI触摸屏组态（与仿真这一步分数上绑定，20分）</h2><p>​	这里使用昆仑通态的MCGS Pro组态软件开发HMI触摸屏工程。</p>
+<p>​	在这个过程中，需要先在组态工程中添加通信设备，如下图。同时还要配置通信参数：本地IP地址为HMI设备地址，可以在触摸屏的网络设置界面中修改；远程IP地址为PLC地址，需要在TIA Portal中修改硬件组态并重新下载到PLC。两端IP地址和子网掩码配置正确后，HMI才能与PLC正常通信。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153718601.png" alt="202510302323548"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153720905.png" alt="202510302324387"></p>
+<p>​	如下图，还需要制作相应的控制按钮。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153733770.png" alt="image-20251030232228736"></p>
+<p>​	具体做法是在变量表中添加HMI变量，并根据PLC程序中的实际地址建立变量映射。如果变量位于DB块内，需要填写对应的数据块编号和偏移地址</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153740139.png" alt="202510302355290"></p>
+<p>​	这个过程最常见的问题是忘记修改IP地址。向HMI设备下载组态工程时，如果电脑、HMI和PLC的网络参数不在正确的网段内，就会通信失败，工程也无法正常下载</p>
+<h2 id="5-数据加密技术实现（30分）"><a href="#5-数据加密技术实现（30分）" class="headerlink" title="5. 数据加密技术实现（30分）"></a>5. 数据加密技术实现（30分）</h2><p>这一部分是整个赛道的灵魂，主要通过两台数据加密设备（Server端和Client端）建立VPN加密隧道，保护PC与PLC之间的通信数据。</p>
+<h3 id="1-硬件连接与-Xshell-环境准备"><a href="#1-硬件连接与-Xshell-环境准备" class="headerlink" title="1. 硬件连接与 Xshell 环境准备"></a>1. 硬件连接与 Xshell 环境准备</h3><ul>
+<li><strong>Xshell配置</strong>：连接USB转串口模块后，先在设备管理器中确认串口号（例如COM3）。在Xshell中新建会话时，<strong>协议必须选择SERIAL</strong>，并正确设置串口号，否则无法建立串口会话。</li>
+<li><strong>设备接口连接</strong>：<code>eth0</code>连接PC或PLC等业务设备，<code>eth1</code>用于连接两台加密设备</li>
+</ul>
+<h3 id="2-人脸录入与认证"><a href="#2-人脸录入与认证" class="headerlink" title="2. 人脸录入与认证"></a>2. 人脸录入与认证</h3><p>设备上电后会自动运行人脸认证脚本。首次使用时如果尚未录入人脸信息，终端可能暂时无法进入交互式命令行。</p>
+<ul>
+<li><strong>按键操作</strong>：模组背面有三个按键。短按<strong>S1</strong>录入人脸（人脸距离摄像头约<strong>50 cm</strong>），按<strong>S2</strong>执行识别，按<strong>S3</strong>复位。</li>
+<li><strong>处理启动脚本阻塞</strong>：认证成功并显示<code>Verify ok</code>后才能继续操作。为了排查反复重启或脚本异常，可以先用<code>ps -a</code>查看进程，按赛题文档要求终止WLAN连接和异常检测进程，再用<code>vi /etc/init.d/rcS</code>暂时注释相关启动脚本（在对应行前添加<code>#</code>）。</li>
+</ul>
+<h3 id="3-网络-IP-配置（eth0-设置）"><a href="#3-网络-IP-配置（eth0-设置）" class="headerlink" title="3. 网络 IP 配置（eth0 设置）"></a>3. 网络 IP 配置（eth0 设置）</h3><p>为了保证设备之间的IP连通性，需要修改<code>/etc/network/interfaces</code>文件。</p>
+<ul>
+<li><strong>Server端</strong>：根据PC所在网段设置，例如PC地址为<code>192.168.2.2</code>时，可以将Server端的<code>eth0</code>设置为<code>192.168.2.1</code>。</li>
+<li><strong>Client端</strong>：需要与PLC保持在同一子网，例如设置为<code>192.168.44.1</code>。</li>
+</ul>
+<h3 id="4-无线与-VPN-加密隧道连接"><a href="#4-无线与-VPN-加密隧道连接" class="headerlink" title="4. 无线与 VPN 加密隧道连接"></a>4. 无线与 VPN 加密隧道连接</h3><p>这是最核心的配置，涉及<code>wpa_supplicant.conf</code>中的SSID和密钥设置，以及VPN加密隧道的建立。</p>
+<ul>
+<li><strong>VPN配置文件</strong>：Server端修改<code>server.conf1</code>，Client端修改<code>client.conf1</code>。</li>
+<li><strong>网段对应</strong>：这里最容易出错。<code>local_addrs</code>应按赛题配套文档规划，避免地址冲突；<code>local_ts</code>和<code>remote_ts</code>是两端的流量选择器，必须分别对应本地和远端业务网段，例如<code>192.168.2.0/24</code>和<code>192.168.44.0/24</code>。</li>
+</ul>
+<h3 id="5-脚本更换与自动化启动"><a href="#5-脚本更换与自动化启动" class="headerlink" title="5. 脚本更换与自动化启动"></a>5. 脚本更换与自动化启动</h3><p>赛题文档提供了<code>S100wlan0</code>和<code>guard</code>两个脚本。</p>
+<ul>
+<li><strong>避坑点</strong>：替换旧脚本时需要检查粘贴结果。有时第一行的<code>local</code>会缺少前两个字母而变成<code>cal</code>，这会导致脚本执行失败，必须手动修正。</li>
+<li><strong>auto_defconfig</strong>：在该文件中选择正确的工作模式，例如<code>mode=eth1</code>或<code>mode=wlan</code>。</li>
+<li><strong>恢复开机自启动</strong>：全部配置完成后，回到<code>/etc/init.d/rcS</code>取消之前对相关脚本的注释，使设备重启后自动运行加密和网络连接程序。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>比赛复盘</category>
+      </categories>
+      <tags>
+        <tag>ISCC</tag>
+        <tag>PLC</tag>
+        <tag>HMI</tag>
+        <tag>工业网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能车日记：YOLOv5 模型训练</title>
+    <url>/2026/01/29/YOLOv5%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</url>
+    <content><![CDATA[<h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h2><h3 id="1-安装软件"><a href="#1-安装软件" class="headerlink" title="1.安装软件"></a>1.安装软件</h3><p>（1）安装Anaconda：这个没有什么难度，唯一要注意的就是<strong>路径不要有中文</strong>（碎碎念一句，很多国外软件都不接受中文路径，会报错）</p>
+<p><a href="https://www.anaconda.com/products/distribution">https://www.anaconda.com/products/distribution</a></p>
+<p>（2）安装PyCharm</p>
+<p><a href="https://blog.csdn.net/2302_79334848/article/details/132128699">https://blog.csdn.net/2302_79334848/article/details/132128699</a></p>
+<p>（3）安装PyTorch</p>
+<p>【1】查看GPU驱动支持的CUDA版本</p>
+<p>如果电脑配有NVIDIA独立显卡，可以先查看显卡型号、驱动版本以及驱动支持的最高CUDA版本</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p>需要注意，<code>nvidia-smi</code> 中显示的 CUDA Version 是当前驱动支持的最高CUDA版本，不一定等于本机安装的CUDA Toolkit版本</p>
+<p>【2】创建环境（不同项目依赖的Python和库版本可能不同，因此建议为YOLOv5创建独立的虚拟环境）</p>
+<p>下面以环境名<code>yolo</code>为例，此过程在Anaconda中进行</p>
+<p>在电脑上搜索并打开Anaconda PowerShell Prompt</p>
+<p>输入代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n yolo python=3.9</span><br></pre></td></tr></table></figure>
+
+<p><code>-n</code>后面是环境名称，可以自行设置。这里使用YOLOv5，因此将环境命名为<code>yolo</code></p>
+<p>然后进入刚才的环境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda activate yolo</span><br></pre></td></tr></table></figure>
+
+<p>命令中的<code>yolo</code>需要与刚才创建的环境名称保持一致</p>
+<p>【3】选择PyTorch版本</p>
+<p><a href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
+<p>我们要选择的几个地方就是</p>
+<p>Package一栏选择与当前环境匹配的包管理方式。在Conda环境中也可以使用<code>pip</code>安装，但应避免在同一环境中无计划地混用多个来源</p>
+<p>Language一栏选择Python</p>
+<p>Compute Platform选择与显卡驱动兼容的CUDA运行时版本，具体以PyTorch官网给出的安装命令为准。<strong>如果电脑没有NVIDIA独立显卡，选择CPU版本</strong></p>
+<p>【4】换源（可换可不换，速度取决于你网速，可以挂梯子）</p>
+<p>代码如下，在Anaconda Powershell Prompt 里输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span><br><span class="line"></span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+
+<p>【5】复制PyTorch官网生成的安装命令，并在刚才创建的环境中执行</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260421211500672.png" alt="image-20260130212938735"></p>
+<p>最底下那一行</p>
+<p>【6】然后输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line"></span><br><span class="line">import torch</span><br><span class="line"></span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
+
+<p>返回<code>True</code>说明PyTorch可以调用CUDA；如果返回<code>False</code>，需要检查显卡驱动、PyTorch构建版本和环境是否匹配。最后输入<code>exit()</code>退出Python交互环境</p>
+<h2 id="2-YOLOv5使用和部署"><a href="#2-YOLOv5使用和部署" class="headerlink" title="2.YOLOv5使用和部署"></a>2.YOLOv5使用和部署</h2><p>（1）下载源码：<strong><a href="https://github.com/ultralytics/yolov5">https://github.com/ultralytics/yolov5</a></strong></p>
+<p>（2）完成环境搭建</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<p>上面是一条完整命令</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260130213935489.png" alt="image-20260130213935407"></p>
+<p>运行<code>detect.py</code>进行推理测试。执行完成后，检查<code>runs/detect/exp</code>或<code>runs/detect/expN</code>目录中是否生成带检测结果的图片，其中<code>N</code>为正整数</p>
+<p>（3）数据采集</p>
+<p>【1】用小车摄像头采集</p>
+<p>执行小车的代码（截止2026.1.30 我还没用过，先不说）</p>
+<p>【2】用手机拍摄</p>
+<p>提供两个方法：一个是先拍摄视频，再编写抽帧脚本，每隔10帧或15帧提取一张图像；另一个是直接逐张拍摄</p>
+<p>（4）数据标注（最最最最最痛苦的一步！！！！！）</p>
+<p>依旧提供两个方式</p>
+<p>【1】MakeSense网站</p>
+<p><a href="https://www.makesense.ai/">https://www.makesense.ai/</a></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131100702954.png" alt="屏幕截图 2026-01-30 215200"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131101024149.png" alt="屏幕截图 2026-01-30 215246"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260421211515991.png" alt="屏幕截图 2026-01-30 215426"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131101035429.png" alt="屏幕截图 2026-01-30 215624"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260421211519046.png" alt="屏幕截图 2026-01-30 215653"></p>
+<p>4和5的过程需要重复，你需要添加完所有你需要的标签之后，再去点6</p>
+<p>8是导出标签，需要完成所有图片的标注后再点击（我第一次是2600张照片，加油，慢慢标）</p>
+<p>【2】X-AnyLabeling</p>
+<p>先介绍一下工具：AnyLabeling是一款数据标注软件，功能与MakeSense类似。X-AnyLabeling在此基础上加入了多种模型，可以进行AI辅助标注</p>
+<p><a href="https://pan.baidu.com/s/1pgaw02inCvbEgOme9ajDJA?pwd=e528">https://pan.baidu.com/s/1pgaw02inCvbEgOme9ajDJA?pwd=e528</a></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260421211523177.png" alt="屏幕截图 2026-01-31 122625"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260131191818873.png" alt="屏幕截图 2026-01-31 123917"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260421211536029.png" alt="屏幕截图 2026-01-31 191613"></p>
+<p>这个软件可以按<code>R</code>键进入标注操作，具体用法可以参考软件文档</p>
+<p>软件的优点是可以通过快捷键提高标注效率。拥有自己的模型后，还可以先用模型对新数据进行预标注，再人工修正误检、漏检和边界框偏差，最后使用修正后的数据继续训练。</p>
+<p>选择模型时需要加载YAML配置文件。以下内容供参考，字段或格式不正确时，软件将无法加载模型。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 1. 模型类型（使用YOLOv5时必须填写yolov5，不能照抄图片中的yolov8）</span><br><span class="line">type: yolov5</span><br><span class="line"></span><br><span class="line"># 2. 模型名称和显示名称（可自定义）</span><br><span class="line">name: my_smartcar_model</span><br><span class="line">display_name: SmartCar_Best</span><br><span class="line"></span><br><span class="line"># 3. ONNX模型文件路径（⚠️非常重要！Windows路径建议使用正斜杠，避免反斜杠转义问题）</span><br><span class="line"># 请务必确认model_path指向实际导出的best.onnx文件</span><br><span class="line">model_path: F:/SmartCar/yolov5-master/runs/train/exp8/weights/best.onnx</span><br><span class="line"></span><br><span class="line"># 4. 推理阈值</span><br><span class="line">nms_threshold: 0.45</span><br><span class="line">confidence_threshold: 0.25</span><br><span class="line"></span><br><span class="line"># 5. 8个类别（顺序必须与训练时的类别索引一致）</span><br><span class="line">classes:</span><br><span class="line">  - apple</span><br><span class="line">  - pepper</span><br><span class="line">  - pumpkin</span><br><span class="line">  - pear</span><br><span class="line">  - tomato</span><br><span class="line">  - onion</span><br><span class="line">  - good</span><br><span class="line">  - bad</span><br></pre></td></tr></table></figure>
+
+<p>【3】建议训练方式</p>
+<p>建议先用几百张或一千张图像训练一个初版模型，再用它进行辅助标注，之后人工修正误检和漏检。我认为这样效率更高；如果一次性手工标注五六千张照片，工作量确实会非常大。</p>
+<p>（5）训练</p>
+<p>【1】代码</p>
+<p>以下文件是我更改过的，比较重要的文件</p>
+<table>
+<thead>
+<tr>
+<th align="left">文件名</th>
+<th align="left">下载链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>train.py</strong></td>
+<td align="left"><a href="/downloads/train.py">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>val.py</strong></td>
+<td align="left"><a href="/downloads/val.py">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>mydata.yaml</strong></td>
+<td align="left"><a href="/downloads/mydata.yaml">点击下载</a></td>
+</tr>
+<tr>
+<td align="left"><strong>mydata_yolov5s.yaml</strong></td>
+<td align="left"><a href="/downloads/mydata_yolov5s.yaml">点击下载</a></td>
+</tr>
+</tbody></table>
+<p>特意提一下，<code>train.py</code>中的<code>--workers</code>控制数据加载子进程数。在Windows环境中，如果多进程数据加载导致训练中断，可以先设置为<code>0</code>，让数据在主进程中加载；环境稳定后再根据CPU、内存和存储性能逐步调大</p>
+<p>【2】终端训练代码</p>
+<p>以下代码用于基于官方预训练权重进行首次训练</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python train.py --weights yolov5s.pt --epochs 300 --batch-size 16 --data my_data/mydata.yaml --workers 0</span><br></pre></td></tr></table></figure>
+
+<p>以下代码用于载入上一轮最佳权重，对更新后的数据集继续微调</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python train.py --weights runs/train/exp9/weights/best.pt --epochs 100 --batch-size 16 --data my_data/mydata.yaml --workers 0</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数 (Argument)</th>
+<th>设置</th>
+<th>含义与避坑指南 (Description)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>–weights</strong></td>
+<td>best.pt 或 yolov5s.pt</td>
+<td><strong>初始权重文件</strong>。<br>继续微调时指向上一轮效果较好的权重；<br>首次训练时可使用官方预训练权重。</td>
+</tr>
+<tr>
+<td><strong>–data</strong></td>
+<td>mydata.yaml</td>
+<td><strong>数据集配置文件</strong>。<br>用于声明训练集、验证集路径以及类别名称。</td>
+</tr>
+<tr>
+<td><strong>–epochs</strong></td>
+<td>100 &#x2F; 300</td>
+<td><strong>训练轮数</strong>。<br>具体数值应结合验证集指标、损失曲线和是否过拟合进行调整，不是固定值。</td>
+</tr>
+<tr>
+<td><strong>–batch-size</strong></td>
+<td>16</td>
+<td><strong>批量大小</strong>。<br>表示每次迭代输入模型的样本数，应根据显存占用和训练稳定性调整。RTX 4060（8 GB显存）可以从16开始尝试。</td>
+</tr>
+<tr>
+<td><strong>–workers</strong></td>
+<td><strong>0</strong></td>
+<td><strong>数据加载子进程数（⚠️重点）</strong>。<br>设置为<code>0</code>时由主进程同步加载数据；如果Windows下出现<code>DataLoader worker exited</code>等错误，可以先使用该设置排查。</td>
+</tr>
+</tbody></table>
+<p>【3】迭代训练</p>
+<p>使用已有模型对新一轮图像进行预标注，人工复核后再继续训练。我认为这是效率较高的迭代方式，也就是常说的“数据飞轮”。</p>
+]]></content>
+      <categories>
+        <category>工程实践</category>
+      </categories>
+      <tags>
+        <tag>YOLOv5</tag>
+        <tag>Python</tag>
+        <tag>计算机视觉</tag>
+        <tag>数据标注</tag>
+        <tag>模型训练</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 学习笔记</title>
+    <url>/2025/07/27/py%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="一-函数"><a href="#一-函数" class="headerlink" title="一.函数"></a>一.函数</h2><h3 id="1-print——输出函数"><a href="#1-print——输出函数" class="headerlink" title="(1)print——输出函数"></a>(1)print——输出函数</h3><p>print(“     “) 打印引号内的内容</p>
+<p>print（变量）打印变量的内容</p>
+<p>print（“格式化字符串” % 变量1）</p>
+<p>print（“格式化字符串” % （变量1，变量2……））</p>
+<p>print（”xx”,end&#x3D;”xx”）不希望换行，这样可以让后一个输出紧紧跟着前一个输出</p>
+<p>print（”% n d”）可以使得格式对齐</p>
+<h3 id="2-type——查看变量类型"><a href="#2-type——查看变量类型" class="headerlink" title="(2)type——查看变量类型"></a>(2)type——查看变量类型</h3><p>type（xx） </p>
+<h3 id="3-input——输入函数（输入的是字符串）"><a href="#3-input——输入函数（输入的是字符串）" class="headerlink" title="(3)input——输入函数（输入的是字符串）"></a>(3)input——输入函数（输入的是字符串）</h3><p>字符串变量&#x3D;input（“ 提示信息：”）</p>
+<p>input输入的都是字符串</p>
+<h3 id="4-int，float——类型转换函数"><a href="#4-int，float——类型转换函数" class="headerlink" title="(4)int，float——类型转换函数"></a>(4)int，float——类型转换函数</h3><p>xx&#x3D;int（x）将x转化为一个整数</p>
+<p>xx&#x3D;float（x）将x转化为一个浮点数</p>
+<p>xx&#x3D;float&#x2F;int（input（“ 提示信息：”））</p>
+<h3 id="5-自定义函数"><a href="#5-自定义函数" class="headerlink" title="(5)自定义函数"></a>(5)自定义函数</h3><p>1.定义函数（把函数封装）</p>
+<p>def  xxx()【括号里可填写参数，定义时的参数为形参】 :</p>
+<p> “”“ xxx”“”（这样写注释 用ctrl+q可以查看函数的注释 ）</p>
+<p>（正常这里有一个tab缩进）</p>
+<p>在定义时，可以</p>
+<p>def  xxxx（xxx，xxx&#x3D;True&#x2F;False）这样可以定义一个参数默认值，定义的参数默认值应该在参数列表的末尾</p>
+<p>2.调用函数（使用已经封装好的函数 ）</p>
+<p>import  xxx（文件名）</p>
+<p>xxx.xxx() [前者为文件名，后者为函数名，括号内放置实参]</p>
+<p>定义函数和调用函数的文件要在一个文件夹</p>
+<p>当有多个缺省参数时，调用的时候，需要表明，比如：</p>
+<p>def print_info（name,title&#x3D;””,gender&#x3D;true）:</p>
+<p>xxx</p>
+<p>print_info（name,title&#x3D;”student”,gender&#x3D;true）</p>
+<p>3.多值参数（在一个参数能够处理的参数个数时不确定的时候，要用多值参数）</p>
+<p>*加参数名可以接受元组</p>
+<p>**加参数名可以接受字典</p>
+<p>一般在给多值参数命名的时候，习惯args存放元组，kwargs存放字典</p>
+<p>元组和字典的拆包：</p>
+<p>拆包的操作：在传递的元组前边加一个*</p>
+<p>​					   在传递的字典前边加两个*</p>
+<p>例子：</p>
+<p>def demo( * args,**kwargs)：</p>
+<p>​	print(args)</p>
+<p>​	print(kwargs)</p>
+<p>gl_nums&#x3D;(1,2,3)</p>
+<p>gl_xiaoming&#x3D;{“name”:”小明”,”age”:18}</p>
+<p>demo(*gl_nums,**gl_xiaoming)</p>
+<p>拆包可以让对应的数据类型传进去</p>
+<h3 id="6-return——返回值函数"><a href="#6-return——返回值函数" class="headerlink" title="(6)return——返回值函数"></a>(6)return——返回值函数</h3><p>return 之后的代码不会被执行</p>
+<p>函数内  return xxx</p>
+<p>函数外  xxx&#x3D;xxx（）【第一个xxx是个变量，第二个xxx是函数】</p>
+<p>return 后如果无值，会返回到函数调用的位置</p>
+<h3 id="7-list-tuple——转换函数"><a href="#7-list-tuple——转换函数" class="headerlink" title="(7)list&#x2F;tuple——转换函数"></a>(7)list&#x2F;tuple——转换函数</h3><p>list（放元组）可以把元组转换成数组</p>
+<p>tuple（放数组）可以把数组转换成元组</p>
+<p>xxx&#x3D;list&#x2F;tuple(xxx)</p>
+<h2 id="二-变量"><a href="#二-变量" class="headerlink" title="二.变量"></a>二.变量</h2><h3 id="1-变量的定义"><a href="#1-变量的定义" class="headerlink" title="1.变量的定义"></a>1.变量的定义</h3><p>变量名 &#x3D; 值</p>
+<p>变量可以出现在等式中</p>
+<h3 id="2-变量的类型"><a href="#2-变量的类型" class="headerlink" title="2.变量的类型"></a>2.变量的类型</h3><h4 id="（1）数字型"><a href="#（1）数字型" class="headerlink" title="（1）数字型"></a>（1）数字型</h4><p>整数（int）</p>
+<p>浮点数（float）</p>
+<p>布尔类型（真假，bool，真用true是非0，假用false是0） </p>
+<p>复数型（complex）</p>
+<h4 id="（2）非数字型"><a href="#（2）非数字型" class="headerlink" title="（2）非数字型"></a>（2）非数字型</h4><h5 id="1-特点"><a href="#1-特点" class="headerlink" title="1.特点"></a>1.特点</h5><p>1-6：都是一个序列，也就是容器；都可以用【】取值；</p>
+<p>都可以遍历，计算长度，取最大&#x2F;最小值，比较，删除，连接+或重复，还可以切片</p>
+<h5 id="2-种类"><a href="#2-种类" class="headerlink" title="2.种类"></a>2.种类</h5><h6 id="1）字符串（str，不可变）（用“-x”-或者’-x’-引起来，字符串内再要用引号用另外一种引号）：带有-的字符串为格式化字符串。"><a href="#1）字符串（str，不可变）（用“-x”-或者’-x’-引起来，字符串内再要用引号用另外一种引号）：带有-的字符串为格式化字符串。" class="headerlink" title="1）字符串（str，不可变）（用“ x” 或者’ x’ 引起来，字符串内再要用引号用另外一种引号）：带有%的字符串为格式化字符串。"></a>1）字符串（str，不可变）（用“ x” 或者’ x’ 引起来，字符串内再要用引号用另外一种引号）：带有%的字符串为格式化字符串。</h6><p>%s——字符串，%d十进制整数（%6d表示输出的数显示位数，不足的地方用0补全），%f浮点数（% .n表示小数点后显示n位），%%输出%</p>
+<p>len(字符串)获取字符串长度</p>
+<p>字符串.count（字符串）可以查看小字符串在大字符串中出现的次数</p>
+<p>字符串【下标】从字符串中去除单个字符</p>
+<p>字符串.index（字符串）获得小字符串第一次出现的下标</p>
+<p>index与find不同在，index不存在就报错，find不存在就返回-1</p>
+<table>
+<thead>
+<tr>
+<th>xxx.capitalize</th>
+<th>xxx.isidentifier</th>
+<th>xxx.rindex</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.casefold</td>
+<td>xxx.islower</td>
+<td>xxx.rjust</td>
+</tr>
+<tr>
+<td>xxx.center</td>
+<td>xxx.isnumeric</td>
+<td>xxx.rpartition</td>
+</tr>
+<tr>
+<td>xxx.count</td>
+<td>xxx.isprintable</td>
+<td>xxx.rsplit</td>
+</tr>
+<tr>
+<td>xxx.encode</td>
+<td>xxx.isspace</td>
+<td>xxx.rstrip</td>
+</tr>
+<tr>
+<td>xxx.endswith</td>
+<td>xxx.istitle</td>
+<td>xxx.spilt</td>
+</tr>
+<tr>
+<td>xxx.expandtabs</td>
+<td>xxx.isupper</td>
+<td>xxx.splitlines</td>
+</tr>
+<tr>
+<td>xxx.find</td>
+<td>xxx.join</td>
+<td>xxx.startsith</td>
+</tr>
+<tr>
+<td>xxx.format</td>
+<td>xxx.ljust</td>
+<td>xxx.strip</td>
+</tr>
+<tr>
+<td>xxx.format_map</td>
+<td>xxx.lower</td>
+<td>xxx.swapcase</td>
+</tr>
+<tr>
+<td>xxx.index</td>
+<td>xxx.lstrip</td>
+<td>xxx.title</td>
+</tr>
+<tr>
+<td>xxx.isalnum</td>
+<td>xxx.maketrans</td>
+<td>xxx.translate</td>
+</tr>
+<tr>
+<td>xxx.isalpha</td>
+<td>xxx.partition</td>
+<td>xxx.upper</td>
+</tr>
+<tr>
+<td>xxx.isdecimal</td>
+<td>xxx.replace</td>
+<td>xxx.zfill</td>
+</tr>
+<tr>
+<td>xxx.isdigit</td>
+<td>xxx.rfind</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>判断类型</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>string.isspace()</code></td>
+<td>如果 string 中只包含空格，则返回 True</td>
+</tr>
+<tr>
+<td><code>string.isalnum()</code></td>
+<td>如果 string 至少有一个字符并且所有字符都是字母或数字则返回 True</td>
+</tr>
+<tr>
+<td><code>string.isalpha()</code></td>
+<td>如果 string 至少有一个字符并且所有字符都是字母则返回 True</td>
+</tr>
+<tr>
+<td><code>string.isdecimal()</code></td>
+<td>如果 string 只包含数字则返回 True，全角数字</td>
+</tr>
+<tr>
+<td><code>string.isdigit()</code></td>
+<td>如果 string 只包含数字则返回 True，全角数字、⑴、\u00b2</td>
+</tr>
+<tr>
+<td><code>string.isnumeric()</code></td>
+<td>如果 string 只包含数字则返回 True，全角数字，汉字数字</td>
+</tr>
+<tr>
+<td><code>string.istitle()</code></td>
+<td>如果 string 是标题化的(每个单词的首字母大写)则返回 True</td>
+</tr>
+<tr>
+<td><code>string.islower()</code></td>
+<td>如果 string 中包含至少一个区分大小写的字符，并且所有这些(区分大小写的)字符都是小写，则返回 True</td>
+</tr>
+<tr>
+<td><code>string.isupper()</code></td>
+<td>如果 string 中包含至少一个区分大小写的字符，并且所有这些(区分大小写的)字符都是大写，则返回 True</td>
+</tr>
+</tbody></table>
+<p>查找与替换</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>string.startswith(str)</code></td>
+<td>检查字符串是否以 str 开头，是则返回 True</td>
+</tr>
+<tr>
+<td><code>string.endswith(str)</code></td>
+<td>检查字符串是否以 str 结束，是则返回 True</td>
+</tr>
+<tr>
+<td><code>string.find(str, start=0, end=len(string))</code></td>
+<td>检测 str 是否包含在 string 中，如果指定范围则检查是否在范围内，找到返回开始的索引值，否则返回 -1</td>
+</tr>
+<tr>
+<td><code>string.rfind(str, start=0, end=len(string))</code></td>
+<td>类似于 find() 函数，从右边开始查找</td>
+</tr>
+<tr>
+<td><code>string.index(str, start=0, end=len(string))</code></td>
+<td>跟 find() 方法类似，但 str 不存在时会报错</td>
+</tr>
+<tr>
+<td><code>string.rindex(str, start=0, end=len(string))</code></td>
+<td>类似于 index()，从右边开始</td>
+</tr>
+<tr>
+<td><code>string.replace(old_str, new_str, num=string.count(old))</code></td>
+<td>将 string 中的 old_str 替换成 new_str，如果指定 num 则替换不超过 num 次</td>
+</tr>
+</tbody></table>
+<p>大小写转换</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.capitalize()</td>
+<td>把字符串的第一个字符大写</td>
+</tr>
+<tr>
+<td>xxx.title()</td>
+<td>把字符串的每个单词首字母大写</td>
+</tr>
+<tr>
+<td>xxx.lower()</td>
+<td>转换xxx中所有大写字符为小写</td>
+</tr>
+<tr>
+<td>xxx.upper()</td>
+<td>转换xxx中的小写字符为大学</td>
+</tr>
+<tr>
+<td>xxx.swapcase()</td>
+<td>反转string中的大小写</td>
+</tr>
+</tbody></table>
+<p>文本对齐</p>
+<p>string.xxx(width,”   “)【引号内可以用任意字符】</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.ljust(width)</td>
+<td>返回一个原字符串左对齐，并用空格填充至长度width的新字符串</td>
+</tr>
+<tr>
+<td>xxx.rjust(width)</td>
+<td>返回一个原字符串右对齐，并用空格填充至长度width的新字符串</td>
+</tr>
+<tr>
+<td>xxx.center(width)</td>
+<td>返回一个原字符串居中，并用空格填充至长度width的新字符串</td>
+</tr>
+</tbody></table>
+<p>去除空白字符</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.lstrip()</td>
+<td>截掉xxx左边（开始）的空白字符</td>
+</tr>
+<tr>
+<td>xxx.retrip()</td>
+<td>截掉xxx右边（末尾）的空白字符</td>
+</tr>
+<tr>
+<td>xxx.strip()</td>
+<td>截掉xxx左右两边的空白字符</td>
+</tr>
+</tbody></table>
+<p>拆分和连接</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.partition(yyy)</td>
+<td>把字符串xxx分成一个三元素的元组（yyy前边,yyy,yyy后边）</td>
+</tr>
+<tr>
+<td>xxx.rpartition(yyy)</td>
+<td>类似于partintion()函数，不过是从右边开始查找</td>
+</tr>
+<tr>
+<td>xxx.split(yyy&#x3D;” “,num)</td>
+<td>以yyy为分隔符切片xxx，如果num有指定值，则仅分隔num+1个子字符串，yyy默认包含“\r” “\t” “\n” 和空格</td>
+</tr>
+<tr>
+<td>xxx.splitlines()</td>
+<td>按照行(“\r”,”\n”,”\r\n”)分隔，返回一个包含各行作为元素的列表</td>
+</tr>
+<tr>
+<td>xxx.join()</td>
+<td>以xxx作为分隔符，将yyy中的所有的元素（的字符串表示）合并为一个新的字符串</td>
+</tr>
+</tbody></table>
+<p>字符串切片[开始下标（空出来从最前开始）：结束下标（空出来切到最后）：长度（如果是负数，可以逆序切）]（最终切片结果不包含结束下标对应的字符）（也可以倒序，正序索引从0开始，倒叙从-1（倒数第二个）开始）</p>
+<h6 id="2）列表（即数组）：一般保存相同类型的信息，下标从0开始"><a href="#2）列表（即数组）：一般保存相同类型的信息，下标从0开始" class="headerlink" title="2）列表（即数组）：一般保存相同类型的信息，下标从0开始"></a>2）列表（即数组）：一般保存相同类型的信息，下标从0开始</h6><p>xxx&#x3D;[]  (定义数组，不用规定大小，定义可以直接写，也可以循环input（）</p>
+<table>
+<thead>
+<tr>
+<th>xxx.append</th>
+<th>xxx.count</th>
+<th>xxx.insert</th>
+<th>xxx.reverse</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.clear</td>
+<td>xxx.extend</td>
+<td>xxx.pop</td>
+<td>xxx.sort</td>
+</tr>
+<tr>
+<td>xxx.copy</td>
+<td>xxx.index</td>
+<td>xxx.remove</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>分类</th>
+<th>关键字&#x2F;函数&#x2F;方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>增加</td>
+<td>xxx.insert(下标，数据)</td>
+<td>在指定位置插入数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.append(数据)</td>
+<td>在末尾追加数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>列表1.extend(列表2)</td>
+<td>将列表2的数据追加到列表1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>修改</td>
+<td>xxx[下标]&#x3D;数据</td>
+<td>修改指定下标的数据</td>
+</tr>
+<tr>
+<td>3</td>
+<td>删除</td>
+<td>del xxx[下标]</td>
+<td>删除指定下标的数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.remove[数据]</td>
+<td>删除第一个出现的指定数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.pop</td>
+<td>删除末尾数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.pop(下标)</td>
+<td>删除指定下标数据</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.clear</td>
+<td>清空列表</td>
+</tr>
+<tr>
+<td>4</td>
+<td>统计</td>
+<td>len(xxx)</td>
+<td>列表长度</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.count()</td>
+<td>数据在列表中出现的次数</td>
+</tr>
+<tr>
+<td>5</td>
+<td>排序</td>
+<td>xxx.sort()</td>
+<td>升序排序</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.sort(reverse&#x3D;True)</td>
+<td>降序排序</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>xxx.reverse</td>
+<td>逆序、反转</td>
+</tr>
+<tr>
+<td>6</td>
+<td>查询</td>
+<td>xxx.index(数据)</td>
+<td>查询下标</td>
+</tr>
+</tbody></table>
+<p>列表 +&#x3D; 列表 等于调用extend方法</p>
+<p>extend 和append 的区别，extend在添加数据时（尤其是数组），是把数组拆开成多个元素添加，而append则是当时一个完整的元素添加</p>
+<h6 id="3）元组（元组元素后续不可修改）：用（）定义，下标从0开始，一般保存不同类型的数据"><a href="#3）元组（元组元素后续不可修改）：用（）定义，下标从0开始，一般保存不同类型的数据" class="headerlink" title="3）元组（元组元素后续不可修改）：用（）定义，下标从0开始，一般保存不同类型的数据"></a>3）元组（元组元素后续不可修改）：用（）定义，下标从0开始，一般保存不同类型的数据</h6><p>多用于传递多个参数，或者返回多个数值，还可以保护数组的数据不被修改。格式字符串后的%（）本质是一个元组</p>
+<p>tuple.count     tuple.index</p>
+<p>tuple&#x3D;()   特殊的单元组tuple&#x3D;（xxx，）</p>
+<p>xxx(变量)&#x3D;”%x %x %x” %tuple</p>
+<p>print（xxx(变量)）</p>
+<h6 id="4）字典（除数组外最灵活的类型）：一般存储描述一个物体的相关信息，且信息无序，字典用-定义。字典中的key只能使用不可变类型"><a href="#4）字典（除数组外最灵活的类型）：一般存储描述一个物体的相关信息，且信息无序，字典用-定义。字典中的key只能使用不可变类型" class="headerlink" title="4）字典（除数组外最灵活的类型）：一般存储描述一个物体的相关信息，且信息无序，字典用{}定义。字典中的key只能使用不可变类型"></a>4）字典（除数组外最灵活的类型）：一般存储描述一个物体的相关信息，且信息无序，字典用{}定义。字典中的key只能使用不可变类型</h6><p>key 是索引，value是数据，键 值中间用 ：隔开</p>
+<p>键是字典内唯一的</p>
+<p>值可以取任何数据类，但键只能用字符串、数字和元组</p>
+<p>xxx&#x3D;{“key 1”:”xxx”，</p>
+<p>​		 “key 2”:xxx}</p>
+<p>方法：</p>
+<table>
+<thead>
+<tr>
+<th>xxx.clear</th>
+<th>xxx.items</th>
+<th>xxx.setdefault</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.copy</td>
+<td>xxx.keys</td>
+<td>xxx.update</td>
+</tr>
+<tr>
+<td>xxx.fromkeys</td>
+<td>xxx.pop</td>
+<td>xxx.values</td>
+</tr>
+<tr>
+<td>xxx.get</td>
+<td>xxx.popitem</td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>xxx.keys()</th>
+<th>展现所有key列表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xxx.values()</td>
+<td>展现所有value列表</td>
+</tr>
+<tr>
+<td>xxx.items()</td>
+<td>展现所有（key,value）元组列表</td>
+</tr>
+<tr>
+<td>xxx.get(key)</td>
+<td>可以从字典中取值，key不存在不会报错</td>
+</tr>
+<tr>
+<td>xxx.pop(key)</td>
+<td>删除指定键值对，key不存在会报错</td>
+</tr>
+<tr>
+<td>xxx.popitem()</td>
+<td>随机删除一个键值对</td>
+</tr>
+<tr>
+<td>xxx.clear()</td>
+<td>清空字典</td>
+</tr>
+<tr>
+<td>xxx[key]</td>
+<td>可以从字典中取值，key不存在会报错</td>
+</tr>
+<tr>
+<td>xxx[key] &#x3D; value</td>
+<td>如果key存在，修改数据；反之，新建键值对</td>
+</tr>
+<tr>
+<td>xxx.setdefault(key,value)</td>
+<td>如果key存在，不会修改数据‘；反之，新建键值对</td>
+</tr>
+<tr>
+<td>字典1.update(字典2)</td>
+<td>将字典2的数据合并到字典1</td>
+</tr>
+<tr>
+<td>del xxx[key]</td>
+<td>删除指定键值对，key不存在会报错</td>
+</tr>
+</tbody></table>
+<p>多个字典可以放在一个数组里</p>
+<h5 id="3-公共方法"><a href="#3-公共方法" class="headerlink" title="3.公共方法"></a>3.公共方法</h5><p>内置的函数</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len(item)</td>
+<td>计算容器中元素的个数</td>
+<td></td>
+</tr>
+<tr>
+<td>del(item)</td>
+<td>删除变量</td>
+<td>del有两种方式</td>
+</tr>
+<tr>
+<td>max(item)</td>
+<td>返回容器中元素最大值</td>
+<td>如果是字典，只针对key比较</td>
+</tr>
+<tr>
+<td>min(item)</td>
+<td>返回容器中元素最小值</td>
+<td>如果是字典，只针对key比较</td>
+</tr>
+<tr>
+<td>cmp(item1,item2)</td>
+<td>比较两个值，返回值：-1小于&#x2F;&#x2F;0等于&#x2F;&#x2F;1大于</td>
+<td>python 3.x已经取消了cmp函数</td>
+</tr>
+</tbody></table>
+<p>字符串的比较规则：“0”&lt;“A”&lt;“a”</p>
+<p>del a[i] 等价于 del (a[i])：前者是当关键字，后者是当函数</p>
+<h6 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h6><table>
+<thead>
+<tr>
+<th>描述</th>
+<th>表达式</th>
+<th>结果</th>
+<th>可用的数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>切片</td>
+<td>“0123456789”[开始下标（空出来从最前开始）：结束下标（空出来切到最后）：长度（如果是负数，可以逆序切）]（最终切片结果不包含结束下标对应的字符）（也可以倒序，正序索引从0开始，倒叙从-1（倒数第二个）开始）</td>
+<td>“97531”</td>
+<td>字符串、列表、元组</td>
+</tr>
+</tbody></table>
+<p>切片使用<strong>下标</strong>来限定范围，从一个大的<strong>字符串</strong>中切除小的<strong>字符串</strong></p>
+<p><strong>列表和元组</strong>都是<strong>有序</strong>的集合，可以通过<strong>下标</strong>来获取对应的数据</p>
+<p><strong>字典</strong>是一个<strong>无序</strong>的集合，使用<strong>键值对</strong>保存数据</p>
+<h6 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h6><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>表达式</th>
+<th>结果</th>
+<th>描述</th>
+<th>可用的数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>[1,2]+[3,4]</td>
+<td>[1,2,3,4]</td>
+<td>合并</td>
+<td>字符串、列表、元组</td>
+</tr>
+<tr>
+<td>*</td>
+<td>[“HI!”]</td>
+<td>[“HI!”,”HI!”,”HI!”,”HI!”]</td>
+<td>重复</td>
+<td>字符串、列表、元组</td>
+</tr>
+<tr>
+<td>in</td>
+<td>3 in (1,2,3)</td>
+<td>True</td>
+<td>元素是否存在</td>
+<td>字符串、列表、元组、字典</td>
+</tr>
+<tr>
+<td>not in</td>
+<td>4 not in(1,2,3)</td>
+<td>True</td>
+<td>元素是否不存在</td>
+<td>字符串、列表、元组、字典</td>
+</tr>
+<tr>
+<td>&gt;,&gt;&#x3D;,&#x3D;&#x3D;,&lt;,&lt;&#x3D;</td>
+<td>(1,2,3)&lt;(2,2,3)</td>
+<td>True</td>
+<td>元素比较</td>
+<td>字符串、列表、元组</td>
+</tr>
+</tbody></table>
+<h3 id="3-变量的命名"><a href="#3-变量的命名" class="headerlink" title="3.变量的命名"></a>3.变量的命名</h3><h4 id="（1）标识符（只能有字母，下划线和数字，同时开头不可以是数字，不能与关键字重名）"><a href="#（1）标识符（只能有字母，下划线和数字，同时开头不可以是数字，不能与关键字重名）" class="headerlink" title="（1）标识符（只能有字母，下划线和数字，同时开头不可以是数字，不能与关键字重名）"></a>（1）标识符（只能有字母，下划线和数字，同时开头不可以是数字，不能与关键字重名）</h4><p>要见名知意</p>
+<p>需要多个单词，最好都小写，用下划线连接，或者几个单词的第一个字母大写</p>
+<h4 id="（2）关键字"><a href="#（2）关键字" class="headerlink" title="（2）关键字"></a>（2）关键字</h4><p>python内置的标识符</p>
+<p>import可以导入各种库</p>
+<h3 id="4-变量的引用（记录数据的地址就叫引用）"><a href="#4-变量的引用（记录数据的地址就叫引用）" class="headerlink" title="4.变量的引用（记录数据的地址就叫引用）"></a>4.变量的引用（记录数据的地址就叫引用）</h3><p>id(xxx)  可以查看数据所在的内存地址</p>
+<h3 id="5-局部变量与全局变量"><a href="#5-局部变量与全局变量" class="headerlink" title="5.局部变量与全局变量"></a>5.局部变量与全局变量</h3><p>局部变量定义在函数内，出了函数就失效</p>
+<p>全局变量不定义在函数变量，随时可用</p>
+<p>直接在函数中使用赋值语句去修改全局变量，就是在函数内部出现一个与全局变量相同名字的局部变量</p>
+<p>想在函数内直接修改，则需要：</p>
+<p>global xxx</p>
+<p>xxx&#x3D;xxx</p>
+<h2 id="三-语法"><a href="#三-语法" class="headerlink" title="三.语法"></a>三.语法</h2><h3 id="1-判断语句-（if，else，elif）（同缩进的if-else-elif是一组）"><a href="#1-判断语句-（if，else，elif）（同缩进的if-else-elif是一组）" class="headerlink" title="(1)判断语句 （if，else，elif）（同缩进的if else elif是一组）"></a>(1)判断语句 （if，else，elif）（同缩进的if else elif是一组）</h3><p>if xxx：</p>
+<p>（四个空格，或者一下tab）条件成立要做的事</p>
+<p>else：</p>
+<p>多个条件可以这样改，让格式整齐，让代码有可读性</p>
+<p>if（（）</p>
+<p>​	or（）</p>
+<p>​	or（））：</p>
+<h3 id="2-循环（while循环：while-，break，continue-）（最好从0开始计数）"><a href="#2-循环（while循环：while-，break，continue-）（最好从0开始计数）" class="headerlink" title="(2)循环（while循环：while ，break，continue ）（最好从0开始计数）"></a>(2)循环（while循环：while ，break，continue ）（最好从0开始计数）</h3><p>while 条件（判断 计数器 是否达到 目标次数）：</p>
+<p>​	xxxx</p>
+<p>​	处理条件（计数器变化）</p>
+<p>break ：满足一个条件，退出循环，后续不再执行循环</p>
+<p>continue（使用之前注意下计数是否更改，否则可能死循环）： 满足一个条件，退出本次循环，后续循环仍执行</p>
+<p>while True&#x2F;False(无限循环，由用户决定何时退出循环):</p>
+<h3 id="3-for循环（用于迭代遍历）"><a href="#3-for循环（用于迭代遍历）" class="headerlink" title="(3)for循环（用于迭代遍历）"></a>(3)for循环（用于迭代遍历）</h3><p>for xxx in xxx：(前一个是变量，后一个是数组&#x2F;元组&#x2F;字典，每次循环都会把数组的元素放在变量里，没有元素就会结束)</p>
+<p>  还没写代码时，可以先写pass，pass表示一个占位符，能保证代码结构正确。</p>
+<p>else:(遍历完成之后,else再执行，当for中有break退出之后，else不会再执行)</p>
+<p>特殊的，字典的遍历：</p>
+<p>for key in xxx:</p>
+<p>​	print(“%s : %s “% (key,xxx))</p>
+<h3 id="4-一行输入多个变量"><a href="#4-一行输入多个变量" class="headerlink" title="(4)一行输入多个变量"></a>(4)一行输入多个变量</h3><p>i&#x3D;1</p>
+<p>M,D,C&#x3D;[],[],[]</p>
+<p>while i&lt;&#x3D;N:</p>
+<p>  m,d,c&#x3D;map(int,input().split())</p>
+<p>  M.append(m)</p>
+<p>  D.append(d)</p>
+<p>  C.append(c)</p>
+<p>  i+&#x3D;1</p>
+<h2 id="四-算法"><a href="#四-算法" class="headerlink" title="四.算法"></a>四.算法</h2><p>1.循环计算</p>
+<p>i&#x3D;0（可改）</p>
+<p>sum&#x3D;0</p>
+<p>while i&lt;101（可改）:</p>
+<p>  sum+&#x3D;i</p>
+<p>  i+&#x3D;1</p>
+<p>print(sum)</p>
+<p>2.哈希</p>
+<p>hash（）</p>
+<p><img src="https://gitee.com/jiangnanqing/jiang-nuqing/raw/master/202507222214361.png" alt="image-20250722221405256"></p>
+<p>3.一次接受多个return变量</p>
+<p>x1,x2,…,xn&#x3D;函数（），这样可以在返回值是元组时简单处理</p>
+<p>4.变量交换</p>
+<p>a&#x3D;1</p>
+<p>b&#x3D;2</p>
+<p>（1）用其他变量</p>
+<p>c&#x3D;a</p>
+<p>a&#x3D;b</p>
+<p>b&#x3D;c</p>
+<p>（2）不用其他变量</p>
+<p>a&#x3D;a+b</p>
+<p>b&#x3D;a-b</p>
+<p>a&#x3D;a-b</p>
+<p>第一行左侧的a等于二者的和，第二行左侧的b在新a减去原b后，等于原a，第三行左侧的a在新a减去新b（原a）后等于原来的b</p>
+<p>（3）Python特有</p>
+<p>a,b&#x3D;(b,a)</p>
+<p>等于是接受返回值是元组的情况</p>
+<p>5.函数的递归（函数内部自己调用自己）</p>
+<p>特点： 1.函数的内部代码相同，但针对的参数不同，处理的结果不同</p>
+<p>​			2.当参数满足一个条件的时候，函数不再执行（如果没有出口，会出现死循环）</p>
+<p>例子：</p>
+<p>def sum_numbers(num):</p>
+<p>​	print(num)</p>
+<p>​	if num&#x3D;&#x3D;1:</p>
+<p>​		return</p>
+<p>​		sum_numbers(num-1)</p>
+<p>sum_numbers(3)</p>
+<h2 id="五-常见bug"><a href="#五-常见bug" class="headerlink" title="五.常见bug"></a>五.常见bug</h2><p>（1）手误拼错</p>
+<p>（2）一行写多个函数</p>
+<p>（3）缩进错误（python对于缩进要求极为严苛，可以直接tab）</p>
+<p>（4）python2.x不支持中文（选错ide）</p>
+<h2 id="六-注释（不要描述代码，要注释代码的作用）"><a href="#六-注释（不要描述代码，要注释代码的作用）" class="headerlink" title="六.注释（不要描述代码，要注释代码的作用）"></a>六.注释（不要描述代码，要注释代码的作用）</h2><h3 id="（1）单行注释"><a href="#（1）单行注释" class="headerlink" title="（1）单行注释"></a>（1）单行注释</h3><p> #xxxxxx（也可以在#后添加一个空格，可与代码同一行，也可与代码不同行）</p>
+<h3 id="（2）多行注释（块注释）"><a href="#（2）多行注释（块注释）" class="headerlink" title="（2）多行注释（块注释）"></a>（2）多行注释（块注释）</h3><p>“””（三个双引号）</p>
+<p>xxxxx </p>
+<p>“””（三个双引号）</p>
+<h3 id="（3）TODO注释"><a href="#（3）TODO注释" class="headerlink" title="（3）TODO注释"></a>（3）TODO注释</h3><p>#TODO xxx   会高显，在完成之后去掉todo，这是为了提醒哪些功能没做完</p>
+<h2 id="七-运算符"><a href="#七-运算符" class="headerlink" title="七.运算符"></a>七.运算符</h2><h3 id="1-算术运算符（括号可改变运算顺序）"><a href="#1-算术运算符（括号可改变运算顺序）" class="headerlink" title="1.算术运算符（括号可改变运算顺序）"></a>1.算术运算符（括号可改变运算顺序）</h3><h4 id="最低优先级"><a href="#最低优先级" class="headerlink" title="最低优先级"></a>最低优先级</h4><p>+加法运算（加号可以直接拼接字符串）</p>
+<p>-减法运算</p>
+<h4 id="第二优先级"><a href="#第二优先级" class="headerlink" title="第二优先级"></a>第二优先级</h4><p>*乘法运算</p>
+<p>&#x2F;除法运算</p>
+<p>&#x2F;&#x2F;取整除（好像是向下取整）</p>
+<p>%取余数</p>
+<h4 id="最高优先级"><a href="#最高优先级" class="headerlink" title="最高优先级"></a>最高优先级</h4><p>**幂次运算（）</p>
+<h4 id="特殊用法"><a href="#特殊用法" class="headerlink" title="特殊用法"></a>特殊用法</h4><p>” xx “ * n（字符串 * 次数）表示字符串重复n次</p>
+<h3 id="2-逻辑运算符"><a href="#2-逻辑运算符" class="headerlink" title="2.逻辑运算符"></a>2.逻辑运算符</h3><p>and 与运算</p>
+<p>or    或运算 </p>
+<p>not  非运算</p>
+<p>&#x3D;&#x3D; 判断是否等于</p>
+<p>!&#x3D; 判断是否不等于</p>
+<h3 id="3-赋值运算符"><a href="#3-赋值运算符" class="headerlink" title="3.赋值运算符"></a>3.赋值运算符</h3><p>&#x3D;	直接赋值 	c&#x3D;a</p>
+<p>+&#x3D;  	c&#x3D;c+a    c+&#x3D;a</p>
+<p>-&#x3D;	   c&#x3D;c-a     c-&#x3D;a</p>
+<p> ×&#x3D;      c&#x3D;c×a    c*×&#x3D;a（×应该是星号）		</p>
+<p>&#x2F;&#x3D;      c&#x3D;c&#x2F;a    c&#x2F;&#x3D;a</p>
+<p>&#x2F;&#x2F;&#x3D;     取整赋值  c&#x3D;c&#x2F;&#x2F;a    c&#x2F;&#x3D;a</p>
+<p>%&#x3D;     取余赋值  c&#x3D;c%a    c%&#x3D;a</p>
+<p>**&#x3D;    幂次赋值  c&#x3D;c××a   c××&#x3D;a（×应该是星号）</p>
+<h3 id="4-处理非数字型数据的运算符"><a href="#4-处理非数字型数据的运算符" class="headerlink" title="4.处理非数字型数据的运算符"></a>4.处理非数字型数据的运算符</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>表达式</th>
+<th>结果</th>
+<th>描述</th>
+<th>可用的数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>[1,2]+[3,4]</td>
+<td>[1,2,3,4]</td>
+<td>合并</td>
+<td>字符串、列表、元组</td>
+</tr>
+<tr>
+<td>*</td>
+<td>[“HI!”]</td>
+<td>[“HI!”,”HI!”,”HI!”,”HI!”]</td>
+<td>重复</td>
+<td>字符串、列表、元组</td>
+</tr>
+<tr>
+<td>in</td>
+<td>3 in (1,2,3)</td>
+<td>True</td>
+<td>元素是否存在</td>
+<td>字符串、列表、元组、字典</td>
+</tr>
+<tr>
+<td>not in</td>
+<td>4 not in(1,2,3)</td>
+<td>True</td>
+<td>元素是否不存在</td>
+<td>字符串、列表、元组、字典</td>
+</tr>
+<tr>
+<td>&gt;,&gt;&#x3D;,&#x3D;&#x3D;,&lt;,&lt;&#x3D;</td>
+<td>(1,2,3)&lt;(2,2,3)</td>
+<td>True</td>
+<td>元素比较</td>
+<td>字符串、列表、元组</td>
+</tr>
+</tbody></table>
+<p>in 在对字典操作的时候，判断的是 字典的键</p>
+<p>in 和not in 叫做成员运算符</p>
+<h2 id="八-转义字符"><a href="#八-转义字符" class="headerlink" title="八.转义字符"></a>八.转义字符</h2><p>\t  打出一个tab</p>
+<p>\n 换行</p>
+<p>\r  回车</p>
+<p>以上三者都是空白字符</p>
+<p>\ \  反斜杠符号</p>
+<p>\ ‘  单引号</p>
+<p>\ “ 双引号</p>
+<h2 id="九-工具库"><a href="#九-工具库" class="headerlink" title="九.工具库"></a>九.工具库</h2><p> <a href="https://www.runoob.com/python3/python3-tutorial.html">https://www.runoob.com/python3/python3-tutorial.html</a> </p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>编程基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从单车调试到双车联调，智慧药房机器人比赛复盘</title>
+    <url>/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/</url>
+    <content><![CDATA[<p>比赛结束以后，我重新翻了一遍从 7 月 9 日开始留下的工作记录。</p>
+<p>这些记录里没有什么一夜之间解决所有问题的高光时刻，更多的是今天修好 OCR，明天发现定位串车；上午刚把速度提上去，下午又因为碰墙把参数降回来；一套流程好不容易跑通，回头看日志，才发现识别结果根本不可信。</p>
+<p>所以这篇复盘不从某次事故写起，也不把整个过程包装成一个跌宕起伏的故事。就按当时的工作顺序，从最早的单车基线开始，记录我们做了什么、遇到了什么、怎么处理，以及每个阶段留下了哪些经验。</p>
+<p>我们是长江大学「星辰大海」队，参加的是第二十八届中国机器人及人工智能大赛机器人任务挑战赛，智慧药房赛项。</p>
+<p>任务流程并不难理解。机器人从起点出发，在识别板 1 获取本圈的体检窗口、样本数和目标化验窗口，到识别板 2 读取等待时间，完成送样后回到起点。两台车共用地图和 ROS Master，车 1 跑完一圈再交接给车 2。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">起点 → 识别板1 → 体检窗口 → 识别板2 → 化验窗口 → 起点 → 双车交接</span><br></pre></td></tr></table></figure>
+
+<p>真正的工作，就是把这条看起来很简单的流程，一点点变成两台真车可以执行的系统。</p>
+<span id="more"></span>
+
+<h2 id="7-月-9-日，先建立一个可信的单车基线"><a href="#7-月-9-日，先建立一个可信的单车基线" class="headerlink" title="7 月 9 日，先建立一个可信的单车基线"></a>7 月 9 日，先建立一个可信的单车基线</h2><p>最早的工作不是调高速度，也不是直接做双车，而是先把车 1 现有的流程弄清楚。</p>
+<p>我们做的第一件事，是给整个目录建立 Git 基线和可回退点。原来的代码能跑，但里面夹着一些试验逻辑和保底方案。后面不管改 OCR、路径还是导航参数，如果没有一个明确基线，很容易改着改着，连当前真车跑的是哪一版都说不清。</p>
+<p>识别板 1 当时有一个预设方案。真实二维码识别失败以后，程序可以用默认任务继续运行。这个做法调试时看起来很省事，因为车不会停在那里，但它会制造一个更麻烦的问题，路线跑完了，不代表识别成功了。</p>
+<p>我们把这个保底方案去掉，识别超时以后重新打开识别，只接受真实结果。主流程也改成每次向 <code>move_base</code> 发送目标前都清理一次代价地图，避免旧障碍持续影响后面的路径。</p>
+<p>当天还试过给 CBA 任务增加专门的 A 点插入路线和后退位置，实车效果并不好，就直接回退，没有为了保留工作量把它硬塞进最终流程。</p>
+<p>另外两个问题也在这一天暴露出来。</p>
+<p>一个是 RViz 的 <code>2D Pose Estimate</code> 一度没有反应。检查后发现，不是定位算法突然坏了，而是 ROS Master、<code>ROS_MASTER_URI</code>、<code>ROS_IP</code> 和 RViz 所在环境没有对齐。环境修正后，<code>/initialpose</code> 才重新有正常的发布和订阅。</p>
+<p>另一个是识别板 2。电脑端已经能读到相机画面，牌子上写着「需等待 10 秒」，OCR 返回的却是 <code>UNKNOWN</code>。主程序里虽然已经有 <code>/ocr_trigger</code> 和 <code>/ocr_result</code>，但到站以后只是固定等 2 秒，识别结果还没有真正接进状态机。</p>
+<p>裁判通信也只验证到了 TCP 端口可连接，手动发送 JSON 后界面没有变化。由于当时的长连接测试命令被换行拆坏，这个结果也不能算协议验证成功。</p>
+<p>回头看，7 月 9 日做得最重要的事情，不是解决了多少问题，而是把「真的成功」和「看起来能继续运行」分开了。</p>
+<p>没有真实识别结果，就不写识别成功。试验路线效果不好，就回退。通信只测通端口，就只记录端口可达。</p>
+<p>这给后面所有调试定了一个很重要的标准，先建立可信基线，再往上加功能。保底数据可以让演示继续，却也可能把真正的问题藏起来。</p>
+<h2 id="7-月-10-日，把-OCR-真正接进任务流程"><a href="#7-月-10-日，把-OCR-真正接进任务流程" class="headerlink" title="7 月 10 日，把 OCR 真正接进任务流程"></a>7 月 10 日，把 OCR 真正接进任务流程</h2><p>第二天的工作基本围绕 OCR 展开。</p>
+<p>识别板 2 的牌子只有两类意思，空闲时快速通过，忙碌时等待 5 到 10 秒。但 OCR 原文并不稳定，同一块牌子可能多一个空格、少一个字，也可能把数字识别错。</p>
+<p>我们没有让主状态机直接处理这些原始文字，而是把视觉输出收敛成一个很小的集合，<code>WAIT-0</code>、<code>WAIT-5</code> 到 <code>WAIT-10</code>，以及 <code>UNKNOWN</code>。</p>
+<p>车到达识别板 2 后，先关闭触发，等待车体和画面稳定 2 秒，再启动本轮 OCR。单次结果最多等待 8 秒，一共尝试 3 次。识别到 <code>WAIT-0</code> 就继续，识别到具体秒数就按结果等待。连续失败后记录 <code>UNKNOWN</code>，流程不会永久卡死。</p>
+<p>这里还加了一个很关键的请求门禁。只有主流程正在等待本轮 OCR 时，回调结果才有效。到站前收到的旧消息、两次重试之间迟到的消息，都不能推进状态机。</p>
+<p>电脑端的视频读取也跟着改了。采集线程持续读取 HTTP 视频流，但只保存最新帧。收到触发时，程序先记下当前帧序号，只允许使用触发之后到达的新帧。每次识别都有自己的代次，旧任务即使晚一点算出结果，也会被丢弃，不会串到下一次请求里。</p>
+<p>这一天我们只做了 Python 2 语法检查，没有启动 ROS 节点，没有连接真实摄像头，也没有做实车到站测试。</p>
+<p>这个验证边界当时写得很明确，代码能编译，不等于 OCR 已经可用。</p>
+<p>这一天留下的经验，主要是视觉系统不能只盯识别算法。图像是不是到站后的新帧，结果属于哪一次触发，超时以后状态机怎么走，这些时序问题和识别率一样重要。</p>
+<p>还有一点后来一直在坚持，每次记录都要写清楚「已经验证到哪里」。语法通过就是语法通过，不顺手把它扩写成功能通过。</p>
+<h2 id="7-月-11-日到-12-日，导航问题开始真正暴露"><a href="#7-月-11-日到-12-日，导航问题开始真正暴露" class="headerlink" title="7 月 11 日到 12 日，导航问题开始真正暴露"></a>7 月 11 日到 12 日，导航问题开始真正暴露</h2><p>OCR 流程接进去以后，工作重心转到了导航和现场调参。</p>
+<p>为了能在电脑端实时调整 TEB，我们把 <code>rqt_reconfigure</code> 安装并固化进 ROS Melodic Docker 镜像，启动命令也补进现场文档。这样调参数不再依赖某一台车上临时装好的环境。</p>
+<p>同一阶段，RViz 里的雷达点看起来一顿一顿。车 1 同时存在 <code>/scan</code> 和 <code>/scan_filtered</code>，当时 RViz 用的是原始 <code>/scan</code>。实际测下来，原始话题虽然平均接近 10 Hz，但消息间隔和延迟偶尔会跳到 <code>0.27 s</code> 左右。切换到更稳定的 <code>/scan_filtered</code>，再把队列设为 1、衰减设为 0 后，显示才正常下来。</p>
+<p>我们还完整检查了 TF 主链。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">map → odom → base_footprint → base_link</span><br></pre></td></tr></table></figure>
+
+<p><code>map → odom</code> 由厂家定位节点发布，<code>odom → base_footprint</code> 来自 EKF。实时 TF 树没有断链，也没有发现一个子坐标系挂多个父坐标系。这个结果很重要，因为它帮我们排除了「所有卡顿都是 TF 乱跳」这种过早判断。</p>
+<p>真正麻烦的事发生在 TEB 试车时。</p>
+<p>我们先把控制频率从 10 Hz 提到 15 Hz，随后又把 <code>dt_ref</code> 从 <code>0.3</code> 改到 <code>0.2</code>，<code>dt_hysteresis</code> 从 <code>0.1</code> 改到 <code>0.05</code>。主观感觉反而更卡，后面的实车测试里，RViz 规划路线已经转弯，车体却继续向前，最后碰到了墙。</p>
+<p>监测程序启动得太晚，没有记录到碰墙瞬间的 <code>/cmd_vel</code>、底盘反馈和 TEB 局部轨迹，所以当时不能严谨地把根因写成某一个参数。</p>
+<p>继续检查以后，我们找到了一个更基础的问题。</p>
+<p>实车长度大约是 <code>0.35 m</code>，规划器中的 footprint 长度只有 <code>0.28 m</code>。根据厂家 URDF 计算出的轴距约为 <code>0.163 m</code>，TEB 里写的是 <code>0.21 m</code>，底盘代码没有正确加载参数时，默认值甚至是 <code>0.335 m</code>。</p>
+<p>同一辆车，在规划器和底盘眼里不是同一辆车，继续拧权重当然解决不了。</p>
+<p>处理办法也很直接。停止高速整圈测试，把 footprint 按实车尺寸修正为 <code>0.35 m × 0.22 m</code>，统一 TEB 和底盘轴距，再恢复保守速度，从开阔区域的低速转弯重新验证。后面的测试也改成监测程序先开始记录，确认订阅正常以后，才允许发送实车目标。</p>
+<p>这一阶段的经验很明确，调参之前先检查物理模型和数据链。车长、车宽、轴距、最小转弯半径写错了，调参只是围着错误前提继续优化。</p>
+<p>而事故没有完整数据时，就老老实实写「原因尚未确认」。猜得再像，也不能代替证据。</p>
+<h2 id="7-月-13-日，恢复稳定基线，不再盲目提速"><a href="#7-月-13-日，恢复稳定基线，不再盲目提速" class="headerlink" title="7 月 13 日，恢复稳定基线，不再盲目提速"></a>7 月 13 日，恢复稳定基线，不再盲目提速</h2><p>几何参数修正后，我们把新配置同步到车 1。TEB 和底盘轴距都统一为 <code>0.163 m</code>，规划 footprint 按 <code>0.35 m × 0.22 m</code> 设置，代价地图再保留 <code>0.01 m</code> 的 padding。</p>
+<p>这个过程里电脑还突然断过一次电。</p>
+<p>ROS Master 和 <code>rqt_reconfigure</code> 里的在线参数全部丢失，只能从断电前的记录中找回最后稳定的 <code>0.70/0.45</code>。那组只把 <code>acc_lim_x</code> 提到 <code>0.55</code> 的未完成试验也被重新辨认出来，它曾让 C 段从大约 <code>10 s</code> 变成 <code>14.8 s</code>，所以明确废弃，没有写回 YAML。</p>
+<p>重新启动时又碰到非交互 SSH 缺少 <code>ROBOT_TYPE</code>。厂家底盘代码还依赖交互式 <code>top -n1</code>，普通 <code>nohup</code> 会让 CPU 和电池监测线程退出。后来把导航放进车端 <code>tmux</code> 会话，<code>/battery</code> 才恢复到大约 1 Hz。</p>
+<p>环境恢复后，我们对 <code>0.70 m/s</code> 和 <code>0.75 m/s</code> 两组速度做了完整跑圈对比。</p>
+<p><code>0.70 m/s</code> 的 8 段纯导航时间是 <code>73.88 s</code>，<code>0.75 m/s</code> 是 <code>72.06 s</code>，后者表面上快了 <code>1.82 s</code>。但分段看，C 到 A 反而慢了将近 3 秒，A 到 B 也慢了接近 1 秒。那一点整圈优势，主要来自化验区 1 到化验区 2 的单段波动，并不是稳定收益。</p>
+<p>两组参数的全部导航目标都一次到达，但最终仍然保留 <code>max_vel_x=0.70 m/s</code>、<code>acc_lim_x=0.45 m/s²</code>，不再为了更好看的最大速度继续冒险。</p>
+<p>这一天的经验有两条。</p>
+<p>在线参数一定要写回配置文件，稳定基线也要留在版本记录里。否则一次断电，就能把几个小时的试验重新打回记忆题。</p>
+<p>速度对比则必须看完整路线和分段数据。比赛比的是稳定完成任务，不是参数文件里的最大值。某一圈快了 1 秒，不一定值得换掉已经验证过的稳定性。</p>
+<h2 id="7-月-14-日，把裁判通信从主流程里拆出来"><a href="#7-月-14-日，把裁判通信从主流程里拆出来" class="headerlink" title="7 月 14 日，把裁判通信从主流程里拆出来"></a>7 月 14 日，把裁判通信从主流程里拆出来</h2><p>导航基线稳定以后，我们开始核对裁判软件的通信协议。</p>
+<p>官方要求小车通过 TCP 发送 6 个字段，包括车辆编号、速度、二维坐标、当前任务、识别板 2 结果和识别板 1 结果，频率为 1 到 2 Hz。</p>
+<p>原来的实现会频繁建立连接，字段类型和消息边界也不够明确。后来改成长连接，每 <code>0.5 s</code> 发送一次 JSON，并在消息末尾追加换行。连接或发送失败以后关闭失效套接字，后续周期自动重连。</p>
+<p>更重要的是，通信放进独立线程。裁判电脑没开、IP 不通或者连接中断，都不能反过来卡住导航状态机。主流程照常执行，通信线程自己处理重连。</p>
+<p>这一天没有启动裁判软件，也没有做实车联机，只完成了协议核对和代码改写。所以结论仍然是「格式按官方要求实现，现场通信待验证」。</p>
+<p>留下的经验是，附加功能不能控制核心任务的生死。裁判通信、日志上传、语音播报这些功能当然重要，但它们出错时，不能把正在运动的机器人一起拖死。</p>
+<h2 id="7-月-15-日，从一辆车扩展到两辆车"><a href="#7-月-15-日，从一辆车扩展到两辆车" class="headerlink" title="7 月 15 日，从一辆车扩展到两辆车"></a>7 月 15 日，从一辆车扩展到两辆车</h2><p>这一天开始，项目真正进入双车阶段。</p>
+<p>最明显的问题是车 2 位姿乱飞。车 2 明明停在原地，<code>map → car2/base_footprint</code> 却会在场地中大幅跳动。排查 ROS 图以后发现，车 2 的 EKF 误订阅了车 1 的全局 <code>/odom</code>。</p>
+<p>修复时没有把输入写死成另一个绝对话题，而是改成命名空间内的相对话题 <code>odom</code>。因为 EKF 节点运行在 <code>/car2</code> 下，它会自动解析为 <code>/car2/odom</code>。修复后连续采样 6 秒，车 2 位姿稳定下来，不再跟着车 1 移动。</p>
+<p>接着检查 RViz，又发现两份配置也有串车风险。车 1 的 RViz 指向了一些并不存在的 <code>/car1</code> 话题，车 2 的 RobotModel 仍读取全局 <code>robot_description</code>，初始位姿和导航目标也没有完整走车 2 专用接口。</p>
+<p>两份 RViz 后来彻底分开。车 1 使用全局导航接口，车 2 使用 <code>/car2/move_base</code>、<code>/car2/scan</code>、<code>/car2/odometry/filtered</code> 和 <code>/car2/robot_description</code>，初始位姿与导航目标通过车 2 专用中继发送。</p>
+<p>车 2 的 OCR 也接入了独立的 <code>/car2/ocr_trigger</code> 和 <code>/car2/ocr_result</code>。电脑端启动两个视觉进程，分别读取 <code>192.168.1.201</code> 和 <code>192.168.1.202</code> 的视频流，话题完全分开。</p>
+<p>这一天完成了 15 项双车契约测试、Python 2 语法检查、YAML 和 RViz 解析，也在运行时确认车 2 EKF 只订阅自己的里程计。但还没有启动两台车的 F1，没有做双车完整跑圈。</p>
+<p>双车阶段留下的经验是，命名空间不是给节点名加一个 <code>/car2</code> 就结束了。</p>
+<p>topic、TF、action、service、参数、RobotModel、RViz 输入都要一起隔离。少改一层，系统未必立即报错，却可能表现成位姿跳动、目标发错车或者一辆车误用另一辆车的传感器数据。</p>
+<p>自动契约测试也从这个阶段开始变得很有价值。它不能替代实车，但能在每次修改以后，先把那些低级而危险的串车问题拦下来。</p>
+<h2 id="7-月-16-日，用-8-圈测试覆盖所有路线"><a href="#7-月-16-日，用-8-圈测试覆盖所有路线" class="headerlink" title="7 月 16 日，用 8 圈测试覆盖所有路线"></a>7 月 16 日，用 8 圈测试覆盖所有路线</h2><p>双车接口稳定后，我们开始做完整交替跑圈。</p>
+<p>当天两台车各跑 4 圈，共 8 圈，依次覆盖化验区 4、3、2、1。车 1 每圈回到起点后通知车 2，车 2 跑完再通知车 1，双车交接服务在 8 圈中正常工作。</p>
+<p>这轮测试也暴露了不少只有实车连续跑才会出现的问题。</p>
+<p>车 1 去化验区 3、4 时容易冲过停车点。最初以为只是点位太深，把目标调整到车 2 已经跑稳的位置以后，车还是没有明显减速。继续结合制动距离看，主要问题其实是末段速度太高。</p>
+<p>我们没有降低整圈速度，只在发送化验区 3、4 最终目标前，把 TEB 最大速度从 <code>0.70 m/s</code> 临时降到 <code>0.50 m/s</code>。导航结束以后，无论成功、失败还是超时，都恢复到 <code>0.70 m/s</code>。限速设置失败时，状态机直接安全停止，不允许车辆继续高速进入窗口。</p>
+<p>车 2 在 C 到 A、A 到 B 之间还缺少直线退出动作。直接让 TEB 在狭窄窗口旁转向，车体容易贴近障碍。后来与车 1 对齐，在 C 后按里程计直退约 <code>0.30 m</code>，A 后直退约 <code>0.20 m</code>，再把控制权交回规划器。</p>
+<p>这段手动退出也加了保护。没有里程计就不动，里程计超过 <code>0.5 s</code> 没更新就中止，倒退超过 6 秒仍未完成也中止，结束时连续发布零速度。</p>
+<p>车 2 的语音不播报则是另一个很普通的问题。代码里还是旧目录，窗口编号也沿用了旧映射。修正文件路径和 3、4、5、6 号窗口映射后，体检组合和化验区语音才恢复正常。</p>
+<p>识别板 1 的进站角度也做了调整。车 2 从起点直接去板 1 时路线略斜，而 TEB 的角度容差允许它斜着到点。我们在板前增加一个前置点，让最后一段沿水平方向直进，提高识别画面的稳定性。</p>
+<p>这一轮的经验，不是所有局部问题都要靠改全局参数解决。</p>
+<p>窗口前制动不够，就只限制末段速度。狭窄区域不适合立即转向，就先做受里程计约束的直线退出。进板角度不稳定，就增加一个能约束末段方向的前置点。</p>
+<p>对比赛路线来说，局部措施往往比把整套导航参数重新拧一遍更容易验证，也更不容易影响已经跑稳的其他路段。</p>
+<p>还有一个边界需要说明，这 8 圈的识别板 1 使用了人工发布的任务消息。它证明了导航、点位和双车交接能够覆盖所有化验窗口，但不能拿来证明真实视觉已经可靠。</p>
+<h2 id="7-月-17-日，统一视觉并完成真实识别联调"><a href="#7-月-17-日，统一视觉并完成真实识别联调" class="headerlink" title="7 月 17 日，统一视觉并完成真实识别联调"></a>7 月 17 日，统一视觉并完成真实识别联调</h2><p>赛前最后一轮较大的改动，是把识别板 1 也迁到电脑端。</p>
+<p>原来识别板 1 和识别板 2 分别读取同一个 HTTP 视频流，两个程序可能争抢摄像头。后来每辆车只保留一个电脑端视觉进程，由同一个采集线程持续保存最新帧。识别板 1 负责解析任务码，识别板 2 负责 OCR，但共用同一路画面。</p>
+<p>两台车仍然各运行一个进程。车 1 和车 2 的视频地址、触发话题、结果话题全部独立。车端 launch 删除旧的识别板 1 节点，只保留导航、Astra 和 <code>web_video_server</code>，避免比赛时重复占用视频流或重复发布结果。</p>
+<p>车 2 的触发时序也做了修改。到达板 1 后先发送 <code>False</code>，等待 <code>0.2 s</code>，再发送 <code>True</code>，形成明确的上升沿，给电脑端留下完整的识别时间。</p>
+<p>当天做了两轮双车测试，每轮车 1 一圈、车 2 一圈，共 4 圈。</p>
+<p>第一轮里，车 1 的识别板 1 和识别板 2 都拿到了真实结果。车 2 的识别板 2 识别出 <code>WAIT-6</code>，但识别板 1 连续尝试约 6 秒仍未得到有效结果。更麻烦的是，车 2 状态机等够固定时间后继续使用默认窗口变量，把这一圈跑完了。</p>
+<p>路线完成了，识别却是静默失败。</p>
+<p>这次测试把一个之前被完整路线掩盖的问题直接翻了出来。识别流程不能只等固定时间，还要确认本轮是否收到真实结果。超时以后应该复位触发并重试，达到次数上限后明确记录失败，不能继续拿默认值装作成功。</p>
+<p>第二轮里，两台车的识别板 1 和识别板 2 都由电脑端真实识别成功，分别完成目标化验窗口并回到起点，双车交接、导航、OCR 和语音流程完整走通。</p>
+<p>不过第一轮暴露的偶发失败依然被保留在工作记录里，没有因为第二轮成功就删掉。赛前版本冻结后，这类问题仍然属于需要重点观察的风险。</p>
+<p>这一天的经验，是完整跑圈也要拆开看每一条证据链。车回到了起点，不等于识别正确。第二次成功，也不能抹掉第一次失败。</p>
+<p>真实视觉联调的意义，就是让之前靠人工消息验证的导航流程，终于和相机、识别时序、等待逻辑连在一起。只有所有环节都使用比赛时的真实输入，整圈成功才有完整含义。</p>
+<h2 id="比赛结束后，再看这段准备过程"><a href="#比赛结束后，再看这段准备过程" class="headerlink" title="比赛结束后，再看这段准备过程"></a>比赛结束后，再看这段准备过程</h2><p>从 7 月 9 日建立单车基线，到 7 月 17 日完成双车真实视觉联调，整个过程并不是沿着最初设计一路顺利实现。</p>
+<p>二维码的默认保底被删掉，OCR 从固定等待变成带门禁和新帧约束的状态机。TEB 调参中发生碰墙以后，我们回过头修正 footprint 和轴距。单车扩展到双车时，又重新整理 topic、TF、RViz 和视觉接口。到了完整跑圈阶段，还要继续处理末段制动、狭窄区域退出、语音路径和触发时序。</p>
+<p>很多措施看起来都不复杂，甚至有些很笨。清理代价地图、增加前置点、末段限速、直线倒退、写启动手册、给文件算哈希，这些都不是拿出来很亮眼的算法。</p>
+<p>但它们让系统从「某一次能够跑完」，慢慢变成「知道为什么能跑完，也知道失败时该停在哪里」。</p>
+<p>如果要把这次参赛经验压缩成几句话，我会保留下面这些。</p>
+<p>先建立稳定基线，再做优化。一次只改少量关键变量，效果不好就回退。</p>
+<p>先检查物理模型和数据链，再怀疑规划器。车体尺寸、轴距、TF 和话题关系错了，参数调得再细也没有用。</p>
+<p>每次测试只证明它真正覆盖到的内容。语法通过不是功能通过，人工任务跑圈也不是视觉通过。</p>
+<p>对所有外部输入设计超时、重试和失败状态。不能让默认值和旧结果把问题藏起来。</p>
+<p>稳定版本要能恢复。Git、YAML、Docker、tmux、车端备份、哈希和启动文档，比赛现场真的会用到。</p>
+<p>说实话，这些经验并不新鲜。做机器人项目的人可能都听过类似的话。</p>
+<p>只是以前听到「先记录再测试」「不要同时改太多参数」「跑通不等于可靠」，总觉得是一些很标准的工程要求。等真车碰过墙、双车串过里程计、OCR 用过旧帧、断电丢过在线参数以后，才知道这些要求不是写在文档里好看的。</p>
+<p>它们是一次次挫折留下来的答案。</p>
+]]></content>
+      <categories>
+        <category>比赛复盘</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>计算机视觉</tag>
+        <tag>中国机器人及人工智能大赛</tag>
+        <tag>智慧药房</tag>
+        <tag>移动机器人</tag>
+        <tag>多车协同</tag>
+        <tag>OCR</tag>
+        <tag>视觉定位</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法学习日记：Python</title>
+    <url>/2026/02/04/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h2 id="1-迭代与递归"><a href="#1-迭代与递归" class="headerlink" title="1.迭代与递归"></a>1.迭代与递归</h2><ul>
+<li><p><strong>迭代</strong>：“自下而上”地解决问题。从最基础的步骤开始，然后不断重复或累加这些步骤，直到任务完成。迭代是用循环去迭代。</p>
+</li>
+<li><p><strong>递归</strong>：“自上而下”地解决问题。将原问题分解为更小的子问题，这些子问题和原问题具有相同的形式。接下来将子问题继续分解为更小的子问题，直到基本情况时停止（基本情况的解是已知的）。递归是函数自己调用自己</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th>迭代</th>
+<th>递归</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">实现方式</td>
+<td>循环结构</td>
+<td>函数调用自身</td>
+</tr>
+<tr>
+<td align="center">时间效率</td>
+<td>效率通常较高，无函数调用开销</td>
+<td>每次函数调用都会产生开销</td>
+</tr>
+<tr>
+<td align="center">内存使用</td>
+<td>通常使用固定大小的内存空间</td>
+<td>累积函数调用可能使用大量的栈帧空间</td>
+</tr>
+<tr>
+<td align="center">适用问题</td>
+<td>适用于简单循环任务，代码直观、可读性好</td>
+<td>适用于子问题分解，如树、图、分治、回溯等，代码结构简洁、清晰</td>
+</tr>
+</tbody></table>
+<h2 id="2-数据结构"><a href="#2-数据结构" class="headerlink" title="2.数据结构"></a>2.数据结构</h2><h3 id="（1）分类"><a href="#（1）分类" class="headerlink" title="（1）分类"></a>（1）分类</h3><p>常见的数据结构包括数组、链表、栈、队列、哈希表、树、堆、图。</p>
+<p>【1】逻辑结构：线性与非线性</p>
+<p><strong>逻辑结构揭示了数据元素之间的逻辑关系</strong>。在数组和链表中，数据按照一定顺序排列，体现了数据之间的线性关系；而在树中，数据从顶部向下按层次排列，表现出“祖先”与“后代”之间的派生关系；图则由节点和边构成，反映了复杂的网络关系。</p>
+<p>线性结构比较直观，指数据在逻辑关系上呈线性排列；非线性结构则相反，呈非线性排列。</p>
+<ul>
+<li><p><strong>线性数据结构</strong>：数组、链表、栈、队列、哈希表，元素之间是一对一的顺序关系。</p>
+</li>
+<li><p><strong>非线性数据结构</strong>：树、堆、图、哈希表。</p>
+</li>
+</ul>
+<p>非线性数据结构可以进一步划分为树形结构和网状结构。</p>
+<ul>
+<li><strong>树形结构</strong>：树、堆、哈希表，元素之间是一对多的关系。</li>
+<li><strong>网状结构</strong>：图，元素之间是多对多的关系。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260204220710437.png" alt="classification_logic_structure"></p>
+<p>【2】物理结构：连续与分散</p>
+<p>可分为连续空间存储（数组）和分散空间存储（链表）。物理结构从底层决定了数据的访问、更新、增删等操作方法，两种物理结构在时间效率和空间效率方面呈现出互补的特点。</p>
+<p><strong>所有数据结构都是基于数组、链表或二者的组合实现的</strong>。</p>
+<ul>
+<li><p><strong>基于数组可实现</strong>：栈、队列、哈希表、树、堆、图、矩阵、张量（维度 ≥3 的数组）等。</p>
+</li>
+<li><p><strong>基于链表可实现</strong>：栈、队列、哈希表、树、堆、图等。</p>
+</li>
+</ul>
+<h3 id="（2）基本数据类型"><a href="#（2）基本数据类型" class="headerlink" title="（2）基本数据类型"></a>（2）基本数据类型</h3><p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260204222820191.png" alt="image-20260204222820140"></p>
+<ul>
+<li>在 Python 中，整数类型 <code>int</code> 可以是任意大小，只受限于可用内存；浮点数 <code>float</code> 是双精度 64 位；没有 <code>char</code> 类型，单个字符实际上是长度为 1 的字符串 <code>str</code> 。</li>
+<li>C 和 C++ 未明确规定基本数据类型的大小，而因实现和平台各异。</li>
+<li>字符 <code>char</code> 的大小在 C 和 C++ 中为 1 字节，在大多数编程语言中取决于特定的字符编码方法</li>
+<li>即使表示布尔量仅需 1 位（0 或 1），它在内存中通常也存储为 1 字节。这是因为现代计算机 CPU 通常将 1 字节作为最小寻址内存单元。</li>
+</ul>
+<h2 id="3-数组与链表"><a href="#3-数组与链表" class="headerlink" title="3.数组与链表"></a>3.数组与链表</h2><h3 id="（1）数组"><a href="#（1）数组" class="headerlink" title="（1）数组"></a>（1）数组</h3><p>【1】初始化</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化数组</span></span><br><span class="line">arr: <span class="built_in">list</span>[<span class="built_in">int</span>] = [<span class="number">0</span>] * <span class="number">5</span>  <span class="comment"># [ 0, 0, 0, 0, 0 ]</span></span><br><span class="line">nums: <span class="built_in">list</span>[<span class="built_in">int</span>] = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<p>【2】访问</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260205175339067.png" alt="image-20260205175333178"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def random_access(nums: list[int]) -&gt; int:</span><br><span class="line">    &quot;&quot;&quot;随机访问元素&quot;&quot;&quot;</span><br><span class="line">    # 在区间 [0, len(nums)-1] 中随机抽取一个数字</span><br><span class="line">    random_index = random.randint(0, len(nums) - 1)</span><br><span class="line">    # 获取并返回随机元素</span><br><span class="line">    random_num = nums[random_index]</span><br><span class="line">    return random_num</span><br></pre></td></tr></table></figure>
+
+<p>【3】插入元素</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260205181015771.png" alt="image-20260205180828558"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def insert(nums: list[int], num: int, index: int):</span><br><span class="line">    &quot;&quot;&quot;在数组的索引 index 处插入元素 num&quot;&quot;&quot;</span><br><span class="line">    # 把索引 index 以及之后的所有元素向后移动一位</span><br><span class="line">    for i in range(len(nums) - 1, index, -1):</span><br><span class="line">        nums[i] = nums[i - 1]</span><br><span class="line">    # 将 num 赋给 index 处的元素</span><br><span class="line">    nums[index] = num</span><br></pre></td></tr></table></figure>
+
+<p>【4】删除元素</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260312103807107.png" alt="image-20260312103800014"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def remove(nums: list[int], index: int):</span><br><span class="line">    &quot;&quot;&quot;删除索引 index 处的元素&quot;&quot;&quot;</span><br><span class="line">    # 把索引 index 之后的所有元素向前移动一位</span><br><span class="line">    for i in range(index, len(nums) - 1):</span><br><span class="line">        nums[i] = nums[i + 1]</span><br></pre></td></tr></table></figure>
+
+<p>总的来看，数组的插入与删除操作有以下缺点。</p>
+<ul>
+<li><strong>时间复杂度高</strong>：数组的插入和删除的平均时间复杂度均为 O(n) ，其中 n 为数组长度。</li>
+<li><strong>丢失元素</strong>：由于数组的长度不可变，因此在插入元素后，超出数组长度范围的元素会丢失。</li>
+<li><strong>内存浪费</strong>：我们可以初始化一个比较长的数组，只用前面一部分，这样在插入数据时，丢失的末尾元素都是“无意义”的，但这样做会造成部分内存空间浪费。</li>
+</ul>
+<p>【5】遍历</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def traverse(nums: list[int]):</span><br><span class="line">    &quot;&quot;&quot;遍历数组&quot;&quot;&quot;</span><br><span class="line">    count = 0</span><br><span class="line">    # 通过索引遍历数组</span><br><span class="line">    for i in range(len(nums)):</span><br><span class="line">        count += nums[i]</span><br><span class="line">    # 直接遍历数组元素</span><br><span class="line">    for num in nums:</span><br><span class="line">        count += num</span><br><span class="line">    # 同时遍历数据索引和元素</span><br><span class="line">    for i, num in enumerate(nums):</span><br><span class="line">        count += nums[i]</span><br><span class="line">        count += num</span><br></pre></td></tr></table></figure>
+
+<p>【6】查找</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>算法</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+</search>
