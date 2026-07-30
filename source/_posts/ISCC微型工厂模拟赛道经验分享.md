@@ -1,16 +1,19 @@
 ---
-title: ISCC竞赛——模拟微型工厂赛道分享
+title: ISCC 竞赛：模拟微型工厂赛道经验分享
 date: 2026-01-28 14:04:02
-description: 这是一篇比赛心得分享。
-keywords: 比赛,ISCC
+description: 复盘 ISCC 模拟微型工厂赛道中的 PLC 控制、HMI 组态、通信加密和限时录制流程。
+keywords: ISCC, PLC, HMI, 工业控制, 比赛复盘
+cover: /img/covers/iscc-plc.png
+log_id: "002"
+log_status: completed
 categories:
-  - 比赛
+  - 比赛复盘
 tags:
-  - 比赛
   - ISCC
+  - PLC
+  - HMI
+  - 工业网络
 ---
-
-# ISCC竞赛——模拟微型工厂赛道分享
 
 ## 1.赛道分析
 

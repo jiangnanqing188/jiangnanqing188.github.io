@@ -1,17 +1,18 @@
 ---
-title: py学习笔记
+title: Python 学习笔记
 date: 2025-07-27 14:26:27
 updated: 2026-01-28 14:07:00
 description: 这是一篇关于 Python 基础语法的学习笔记。
 keywords: Python, 编程入门
+cover: /img/covers/python-basics.webp
+log_id: "001"
+log_status: ongoing
 categories:
-  - AI学习
+  - 学习笔记
 tags:
   - Python
-  - 学习笔记
+  - 编程基础
 ---
-
-# python学习
 
 ## 一.函数
 
@@ -710,4 +711,3 @@ in 和not in 叫做成员运算符
 ## 九.工具库
 
  https://www.runoob.com/python3/python3-tutorial.html 
-

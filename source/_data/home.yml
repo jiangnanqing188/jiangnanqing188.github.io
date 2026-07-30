@@ -1,0 +1,41 @@
+eyebrow: JIANGNAN LAB NOTE / 2026
+title:
+  - 把机器人调通，
+  - 也把过程写清楚。
+lead: 记录机器人比赛、AI 编程与工程调试中真正踩过的坑：问题如何出现，判断如何形成，方案怎样复现。
+
+primary:
+  label: 查看最新记录
+  href: /2026/07/24/AI使用感受/
+
+secondary:
+  label: 浏览全部文章
+  href: /archives/
+
+current:
+  id: "005"
+  date: 2026.07.23
+  status: completed
+  title: 智慧药房机器人：从单车基线到双车联调
+  summary: 把 OCR、导航、多车隔离与赛前联调按时间重新走了一遍，保留问题、判断和可复用的处理方法。
+  system: ROS / OCR / TEB
+  focus: 多车协同 / 视觉定位
+  href: /2026/07/23/智慧药房机器人比赛参赛复盘/
+
+routes:
+  - code: "01"
+    label: 比赛复盘
+    description: 从现场问题、联调过程到最终结论
+    href: /categories/比赛复盘/
+  - code: "02"
+    label: 工程实践
+    description: AI、视觉与机器人系统的实际使用
+    href: /categories/工程实践/
+  - code: "03"
+    label: 学习笔记
+    description: Python、算法与基础能力的持续积累
+    href: /categories/学习笔记/
+  - code: "04"
+    label: 成长记录
+    description: 对工具、方法与学习阶段的诚实回看
+    href: /categories/成长记录/

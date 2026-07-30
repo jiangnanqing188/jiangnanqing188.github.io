@@ -1,16 +1,20 @@
 ---
-title: 智能车日记；YOLOv5模型训练
+title: 智能车日记：YOLOv5 模型训练
 date: 2026-01-29 10:00:00
-description: 记录YOLOv5模型训练过程中的问题与经验
-keywords: YOLOv5模型
+description: 记录 YOLOv5 从环境配置、数据集准备到模型训练过程中的问题与经验。
+keywords: YOLOv5, 计算机视觉, 模型训练
+cover: /img/covers/yolov5-vision.webp
+log_id: "003"
+log_status: pending
 categories:
-  - 比赛
+  - 工程实践
 tags:
-  - 技术
-  - 笔记
+  - YOLOv5
+  - Python
+  - 计算机视觉
+  - 数据标注
+  - 模型训练
 ---
-
-# YOLOv5模型训练
 
 ## 1.环境配置
 

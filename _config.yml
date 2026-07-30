@@ -4,12 +4,19 @@
 
 # Site
 title: 江南的碎碎念
-subtitle: ''
-description: ''
+subtitle: 机器人、AI与编程的成长记录
+description: 江南的个人技术博客，记录移动机器人、ROS、AI编程、计算机视觉与比赛实践中的问题、调试过程和复盘。
 keywords:
+  - 移动机器人
+  - ROS
+  - AI编程
+  - 计算机视觉
+  - Python
+  - 机器人比赛
+  - 比赛复盘
 author: 江南
 language: zh-CN
-timezone: ''
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -29,6 +36,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - downloads/*.yaml
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -80,7 +88,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: 'date'
 
 # Pagination
 ## Set per_page to 0 to disable pagination

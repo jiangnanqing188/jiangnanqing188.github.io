@@ -3,16 +3,17 @@ title: 从Ctrl+V工程师到让AI自己调小车，我的AI使用体验
 date: 2026-07-24
 description: 从Gemini辅助课程设计，到用Codex参与机器人比赛，再到让GPT-5.6 Sol自主测试并调整TEB参数，这是我大半年使用AI编程的真实感受。
 keywords: AI编程, Codex, Gemini, ROS, TEB
+cover: /img/covers/ai-robot-tuning.webp
+log_id: "006"
+log_status: archived
 categories:
-  - AI学习
+  - 成长记录
 tags:
-  - AI
-  - 编程
+  - AI编程
+  - Codex
   - ROS
-  - 学习记录
+  - TEB
 ---
-
-# AI使用体验
 
 ## 经历
 
