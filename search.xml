@@ -1165,7 +1165,7 @@
 <p>但说到底，都是工程工作流的问题。</p>
 <span id="more"></span>
 
-<p>这次国赛最后，车 1 完成了一圈，车 2 没有跑完第二圈，现场没有出现明确故障，最后拿到了国赛三等奖。</p>
+<h2 id="没有故障，不等于系统没有问题"><a href="#没有故障，不等于系统没有问题" class="headerlink" title="没有故障，不等于系统没有问题"></a>没有故障，不等于系统没有问题</h2><p>这次国赛最后，车 1 完成了一圈，车 2 没有跑完第二圈，现场没有出现明确故障，最后拿到了国赛三等奖。</p>
 <p>这个结果当然不差。</p>
 <p>双车隔离、导航、视觉、语音、交接和裁判通信的主链路都建立起来了。对一个从初赛一路临时补知识、补环境、补代码的项目来说，能走到这里，我已经挺满足了。</p>
 <p>但今天重新看代码和记录时，我还是被一个问题卡住了。</p>
@@ -1173,10 +1173,11 @@
 <p>好像并不等于。</p>
 <p>我们现在没有国赛当天完整的评分明细、终端日志、裁判端记录和全程录像。所以我不能看见源码里有一条风险路径，就拍脑袋说当天一定是在这里扣了分。</p>
 <p>这是今天复盘时定下的第一条边界。</p>
+<blockquote>
 <p>能从代码确认的，就写代码风险。能从测试记录确认的，就写测试结果。没有证据的当天结论，就老老实实标成未知。</p>
+</blockquote>
 <p>不然复盘很容易变成赛后诸葛亮，讲得头头是道，证据一个没有。</p>
-<p>1、跑完一圈，不等于任务正确</p>
-<p>赛前最后一次真实视觉联调里，有一个细节我现在回头看，还是觉得挺典型。</p>
+<h2 id="1-跑完一圈，不等于任务正确"><a href="#1-跑完一圈，不等于任务正确" class="headerlink" title="1. 跑完一圈，不等于任务正确"></a>1. 跑完一圈，不等于任务正确</h2><p>赛前最后一次真实视觉联调里，有一个细节我现在回头看，还是觉得挺典型。</p>
 <p>车 2 到达识别板 1 后，没有拿到有效识别结果。但它固定等了几秒，随后继续使用默认变量，把后面的路线跑完了。</p>
 <p>从场外看，小车在动，导航点也一个个到达，甚至最后还能回到起点。</p>
 <p>可这一圈的任务语义已经不可信了。</p>
@@ -1187,15 +1188,14 @@
 <p>所以改进方案里排在最前面的，不是换一个更大的视觉模型，也不是继续给 OCR 加重试，而是把识别变成一笔真正的事务。</p>
 <p>每一次识别都要带本圈编号、请求编号、图像时间和结果置信度。只接受本次停车以后采集的新画面，只接受属于当前请求的结果。结果通过范围和逻辑校验以后，再冻结成这一圈不可变的任务对象。</p>
 <p>迟到的结果、上一圈的结果、长度不对的数组、互相冲突的多帧结果，都只能留下记录，不能偷偷改变正在执行的任务。</p>
-<p>没收到，就是没收到。</p>
-<p>不知道，就是不知道。</p>
-<p>不能猜。</p>
+<blockquote>
+<p>没收到，就是没收到。<br>不知道，就是不知道。<br>不能猜。</p>
+</blockquote>
 <p>同样的问题还出现在状态机里。当前程序有些路径只要任意一个目标窗口成功，就会进入下一阶段。可比赛任务要求去两个窗口时，完成一个显然不叫完成。</p>
 <p>后面我准备把每个必去窗口都拆成独立状态，只有全部目标都确认完成，状态机才允许继续。识别超时、部分完成、导航失败和返回失败也要有不同结果，不能最后全压成一个 <code>True</code> 或 <code>False</code>。</p>
 <p>以前我觉得状态机就是让程序按顺序往下走。</p>
 <p>现在我觉得，成熟的状态机更重要的能力，是知道什么时候绝对不能往下走。</p>
-<p>2、最高速度更高，整圈不一定更快</p>
-<p>比赛准备时，我们真的花了不少时间调 TEB。</p>
+<h2 id="2-最高速度更高，整圈不一定更快"><a href="#2-最高速度更高，整圈不一定更快" class="headerlink" title="2. 最高速度更高，整圈不一定更快"></a>2. 最高速度更高，整圈不一定更快</h2><p>比赛准备时，我们真的花了不少时间调 TEB。</p>
 <p>有一轮把最高速度从 <code>0.70 m/s</code> 提到 <code>0.75 m/s</code>，8 段纯导航时间只快了大约 1.82 秒。更离谱的是，C、A、B 几个关键弯道路段反而更慢了。</p>
 <p>另一次只提高加速度，某个原本约 10 秒的路段跑到了 14 秒多。</p>
 <p>参数表看起来更猛了，车却没有稳定地更快。</p>
@@ -1208,8 +1208,7 @@
 <p>这套办法听着不性感。</p>
 <p>没有神奇参数，也没有一键提速 30%。</p>
 <p>但它至少不会拿一次运气不错的最快圈，骗自己系统已经进步了。</p>
-<p>3、改进不是推倒重来，而是先把错误语义封住</p>
-<p>今天上午写第一版改进方案时，我还在沿着现有代码一点点找风险。到了下午，我又让 Codex 带着现有代码，对照 <a href="https://github.com/open-navigation/opennav_docking">OpenNav Docking</a>、ROS1 <code>actionlib</code>、Move Base Flex、ROS diagnostics 和 rosbag 这些成熟项目重新看了一遍。</p>
+<h2 id="3-改进不是推倒重来，而是先把错误语义封住"><a href="#3-改进不是推倒重来，而是先把错误语义封住" class="headerlink" title="3. 改进不是推倒重来，而是先把错误语义封住"></a>3. 改进不是推倒重来，而是先把错误语义封住</h2><p>今天上午写第一版改进方案时，我还在沿着现有代码一点点找风险。到了下午，我又让 Codex 带着现有代码，对照 <a href="https://github.com/open-navigation/opennav_docking">OpenNav Docking</a>、ROS1 <code>actionlib</code>、Move Base Flex、ROS diagnostics 和 rosbag 这些成熟项目重新看了一遍。</p>
 <p>我不是想把它们全塞进来。</p>
 <p>恰恰相反，比较之后我删掉了几个看起来很高级、现在却不该做的方向。</p>
 <p>项目没有必要为了一个精确停靠能力整体迁移 ROS2，也没必要因为主程序长，就立刻换成行为树。短距离确定性倒车也不该一股脑交给 TEB，因为优化器的方向偏好不是硬保证。</p>
@@ -1218,16 +1217,20 @@
 <p>裁判通信也不能再用「TCP 连上了」作为验收。下一版会先做一个本地模拟裁判，把字段、频率、断线和重连一项项测完，再去官方界面核对真实结果。</p>
 <p>原来需要严格操作 9 个终端的启动流程，也准备收敛成统一入口。系统先自动检查 ROS Master、两台车的定位、激光、里程计、相机、识别服务和外部连接，全部通过以后，仍然要由人显式发车。</p>
 <p>自动启动，不等于自动乱跑。</p>
-<p>整套改进会分阶段上车。P0 先封住错误推进，P1 再解决停靠、感知和运维波动，只有前两层通过量化验收以后，P2 才允许评估更复杂的视觉闭环、导航框架或速度优化。</p>
+<p>整套改进会分阶段上车：</p>
+<ul>
+<li><strong>P0</strong>：先封住错误推进。</li>
+<li><strong>P1</strong>：再解决停靠、感知和运维波动。</li>
+<li><strong>P2</strong>：只有前两层通过量化验收以后，才评估更复杂的视觉闭环、导航框架或速度优化。</li>
+</ul>
 <p>这也是今天另一个很大的变化。</p>
 <p>以前我会问哪个方案更先进。现在我更愿意问，当前最早没有通过的门槛是什么。</p>
-<p>4、两个半夜拆车的故事，最后变成了环境门禁</p>
-<p>初赛刚开始时，我先读官方操作文档，再把需要使用的命令整理成 Markdown。后来考虑到电脑环境不兼容，又让 AI 帮我做了固定 Docker 容器。</p>
+<h2 id="4-两个半夜拆车的故事，最后变成了环境门禁"><a href="#4-两个半夜拆车的故事，最后变成了环境门禁" class="headerlink" title="4. 两个半夜拆车的故事，最后变成了环境门禁"></a>4. 两个半夜拆车的故事，最后变成了环境门禁</h2><p>初赛刚开始时，我先读官方操作文档，再把需要使用的命令整理成 Markdown。后来考虑到电脑环境不兼容，又让 AI 帮我做了固定 Docker 容器。</p>
 <p>测试 RViz 时画面很卡，我们才进一步做主从机和网络调整。</p>
 <p>然后比较骚的事情来了。</p>
 <p>改网络的过程中，我前后两次把 <code>sshd</code> 改坏。都是半夜把车拆开，用读卡器读取存储卡，再去修配置。</p>
 <p>一次还能叫意外。</p>
-<p>两次以后，就不能只怪手气不好了。。。</p>
+<p>两次以后，就不能只怪手气不好了……</p>
 <p>所以今天把工作流抽出来时，我对网络和 SSH 单独设了一道恢复门禁。</p>
 <p>修改前要记录当前地址、路由、监听端口和服务状态，要给配置做带时间的备份，还要先确认物理恢复通道。改完不能只看旧 SSH 会话还活着，必须重新打开一个全新的登录。需要重启的配置，就要真的重启一次，确认 <code>sshd</code> 能自动起来。</p>
 <p>旧连接没断，只能证明旧连接没断。</p>
@@ -1235,8 +1238,7 @@
 <p>容器也是一样。镜像能在当前机器运行，不等于环境已经被保存。真正需要留下的是 Dockerfile 或构建方法、镜像摘要、挂载关系、启动命令和恢复产物。</p>
 <p>AI 的记忆也不能算备份。</p>
 <p>它最多是一个索引，真正的项目记忆必须落在 Git、操作手册、工作记录、测试产物和发布清单里。</p>
-<p>5、多人可以一起查问题，但最终代码只能从一个出口出来</p>
-<p>初赛时，我主要负责测试，另一个同学负责改代码。到了国赛，故障处理经常是两个人一起读代码、提建议，但最后代码仍然要由固定的维护者统一落下去。</p>
+<h2 id="5-多人可以一起查问题，但最终代码只能从一个出口出来"><a href="#5-多人可以一起查问题，但最终代码只能从一个出口出来" class="headerlink" title="5. 多人可以一起查问题，但最终代码只能从一个出口出来"></a>5. 多人可以一起查问题，但最终代码只能从一个出口出来</h2><p>初赛时，我主要负责测试，另一个同学负责改代码。到了国赛，故障处理经常是两个人一起读代码、提建议，但最后代码仍然要由固定的维护者统一落下去。</p>
 <p>这个规则看起来有点保守，但多人同时改机器人项目，真的很容易出现一种很抽象的情况。</p>
 <p>每个人手里都有一个自称最新的版本。</p>
 <p>然后真正上车时，谁也说不清容器里、电脑上、车 1 和车 2 分别是哪一份。</p>
@@ -1246,8 +1248,7 @@
 <p>这比满屏的「再试一次」「最终版 2」「真的最终版」有用多了。</p>
 <p>还有一个很容易被忽视的人，是最后负责测试和启动的同学。</p>
 <p>容器、挂载、目录关系、实际启动顺序和最终产物，往往他最清楚。所以发布与归档不能只让写代码的人拍板，测试和运维负责人也必须确认，仓库里的版本和最后实际跑的版本确实一致。</p>
-<p>6、长项目不能每次打开对话都从第一步重来</p>
-<p>今天把这些规则整理到最后，我碰到一个新问题。</p>
+<h2 id="6-长项目不能每次打开对话都从第一步重来"><a href="#6-长项目不能每次打开对话都从第一步重来" class="headerlink" title="6. 长项目不能每次打开对话都从第一步重来"></a>6. 长项目不能每次打开对话都从第一步重来</h2><p>今天把这些规则整理到最后，我碰到一个新问题。</p>
 <p>如果把完整流程写成一条从头到尾的超长指令，每次调用都重新阅读规则、重建环境、分析架构、再走一遍测试，那这个 Skill 很快就会变成新的负担。</p>
 <p>机器人项目不是做一次就结束的问答。</p>
 <p>它可能今天在修视觉，明天退回网络，后天又因为新规则重新检查操作手册。一次对话结束，不代表项目回到了起点。</p>
@@ -1262,16 +1263,16 @@
 <p>我还专门在 Claude Code 里做了一次真实调用测试。它能发现项目级 Skill，通过 <code>/roscar-work-loop</code> 直接启动，然后先判断当前阶段，再给出下一道退出门槛。</p>
 <p>当然，这套工作流远远谈不上成熟。</p>
 <p>它不会自动把一台有风险的车变安全，也不能替代现场的人按下急停。AI 可以做架构分析、实验设计、参数整理和每天的工程记录，但运动授权、设计审核、最终验收和刹车权，还是必须在人手里。</p>
-<p>方向盘可以逐步交出去。</p>
-<p>刹车不能。</p>
-<p>今天回头看，智慧药房这场比赛真正留下来的东西，可能不只是一个国三，也不只是两套能跑的 ROS 代码。</p>
+<blockquote>
+<p>方向盘可以逐步交出去。<br>刹车不能。</p>
+</blockquote>
+<h2 id="从一次比赛，沉淀下一次可复用的秩序"><a href="#从一次比赛，沉淀下一次可复用的秩序" class="headerlink" title="从一次比赛，沉淀下一次可复用的秩序"></a>从一次比赛，沉淀下一次可复用的秩序</h2><p>今天回头看，智慧药房这场比赛真正留下来的东西，可能不只是一个国三，也不只是两套能跑的 ROS 代码。</p>
 <p>更重要的是，我开始知道怎么把一次混乱、漫长、充满临时判断的工程经历，重新整理成下一次还能复用的秩序。</p>
 <p>先确认规则，再固定环境。先保存基线，再改代码。先证明正确，再追求速度。每次测试讲清楚证据边界，每天结束留下能让另一个人继续工作的记录。</p>
 <p>这些事情都很笨。</p>
 <p>但机器人真的跑起来以后，最可靠的往往就是这些笨办法。</p>
 <p>我把这套流程整理成了一个开源 Agent Skill，支持 Codex 与 Claude Code。它现在还只是第一版，如果你也在做 ROS 实车、多机器人联调或者比赛项目，欢迎拿去试，也欢迎把踩过的坑继续补进去。</p>
-<p>项目地址</p>
-<p><a href="https://github.com/jiangnanqing188/roscar-work-loop">https://github.com/jiangnanqing188/roscar-work-loop</a></p>
+<p><strong>项目地址：</strong><a href="https://github.com/jiangnanqing188/roscar-work-loop">jiangnanqing188&#x2F;roscar-work-loop</a></p>
 ]]></content>
       <categories>
         <category>工程复盘</category>
@@ -1284,6 +1285,111 @@
         <tag>机器人比赛</tag>
         <tag>Claude Code</tag>
         <tag>Agent Skills</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法学习日记：Python</title>
+    <url>/2026/02/04/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h2 id="1-迭代与递归"><a href="#1-迭代与递归" class="headerlink" title="1.迭代与递归"></a>1.迭代与递归</h2><ul>
+<li><p><strong>迭代</strong>：“自下而上”地解决问题。从最基础的步骤开始，然后不断重复或累加这些步骤，直到任务完成。迭代是用循环去迭代。</p>
+</li>
+<li><p><strong>递归</strong>：“自上而下”地解决问题。将原问题分解为更小的子问题，这些子问题和原问题具有相同的形式。接下来将子问题继续分解为更小的子问题，直到基本情况时停止（基本情况的解是已知的）。递归是函数自己调用自己</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th>迭代</th>
+<th>递归</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">实现方式</td>
+<td>循环结构</td>
+<td>函数调用自身</td>
+</tr>
+<tr>
+<td align="center">时间效率</td>
+<td>效率通常较高，无函数调用开销</td>
+<td>每次函数调用都会产生开销</td>
+</tr>
+<tr>
+<td align="center">内存使用</td>
+<td>通常使用固定大小的内存空间</td>
+<td>累积函数调用可能使用大量的栈帧空间</td>
+</tr>
+<tr>
+<td align="center">适用问题</td>
+<td>适用于简单循环任务，代码直观、可读性好</td>
+<td>适用于子问题分解，如树、图、分治、回溯等，代码结构简洁、清晰</td>
+</tr>
+</tbody></table>
+<h2 id="2-数据结构"><a href="#2-数据结构" class="headerlink" title="2.数据结构"></a>2.数据结构</h2><h3 id="（1）分类"><a href="#（1）分类" class="headerlink" title="（1）分类"></a>（1）分类</h3><p>常见的数据结构包括数组、链表、栈、队列、哈希表、树、堆、图。</p>
+<p>【1】逻辑结构：线性与非线性</p>
+<p><strong>逻辑结构揭示了数据元素之间的逻辑关系</strong>。在数组和链表中，数据按照一定顺序排列，体现了数据之间的线性关系；而在树中，数据从顶部向下按层次排列，表现出“祖先”与“后代”之间的派生关系；图则由节点和边构成，反映了复杂的网络关系。</p>
+<p>线性结构比较直观，指数据在逻辑关系上呈线性排列；非线性结构则相反，呈非线性排列。</p>
+<ul>
+<li><p><strong>线性数据结构</strong>：数组、链表、栈、队列、哈希表，元素之间是一对一的顺序关系。</p>
+</li>
+<li><p><strong>非线性数据结构</strong>：树、堆、图、哈希表。</p>
+</li>
+</ul>
+<p>非线性数据结构可以进一步划分为树形结构和网状结构。</p>
+<ul>
+<li><strong>树形结构</strong>：树、堆、哈希表，元素之间是一对多的关系。</li>
+<li><strong>网状结构</strong>：图，元素之间是多对多的关系。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260204220710437.png" alt="classification_logic_structure"></p>
+<p>【2】物理结构：连续与分散</p>
+<p>可分为连续空间存储（数组）和分散空间存储（链表）。物理结构从底层决定了数据的访问、更新、增删等操作方法，两种物理结构在时间效率和空间效率方面呈现出互补的特点。</p>
+<p><strong>所有数据结构都是基于数组、链表或二者的组合实现的</strong>。</p>
+<ul>
+<li><p><strong>基于数组可实现</strong>：栈、队列、哈希表、树、堆、图、矩阵、张量（维度 ≥3 的数组）等。</p>
+</li>
+<li><p><strong>基于链表可实现</strong>：栈、队列、哈希表、树、堆、图等。</p>
+</li>
+</ul>
+<h3 id="（2）基本数据类型"><a href="#（2）基本数据类型" class="headerlink" title="（2）基本数据类型"></a>（2）基本数据类型</h3><p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260204222820191.png" alt="image-20260204222820140"></p>
+<ul>
+<li>在 Python 中，整数类型 <code>int</code> 可以是任意大小，只受限于可用内存；浮点数 <code>float</code> 是双精度 64 位；没有 <code>char</code> 类型，单个字符实际上是长度为 1 的字符串 <code>str</code> 。</li>
+<li>C 和 C++ 未明确规定基本数据类型的大小，而因实现和平台各异。</li>
+<li>字符 <code>char</code> 的大小在 C 和 C++ 中为 1 字节，在大多数编程语言中取决于特定的字符编码方法</li>
+<li>即使表示布尔量仅需 1 位（0 或 1），它在内存中通常也存储为 1 字节。这是因为现代计算机 CPU 通常将 1 字节作为最小寻址内存单元。</li>
+</ul>
+<h2 id="3-数组与链表"><a href="#3-数组与链表" class="headerlink" title="3.数组与链表"></a>3.数组与链表</h2><h3 id="（1）数组"><a href="#（1）数组" class="headerlink" title="（1）数组"></a>（1）数组</h3><p>【1】初始化</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化数组</span></span><br><span class="line">arr: <span class="built_in">list</span>[<span class="built_in">int</span>] = [<span class="number">0</span>] * <span class="number">5</span>  <span class="comment"># [ 0, 0, 0, 0, 0 ]</span></span><br><span class="line">nums: <span class="built_in">list</span>[<span class="built_in">int</span>] = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<p>【2】访问</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260205175339067.png" alt="image-20260205175333178"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def random_access(nums: list[int]) -&gt; int:</span><br><span class="line">    &quot;&quot;&quot;随机访问元素&quot;&quot;&quot;</span><br><span class="line">    # 在区间 [0, len(nums)-1] 中随机抽取一个数字</span><br><span class="line">    random_index = random.randint(0, len(nums) - 1)</span><br><span class="line">    # 获取并返回随机元素</span><br><span class="line">    random_num = nums[random_index]</span><br><span class="line">    return random_num</span><br></pre></td></tr></table></figure>
+
+<p>【3】插入元素</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260205181015771.png" alt="image-20260205180828558"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def insert(nums: list[int], num: int, index: int):</span><br><span class="line">    &quot;&quot;&quot;在数组的索引 index 处插入元素 num&quot;&quot;&quot;</span><br><span class="line">    # 把索引 index 以及之后的所有元素向后移动一位</span><br><span class="line">    for i in range(len(nums) - 1, index, -1):</span><br><span class="line">        nums[i] = nums[i - 1]</span><br><span class="line">    # 将 num 赋给 index 处的元素</span><br><span class="line">    nums[index] = num</span><br></pre></td></tr></table></figure>
+
+<p>【4】删除元素</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260312103807107.png" alt="image-20260312103800014"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def remove(nums: list[int], index: int):</span><br><span class="line">    &quot;&quot;&quot;删除索引 index 处的元素&quot;&quot;&quot;</span><br><span class="line">    # 把索引 index 之后的所有元素向前移动一位</span><br><span class="line">    for i in range(index, len(nums) - 1):</span><br><span class="line">        nums[i] = nums[i + 1]</span><br></pre></td></tr></table></figure>
+
+<p>总的来看，数组的插入与删除操作有以下缺点。</p>
+<ul>
+<li><strong>时间复杂度高</strong>：数组的插入和删除的平均时间复杂度均为 O(n) ，其中 n 为数组长度。</li>
+<li><strong>丢失元素</strong>：由于数组的长度不可变，因此在插入元素后，超出数组长度范围的元素会丢失。</li>
+<li><strong>内存浪费</strong>：我们可以初始化一个比较长的数组，只用前面一部分，这样在插入数据时，丢失的末尾元素都是“无意义”的，但这样做会造成部分内存空间浪费。</li>
+</ul>
+<p>【5】遍历</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def traverse(nums: list[int]):</span><br><span class="line">    &quot;&quot;&quot;遍历数组&quot;&quot;&quot;</span><br><span class="line">    count = 0</span><br><span class="line">    # 通过索引遍历数组</span><br><span class="line">    for i in range(len(nums)):</span><br><span class="line">        count += nums[i]</span><br><span class="line">    # 直接遍历数组元素</span><br><span class="line">    for num in nums:</span><br><span class="line">        count += num</span><br><span class="line">    # 同时遍历数据索引和元素</span><br><span class="line">    for i, num in enumerate(nums):</span><br><span class="line">        count += nums[i]</span><br><span class="line">        count += num</span><br></pre></td></tr></table></figure>
+
+<p>【6】查找</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>算法</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -1414,111 +1520,6 @@
         <tag>多车协同</tag>
         <tag>OCR</tag>
         <tag>视觉定位</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法学习日记：Python</title>
-    <url>/2026/02/04/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h2 id="1-迭代与递归"><a href="#1-迭代与递归" class="headerlink" title="1.迭代与递归"></a>1.迭代与递归</h2><ul>
-<li><p><strong>迭代</strong>：“自下而上”地解决问题。从最基础的步骤开始，然后不断重复或累加这些步骤，直到任务完成。迭代是用循环去迭代。</p>
-</li>
-<li><p><strong>递归</strong>：“自上而下”地解决问题。将原问题分解为更小的子问题，这些子问题和原问题具有相同的形式。接下来将子问题继续分解为更小的子问题，直到基本情况时停止（基本情况的解是已知的）。递归是函数自己调用自己</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th>迭代</th>
-<th>递归</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">实现方式</td>
-<td>循环结构</td>
-<td>函数调用自身</td>
-</tr>
-<tr>
-<td align="center">时间效率</td>
-<td>效率通常较高，无函数调用开销</td>
-<td>每次函数调用都会产生开销</td>
-</tr>
-<tr>
-<td align="center">内存使用</td>
-<td>通常使用固定大小的内存空间</td>
-<td>累积函数调用可能使用大量的栈帧空间</td>
-</tr>
-<tr>
-<td align="center">适用问题</td>
-<td>适用于简单循环任务，代码直观、可读性好</td>
-<td>适用于子问题分解，如树、图、分治、回溯等，代码结构简洁、清晰</td>
-</tr>
-</tbody></table>
-<h2 id="2-数据结构"><a href="#2-数据结构" class="headerlink" title="2.数据结构"></a>2.数据结构</h2><h3 id="（1）分类"><a href="#（1）分类" class="headerlink" title="（1）分类"></a>（1）分类</h3><p>常见的数据结构包括数组、链表、栈、队列、哈希表、树、堆、图。</p>
-<p>【1】逻辑结构：线性与非线性</p>
-<p><strong>逻辑结构揭示了数据元素之间的逻辑关系</strong>。在数组和链表中，数据按照一定顺序排列，体现了数据之间的线性关系；而在树中，数据从顶部向下按层次排列，表现出“祖先”与“后代”之间的派生关系；图则由节点和边构成，反映了复杂的网络关系。</p>
-<p>线性结构比较直观，指数据在逻辑关系上呈线性排列；非线性结构则相反，呈非线性排列。</p>
-<ul>
-<li><p><strong>线性数据结构</strong>：数组、链表、栈、队列、哈希表，元素之间是一对一的顺序关系。</p>
-</li>
-<li><p><strong>非线性数据结构</strong>：树、堆、图、哈希表。</p>
-</li>
-</ul>
-<p>非线性数据结构可以进一步划分为树形结构和网状结构。</p>
-<ul>
-<li><strong>树形结构</strong>：树、堆、哈希表，元素之间是一对多的关系。</li>
-<li><strong>网状结构</strong>：图，元素之间是多对多的关系。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260204220710437.png" alt="classification_logic_structure"></p>
-<p>【2】物理结构：连续与分散</p>
-<p>可分为连续空间存储（数组）和分散空间存储（链表）。物理结构从底层决定了数据的访问、更新、增删等操作方法，两种物理结构在时间效率和空间效率方面呈现出互补的特点。</p>
-<p><strong>所有数据结构都是基于数组、链表或二者的组合实现的</strong>。</p>
-<ul>
-<li><p><strong>基于数组可实现</strong>：栈、队列、哈希表、树、堆、图、矩阵、张量（维度 ≥3 的数组）等。</p>
-</li>
-<li><p><strong>基于链表可实现</strong>：栈、队列、哈希表、树、堆、图等。</p>
-</li>
-</ul>
-<h3 id="（2）基本数据类型"><a href="#（2）基本数据类型" class="headerlink" title="（2）基本数据类型"></a>（2）基本数据类型</h3><p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260204222820191.png" alt="image-20260204222820140"></p>
-<ul>
-<li>在 Python 中，整数类型 <code>int</code> 可以是任意大小，只受限于可用内存；浮点数 <code>float</code> 是双精度 64 位；没有 <code>char</code> 类型，单个字符实际上是长度为 1 的字符串 <code>str</code> 。</li>
-<li>C 和 C++ 未明确规定基本数据类型的大小，而因实现和平台各异。</li>
-<li>字符 <code>char</code> 的大小在 C 和 C++ 中为 1 字节，在大多数编程语言中取决于特定的字符编码方法</li>
-<li>即使表示布尔量仅需 1 位（0 或 1），它在内存中通常也存储为 1 字节。这是因为现代计算机 CPU 通常将 1 字节作为最小寻址内存单元。</li>
-</ul>
-<h2 id="3-数组与链表"><a href="#3-数组与链表" class="headerlink" title="3.数组与链表"></a>3.数组与链表</h2><h3 id="（1）数组"><a href="#（1）数组" class="headerlink" title="（1）数组"></a>（1）数组</h3><p>【1】初始化</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化数组</span></span><br><span class="line">arr: <span class="built_in">list</span>[<span class="built_in">int</span>] = [<span class="number">0</span>] * <span class="number">5</span>  <span class="comment"># [ 0, 0, 0, 0, 0 ]</span></span><br><span class="line">nums: <span class="built_in">list</span>[<span class="built_in">int</span>] = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-
-<p>【2】访问</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260205175339067.png" alt="image-20260205175333178"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def random_access(nums: list[int]) -&gt; int:</span><br><span class="line">    &quot;&quot;&quot;随机访问元素&quot;&quot;&quot;</span><br><span class="line">    # 在区间 [0, len(nums)-1] 中随机抽取一个数字</span><br><span class="line">    random_index = random.randint(0, len(nums) - 1)</span><br><span class="line">    # 获取并返回随机元素</span><br><span class="line">    random_num = nums[random_index]</span><br><span class="line">    return random_num</span><br></pre></td></tr></table></figure>
-
-<p>【3】插入元素</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260205181015771.png" alt="image-20260205180828558"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def insert(nums: list[int], num: int, index: int):</span><br><span class="line">    &quot;&quot;&quot;在数组的索引 index 处插入元素 num&quot;&quot;&quot;</span><br><span class="line">    # 把索引 index 以及之后的所有元素向后移动一位</span><br><span class="line">    for i in range(len(nums) - 1, index, -1):</span><br><span class="line">        nums[i] = nums[i - 1]</span><br><span class="line">    # 将 num 赋给 index 处的元素</span><br><span class="line">    nums[index] = num</span><br></pre></td></tr></table></figure>
-
-<p>【4】删除元素</p>
-<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260312103807107.png" alt="image-20260312103800014"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def remove(nums: list[int], index: int):</span><br><span class="line">    &quot;&quot;&quot;删除索引 index 处的元素&quot;&quot;&quot;</span><br><span class="line">    # 把索引 index 之后的所有元素向前移动一位</span><br><span class="line">    for i in range(index, len(nums) - 1):</span><br><span class="line">        nums[i] = nums[i + 1]</span><br></pre></td></tr></table></figure>
-
-<p>总的来看，数组的插入与删除操作有以下缺点。</p>
-<ul>
-<li><strong>时间复杂度高</strong>：数组的插入和删除的平均时间复杂度均为 O(n) ，其中 n 为数组长度。</li>
-<li><strong>丢失元素</strong>：由于数组的长度不可变，因此在插入元素后，超出数组长度范围的元素会丢失。</li>
-<li><strong>内存浪费</strong>：我们可以初始化一个比较长的数组，只用前面一部分，这样在插入数据时，丢失的末尾元素都是“无意义”的，但这样做会造成部分内存空间浪费。</li>
-</ul>
-<p>【5】遍历</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def traverse(nums: list[int]):</span><br><span class="line">    &quot;&quot;&quot;遍历数组&quot;&quot;&quot;</span><br><span class="line">    count = 0</span><br><span class="line">    # 通过索引遍历数组</span><br><span class="line">    for i in range(len(nums)):</span><br><span class="line">        count += nums[i]</span><br><span class="line">    # 直接遍历数组元素</span><br><span class="line">    for num in nums:</span><br><span class="line">        count += num</span><br><span class="line">    # 同时遍历数据索引和元素</span><br><span class="line">    for i, num in enumerate(nums):</span><br><span class="line">        count += nums[i]</span><br><span class="line">        count += num</span><br></pre></td></tr></table></figure>
-
-<p>【6】查找</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>算法</tag>
-        <tag>数据结构</tag>
       </tags>
   </entry>
 </search>
