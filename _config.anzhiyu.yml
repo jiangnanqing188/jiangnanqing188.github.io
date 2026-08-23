@@ -372,7 +372,7 @@ giscus:
     data-mapping: pathname
     data-category: Announcements
     data-strict: "1"
-    data-emit-metadata: "0"
+    data-emit-metadata: "1"
     data-input-position: bottom
     data-loading: lazy
 
@@ -1195,6 +1195,7 @@ inject:
 
   bottom:
     - <script src="/js/lab-accessibility.js" defer></script>
+    - <script src="/js/giscus-manager.js" defer></script>
 
 # CDN
 # Don't modify the following settings unless you know how they work
