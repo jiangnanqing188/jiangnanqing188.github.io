@@ -18,10 +18,44 @@ const statusLabels = {
 
 const formatLogId = value => `LOG ${String(value || "").replace(/^LOG\s*/i, "")}`;
 const formatStatus = value => statusLabels[value] || value || "已记录";
+const toArray = value => {
+  if (!value) return [];
+  if (typeof value.toArray === "function") return value.toArray();
+  return Array.isArray(value) ? value : [];
+};
+const formatPostDate = (post, pattern = "YYYY.MM.DD") =>
+  post?.log_date ||
+  (post?.date && typeof post.date.format === "function" ? post.date.format(pattern) : "");
+const postPath = post => {
+  const path = String(post?.path || "");
+  return path.startsWith("/") ? path : `/${path}`;
+};
+const taxonomyNames = collection =>
+  toArray(collection)
+    .map(item => item?.name || item)
+    .filter(Boolean);
 
-const renderHome = home => {
-  const current = home.current || {};
-  const primary = home.primary || {};
+const deriveCurrent = post => {
+  if (!post) return {};
+
+  const categories = taxonomyNames(post.categories);
+  const tags = taxonomyNames(post.tags);
+
+  return {
+    id: post.log_id,
+    date: formatPostDate(post),
+    status: post.log_status,
+    title: post.title,
+    summary: post.description,
+    system: post.log_system || tags.slice(0, 3).join(" / "),
+    focus: post.log_focus || [...categories, ...tags].slice(0, 2).join(" / "),
+    href: postPath(post)
+  };
+};
+
+const renderHome = (home, latestPost) => {
+  const current = { ...(home.current || {}), ...deriveCurrent(latestPost) };
+  const primary = { ...(home.primary || {}), href: current.href || home.primary?.href };
   const secondary = home.secondary || {};
   const routes = Array.isArray(home.routes) ? home.routes : [];
   const titleLines = Array.isArray(home.title) ? home.title : [home.title];
@@ -109,9 +143,7 @@ const renderCardMeta = post => {
 };
 
 const renderEntryMeta = page => {
-  const date =
-    page.log_date ||
-    (page.date && typeof page.date.format === "function" ? page.date.format("YYYY.MM.DD") : "");
+  const date = formatPostDate(page);
 
   return `
     <section class="lab-entry-meta" aria-label="实验日志信息">
@@ -119,6 +151,152 @@ const renderEntryMeta = page => {
       <time datetime="${escapeHtml(String(date).replaceAll(".", "-"))}">${escapeHtml(date)}</time>
       <strong data-status="${escapeHtml(page.log_status)}"><i aria-hidden="true"></i>${escapeHtml(formatStatus(page.log_status))}</strong>
     </section>`;
+};
+
+const renderReproCard = page => {
+  const repro = page.repro;
+  if (!repro || typeof repro !== "object") return "";
+
+  const fields = [
+    ["运行环境", repro.environment],
+    ["验证对象", repro.target],
+    ["最后验证", repro.last_verified],
+    ["验证证据", repro.evidence]
+  ]
+    .filter(([, value]) => value)
+    .map(
+      ([label, value]) => `
+        <div>
+          <dt>${escapeHtml(label)}</dt>
+          <dd>${escapeHtml(value)}</dd>
+        </div>`
+    )
+    .join("");
+
+  const artifacts = toArray(repro.artifacts)
+    .filter(item => item?.label && item?.href)
+    .map(
+      item => `
+        <a href="${escapeHtml(item.href)}"${String(item.href).startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>
+          <span>${escapeHtml(item.kind || "ARTIFACT")}</span>
+          <strong>${escapeHtml(item.label)}</strong>
+          <small>${escapeHtml(item.description || "打开项目材料")}</small>
+        </a>`
+    )
+    .join("");
+
+  return `
+    <aside class="lab-repro" aria-labelledby="lab-repro-title">
+      <header class="lab-repro__head">
+        <div>
+          <span>REPRODUCTION NOTE</span>
+          <h2 id="lab-repro-title">复现与验证</h2>
+        </div>
+        <strong data-status="${escapeHtml(page.log_status)}"><i aria-hidden="true"></i>${escapeHtml(formatStatus(page.log_status))}</strong>
+      </header>
+      ${fields ? `<dl class="lab-repro__facts">${fields}</dl>` : ""}
+      ${artifacts ? `<nav class="lab-repro__artifacts" aria-label="本文相关材料">${artifacts}</nav>` : ""}
+    </aside>`;
+};
+
+const renderProjectHub = (projects, posts) => {
+  const projectList = toArray(projects);
+  const postList = toArray(posts);
+  const projectCards = projectList
+    .map(project => {
+      const records = postList
+        .filter(post => post.project_id === project.id)
+        .sort((a, b) => Number(b.date) - Number(a.date));
+      if (!records.length) return "";
+
+      const recordLinks = records
+        .map(
+          post => `
+            <a class="lab-projects__record" href="${escapeHtml(postPath(post))}">
+              <span>${escapeHtml(formatLogId(post.log_id))}</span>
+              <strong>${escapeHtml(post.title)}</strong>
+              <time datetime="${escapeHtml(formatPostDate(post, "YYYY-MM-DD"))}">${escapeHtml(formatPostDate(post))}</time>
+            </a>`
+        )
+        .join("");
+      const stack = toArray(project.stack)
+        .map(item => `<li>${escapeHtml(item)}</li>`)
+        .join("");
+
+      return `
+        <article class="lab-projects__card">
+          <a class="lab-projects__cover" href="${escapeHtml(postPath(records[0]))}" aria-label="打开${escapeHtml(project.title)}的最新记录">
+            <img src="${escapeHtml(project.cover)}" width="1200" height="675" alt="${escapeHtml(project.title)}项目封面">
+            <span>${escapeHtml(project.code)}</span>
+          </a>
+          <div class="lab-projects__body">
+            <header class="lab-projects__card-head">
+              <div>
+                <span>PROJECT DOSSIER</span>
+                <h2>${escapeHtml(project.title)}</h2>
+              </div>
+              <strong data-status="${escapeHtml(project.status)}"><i aria-hidden="true"></i>${escapeHtml(formatStatus(project.status))}</strong>
+            </header>
+            <p>${escapeHtml(project.summary)}</p>
+            ${stack ? `<ul class="lab-projects__stack" aria-label="项目技术栈">${stack}</ul>` : ""}
+            <div class="lab-projects__result"><span>RESULT</span><strong>${escapeHtml(project.result)}</strong></div>
+            <section class="lab-projects__records" aria-label="项目相关文章">
+              <h3>相关记录 · ${records.length}</h3>
+              ${recordLinks}
+            </section>
+          </div>
+        </article>`;
+    })
+    .join("");
+
+  return `
+    <div class="lab-projects">
+      <header class="lab-projects__hero">
+        <div>
+          <span>JIANGNAN / PROJECT INDEX</span>
+          <h1>项目档案</h1>
+          <p>不只展示结果，也保留每个系统走过的路线、失败过的候选和最终验证到哪里。</p>
+        </div>
+        <dl>
+          <div><dt>PROJECTS</dt><dd>${projectList.length.toString().padStart(2, "0")}</dd></div>
+          <div><dt>RECORDS</dt><dd>${postList.filter(post => post.project_id).length.toString().padStart(2, "0")}</dd></div>
+        </dl>
+      </header>
+      <section class="lab-projects__list" aria-label="项目列表">${projectCards}</section>
+    </div>`;
+};
+
+const renderResourceHub = posts => {
+  const resources = toArray(posts).flatMap(post =>
+    toArray(post.repro?.artifacts)
+      .filter(item => item?.label && item?.href)
+      .map(item => ({ ...item, post }))
+  );
+
+  const cards = resources
+    .map(resource => {
+      const external = String(resource.href).startsWith("http");
+      return `
+        <a class="lab-resources__card" href="${escapeHtml(resource.href)}"${external ? ' target="_blank" rel="noopener"' : " download"}>
+          <span class="lab-resources__kind">${escapeHtml(resource.kind || "FILE")}</span>
+          <strong>${escapeHtml(resource.label)}</strong>
+          <p>${escapeHtml(resource.description || "项目材料")}</p>
+          <small>来自 ${escapeHtml(formatLogId(resource.post.log_id))} · ${escapeHtml(resource.post.title)}</small>
+          <i aria-hidden="true">${external ? "↗" : "↓"}</i>
+        </a>`;
+    })
+    .join("");
+
+  return `
+    <div class="lab-resources">
+      <header class="lab-resources__hero">
+        <span>BUILD ARTIFACTS / DOWNLOADS</span>
+        <h1>资源下载</h1>
+        <p>文章里真正使用或公开的脚本、配置与项目入口集中放在这里，并保留它们来自哪篇记录。</p>
+        <strong>${resources.length.toString().padStart(2, "0")} ITEMS AVAILABLE</strong>
+      </header>
+      <section class="lab-resources__grid" aria-label="可用资源">${cards}</section>
+    </div>`;
 };
 
 const addAccessibleNames = html =>
@@ -173,10 +351,7 @@ hexo.extend.filter.register(
             : [];
       let postIndex = 0;
 
-      output = output.replace(
-        mainAnchor,
-        `${mainAnchor}${renderHome(home)}`
-      );
+      output = output.replace(mainAnchor, `${mainAnchor}${renderHome(home, posts[0])}`);
       output = output.replace(
         postsAnchor,
         `${postsAnchor}${renderLogHeading()}`
@@ -197,10 +372,25 @@ hexo.extend.filter.register(
     if (page.__post && page.log_id) {
       const articleAnchor = /(<article class="post-content" id="article-container"[^>]*>)/;
       if (articleAnchor.test(output)) {
-        output = output.replace(articleAnchor, `$1${renderEntryMeta(page)}`);
+        output = output.replace(articleAnchor, `$1${renderEntryMeta(page)}${renderReproCard(page)}`);
       } else {
         hexo.log.warn(`[lab-site] Article injection anchor is missing for ${outputPath}.`);
       }
+    }
+
+    if (outputPath === "projects/index.html") {
+      const siteData = hexo.locals.get("data") || {};
+      output = output.replace(
+        '<div id="lab-projects-root"></div>',
+        renderProjectHub(siteData.projects, hexo.locals.get("posts"))
+      );
+    }
+
+    if (outputPath === "downloads/index.html") {
+      output = output.replace(
+        '<div id="lab-resources-root"></div>',
+        renderResourceHub(hexo.locals.get("posts"))
+      );
     }
 
     return output;
@@ -209,7 +399,6 @@ hexo.extend.filter.register(
 );
 
 const legacyRedirects = [
-  ["categories/AI学习/index.html", "/categories/学习笔记/"],
   ["categories/比赛/index.html", "/categories/比赛复盘/"],
   ["tags/python/index.html", "/tags/Python/"]
 ];

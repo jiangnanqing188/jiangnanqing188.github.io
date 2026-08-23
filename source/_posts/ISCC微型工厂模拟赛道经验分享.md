@@ -6,6 +6,13 @@ keywords: ISCC, PLC, HMI, 工业控制, 比赛复盘
 cover: /img/covers/iscc-plc.png
 log_id: "002"
 log_status: completed
+log_system: TIA Portal V16 / PLC / HMI
+log_focus: 工厂仿真 / 通信加密
+project_id: iscc
+repro:
+  environment: TIA Portal V16 / 博达特 / MCGS Pro / Xshell
+  target: 微型工厂仿真、HMI 与通信加密设备
+  evidence: 文章按比赛流程记录 PLC、仿真、组态、加密和限时录制的关键配置
 categories:
   - 比赛复盘
 tags:

@@ -1,0 +1,51 @@
+- id: ruikang
+  code: PROJECT 04
+  title: 睿抗智能侦察车
+  status: completed
+  summary: 从定位、航点与视觉候选一路调到正式赛场，保留失败方案、回退判断和最后采用的纯点位路线。
+  result: 正式比赛 94 分，纯点位版本完成全程
+  cover: /img/covers/ruikang-competition.webp
+  stack:
+    - ROS Noetic
+    - DWA
+    - YOLO
+    - 实车导航
+
+- id: pharmacy
+  code: PROJECT 03
+  title: 智慧药房双车系统
+  status: completed
+  summary: 将导航、OCR、双车隔离、视觉联调和现场恢复串成一条可重复检查的机器人比赛工作流。
+  result: 从单车基线推进到双车真实视觉联调
+  cover: /img/covers/pharmacy-robots.webp
+  stack:
+    - ROS Melodic
+    - TEB
+    - OCR
+    - 多车协同
+
+- id: yolov5
+  code: PROJECT 02
+  title: YOLOv5 视觉训练
+  status: pending
+  summary: 整理自定义数据集从环境准备、配置文件到训练与验证的完整路径，并公开文章使用的脚本和 YAML。
+  result: 训练流程与 4 份配置、脚本已整理
+  cover: /img/covers/yolov5-vision.webp
+  stack:
+    - Python
+    - PyTorch
+    - YOLOv5
+    - CUDA
+
+- id: iscc
+  code: PROJECT 01
+  title: ISCC 微型工厂
+  status: completed
+  summary: 围绕 PLC 控制、工厂仿真、HMI 组态与通信加密，复盘比赛链路和最容易踩坑的配置点。
+  result: 完成仿真、组态、加密与限时录制流程复盘
+  cover: /img/covers/iscc-plc.png
+  stack:
+    - TIA Portal V16
+    - PLC
+    - HMI
+    - VPN

@@ -6,6 +6,30 @@ keywords: YOLOv5, 计算机视觉, 模型训练
 cover: /img/covers/yolov5-vision.webp
 log_id: "003"
 log_status: pending
+log_system: Anaconda / PyTorch / YOLOv5
+log_focus: 自定义数据集 / 模型训练
+project_id: yolov5
+repro:
+  environment: Anaconda / PyTorch / YOLOv5
+  target: 自定义目标检测数据集
+  evidence: 文章给出环境准备、数据配置、训练、验证和常见问题的完整步骤
+  artifacts:
+    - label: train.py
+      href: /downloads/train.py
+      kind: PYTHON
+      description: YOLOv5 模型训练脚本
+    - label: val.py
+      href: /downloads/val.py
+      kind: PYTHON
+      description: YOLOv5 模型验证脚本
+    - label: mydata.yaml
+      href: /downloads/mydata.yaml
+      kind: YAML
+      description: 自定义数据集配置示例
+    - label: mydata_yolov5s.yaml
+      href: /downloads/mydata_yolov5s.yaml
+      kind: YAML
+      description: YOLOv5s 数据集配置示例
 categories:
   - 工程实践
 tags:

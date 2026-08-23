@@ -3,6 +3,8 @@ menu:
 
   文章:
     归档: /archives/ || anzhiyu-icon-box-archive
+    项目: /projects/ || anzhiyu-icon-folder-open
+    资源: /downloads/ || anzhiyu-icon-download
     分类: /categories/ || anzhiyu-icon-shapes
     标签: /tags/ || anzhiyu-icon-tags
 
