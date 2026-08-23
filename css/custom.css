@@ -45,6 +45,39 @@ body {
   display: none;
 }
 
+#post-comment .giscus-manage-link {
+  display: inline-flex;
+  margin-left: auto;
+  padding: 0.15rem 0;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  color: var(--anzhiyu-fontcolor);
+  font-family: var(--lab-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.65;
+  white-space: nowrap;
+}
+
+#post-comment .giscus-manage-link::before {
+  margin-right: 0.4rem;
+  color: var(--lab-green);
+  content: "//";
+}
+
+#post-comment .giscus-manage-link:hover {
+  border-bottom-color: currentColor;
+  color: var(--lab-indigo);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #post-comment .giscus-manage-link {
+    transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  }
+}
+
 #nav-right .nav-button,
 #nav-right .nav-button > a,
 #toggle-menu,
