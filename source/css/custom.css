@@ -40,6 +40,11 @@ body {
   outline-offset: 3px;
 }
 
+/* Giscus uses GitHub accounts, so the theme's anonymous-email helpers do not apply. */
+#post-comment .comment-randomInfo {
+  display: none;
+}
+
 #nav-right .nav-button,
 #nav-right .nav-button > a,
 #toggle-menu,

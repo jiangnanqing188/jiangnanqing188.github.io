@@ -299,7 +299,7 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Valine/Waline/Twikoo/Artalk
-  use: # Twikoo/Waline
+  use: Giscus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
@@ -361,17 +361,20 @@ artalk:
 # giscus
 # https://giscus.app/
 giscus:
-  repo: # GitHub repository name
-  repo_id: # GitHub repository id
-  category_id: # GitHub repository category id
+  repo: jiangnanqing188/jiangnanqing188.github.io # GitHub repository name
+  repo_id: R_kgDOPTMnKQ # GitHub repository id
+  category_id: DIC_kwDOPTMnKc4DEBUV # GitHub repository category id
   theme:
     light: light
     dark: dark
   option: # options
     data-lang: zh-CN
-    data-mapping:
-    data-category:
-    data-input-position:
+    data-mapping: pathname
+    data-category: Announcements
+    data-strict: "1"
+    data-emit-metadata: "0"
+    data-input-position: bottom
+    data-loading: lazy
 
 # Chat Services
 # --------------------------------------
@@ -1088,7 +1091,7 @@ music_page_default: nav_music
 
 # 评论匿名邮箱
 visitorMail:
-  enable: true
+  enable: false
   mail: ""
 
 # ptool 文章底部工具
