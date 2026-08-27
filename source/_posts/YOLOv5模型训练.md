@@ -1,17 +1,17 @@
 ---
 title: 智能车日记：YOLOv5 模型训练
 date: 2026-01-29 10:00:00
-description: 记录 YOLOv5 从环境配置、智能车数据采集与清洗、数据标注到模型训练的问题与经验。
-keywords: YOLOv5, 计算机视觉, 智能车, 数据采集, 数据清洗, 模型训练
+description: 作为智慧农业智能车项目的视觉部分，记录 YOLOv5 从实车数据采集与清洗、数据标注到模型训练和部署的问题与经验。
+keywords: YOLOv5, 计算机视觉, 智慧农业, 智能车, 数据采集, 数据清洗, 模型训练
 cover: /img/covers/yolov5-vision.webp
 log_id: "003"
 log_status: pending
 log_system: Anaconda / PyTorch / YOLOv5
-log_focus: 智能车数据采集 / 数据清洗 / 模型训练
+log_focus: 智慧农业视觉 / 数据清洗 / 模型训练
 project_id: yolov5
 repro:
   environment: Anaconda / PyTorch / YOLOv5
-  target: 自定义目标检测数据集
+  target: 智慧农业智能车自定义目标检测数据集
   evidence: 文章给出环境准备、智能车数据采集与清洗、数据配置、训练、验证和常见问题的完整步骤
   artifacts:
     - label: train.py
@@ -36,10 +36,13 @@ tags:
   - YOLOv5
   - Python
   - 计算机视觉
+  - 智慧农业
   - 数据标注
   - 数据清洗
   - 模型训练
 ---
+
+这篇文章不是一个脱离项目的模型练习。当时我在做智慧农业智能车，整车路径主要使用硬编码，真正值得单独沉淀的技术部分，是我负责的视觉模型。后面的实车数据采集、清洗、标注、训练和部署，都是为比赛里的目标识别服务。这篇只讲我实际做过、也能说明白的视觉部分，不拿整车结果代替技术细节。
 
 ## 1.环境配置
 

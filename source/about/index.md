@@ -131,9 +131,9 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
         <img class="nolazyload" src="/img/covers/yolov5-vision.webp" width="1200" height="675" alt="YOLOv5 计算机视觉训练">
         <span class="about-modern__project-shade"></span>
         <span class="about-modern__project-copy">
-          <small>YOLOv5 · 计算机视觉</small>
-          <strong>目标检测模型训练</strong>
-          <span>数据集、配置与训练过程</span>
+          <small>智慧农业 · YOLOv5</small>
+          <strong>智能车目标检测训练</strong>
+          <span>实车数据、训练与部署</span>
         </span>
       </a>
     </div>

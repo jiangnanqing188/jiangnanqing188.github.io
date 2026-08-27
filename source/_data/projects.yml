@@ -26,10 +26,10 @@
 
 - id: yolov5
   code: PROJECT 02
-  title: YOLOv5 视觉训练
-  status: pending
-  summary: 整理自定义数据集从环境准备、配置文件到训练与验证的完整路径，并公开文章使用的脚本和 YAML。
-  result: 训练流程与 4 份配置、脚本已整理
+  title: 智慧农业 · YOLOv5 视觉训练
+  status: completed
+  summary: 智慧农业智能车项目中的视觉部分，从实车数据采集、清洗和标注一路做到模型训练与部署。
+  result: 完成视觉训练流程，并整理 4 份可下载的配置与脚本
   cover: /img/covers/yolov5-vision.webp
   stack:
     - Python
