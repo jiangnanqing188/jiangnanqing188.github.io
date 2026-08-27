@@ -5,11 +5,11 @@ title:
 lead: 记录机器人比赛、AI 编程与工程调试中真正踩过的坑：问题如何出现，判断如何形成，方案怎样复现。
 
 primary:
-  label: 查看最新记录
+  label: 查看项目档案
+  href: /projects/
 
 secondary:
-  label: 浏览全部文章
-  href: /archives/
+  label: 阅读最新记录
 
 routes:
   - code: "01"

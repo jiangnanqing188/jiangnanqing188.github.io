@@ -55,8 +55,8 @@ const deriveCurrent = post => {
 
 const renderHome = (home, latestPost) => {
   const current = { ...(home.current || {}), ...deriveCurrent(latestPost) };
-  const primary = { ...(home.primary || {}), href: current.href || home.primary?.href };
-  const secondary = home.secondary || {};
+  const primary = home.primary || {};
+  const secondary = { ...(home.secondary || {}), href: current.href || home.secondary?.href };
   const routes = Array.isArray(home.routes) ? home.routes : [];
   const titleLines = Array.isArray(home.title) ? home.title : [home.title];
   const title = titleLines.map(line => `<span>${escapeHtml(line)}</span>`).join("");
