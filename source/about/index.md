@@ -15,30 +15,30 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
       <span class="about-modern__eyebrow">HELLO · 很高兴认识你</span>
       <h2 id="about-modern-title">你好，我是江南</h2>
       <p class="about-modern__lead">
-        一名计算机专业学生，喜欢把机器人比赛、AI 编程和工程实践中踩过的坑，整理成可以复用的经验。
+        长江大学计算机科学与技术专业大三学生，主要做 ROS 机器人和 AI 应用，也习惯把比赛里的问题、判断和解决过程整理成可以复用的记录。
       </p>
       <div class="about-modern__actions">
         <a class="about-modern__button about-modern__button--primary" href="#about-projects">看看项目</a>
         <a class="about-modern__button" href="https://github.com/jiangnanqing188" target="_blank" rel="noopener">GitHub</a>
       </div>
       <ul class="about-modern__facts" aria-label="个人关键词">
-        <li><strong>方向</strong><span>机器人 · AI · 编程</span></li>
-        <li><strong>状态</strong><span>持续学习与实践</span></li>
-        <li><strong>记录</strong><span>比赛复盘与技术笔记</span></li>
+        <li><strong>身份</strong><span>长江大学 · 计算机科学与技术</span></li>
+        <li><strong>方向</strong><span>ROS 机器人 · AI 应用</span></li>
+        <li><strong>角色</strong><span>核心开发 · 系统集成 · 项目推进</span></li>
       </ul>
     </div>
     <div class="about-modern__portrait" aria-hidden="true">
       <div class="about-modern__portrait-glow"></div>
       <img class="nolazyload" src="/img/avatar.jpg" width="640" height="640" alt="">
-      <span class="about-modern__status">正在学习</span>
+      <span class="about-modern__status">项目开发中</span>
     </div>
   </section>
 
   <section class="about-modern__section" aria-labelledby="about-skills-title">
     <header class="about-modern__section-head">
       <span>01 · TECH STACK</span>
-      <h2 id="about-skills-title">正在使用与学习的技术</h2>
-      <p>不追求堆满图标，只记录真正接触过、正在继续深入的方向。</p>
+      <h2 id="about-skills-title">项目中实际使用的技术</h2>
+      <p>不追求堆满图标，只展示在比赛或工程实践中真正使用过、仍在继续深入的方向。</p>
     </header>
     <div class="about-modern__skill-grid">
       <article class="about-modern__skill">
