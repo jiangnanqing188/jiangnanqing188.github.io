@@ -119,3 +119,10 @@ search:
   field: post
   content: true
   format: html
+
+# Search engine discovery
+sitemap:
+  path: sitemap.xml
+  rel: true
+  tags: false
+  categories: false
