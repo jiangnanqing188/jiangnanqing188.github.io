@@ -454,6 +454,10 @@ const renderResourceHub = posts => {
 
 const addAccessibleNames = html =>
   html
+    .replace(
+      'content="width=device-width, initial-scale=1.0, user-scalable=no"',
+      'content="width=device-width, initial-scale=1.0"'
+    )
     .replace(/<div class="comment-randomInfo">[\s\S]*?<\/div>/g, "")
     .replace(
       /<h1 class="author-info__name">([\s\S]*?)<\/h1>/g,
@@ -475,6 +479,10 @@ const addAccessibleNames = html =>
     .replace(
       /(<div class="nav-button" id="nav-totop"><a\b)(?![^>]*aria-label)/g,
       '$1 aria-label="返回顶部"'
+    )
+    .replace(
+      /<button class="search-close-button"(?![^>]*aria-label)/g,
+      '<button class="search-close-button" aria-label="关闭搜索"'
     );
 
 hexo.extend.filter.register(
