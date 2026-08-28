@@ -74,11 +74,51 @@
     });
   };
 
+  let lastSearchTrigger = null;
+  let searchListenersReady = false;
+
+  const enhanceSearch = () => {
+    if (searchListenersReady) return;
+    searchListenersReady = true;
+
+    const restoreSearchTrigger = () => {
+      window.setTimeout(() => {
+        const fallback = document.querySelector("#search-button > .search");
+        const target = lastSearchTrigger?.isConnected ? lastSearchTrigger : fallback;
+        target?.focus();
+      }, 550);
+    };
+
+    document.addEventListener(
+      "click",
+      event => {
+        const trigger = event.target.closest("#search-button > .search, #menu-search");
+        if (trigger) {
+          lastSearchTrigger = trigger.matches("a")
+            ? trigger
+            : document.querySelector("#search-button > .search");
+        }
+
+        if (event.target.closest(".search-close-button, #search-mask")) {
+          restoreSearchTrigger();
+        }
+      },
+      true
+    );
+    document.addEventListener("keydown", event => {
+      const mask = document.getElementById("search-mask");
+      if (!mask) return;
+      if (event.key !== "Escape" || getComputedStyle(mask).display === "none") return;
+      restoreSearchTrigger();
+    });
+  };
+
   const enhanceControls = () => {
     controls.forEach(([selector, label]) => {
       document.querySelectorAll(selector).forEach(element => makeKeyboardOperable(element, label));
     });
     enhanceMenu();
+    enhanceSearch();
   };
 
   document.addEventListener("DOMContentLoaded", enhanceControls);

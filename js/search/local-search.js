@@ -119,15 +119,14 @@ window.addEventListener("load", () => {
       dataObj.then(data => {
         data.forEach(data => {
           let isMatch = true;
-          let dataTitle = data.title ? data.title.trim().toLowerCase() : "";
+          let displayTitle = data.title ? data.title.trim() : "";
+          const dataTitle = displayTitle.toLowerCase();
           let dataTags = data.tags;
           let oneImage = data.oneImage ?? "";
-          const dataContent = data.content
-            ? data.content
-                .trim()
-                .replace(/<[^>]+>/g, "")
-                .toLowerCase()
+          const cleanContent = data.content
+            ? data.content.trim().replace(/<[^>]+>/g, "")
             : "";
+          const dataContent = cleanContent.toLowerCase();
           const dataUrl = data.url.startsWith("/") ? data.url : GLOBAL_CONFIG.root + data.url;
           let indexTitle = -1;
           let indexContent = -1;
@@ -179,18 +178,25 @@ window.addEventListener("load", () => {
                 post = "...";
               }
 
-              let matchContent = dataContent.substring(start, end);
+              let matchContent = cleanContent.substring(start, end);
 
               // highlight all keywords
               keywords.forEach(keyword => {
-                const regS = new RegExp(keyword, "gi");
-                matchContent = matchContent.replace(regS, '<span class="search-keyword">' + keyword + "</span>");
-                dataTitle = dataTitle.replace(regS, '<span class="search-keyword">' + keyword + "</span>");
+                const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+                const regS = new RegExp(escapedKeyword, "gi");
+                matchContent = matchContent.replace(
+                  regS,
+                  match => '<span class="search-keyword">' + match + "</span>"
+                );
+                displayTitle = displayTitle.replace(
+                  regS,
+                  match => '<span class="search-keyword">' + match + "</span>"
+                );
               });
 
               str += '<div class="local-search__hit-item">';
               if (oneImage) {
-                str += `<div class="search-left"><img src=${oneImage} alt=${dataTitle} data-fancybox='gallery'>`;
+                str += `<div class="search-left"><img src="${oneImage}" alt="" data-fancybox="gallery">`;
               } else {
                 str += '<div class="search-left" style="width:0">';
               }
@@ -202,14 +208,14 @@ window.addEventListener("load", () => {
                   '<div class="search-right"><a href="' +
                   dataUrl +
                   '" class="search-result-title">' +
-                  dataTitle +
+                  displayTitle +
                   "</a>";
               } else {
                 str +=
                   '<div class="search-right" style="width: 100%"><a href="' +
                   dataUrl +
                   '" class="search-result-title">' +
-                  dataTitle +
+                  displayTitle +
                   "</a>";
               }
 
