@@ -34,6 +34,94 @@ const taxonomyNames = collection =>
   toArray(collection)
     .map(item => item?.name || item)
     .filter(Boolean);
+const absoluteSiteUrl = value => {
+  const base = `${String(hexo.config.url || "").replace(/\/$/, "")}/`;
+  const target = String(value || "").replace(/^\//, "").replace(/index\.html$/, "");
+  return new URL(target, base).href;
+};
+const isoDate = value =>
+  value && typeof value.toISOString === "function" ? value.toISOString() : undefined;
+const renderJsonLd = data =>
+  `<script type="application/ld+json">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>`;
+
+const renderStructuredData = (page, outputPath, siteData) => {
+  const author = {
+    "@type": "Person",
+    name: "江南",
+    url: absoluteSiteUrl("/")
+  };
+
+  if (outputPath === "index.html") {
+    return renderJsonLd({
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      url: absoluteSiteUrl("/"),
+      name: hexo.config.title,
+      description: hexo.config.description,
+      mainEntity: {
+        ...author,
+        affiliation: {
+          "@type": "CollegeOrUniversity",
+          name: "长江大学"
+        },
+        knowsAbout: ["ROS", "移动机器人", "计算机视觉", "AI 应用", "机器人系统集成"],
+        sameAs: ["https://github.com/jiangnanqing188"]
+      }
+    });
+  }
+
+  if (outputPath === "projects/index.html") {
+    const projects = toArray(siteData.projects);
+    return renderJsonLd({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      url: absoluteSiteUrl("/projects/"),
+      name: page.title,
+      description: page.description,
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: projects.length,
+        itemListElement: projects.map((project, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${absoluteSiteUrl("/projects/")}#project-${project.id}`,
+          name: project.title,
+          description: project.summary
+        }))
+      }
+    });
+  }
+
+  if (page.__post) {
+    const project = toArray(siteData.projects).find(item => item?.id === page.project_id);
+    const keywords = page.keywords || taxonomyNames(page.tags).join(", ");
+    const categories = taxonomyNames(page.categories);
+    return renderJsonLd({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: page.title,
+      description: page.description,
+      image: page.cover ? absoluteSiteUrl(page.cover) : undefined,
+      url: absoluteSiteUrl(outputPath),
+      mainEntityOfPage: absoluteSiteUrl(outputPath),
+      datePublished: isoDate(page.date),
+      dateModified: isoDate(page.updated || page.date),
+      author,
+      publisher: author,
+      keywords,
+      articleSection: categories[0],
+      about: project
+        ? {
+            "@type": "Thing",
+            name: project.title,
+            url: `${absoluteSiteUrl("/projects/")}#project-${project.id}`
+          }
+        : undefined
+    });
+  }
+
+  return "";
+};
 
 const deriveCurrent = post => {
   if (!post) return {};
@@ -366,6 +454,7 @@ const renderResourceHub = posts => {
 
 const addAccessibleNames = html =>
   html
+    .replace(/<div class="comment-randomInfo">[\s\S]*?<\/div>/g, "")
     .replace(
       /<h1 class="author-info__name">([\s\S]*?)<\/h1>/g,
       '<strong class="author-info__name">$1</strong>'
@@ -393,7 +482,13 @@ hexo.extend.filter.register(
   (html, locals) => {
     const page = locals?.page || {};
     const outputPath = locals?.path || page.path;
+    const siteData = hexo.locals.get("data") || {};
     let output = addAccessibleNames(html);
+    const structuredData = renderStructuredData(page, outputPath, siteData);
+
+    if (structuredData && output.includes("</head>")) {
+      output = output.replace("</head>", `${structuredData}</head>`);
+    }
 
     if (outputPath === "index.html") {
       const mainAnchor = '<main id="blog-container">';
@@ -406,7 +501,6 @@ hexo.extend.filter.register(
 
       if (output.includes('class="lab-home"')) return output;
 
-      const siteData = hexo.locals.get("data") || {};
       const home = siteData.home || {};
       const posts =
         page.posts && typeof page.posts.toArray === "function"
@@ -437,7 +531,6 @@ hexo.extend.filter.register(
     if (page.__post && page.log_id) {
       const articleAnchor = /(<article class="post-content" id="article-container"[^>]*>)/;
       if (articleAnchor.test(output)) {
-        const siteData = hexo.locals.get("data") || {};
         output = output.replace(
           articleAnchor,
           `$1${renderEntryMeta(page)}${renderProjectContext(page, siteData.projects)}${renderReproCard(page)}`
@@ -448,7 +541,6 @@ hexo.extend.filter.register(
     }
 
     if (outputPath === "projects/index.html") {
-      const siteData = hexo.locals.get("data") || {};
       output = output.replace(
         '<div id="lab-projects-root"></div>',
         renderProjectHub(siteData.projects, hexo.locals.get("posts"))
