@@ -485,6 +485,18 @@ const addAccessibleNames = html =>
       '<button class="search-close-button" aria-label="关闭搜索"'
     );
 
+const addSkipLink = html => {
+  const mainAnchor = '<main id="blog-container">';
+  if (!html.includes(mainAnchor) || html.includes('class="lab-skip-link"')) return html;
+
+  return html
+    .replace(
+      /(<body\b[^>]*>)/,
+      '$1<a class="lab-skip-link" href="#blog-container">跳到主要内容</a>'
+    )
+    .replace(mainAnchor, '<main id="blog-container" tabindex="-1">');
+};
+
 hexo.extend.filter.register(
   "after_render:html",
   (html, locals) => {
@@ -562,7 +574,7 @@ hexo.extend.filter.register(
       );
     }
 
-    return output;
+    return addSkipLink(output);
   },
   90
 );
