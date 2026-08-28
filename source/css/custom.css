@@ -2442,6 +2442,39 @@ body {
   font-size: 0.8rem;
 }
 
+.about-modern__project-index {
+  display: grid;
+  min-height: 58px;
+  margin-top: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem;
+  border: 1px solid var(--jiangnan-border) !important;
+  border-radius: 12px;
+  background: var(--anzhiyu-secondbg);
+  transition: border-color 180ms ease;
+}
+
+.about-modern__project-index > span {
+  color: var(--anzhiyu-main);
+  font-family: var(--lab-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.about-modern__project-index strong {
+  color: var(--anzhiyu-fontcolor);
+  font-size: 0.82rem;
+}
+
+.about-modern__project-index small {
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
 .about-modern__closing {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
@@ -2500,6 +2533,10 @@ body {
     transform: scale(1.035);
   }
 
+  .about-modern__project-index:hover {
+    border-color: rgba(83, 103, 232, 0.38) !important;
+  }
+
   .about-modern__links a:hover {
     border-color: rgba(83, 103, 232, 0.38) !important;
     transform: translateX(3px);
@@ -2510,6 +2547,7 @@ body {
   .about-modern__button,
   .about-modern__skill,
   .about-modern__project img,
+  .about-modern__project-index,
   .about-modern__links a {
     transition: none;
   }
@@ -2603,6 +2641,15 @@ body {
     right: 1rem;
     bottom: 1rem;
     left: 1rem;
+  }
+
+  .about-modern__project-index {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .about-modern__project-index small {
+    white-space: normal;
   }
 
   .about-modern__links a {

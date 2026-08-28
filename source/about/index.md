@@ -109,22 +109,22 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
       <p>比起只写结果，我更想留下过程、判断和踩坑后的修正。</p>
     </header>
     <div class="about-modern__project-grid">
-      <a class="about-modern__project about-modern__project--wide" href="/2026/07/23/智慧药房机器人比赛参赛复盘/">
-        <img class="nolazyload" src="/img/covers/pharmacy-robots.webp" width="1200" height="675" alt="智慧药房机器人比赛场景">
+      <a class="about-modern__project about-modern__project--wide" href="/2026/08/27/睿抗：从初赛到国一/">
+        <img class="nolazyload" src="/img/covers/ruikang-competition.webp" width="1200" height="675" alt="睿抗智能侦察车比赛场景">
         <span class="about-modern__project-shade"></span>
         <span class="about-modern__project-copy">
-          <small>ROS · 机器人比赛</small>
-          <strong>智慧药房机器人比赛复盘</strong>
-          <span>从单车调试到双车联调</span>
+          <small>ROS · 系统集成</small>
+          <strong>睿抗智能侦察车</strong>
+          <span>从 Gazebo 到 43 点导航、视觉与射击主流程</span>
         </span>
       </a>
-      <a class="about-modern__project" href="/2026/07/24/AI使用感受/">
-        <img class="nolazyload" src="/img/covers/ai-robot-tuning.webp" width="1200" height="675" alt="AI 辅助机器人调试">
+      <a class="about-modern__project" href="/2026/07/23/智慧药房机器人比赛参赛复盘/">
+        <img class="nolazyload" src="/img/covers/pharmacy-robots.webp" width="1200" height="675" alt="智慧药房双车比赛场景">
         <span class="about-modern__project-shade"></span>
         <span class="about-modern__project-copy">
-          <small>AI · 工程效率</small>
-          <strong>我的 AI 使用体验</strong>
-          <span>从复制粘贴到让 AI 参与调试</span>
+          <small>ROS · 双车联调</small>
+          <strong>智慧药房双车系统</strong>
+          <span>导航、OCR 与实车工作流</span>
         </span>
       </a>
       <a class="about-modern__project" href="/2026/01/29/YOLOv5模型训练/">
@@ -137,6 +137,11 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
         </span>
       </a>
     </div>
+    <a class="about-modern__project-index" href="/projects/">
+      <span>PROJECT DOSSIER</span>
+      <strong>查看完整项目职责与证据</strong>
+      <small>4 个项目 · 7 篇相关记录 <span aria-hidden="true">→</span></small>
+    </a>
   </section>
 
   <section class="about-modern__section about-modern__closing" aria-labelledby="about-more-title">
