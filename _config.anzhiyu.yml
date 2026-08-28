@@ -790,7 +790,7 @@ aside:
     category: true
   card_author:
     enable: true
-    description: "计算机专业学生，记录机器人比赛、AI编程和一路踩过的坑"
+    description: "长江大学计算机科学与技术专业学生，主要做 ROS 机器人与 AI 应用"
 
   card_announcement:
     enable: false

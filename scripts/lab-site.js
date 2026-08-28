@@ -58,6 +58,16 @@ const renderHome = (home, latestPost) => {
   const primary = home.primary || {};
   const secondary = { ...(home.secondary || {}), href: current.href || home.secondary?.href };
   const routes = Array.isArray(home.routes) ? home.routes : [];
+  const identity = toArray(home.identity)
+    .filter(item => item?.label && item?.value)
+    .map(
+      item => `
+        <div>
+          <dt><span>${escapeHtml(item.code)}</span>${escapeHtml(item.label)}</dt>
+          <dd>${escapeHtml(item.value)}</dd>
+        </div>`
+    )
+    .join("");
   const titleLines = Array.isArray(home.title) ? home.title : [home.title];
   const title = titleLines.map(line => `<span>${escapeHtml(line)}</span>`).join("");
 
@@ -90,6 +100,7 @@ const renderHome = (home, latestPost) => {
           <p class="lab-home__eyebrow"><span aria-hidden="true"></span>${escapeHtml(home.eyebrow)}</p>
           <h1 id="lab-home-title">${title}</h1>
           <p class="lab-home__lead">${escapeHtml(home.lead)}</p>
+          ${identity ? `<dl class="lab-home__identity" aria-label="个人定位">${identity}</dl>` : ""}
           <div class="lab-home__actions">
             <a class="lab-home__primary" href="${escapeHtml(primary.href)}">${escapeHtml(primary.label)}<span aria-hidden="true">→</span></a>
             <a class="lab-home__secondary" href="${escapeHtml(secondary.href)}">${escapeHtml(secondary.label)}<span aria-hidden="true">→</span></a>

@@ -4,6 +4,17 @@ title:
   - 也把过程写清楚。
 lead: 记录机器人比赛、AI 编程与工程调试中真正踩过的坑：问题如何出现，判断如何形成，方案怎样复现。
 
+identity:
+  - code: EDU
+    label: 身份
+    value: 长江大学 · 计算机科学与技术 · 大三
+  - code: FOCUS
+    label: 方向
+    value: ROS 机器人 · AI 应用
+  - code: ROLE
+    label: 项目角色
+    value: 代码主责 · 系统集成 · 项目推进
+
 primary:
   label: 查看项目档案
   href: /projects/
