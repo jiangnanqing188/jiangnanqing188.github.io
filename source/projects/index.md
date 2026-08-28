@@ -6,7 +6,7 @@ top_img: false
 comments: false
 layout: page
 disableNunjucks: true
-description: 按项目查看江南的机器人比赛、计算机视觉和工业控制实践，以及每个系统对应的工程记录。
+description: 按项目查看江南在机器人比赛、计算机视觉和工业控制实践中负责的问题、系统边界、验证结果与工程记录。
 ---
 
 <div id="lab-projects-root"></div>

@@ -153,6 +153,23 @@ const renderEntryMeta = page => {
     </section>`;
 };
 
+const renderProjectContext = (page, projects) => {
+  if (!page?.project_id) return "";
+
+  const project = toArray(projects).find(item => item?.id === page.project_id);
+  if (!project) return "";
+
+  return `
+    <aside class="lab-project-context" aria-label="文章所属项目">
+      <div>
+        <span>PROJECT CONTEXT</span>
+        <strong>${escapeHtml(project.title)}</strong>
+        <small><b>MY ROLE</b>${escapeHtml(project.role)}</small>
+      </div>
+      <a href="/projects/#project-${escapeHtml(project.id)}">查看项目职责、边界与全部记录 <span aria-hidden="true">→</span></a>
+    </aside>`;
+};
+
 const renderReproCard = page => {
   const repro = page.repro;
   if (!repro || typeof repro !== "object") return "";
@@ -222,9 +239,26 @@ const renderProjectHub = (projects, posts) => {
       const stack = toArray(project.stack)
         .map(item => `<li>${escapeHtml(item)}</li>`)
         .join("");
+      const responsibilities = toArray(project.responsibilities)
+        .map(item => `<li>${escapeHtml(item)}</li>`)
+        .join("");
+      const facts = [
+        ["PERIOD", "项目周期", project.period],
+        ["TEAM", "团队", project.team],
+        ["ROLE", "本人角色", project.role]
+      ]
+        .filter(([, , value]) => value)
+        .map(
+          ([code, label, value]) => `
+            <div>
+              <dt><span>${escapeHtml(code)}</span>${escapeHtml(label)}</dt>
+              <dd>${escapeHtml(value)}</dd>
+            </div>`
+        )
+        .join("");
 
       return `
-        <article class="lab-projects__card">
+        <article class="lab-projects__card" id="project-${escapeHtml(project.id)}">
           <a class="lab-projects__cover" href="${escapeHtml(postPath(records[0]))}" aria-label="打开${escapeHtml(project.title)}的最新记录">
             <img src="${escapeHtml(project.cover)}" width="1200" height="675" alt="${escapeHtml(project.title)}项目封面">
             <span>${escapeHtml(project.code)}</span>
@@ -239,7 +273,27 @@ const renderProjectHub = (projects, posts) => {
             </header>
             <p>${escapeHtml(project.summary)}</p>
             ${stack ? `<ul class="lab-projects__stack" aria-label="项目技术栈">${stack}</ul>` : ""}
-            <div class="lab-projects__result"><span>RESULT</span><strong>${escapeHtml(project.result)}</strong></div>
+            ${facts ? `<dl class="lab-projects__facts">${facts}</dl>` : ""}
+            <section class="lab-projects__scope" aria-label="个人职责与协作边界">
+              <div class="lab-projects__ownership">
+                <span>MY SCOPE</span>
+                <h3>我负责</h3>
+                ${responsibilities ? `<ul>${responsibilities}</ul>` : ""}
+              </div>
+              <div class="lab-projects__boundary">
+                <span>BOUNDARY</span>
+                <h3>协作边界</h3>
+                <p>${escapeHtml(project.boundary)}</p>
+              </div>
+            </section>
+            <div class="lab-projects__problem">
+              <span>KEY PROBLEM</span>
+              <strong>${escapeHtml(project.problem)}</strong>
+            </div>
+            <div class="lab-projects__outcomes">
+              <div><span>RESULT</span><strong>${escapeHtml(project.result)}</strong></div>
+              <div><span>EVIDENCE</span><strong>${escapeHtml(project.evidence)}</strong></div>
+            </div>
             <section class="lab-projects__records" aria-label="项目相关文章">
               <h3>相关记录 · ${records.length}</h3>
               ${recordLinks}
@@ -255,7 +309,7 @@ const renderProjectHub = (projects, posts) => {
         <div>
           <span>JIANGNAN / PROJECT INDEX</span>
           <h1>项目档案</h1>
-          <p>不只展示结果，也保留每个系统走过的路线、失败过的候选和最终验证到哪里。</p>
+          <p>先看我负责的问题、系统边界和验证结果，再进入长文查看每个项目走过的路线、失败候选与最终取舍。</p>
         </div>
         <dl>
           <div><dt>PROJECTS</dt><dd>${projectList.length.toString().padStart(2, "0")}</dd></div>
@@ -372,7 +426,11 @@ hexo.extend.filter.register(
     if (page.__post && page.log_id) {
       const articleAnchor = /(<article class="post-content" id="article-container"[^>]*>)/;
       if (articleAnchor.test(output)) {
-        output = output.replace(articleAnchor, `$1${renderEntryMeta(page)}${renderReproCard(page)}`);
+        const siteData = hexo.locals.get("data") || {};
+        output = output.replace(
+          articleAnchor,
+          `$1${renderEntryMeta(page)}${renderProjectContext(page, siteData.projects)}${renderReproCard(page)}`
+        );
       } else {
         hexo.log.warn(`[lab-site] Article injection anchor is missing for ${outputPath}.`);
       }
