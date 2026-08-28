@@ -34,9 +34,11 @@ description: 江南的个人介绍、技术栈、成长经历、机器人项目�
     </div>
   </section>
 
+  <div id="about-achievements-root"></div>
+
   <section class="about-modern__section" aria-labelledby="about-skills-title">
     <header class="about-modern__section-head">
-      <span>01 · TECH STACK</span>
+      <span>02 · TECH STACK</span>
       <h2 id="about-skills-title">项目中实际使用的技术</h2>
       <p>不追求堆满图标，只展示在比赛或工程实践中真正使用过、仍在继续深入的方向。</p>
     </header>
@@ -78,7 +80,7 @@ description: 江南的个人介绍、技术栈、成长经历、机器人项目�
 
   <section class="about-modern__section" aria-labelledby="about-journey-title">
     <header class="about-modern__section-head">
-      <span>02 · JOURNEY</span>
+      <span>03 · JOURNEY</span>
       <h2 id="about-journey-title">我的成长路线</h2>
       <p>从专业基础到真实项目，一边动手，一边把零散经验连成体系。</p>
     </header>
@@ -104,7 +106,7 @@ description: 江南的个人介绍、技术栈、成长经历、机器人项目�
 
   <section class="about-modern__section" id="about-projects" aria-labelledby="about-projects-title">
     <header class="about-modern__section-head">
-      <span>03 · PROJECTS</span>
+      <span>04 · PROJECTS</span>
       <h2 id="about-projects-title">代表项目与记录</h2>
       <p>比起只写结果，我更想留下过程、判断和踩坑后的修正。</p>
     </header>
@@ -146,7 +148,7 @@ description: 江南的个人介绍、技术栈、成长经历、机器人项目�
 
   <section class="about-modern__section about-modern__closing" aria-labelledby="about-more-title">
     <div class="about-modern__closing-copy">
-      <span>04 · BEYOND CODE</span>
+      <span>05 · BEYOND CODE</span>
       <h2 id="about-more-title">技术之外，也认真生活</h2>
       <p>喜欢古风、民谣和华语流行。这个博客会继续记录学习、比赛以及那些值得复盘的小事。</p>
     </div>

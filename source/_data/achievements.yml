@@ -1,0 +1,35 @@
+- id: ruikang
+  code: RESULT 01
+  year: "2026"
+  project: 睿抗智能侦察
+  result: 94 分 · 国一
+  event: 睿抗智能侦察相关赛项
+  note: 证书待出
+  href: /projects/#project-ruikang
+
+- id: agriculture
+  code: RESULT 02
+  year: "2026"
+  project: 智慧农业
+  result: 全国总决赛一等奖
+  event: 第二十八届中国机器人及人工智能大赛
+  note: 证书已核对
+  href: /projects/#project-yolov5
+
+- id: pharmacy
+  code: RESULT 03
+  year: "2026"
+  project: 智慧药房
+  result: 全国总决赛三等奖
+  event: 第二十八届中国机器人及人工智能大赛
+  note: 证书已核对
+  href: /projects/#project-pharmacy
+
+- id: iscc
+  code: RESULT 04
+  year: "2025"
+  project: ISCC 微型工厂
+  result: 全国总决赛三等奖
+  event: 第 22 届全国大学生信息安全与对抗技术竞赛
+  note: 证书已核对
+  href: /projects/#project-iscc

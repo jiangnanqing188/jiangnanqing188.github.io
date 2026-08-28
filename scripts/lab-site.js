@@ -130,6 +130,9 @@ const renderStructuredData = (page, outputPath, siteData) => {
           name: "长江大学"
         },
         knowsAbout: ["ROS", "移动机器人", "计算机视觉", "AI 应用", "机器人系统集成"],
+        award: toArray(siteData.achievements).map(
+          achievement => `${achievement.project}：${achievement.result}`
+        ),
         sameAs: ["https://github.com/jiangnanqing188"]
       }
     });
@@ -206,7 +209,43 @@ const deriveCurrent = post => {
   };
 };
 
-const renderHome = (home, latestPost) => {
+const renderAchievements = (achievements, variant = "home") => {
+  const items = toArray(achievements)
+    .filter(item => item?.project && item?.result && item?.href)
+    .map(
+      item => `
+        <a class="lab-achievement" href="${escapeHtml(item.href)}">
+          <span class="lab-achievement__meta">
+            <span>${escapeHtml(item.code)}</span>
+            <time datetime="${escapeHtml(item.year)}">${escapeHtml(item.year)}</time>
+          </span>
+          <strong>${escapeHtml(item.project)}</strong>
+          <b>${escapeHtml(item.result)}</b>
+          <small>${escapeHtml(item.event)}</small>
+          <em data-state="${String(item.note).includes("待") ? "pending" : "verified"}"><i aria-hidden="true"></i>${escapeHtml(item.note)}</em>
+        </a>`
+    )
+    .join("");
+
+  if (!items) return "";
+
+  const isAbout = variant === "about";
+  return `
+    <section class="${isAbout ? "about-modern__section " : ""}lab-achievements lab-achievements--${isAbout ? "about" : "home"}" aria-labelledby="${isAbout ? "about" : "home"}-achievements-title">
+      <header class="lab-achievements__head${isAbout ? " about-modern__section-head" : ""}">
+        <div>
+          <span>${isAbout ? "01 · RESULTS" : "REPRESENTATIVE RESULTS"}</span>
+          <h2 id="${isAbout ? "about" : "home"}-achievements-title">代表成绩</h2>
+        </div>
+        <p>均为团队参赛结果；个人职责、协作边界与项目证据见项目档案。</p>
+      </header>
+      <div class="lab-achievements__list">
+        ${items}
+      </div>
+    </section>`;
+};
+
+const renderHome = (home, latestPost, achievements) => {
   const current = { ...(home.current || {}), ...deriveCurrent(latestPost) };
   const primary = home.primary || {};
   const secondary = { ...(home.secondary || {}), href: current.href || home.secondary?.href };
@@ -282,6 +321,8 @@ const renderHome = (home, latestPost) => {
           </div>
         </aside>
       </div>
+
+      ${renderAchievements(achievements)}
 
       <nav class="lab-home__routes" aria-label="按内容类型浏览">
         ${routeItems}
@@ -682,7 +723,10 @@ hexo.extend.filter.register(
             : [];
       let postIndex = 0;
 
-      output = output.replace(mainAnchor, `${mainAnchor}${renderHome(home, posts[0])}`);
+      output = output.replace(
+        mainAnchor,
+        `${mainAnchor}${renderHome(home, posts[0], siteData.achievements)}`
+      );
       output = output.replace(
         postsAnchor,
         `${postsAnchor}${renderLogHeading()}`
@@ -717,6 +761,18 @@ hexo.extend.filter.register(
         '<div id="lab-projects-root"></div>',
         renderProjectHub(siteData.projects, hexo.locals.get("posts"), siteData.capabilities)
       );
+    }
+
+    if (outputPath === "about/index.html") {
+      const achievementsAnchor = '<div id="about-achievements-root"></div>';
+      if (output.includes(achievementsAnchor)) {
+        output = output.replace(
+          achievementsAnchor,
+          renderAchievements(siteData.achievements, "about")
+        );
+      } else {
+        hexo.log.warn("[lab-site] About achievements anchor is missing.");
+      }
     }
 
     if (outputPath === "downloads/index.html") {

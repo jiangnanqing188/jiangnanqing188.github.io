@@ -556,6 +556,146 @@ body {
   color: var(--anzhiyu-secondtext);
 }
 
+.lab-achievements--home {
+  margin-top: 0.85rem;
+  overflow: hidden;
+  border: 1px solid var(--jiangnan-border);
+  border-radius: 18px;
+  background: var(--anzhiyu-card-bg);
+}
+
+.lab-achievements__head {
+  display: flex;
+  min-width: 0;
+  padding: 1.4rem 1.5rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.lab-achievements--about .lab-achievements__head {
+  max-width: none;
+  padding: 0;
+}
+
+.lab-achievements__head > div {
+  min-width: 0;
+}
+
+.lab-achievements__head > div > span {
+  color: var(--anzhiyu-main);
+  font-family: var(--lab-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+}
+
+.lab-achievements__head h2 {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  color: var(--anzhiyu-fontcolor);
+  font-size: clamp(1.45rem, 2.7vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.lab-achievements__head h2::before {
+  display: none;
+}
+
+.lab-achievements__head p {
+  max-width: 520px;
+  margin: 0;
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.78rem;
+  line-height: 1.65;
+  text-align: right;
+}
+
+.lab-achievements__list {
+  display: grid;
+  margin-top: 1.3rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--jiangnan-border);
+  border-left: 1px solid var(--jiangnan-border);
+}
+
+.lab-achievements--home .lab-achievements__list {
+  margin-top: 0;
+  border-left: 0;
+}
+
+.lab-achievement {
+  display: grid;
+  min-width: 0;
+  min-height: 168px;
+  padding: 1rem 1.1rem;
+  grid-template-rows: auto auto auto 1fr auto;
+  gap: 0.38rem;
+  border-right: 1px solid var(--jiangnan-border);
+  border-bottom: 1px solid var(--jiangnan-border);
+  color: var(--anzhiyu-fontcolor);
+  text-decoration: none;
+  transition: background-color 180ms ease;
+}
+
+.lab-achievement__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--anzhiyu-secondtext);
+  font-family: var(--lab-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+}
+
+.lab-achievement__meta > span {
+  color: var(--anzhiyu-main);
+  font-weight: 700;
+}
+
+.lab-achievement strong {
+  margin-top: 0.28rem;
+  color: var(--anzhiyu-fontcolor);
+  font-size: 0.84rem;
+}
+
+.lab-achievement b {
+  color: var(--anzhiyu-fontcolor);
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.lab-achievement small {
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.lab-achievement em {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: 0.38rem;
+  color: var(--lab-green);
+  font-family: var(--lab-mono);
+  font-size: 0.62rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.lab-achievement em[data-state="pending"] {
+  color: var(--lab-orange);
+}
+
+.lab-achievement em i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
 .lab-log-index {
   display: flex;
   width: 100%;
@@ -872,6 +1012,10 @@ body {
   .lab-home__route:hover .lab-home__route-arrow {
     color: var(--anzhiyu-main);
   }
+
+  .lab-achievement:hover {
+    background: rgba(83, 103, 232, 0.055);
+  }
 }
 
 @media screen and (max-width: 1100px) {
@@ -966,6 +1110,10 @@ body {
   .lab-home__route + .lab-home__route {
     border-left: 1px solid var(--jiangnan-border);
   }
+
+  .lab-achievements__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1041,6 +1189,26 @@ body {
 
   .lab-home__route {
     min-height: 94px;
+  }
+
+  .lab-achievements__head {
+    padding: 1.15rem;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .lab-achievements--about .lab-achievements__head {
+    padding: 0;
+  }
+
+  .lab-achievements__head p {
+    max-width: none;
+    text-align: left;
+  }
+
+  .lab-achievement {
+    min-height: 0;
   }
 
   .lab-log-index {
@@ -2828,5 +2996,9 @@ body {
   .about-modern__skill:hover,
   .about-modern__links a:hover {
     transform: none;
+  }
+
+  .lab-achievements__list {
+    grid-template-columns: 1fr;
   }
 }
