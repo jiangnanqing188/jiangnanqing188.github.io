@@ -1804,7 +1804,10 @@ body {
 .lab-projects__cover {
   position: relative;
   display: block;
-  min-height: 100%;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  align-self: start;
   overflow: hidden;
   background: var(--lab-surface);
 }
@@ -2227,12 +2230,12 @@ body {
   }
 
   .lab-projects__cover {
-    min-height: 230px;
+    min-height: 0;
   }
 
   .lab-projects__cover img {
-    min-height: 210px;
-    max-height: 250px;
+    min-height: 0;
+    max-height: none;
   }
 
   .lab-projects__body {
