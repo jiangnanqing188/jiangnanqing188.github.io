@@ -6,7 +6,7 @@ top_img: false
 comments: false
 layout: page
 disableNunjucks: true
-description: 江南的个人介绍、技术栈、成长经历与机器人项目记录。
+description: 江南的个人介绍、技术栈、成长经历、机器人项目记录与公开联系方式。
 ---
 
 <div class="about-modern" id="jnq-about">
@@ -19,7 +19,7 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
       </p>
       <div class="about-modern__actions">
         <a class="about-modern__button about-modern__button--primary" href="#about-projects">看看项目</a>
-        <a class="about-modern__button" href="https://github.com/jiangnanqing188" target="_blank" rel="noopener">GitHub</a>
+        <a class="about-modern__button" href="mailto:jiangnanqingwqw@163.com">邮件联系</a>
       </div>
       <ul class="about-modern__facts" aria-label="个人关键词">
         <li><strong>身份</strong><span>长江大学 · 计算机科学与技术</span></li>
@@ -110,7 +110,7 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
     </header>
     <div class="about-modern__project-grid">
       <a class="about-modern__project about-modern__project--wide" href="/2026/08/27/睿抗：从初赛到国一/">
-        <img class="nolazyload" src="/img/covers/ruikang-competition.webp" width="1200" height="675" alt="睿抗智能侦察车比赛场景">
+        <img src="/img/covers/ruikang-competition.webp" width="1200" height="675" alt="睿抗智能侦察车比赛场景">
         <span class="about-modern__project-shade"></span>
         <span class="about-modern__project-copy">
           <small>ROS · 系统集成</small>
@@ -119,7 +119,7 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
         </span>
       </a>
       <a class="about-modern__project" href="/2026/07/23/智慧药房机器人比赛参赛复盘/">
-        <img class="nolazyload" src="/img/covers/pharmacy-robots.webp" width="1200" height="675" alt="智慧药房双车比赛场景">
+        <img src="/img/covers/pharmacy-robots.webp" width="1200" height="675" alt="智慧药房双车比赛场景">
         <span class="about-modern__project-shade"></span>
         <span class="about-modern__project-copy">
           <small>ROS · 双车联调</small>
@@ -128,7 +128,7 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
         </span>
       </a>
       <a class="about-modern__project" href="/2026/01/29/YOLOv5模型训练/">
-        <img class="nolazyload" src="/img/covers/yolov5-vision.webp" width="1200" height="675" alt="YOLOv5 计算机视觉训练">
+        <img src="/img/covers/yolov5-vision.webp" width="1200" height="675" alt="YOLOv5 计算机视觉训练">
         <span class="about-modern__project-shade"></span>
         <span class="about-modern__project-copy">
           <small>智慧农业 · YOLOv5</small>
@@ -150,10 +150,10 @@ description: 江南的个人介绍、技术栈、成长经历与机器人项目�
       <h2 id="about-more-title">技术之外，也认真生活</h2>
       <p>喜欢古风、民谣和华语流行。这个博客会继续记录学习、比赛以及那些值得复盘的小事。</p>
     </div>
-    <nav class="about-modern__links" aria-label="更多内容">
+    <nav class="about-modern__links" aria-label="更多内容与联系方式">
       <a href="/archives/"><span>全部文章</span><small>看看完整成长记录 →</small></a>
       <a href="/music/"><span>最近在听</span><small>打开我的音乐页 →</small></a>
-      <a href="https://github.com/jiangnanqing188" target="_blank" rel="noopener"><span>GitHub</span><small>查看代码与项目 →</small></a>
+      <a href="mailto:jiangnanqingwqw@163.com"><span>邮件联系</span><small>jiangnanqingwqw@163.com →</small></a>
     </nav>
   </section>
 </div>

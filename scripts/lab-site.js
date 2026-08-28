@@ -44,6 +44,71 @@ const isoDate = value =>
 const renderJsonLd = data =>
   `<script type="application/ld+json">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>`;
 
+const improveLocalSearchScript = (js, renderData) => {
+  const inputPath = String(renderData?.path || "").replaceAll("\\", "/");
+  if (
+    !inputPath.includes("hexo-theme-anzhiyu") ||
+    !inputPath.endsWith("/source/js/search/local-search.js")
+  ) {
+    return js;
+  }
+
+  const replacements = [
+    {
+      search: '          let dataTitle = data.title ? data.title.trim().toLowerCase() : "";',
+      replace:
+        '          let displayTitle = data.title ? data.title.trim() : "";\n          const dataTitle = displayTitle.toLowerCase();',
+      count: 1
+    },
+    {
+      search:
+        '          const dataContent = data.content\n            ? data.content\n                .trim()\n                .replace(/<[^>]+>/g, "")\n                .toLowerCase()\n            : "";',
+      replace:
+        '          const cleanContent = data.content\n            ? data.content.trim().replace(/<[^>]+>/g, "")\n            : "";\n          const dataContent = cleanContent.toLowerCase();',
+      count: 1
+    },
+    {
+      search: "              let matchContent = dataContent.substring(start, end);",
+      replace: "              let matchContent = cleanContent.substring(start, end);",
+      count: 1
+    },
+    {
+      search:
+        '                const regS = new RegExp(keyword, "gi");\n                matchContent = matchContent.replace(regS, \'<span class="search-keyword">\' + keyword + "</span>");\n                dataTitle = dataTitle.replace(regS, \'<span class="search-keyword">\' + keyword + "</span>");',
+      replace:
+        '                const escapedKeyword = keyword.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&");\n                const regS = new RegExp(escapedKeyword, "gi");\n                matchContent = matchContent.replace(\n                  regS,\n                  match => \'<span class="search-keyword">\' + match + "</span>"\n                );\n                displayTitle = displayTitle.replace(\n                  regS,\n                  match => \'<span class="search-keyword">\' + match + "</span>"\n                );',
+      count: 1
+    },
+    {
+      search:
+        "                str += `<div class=\"search-left\"><img src=${oneImage} alt=${dataTitle} data-fancybox='gallery'>`;",
+      replace:
+        '                str += `<div class="search-left"><img src="${oneImage}" alt="" data-fancybox="gallery">`;',
+      count: 1
+    },
+    {
+      search: '                  dataTitle +\n                  "</a>";',
+      replace: '                  displayTitle +\n                  "</a>";',
+      count: 2
+    }
+  ];
+
+  const hasExpectedAnchors = replacements.every(({ search, count }) =>
+    js.split(search).length - 1 === count
+  );
+  if (!hasExpectedAnchors) {
+    hexo.log.warn(
+      "[lab-site] Local search script anchors changed; title-case and literal-query fixes were skipped."
+    );
+    return js;
+  }
+
+  return replacements.reduce(
+    (output, { search, replace }) => output.split(search).join(replace),
+    js
+  );
+};
+
 const renderStructuredData = (page, outputPath, siteData) => {
   const author = {
     "@type": "Person",
@@ -504,6 +569,18 @@ const addAccessibleNames = html =>
     )
     .replace(/<div class="comment-randomInfo">[\s\S]*?<\/div>/g, "")
     .replace(
+      /<img class="nolazyload" id="post-top-bg"(?![^>]*\balt=)/g,
+      '<img class="nolazyload" id="post-top-bg" alt="" aria-hidden="true"'
+    )
+    .replace(
+      /<a class="footer-bar-link" href="\/" title="([^"]*)" target="_blank">/g,
+      '<a class="footer-bar-link" href="/" title="$1">'
+    )
+    .replace(
+      /<a(?![^>]*\brel=)([^>]*\btarget="_blank"[^>]*)>/g,
+      '<a rel="noopener"$1>'
+    )
+    .replace(
       /<h1 class="author-info__name">([\s\S]*?)<\/h1>/g,
       '<strong class="author-info__name">$1</strong>'
     )
@@ -527,19 +604,50 @@ const addAccessibleNames = html =>
     .replace(
       /<button class="search-close-button"(?![^>]*aria-label)/g,
       '<button class="search-close-button" aria-label="关闭搜索"'
+    )
+    .replace(
+      '<div class="search-dialog">',
+      '<div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="local-search-title">'
+    )
+    .replace(
+      '<span class="search-dialog-title">搜索</span>',
+      '<span class="search-dialog-title" id="local-search-title">搜索</span>'
+    )
+    .replace(
+      '<span id="loading-status"></span>',
+      '<span id="loading-status" role="status" aria-live="polite"></span>'
+    )
+    .replace(
+      '<input class="local-search-box--input" placeholder="搜索文章" type="text"/>',
+      '<input class="local-search-box--input" placeholder="搜索文章" type="text" aria-label="搜索文章"/>'
+    )
+    .replace(
+      '<div id="local-search-results"></div>',
+      '<div id="local-search-results" aria-live="polite"></div>'
     );
 
 const addSkipLink = html => {
-  const mainAnchor = '<main id="blog-container">';
-  if (!html.includes(mainAnchor) || html.includes('class="lab-skip-link"')) return html;
+  if (html.includes('class="lab-skip-link"')) return html;
+
+  const mainTargets = [
+    ['<main id="blog-container">', '<main id="blog-container" tabindex="-1">'],
+    [
+      '<div class="error-box">',
+      '<div class="error-box" id="blog-container" role="main" tabindex="-1">'
+    ]
+  ];
+  const mainTarget = mainTargets.find(([anchor]) => html.includes(anchor));
+  if (!mainTarget) return html;
 
   return html
     .replace(
       /(<body\b[^>]*>)/,
       '$1<a class="lab-skip-link" href="#blog-container">跳到主要内容</a>'
     )
-    .replace(mainAnchor, '<main id="blog-container" tabindex="-1">');
+    .replace(...mainTarget);
 };
+
+hexo.extend.filter.register("after_render:js", improveLocalSearchScript, 90);
 
 hexo.extend.filter.register(
   "after_render:html",

@@ -59,7 +59,7 @@ copy:
 # formal:
 #   name: link || icon
 social:
-  Github: https://github.com/jiangnanqing188 || anzhiyu-icon-github
+  Email: mailto:jiangnanqingwqw@163.com || anzhiyu-icon-envelope
   # BiliBili: https://space.bilibili.com/372204786 || anzhiyu-icon-bilibili
 
 # 作者卡片 状态
@@ -101,7 +101,7 @@ docsearch:
 # Local search
 local_search:
   enable: true
-  preload: true
+  preload: false
   CDN:
 
 # Math (数学)
@@ -163,8 +163,8 @@ error_img:
 # A simple 404 page
 error_404:
   enable: true
-  subtitle: "请尝试站内搜索寻找文章"
-  background: https://bu.dusays.com/2023/05/08/645907596997d.gif
+  subtitle: "页面可能已经移动，可使用右上角搜索继续查找"
+  background: /img/home/hero-growth.webp
 
 post_meta:
   page: # Home Page
