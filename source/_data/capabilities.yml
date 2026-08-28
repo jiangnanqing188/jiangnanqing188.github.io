@@ -1,0 +1,32 @@
+- code: CAP 01
+  focus: ROS NAVIGATION
+  title: 导航与实车调试
+  summary: 围绕航点、局部规划、定位与实车排障，把“能跑”推进到可以在现场回退和交付。
+  projects:
+    - ruikang
+    - pharmacy
+
+- code: CAP 02
+  focus: SYSTEM INTEGRATION
+  title: 系统集成与任务主流程
+  summary: 将导航、视觉、OCR、地雷与射击等模块接入主流程，并对版本基线和最终部署结果负责。
+  projects:
+    - ruikang
+    - pharmacy
+
+- code: CAP 03
+  focus: COMPUTER VISION
+  title: 计算机视觉与模型训练
+  summary: 从实车数据采集、清洗和标注，到 YOLOv5 训练、视觉任务接入与验证边界说明。
+  projects:
+    - yolov5
+    - ruikang
+
+- code: CAP 04
+  focus: ENGINEERING DELIVERY
+  title: 工程流程与限时交付
+  summary: 用分层验证、版本基线和协作节奏控制现场风险，也在限时录制任务中明确个人责任边界。
+  projects:
+    - pharmacy
+    - iscc
+    - ruikang

@@ -315,9 +315,39 @@ const renderReproCard = page => {
     </aside>`;
 };
 
-const renderProjectHub = (projects, posts) => {
+const renderProjectHub = (projects, posts, capabilities) => {
   const projectList = toArray(projects);
   const postList = toArray(posts);
+  const capabilityRoutes = toArray(capabilities)
+    .map(capability => {
+      const projectLinks = toArray(capability.projects)
+        .map(projectId => projectList.find(project => project.id === projectId))
+        .filter(Boolean)
+        .map(
+          project => `
+            <a href="#project-${escapeHtml(project.id)}">
+              <span>${escapeHtml(project.code)}</span>
+              <strong>${escapeHtml(project.title)}</strong>
+              <i aria-hidden="true">↘</i>
+            </a>`
+        )
+        .join("");
+      if (!projectLinks) return "";
+
+      return `
+        <article class="lab-projects__capability">
+          <div class="lab-projects__capability-code">
+            <strong>${escapeHtml(capability.code)}</strong>
+            <span>${escapeHtml(capability.focus)}</span>
+          </div>
+          <div>
+            <h3>${escapeHtml(capability.title)}</h3>
+            <p>${escapeHtml(capability.summary)}</p>
+          </div>
+          <nav aria-label="${escapeHtml(capability.title)}相关项目">${projectLinks}</nav>
+        </article>`;
+    })
+    .join("");
   const projectCards = projectList
     .map(project => {
       const records = postList
@@ -415,6 +445,20 @@ const renderProjectHub = (projects, posts) => {
           <div><dt>RECORDS</dt><dd>${postList.filter(post => post.project_id).length.toString().padStart(2, "0")}</dd></div>
         </dl>
       </header>
+      ${
+        capabilityRoutes
+          ? `<section class="lab-projects__capabilities" aria-labelledby="lab-capabilities-title">
+              <header>
+                <div>
+                  <span>CAPABILITY ROUTES / EVIDENCE MAP</span>
+                  <h2 id="lab-capabilities-title">能力路由</h2>
+                </div>
+                <p>先按能力找到相关项目，再在项目档案里核对本人职责、协作边界和现有证据。</p>
+              </header>
+              <div>${capabilityRoutes}</div>
+            </section>`
+          : ""
+      }
       <section class="lab-projects__list" aria-label="项目列表">${projectCards}</section>
     </div>`;
 };
@@ -563,7 +607,7 @@ hexo.extend.filter.register(
     if (outputPath === "projects/index.html") {
       output = output.replace(
         '<div id="lab-projects-root"></div>',
-        renderProjectHub(siteData.projects, hexo.locals.get("posts"))
+        renderProjectHub(siteData.projects, hexo.locals.get("posts"), siteData.capabilities)
       );
     }
 
