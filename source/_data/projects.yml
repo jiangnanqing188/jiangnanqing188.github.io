@@ -15,6 +15,11 @@
   result: 正式比赛 94 分、国一，纯点位版本完成全程；证书待出
   evidence: 3 篇项目记录；正式比赛完成全程；视觉候选的验证边界已单独说明
   cover: /img/covers/ruikang-competition.webp
+  route:
+    - 系统迁移
+    - 导航主流程
+    - 视觉与射击
+    - 实车取舍与回退
   stack:
     - ROS Noetic
     - DWA
@@ -40,6 +45,11 @@
   result: 第二十八届中国机器人及人工智能大赛全国总决赛智慧药房三等奖；从单车基线推进到双车真实视觉联调
   evidence: 2 篇项目记录；语法、契约、单车、双车和真实视觉证据分层标注；1 个公开工作流仓库
   cover: /img/covers/pharmacy-robots.webp
+  route:
+    - 双车网络隔离
+    - 导航主流程
+    - OCR 识别
+    - 现场恢复
   stack:
     - ROS Melodic
     - TEB
@@ -64,6 +74,11 @@
   result: 第二十八届中国机器人及人工智能大赛全国总决赛智慧农业一等奖；完成前期主代码、路径与授粉 YOLO 模型
   evidence: 1 篇完整流程与 4 份公开材料；训练指标和比赛现场原始证据仍待补充
   cover: /img/covers/yolov5-vision.webp
+  route:
+    - 实车数据采集
+    - 清洗与标注
+    - YOLOv5 训练
+    - 车端部署
   stack:
     - Python
     - PyTorch
@@ -86,6 +101,11 @@
   result: 2025 ISCC 全国总决赛微型工厂模拟产线任务挑战三等奖；完成加密、HMI 按钮与限时录制流程复盘
   evidence: 1 篇比赛流程记录与过程截图；正文已区分本人和队友职责
   cover: /img/covers/iscc-plc.png
+  route:
+    - PLC 协作接口
+    - HMI 按钮
+    - 通信加密
+    - 产线联调
   stack:
     - TIA Portal V16
     - PLC

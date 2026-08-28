@@ -477,6 +477,15 @@ const renderProjectHub = (projects, posts, capabilities) => {
       const responsibilities = toArray(project.responsibilities)
         .map(item => `<li>${escapeHtml(item)}</li>`)
         .join("");
+      const route = toArray(project.route)
+        .map(
+          (item, index) => `
+            <li>
+              <span>${String(index + 1).padStart(2, "0")}</span>
+              <strong>${escapeHtml(item)}</strong>
+            </li>`
+        )
+        .join("");
       const facts = [
         ["PERIOD", "项目周期", project.period],
         ["TEAM", "团队", project.team],
@@ -494,10 +503,23 @@ const renderProjectHub = (projects, posts, capabilities) => {
 
       return `
         <article class="lab-projects__card" id="project-${escapeHtml(project.id)}">
-          <a class="lab-projects__cover" href="${escapeHtml(postPath(records[0]))}" aria-label="打开${escapeHtml(project.title)}的最新记录">
-            <img src="${escapeHtml(project.cover)}" width="1200" height="675" alt="${escapeHtml(project.title)}项目封面">
-            <span>${escapeHtml(project.code)}</span>
-          </a>
+          <div class="lab-projects__rail">
+            <a class="lab-projects__cover" href="${escapeHtml(postPath(records[0]))}" aria-label="打开${escapeHtml(project.title)}的最新记录">
+              <img src="${escapeHtml(project.cover)}" width="1200" height="675" alt="${escapeHtml(project.title)}项目封面">
+              <span>${escapeHtml(project.code)}</span>
+            </a>
+            ${
+              route
+                ? `<section class="lab-projects__route" aria-label="${escapeHtml(project.title)}系统路线">
+                    <header>
+                      <span>SYSTEM ROUTE</span>
+                      <strong>项目链路</strong>
+                    </header>
+                    <ol>${route}</ol>
+                  </section>`
+                : ""
+            }
+          </div>
           <div class="lab-projects__body">
             <header class="lab-projects__card-head">
               <div>
