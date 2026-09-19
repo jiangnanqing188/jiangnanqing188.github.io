@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>江南 · 首页设计初版</title><style>
+:root{color-scheme:dark;--paper:#0d1118;--panel:#131a24;--ink:#e4e8ef;--muted:#a1abbc;--quiet:#7f8c9f;--line:#29313e;--accent:#a4b6ef;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.8 "Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+::selection{background:#3d507c;color:#fff}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-weight:600}
+button{font:inherit}
+.wrap,.portfolio-home{width:min(1120px,calc(100% - 96px));margin-inline:auto}
+.site-nav{height:80px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.site-brand{display:flex;align-items:baseline;gap:14px;font-size:18px;font-weight:600}
+.site-brand small{font:10px var(--mono);color:var(--quiet);letter-spacing:.12em}
+.site-nav nav{display:flex;gap:30px;font-size:13px;color:var(--muted)}
+.site-nav nav a:first-child{color:var(--ink)}
+.portfolio-kicker{font:11px/1.6 var(--mono);letter-spacing:.09em;color:var(--quiet)}
+.portfolio-intro{display:grid;grid-template-columns:1.6fr 1fr;gap:64px;align-items:center;padding:64px 0 60px}
+.portfolio-intro .portfolio-kicker{color:var(--accent);margin-bottom:22px}
+.portfolio-intro .portfolio-kicker:before{content:"";display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-right:12px;vertical-align:middle}
+h1{font-size:clamp(32px,3.6vw,48px);line-height:1.4;letter-spacing:-.04em}
+h1 span{display:block}
+h1 span:last-child{color:#a5afc0}
+.portfolio-intro__bio{font-size:13px;color:var(--muted)}
+.portfolio-intro__bio p+p{margin-top:7px}
+.portfolio-intro__bio .portfolio-intro__name{font-size:19px;color:var(--ink);margin-bottom:9px}
+.portfolio-intro__bio nav{display:flex;gap:24px;margin-top:20px}
+.portfolio-link{font-size:12px;font-weight:500;white-space:nowrap;color:var(--accent)}
+.portfolio-link span{display:inline-block;margin-left:8px}
+.portfolio-section-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}
+.portfolio-section-heading h2{font-size:23px;line-height:1.5;margin-top:7px;letter-spacing:-.025em}
+.portfolio-projects{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.portfolio-project{min-width:0;display:grid;grid-template-columns:140px 1fr;gap:23px;padding-top:28px;border-top:1px solid var(--line)}
+.portfolio-project__image{overflow:hidden;border-radius:4px;align-self:start}
+.portfolio-project__image img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.portfolio-project__body{min-width:0}
+.portfolio-project h3{font-size:19px;line-height:1.55;margin:7px 0 10px}
+.portfolio-project h3 span{font-size:17px;color:var(--quiet)}
+.portfolio-project p{font-size:13px;color:var(--muted);line-height:1.85}
+.portfolio-project__role{font-size:11px;color:var(--quiet);margin:14px 0 17px}
+.portfolio-project--featured{grid-column:1/-1;grid-template-columns:1.1fr 1fr;gap:0;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--panel);padding:0}
+.portfolio-project--featured .portfolio-project__image{border-radius:0;height:100%;min-height:320px}
+.portfolio-project--featured img{height:100%;aspect-ratio:auto;object-position:57% center}
+.portfolio-project--featured .portfolio-project__body{padding:32px 36px}
+.portfolio-project--featured h3{font-size:27px;margin:9px 0 14px}
+.portfolio-project--featured p{font-size:14px}
+.portfolio-project--featured .portfolio-project__role{color:var(--accent);margin-bottom:22px}
+.portfolio-route{padding:0;margin:0 0 22px;display:flex;list-style:none;gap:0}
+.portfolio-route li{font-size:10px;line-height:1.5;color:var(--muted);flex:1;border-top:1px solid #414b5b;padding-top:10px;position:relative}
+.portfolio-route li:before{content:"";position:absolute;top:-3px;left:0;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.portfolio-results{margin-top:44px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.portfolio-results header{display:flex;gap:20px;align-items:baseline;margin-bottom:18px}
+.portfolio-results h2{font-size:14px}
+.portfolio-results header p{font-size:11px;color:var(--quiet)}
+.portfolio-results>div{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.portfolio-results a{display:flex;flex-direction:column;gap:6px;min-width:0}
+.portfolio-results a>span{font-size:11px;color:var(--quiet)}
+.portfolio-results strong{font-size:13px;font-weight:500;line-height:1.7}
+.portfolio-results small{font-size:10px;line-height:1.7;color:var(--quiet)}
+.portfolio-latest{display:flex;align-items:center;gap:20px;padding:18px 0;font-size:12px}
+.portfolio-latest a{flex:1}
+.portfolio-latest a>span:first-child{color:var(--quiet);margin-right:10px}
+.portfolio-latest time{font:11px var(--mono);color:var(--quiet)}
+.reading{padding-top:58px}
+.reading-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.reading-card{padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:start}
+.reading-card .reading-label{font-size:11px;color:var(--accent)}
+.reading-card h3{font-size:17px;line-height:1.75;margin:10px 0}
+.reading-card p{font-size:12px;line-height:1.9;color:var(--muted)}
+.reading-card .portfolio-link{margin-top:auto;padding-top:18px}
+.notes{padding-top:68px}
+.note-row{display:grid;grid-template-columns:110px 1fr 76px;gap:24px;align-items:baseline;padding:23px 0;border-top:1px solid var(--line)}
+.note-row time{font:11px var(--mono);color:var(--quiet)}
+.note-row h3{font-size:16px;line-height:1.75}
+.note-row p{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.85}
+.note-row>span{text-align:right;font-size:11px;color:var(--quiet)}
+.closing{margin-top:64px;padding:34px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.closing h2{font-size:20px;margin-bottom:5px}
+.closing p{font-size:12px;color:var(--muted)}
+footer{display:flex;justify-content:space-between;padding:24px 0 40px;color:var(--quiet);font:10px/1.8 var(--mono)}
+.skip-link{position:absolute;top:-100px;left:20px;background:var(--panel);padding:8px 14px;z-index:2}
+.skip-link:focus{top:12px}
+
+@media(min-width:1600px){.wrap,.portfolio-home{width:min(1200px,calc(100% - 160px))}
+.portfolio-intro{padding-block:80px}
+.portfolio-project--featured .portfolio-project__image{min-height:350px}
+}
+
+@media(max-width:1000px){.wrap,.portfolio-home{width:calc(100% - 64px)}
+.portfolio-intro{gap:32px;grid-template-columns:1.4fr 1fr}
+.portfolio-project{grid-template-columns:1fr}
+.portfolio-project:not(.portfolio-project--featured) .portfolio-project__image img{aspect-ratio:16/9}
+.portfolio-project--featured{grid-template-columns:1fr 1fr}
+.portfolio-project--featured .portfolio-project__body{padding:24px}
+.portfolio-project--featured h3{font-size:24px}
+.portfolio-results>div{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:640px){.wrap,.portfolio-home{width:calc(100% - 40px)}
+.site-nav{height:66px}
+.site-brand{font-size:16px}
+.site-brand small{display:none}
+.site-nav nav{gap:17px;font-size:12px}
+.site-nav nav a:first-child{display:none}
+.portfolio-intro{grid-template-columns:1fr;gap:23px;padding:34px 0 38px}
+.portfolio-intro .portfolio-kicker{font-size:10px;margin-bottom:14px}
+h1{font-size:clamp(28px,7.5vw,39px);line-height:1.4}
+.portfolio-intro__bio{font-size:12px}
+.portfolio-intro__bio .portfolio-intro__name{font-size:16px;margin-bottom:5px}
+.portfolio-intro__bio nav{margin-top:15px}
+.portfolio-section-heading{gap:12px;margin-bottom:18px}
+.portfolio-section-heading h2{font-size:20px}
+.portfolio-kicker{font-size:10px}
+.portfolio-section-heading>.portfolio-link{font-size:11px}
+.portfolio-projects{grid-template-columns:1fr;gap:24px}
+.portfolio-project{gap:15px;padding-top:24px;grid-template-columns:100px 1fr}
+.portfolio-project h3{font-size:17px}
+.portfolio-project p{font-size:12px}
+.portfolio-project--featured{grid-template-columns:1fr;padding:0;gap:0}
+.portfolio-project--featured .portfolio-project__image{min-height:0;aspect-ratio:16/9}
+.portfolio-project--featured .portfolio-project__body{padding:23px}
+.portfolio-project--featured h3{font-size:24px}
+.portfolio-project--featured p{font-size:13px}
+.portfolio-project--featured .portfolio-project__role{margin-block:13px 22px}
+.portfolio-project:not(.portfolio-project--featured) .portfolio-project__image img{aspect-ratio:1;object-position:center}
+.portfolio-results{margin-top:30px;padding-block:22px}
+.portfolio-results header{display:block}
+.portfolio-results header p{margin-top:4px}
+.portfolio-results>div{gap:20px}
+.portfolio-results strong{font-size:12px}
+.portfolio-latest{gap:8px;flex-wrap:wrap;font-size:11px}
+.portfolio-latest>.portfolio-kicker{width:100%}
+.portfolio-latest time{font-size:10px}
+.reading{padding-top:32px}
+.reading-grid{grid-template-columns:1fr;gap:24px}
+.reading-card h3{margin:7px 0;font-size:17px}
+.reading-card .portfolio-link{padding-top:12px}
+.notes{padding-top:44px}
+.note-row{grid-template-columns:1fr auto;gap:8px;padding-block:20px}
+.note-row time{grid-column:1;grid-row:1}
+.note-row>span{grid-column:2;grid-row:1}
+.note-row>div{grid-column:1/-1;grid-row:2}
+.note-row h3{font-size:15px}
+.closing{margin-top:38px;display:block;padding-block:28px}
+.closing>.portfolio-link{display:inline-block;margin-top:18px}
+.closing h2{font-size:18px}
+footer{font-size:9px;gap:15px}
+}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+}
+
+</style></head>
+<body><a class="skip-link" href="#main">跳到主要内容</a><header class="site-nav wrap"><a class="site-brand" href="#main">江南的碎碎念<small>FIELD NOTES</small></a><nav aria-label="主导航"><a href="#main">首页</a><a href="#portfolio-work-title">项目</a><a href="#notes">文章</a><a href="https://jiangnanqing.github.io/about/">关于</a></nav></header><main id="main">
+    <section class="portfolio-home" aria-labelledby="portfolio-title">
+      <header class="portfolio-intro">
+        <div>
+          <p class="portfolio-kicker">JIANGNAN LAB NOTE / 2026</p>
+          <h1 id="portfolio-title"><span>把机器人调通，</span><span>也把过程写清楚。</span></h1>
+        </div>
+        <div class="portfolio-intro__bio">
+          <p class="portfolio-intro__name">你好，我是江南。</p>
+          <p>长江大学 · 计算机科学与技术 · 大三</p>
+          <p>关注机器人系统与 AI 应用，主要实践方向包括 ROS 导航、计算机视觉和复杂系统集成。</p>
+          <nav aria-label="个人与项目入口"><a class="portfolio-link" href="https://jiangnanqing.github.io/projects/">查看项目档案 <span aria-hidden="true">↗</span></a><a class="portfolio-link" href="https://jiangnanqing.github.io/about/">关于我 <span aria-hidden="true">↗</span></a></nav>
+        </div>
+      </header>
+      <section class="portfolio-work" aria-labelledby="portfolio-work-title">
+        <header class="portfolio-section-heading"><div><span class="portfolio-kicker">SELECTED WORK / 01</span><h2 id="portfolio-work-title">在真实问题里，做成一些事。</h2></div><a class="portfolio-link" href="https://jiangnanqing.github.io/projects/">全部项目 <span aria-hidden="true">↗</span></a></header>
+        <div class="portfolio-projects">
+    <article class="portfolio-project portfolio-project--featured">
+      <a class="portfolio-project__image" href="https://jiangnanqing.github.io/projects/#project-ruikang" aria-label="查看睿抗智能侦察车项目档案">
+        <img src="../../source/img/covers/ruikang-competition.webp" alt="睿抗智能侦察车封面" width="1200" height="675" fetchpriority="high">
+      </a>
+      <div class="portfolio-project__body">
+        <span class="portfolio-kicker">01 / ROS Noetic · DWA</span>
+        <h3><a href="https://jiangnanqing.github.io/projects/#project-ruikang">睿抗智能侦察车 <span aria-hidden="true">↗</span></a></h3>
+        <p>从定位、航点与视觉候选一路调到正式赛场，保留失败方案、回退判断和最后采用的纯点位路线。</p>
+        <div class="portfolio-project__role">代码主责 · 系统集成</div>
+        <ol class="portfolio-route" aria-label="项目推进路线"><li>系统迁移</li><li>导航主流程</li><li>视觉与射击</li><li>实车取舍与回退</li></ol>
+        <a class="portfolio-link" href="https://jiangnanqing.github.io/projects/#project-ruikang">职责、结果与项目记录 <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    <article class="portfolio-project">
+      <a class="portfolio-project__image" href="https://jiangnanqing.github.io/projects/#project-pharmacy" aria-label="查看智慧药房双车系统项目档案">
+        <img src="../../source/img/covers/pharmacy-robots.webp" alt="智慧药房双车系统封面" width="1200" height="675" loading="lazy">
+      </a>
+      <div class="portfolio-project__body">
+        <span class="portfolio-kicker">02 / ROS Melodic · TEB</span>
+        <h3><a href="https://jiangnanqing.github.io/projects/#project-pharmacy">智慧药房双车系统 <span aria-hidden="true">↗</span></a></h3>
+        <p>将导航、OCR、双车隔离、视觉联调和现场恢复串成一条可重复检查的机器人比赛工作流。</p>
+        <div class="portfolio-project__role">国赛代码、网络与测试主责</div>
+
+        <a class="portfolio-link" href="https://jiangnanqing.github.io/projects/#project-pharmacy">职责、结果与项目记录 <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    <article class="portfolio-project">
+      <a class="portfolio-project__image" href="https://jiangnanqing.github.io/projects/#project-yolov5" aria-label="查看智慧农业 · YOLOv5 视觉训练项目档案">
+        <img src="../../source/img/covers/yolov5-vision.webp" alt="智慧农业 · YOLOv5 视觉训练封面" width="1200" height="675" loading="lazy">
+      </a>
+      <div class="portfolio-project__body">
+        <span class="portfolio-kicker">03 / Python · PyTorch</span>
+        <h3><a href="https://jiangnanqing.github.io/projects/#project-yolov5">智慧农业 · YOLOv5 视觉训练 <span aria-hidden="true">↗</span></a></h3>
+        <p>前期完成智慧农业智能车主代码和硬编码路径，并独立完成授粉 YOLO 模型的数据、训练与部署；后期主要处理摄像头问题。</p>
+        <div class="portfolio-project__role">前期主代码 · YOLO 模型主责</div>
+
+        <a class="portfolio-link" href="https://jiangnanqing.github.io/projects/#project-yolov5">职责、结果与项目记录 <span aria-hidden="true">→</span></a>
+      </div>
+    </article></div>
+      </section>
+      <section class="portfolio-results" aria-labelledby="portfolio-results-title">
+        <header><h2 id="portfolio-results-title">代表成绩</h2><p>团队参赛结果 · 个人职责见项目档案</p></header>
+        <div><a href="https://jiangnanqing.github.io/projects/#project-ruikang"><span>2026 / 睿抗智能侦察车</span><strong>全域安防竞赛项目一等奖 · 94 分</strong><small>2026 睿抗机器人开发者大赛（RAICOM）</small></a><a href="https://jiangnanqing.github.io/projects/#project-yolov5"><span>2026 / 智慧农业</span><strong>全国总决赛一等奖</strong><small>第二十八届中国机器人及人工智能大赛</small></a><a href="https://jiangnanqing.github.io/projects/#project-pharmacy"><span>2026 / 智慧药房</span><strong>全国总决赛三等奖</strong><small>第二十八届中国机器人及人工智能大赛</small></a><a href="https://jiangnanqing.github.io/projects/#project-iscc"><span>2025 / ISCC 微型工厂</span><strong>全国总决赛三等奖</strong><small>第 22 届全国大学生信息安全与对抗技术竞赛</small></a></div>
+      </section>
+      <aside class="portfolio-latest" aria-label="最近一篇实验记录"><span class="portfolio-kicker">~/jiangnan/notes</span><a href="https://jiangnanqing.github.io/2026/08/27/%E7%9D%BF%E6%8A%97%EF%BC%9A%E4%BB%8E%E5%88%9D%E8%B5%9B%E5%88%B0%E5%9B%BD%E4%B8%80/"><span>最近写下</span> 睿抗：从初赛到国一 <span aria-hidden="true">→</span></a><time>2026.08.27</time></aside>
+    </section>
+<section class="reading wrap" aria-labelledby="reading-title"><header class="portfolio-section-heading"><div><span class="portfolio-kicker">START HERE / 02</span><h2 id="reading-title">第一次来，可以从这里读起。</h2></div></header><div class="reading-grid"><article class="reading-card"><span class="reading-label">从候选方案到最终取舍</span><h3><a href="https://jiangnanqing.github.io/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/">睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助</a></h3><p>对比睿抗智能侦察车从硬编码交接、点9恢复、两代黄线方案到Noetic 43点路线和纯点位决赛版本的实车证据与最终取舍。</p><a class="portfolio-link" href="https://jiangnanqing.github.io/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/">阅读全文 <span aria-hidden="true">↗</span></a></article><article class="reading-card"><span class="reading-label">从比赛联调到工程方法</span><h3><a href="https://jiangnanqing.github.io/2026/07/30/%E5%9B%BD%E4%B8%89%E4%B9%8B%E5%90%8E%E6%88%91%E6%8A%8A%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%AF%94%E8%B5%9B%E5%81%9A%E6%88%90%E4%BA%86%E4%B8%80%E5%A5%97%E5%B7%A5%E4%BD%9C%E6%B5%81/">国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流</a></h3><p>国赛结束后，我重新审视智慧药房双车系统。比继续提高最高速度更重要的，是消灭静默失败，把规则、环境、代码、实车验证和工程记录连成一套可重复、可观测、可验收的工作流。</p><a class="portfolio-link" href="https://jiangnanqing.github.io/2026/07/30/%E5%9B%BD%E4%B8%89%E4%B9%8B%E5%90%8E%E6%88%91%E6%8A%8A%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%AF%94%E8%B5%9B%E5%81%9A%E6%88%90%E4%BA%86%E4%B8%80%E5%A5%97%E5%B7%A5%E4%BD%9C%E6%B5%81/">阅读全文 <span aria-hidden="true">↗</span></a></article><article class="reading-card"><span class="reading-label">从实车数据到视觉模型</span><h3><a href="https://jiangnanqing.github.io/2026/01/29/YOLOv5%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">智能车日记：YOLOv5 模型训练</a></h3><p>作为智慧农业智能车项目的视觉部分，记录 YOLOv5 从实车数据采集与清洗、数据标注到模型训练和部署的问题与经验。</p><a class="portfolio-link" href="https://jiangnanqing.github.io/2026/01/29/YOLOv5%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">阅读全文 <span aria-hidden="true">↗</span></a></article></div></section>
+<section class="notes wrap" id="notes" aria-labelledby="notes-title"><header class="portfolio-section-heading"><div><span class="portfolio-kicker">RECENT NOTES / 03</span><h2 id="notes-title">持续记录，慢慢弄明白。</h2></div><a class="portfolio-link" href="https://jiangnanqing.github.io/archives/">全部文章 <span aria-hidden="true">↗</span></a></header><article class="note-row"><time datetime="2026-08-27">2026.08.27</time><div><h3><a href="https://jiangnanqing.github.io/2026/08/27/%E7%9D%BF%E6%8A%97%EF%BC%9A%E4%BB%8E%E5%88%9D%E8%B5%9B%E5%88%B0%E5%9B%BD%E4%B8%80/">睿抗：从初赛到国一</a></h3><p>从十天速成Gazebo，到独立排查导航、迁移Noetic并集成视觉任务，再到94分与全国总决赛一等奖，记录一路的技术进步与个人成长。</p></div><span>成长记录</span></article><article class="note-row"><time datetime="2026-08-25">2026.08.25</time><div><h3><a href="https://jiangnanqing.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/">睿抗赛里，我给机器人做了四套视觉方案</a></h3><p>从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。</p></div><span>工程实践</span></article><article class="note-row"><time datetime="2026-08-21">2026.08.21</time><div><h3><a href="https://jiangnanqing.github.io/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/">睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助</a></h3><p>对比睿抗智能侦察车从硬编码交接、点9恢复、两代黄线方案到Noetic 43点路线和纯点位决赛版本的实车证据与最终取舍。</p></div><span>比赛复盘</span></article><article class="note-row"><time datetime="2026-07-30">2026.07.30</time><div><h3><a href="https://jiangnanqing.github.io/2026/07/30/%E5%9B%BD%E4%B8%89%E4%B9%8B%E5%90%8E%E6%88%91%E6%8A%8A%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%AF%94%E8%B5%9B%E5%81%9A%E6%88%90%E4%BA%86%E4%B8%80%E5%A5%97%E5%B7%A5%E4%BD%9C%E6%B5%81/">国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流</a></h3><p>国赛结束后，我重新审视智慧药房双车系统。比继续提高最高速度更重要的，是消灭静默失败，把规则、环境、代码、实车验证和工程记录连成一套可重复、可观测、可验收的工作流。</p></div><span>工程复盘</span></article><article class="note-row"><time datetime="2026-07-24">2026.07.24</time><div><h3><a href="https://jiangnanqing.github.io/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/">从Ctrl+V工程师到让AI自己调小车，我的AI使用体验</a></h3><p>记录我从向 AI 索要答案，到让它进入代码库，再到组织机器人闭环测试的过程，以及上下文、记录、权限和实车验证带来的方法变化。</p></div><span>成长记录</span></article></section>
+<section class="closing wrap"><div><h2>关于机器人，也关于一路上的问题。</h2><p>欢迎技术交流与项目合作。更多经历、职责和联系方式，写在关于页里。</p></div><a class="portfolio-link" href="https://jiangnanqing.github.io/about/">认识江南 <span aria-hidden="true">↗</span></a></section></main><footer class="wrap"><span>© 2026 江南 · 把过程写清楚。</span><span>DESIGN STUDY 01 / 首页设计初版</span></footer></body></html>
