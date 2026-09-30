@@ -1,0 +1,75 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>ISCC 竞赛：模拟微型工厂赛道经验分享 · 江南的碎碎念</title><link rel="stylesheet" href="../assets/style.css"><script src="../assets/site.js" defer></script></head><body><a class="skip" href="#main">跳到正文</a><header class="site-header"><div class="header-inner"><a class="brand" href="../首页设计初版.html"><span class="brand-mark" aria-hidden="true">jn.</span><span>江南的碎碎念<small>机器人 · AI · 工程记录</small></span></a><nav aria-label="主导航"><a href="../首页设计初版.html" >首页</a><a href="../项目.html" >项目</a><a href="../文章.html" aria-current="page">文章</a><a href="../关于.html" >关于</a></nav><a class="search-link" href="../文章.html#search" aria-label="搜索文章"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></a></div></header><main id="main" class="container" data-page="文章"><a class="breadcrumb" href="../文章.html">← 全部文章</a><header class="article-heading"><img class="article-cover" src="../../../source/img/covers/iscc-plc.png" alt="ISCC 竞赛：模拟微型工厂赛道经验分享封面" width="1200" height="675"><div class="article-heading-copy"><div class="article-meta"><span class="category">比赛复盘</span><time datetime="2026-01-28">2026.01.28</time><span class="eyebrow">LOG 002</span></div><h1>ISCC 竞赛：模拟微型工厂赛道经验分享</h1><p>复盘 ISCC 模拟微型工厂赛道中 3 人团队的限时协作，以及我负责的通信加密和 HMI 按钮制作。</p><div class="tags"><span class="tag">ISCC</span><span class="tag">PLC</span><span class="tag">HMI</span><span class="tag">工业网络</span></div></div></header><div class="reading-layout"><article class="prose"><a class="project-context" href="../项目/iscc.html"><span>所属项目</span><strong>ISCC 微型工厂</strong><span>项目档案 ↗</span></a><p>先把结果和分工说清楚。这是一个 3 人团队项目，我负责通信加密和 HMI 按钮制作，两位队友负责编写与修改 PLC 程序。赛题中的 HMI 要求就是完成控制按钮，不是一个范围更大的 HMI 工程。这几部分可以并行，最后再通过 IP、变量地址和设备接口合成一套流程。</p>
+<p>我们参加的是 2025 年第 22 届全国大学生信息安全与对抗技术竞赛（智能安全赛-全国总决赛-微型工厂模拟产线任务挑战），团队最终获得三等奖。</p>
+<p>这篇文章继续按实际分工，复盘我们怎样在两个半小时内完成程序、仿真、按钮、加密和录制，以及第一次录制为什么只剩两分钟余量。</p>
+<h2 id="section-1">1. 赛题与分工</h2>
+<p>赛道以微型工厂为对象，完整链路可以压缩成下面几步：</p>
+<pre><code class="language-text">PLC 控制程序 → 仿真变量映射 → HMI 启停按钮 → 通信加密 → 限时录制
+</code></pre>
+<p>PLC 决定四个工位怎样运行，博达特软件模拟生产流程，HMI 按钮向 PLC 中的变量写入启动或停止信号，两台加密设备则在 PC 与 PLC 的业务网段之间建立加密链路。真正容易出问题的地方，往往不是某个软件单独打不开，而是这些环节的地址和状态没有对齐。</p>
+<p>我们把任务拆开以后，两位队友同时编写 PLC 程序，我完成 Server、Client 两端的通信加密配置，并制作 HMI 控制按钮。这样 PLC 程序还在编写时，加密设备和按钮工程已经可以先做准备，最后集中核对变量地址与网络参数。</p>
+<p>当时使用的主要软件如下：TIA Portal V16（博途 V16）、博达特仿真软件、Xshell 串口终端和 MCGS Pro 组态软件。原来的博达特图标没有了，所以只能截软件名称，emmmm。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153637363.png" alt="TIA Portal V16"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153424299.png" alt="博达特仿真软件">
+<img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153024507.png" alt="Xshell 串口终端">
+<img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153701723.png" alt="MCGS Pro 组态软件"></p>
+<h2 id="section-2">2. 两个半小时的执行节奏</h2>
+<p>初赛采用线上参赛、录制视频的形式，要求在两个半小时内完成任务。这个限制让“能做出来”和“能在规定时间内一次做完”变成了两件事。</p>
+<p>第一次录制时，我先完成通信加密。此时队友的 PLC 程序还没有写完，我就继续制作 HMI 按钮。等加密和按钮都完成时，队友也刚好写完程序。我们先检查控制逻辑，再进入仿真软件做变量地址映射。</p>
+<p>启动系统后，第一个工位在出料环节发生了流程卡滞，队友只能继续修改 PLC 程序。这个时候已经过去大约 1 小时 45 分钟。</p>
+<p>程序修改完成时，时间接近 2 小时 10 分钟。剩下的 20 分钟里，我们还要让仿真系统完整运行，并展示 HMI 对系统的控制。最后在 2 小时 28 分完成全部操作，只剩两分钟。</p>
+<p>这一遍虽然按时完成了，但我们对过程并不满意，所以决定再录第二遍。第二次队友把 PLC 程序编写时间压到了 1 小时，给后面的仿真、按钮和联调留出了更多空间。</p>
+<p>这次经历让我意识到，限时任务不能只按分值排序，还要看依赖关系。PLC、HMI 和加密可以并行，但地址映射、仿真运行和最终录制都依赖前面几项已经完成。任何一个环节晚半小时，压力都会集中到最后。</p>
+<h2 id="section-3">3. 我负责的通信加密</h2>
+<p>通信加密是我在这次比赛里负责的主要技术部分。目标是用 Server 端和 Client 端两台数据加密设备建立 VPN 加密隧道，保护 PC 与 PLC 之间的业务数据。</p>
+<p>我实际执行时把它分成四段，而不是只记一串命令。</p>
+<h3 id="section-4">串口与设备状态</h3>
+<p>连接 USB 转串口模块后，先在设备管理器中确认串口号，例如 <code>COM3</code>。Xshell 新建会话时，协议必须选择 <code>SERIAL</code>，再填写正确的串口号。协议选错以后，后面的 IP 和 VPN 配得再正确，也进不了设备终端。</p>
+<p>设备接口也有明确分工：<code>eth0</code> 连接 PC 或 PLC 等业务设备，<code>eth1</code> 用于连接两台加密设备。接口接反会让排查变得很乱，所以我会在改配置前先核对物理连接。</p>
+<p>设备上电后会自动运行人脸认证脚本。首次使用时，短按模组背面的 <code>S1</code> 录入人脸，人脸距离摄像头约 50 cm；<code>S2</code> 用于识别，<code>S3</code> 用于复位。认证成功并显示 <code>Verify ok</code> 后，才能继续操作终端。</p>
+<p>如果启动脚本反复占用终端，可以先用 <code>ps -a</code> 检查进程，再按赛题文档要求处理 WLAN 连接和异常检测进程，并在 <code>/etc/init.d/rcS</code> 中暂时注释相关启动项。这里的目的只是先拿到一个可配置的设备状态，配置完成后还要恢复自启动。</p>
+<h3 id="section-5">两端业务网段</h3>
+<p>随后在 <code>/etc/network/interfaces</code> 中配置两端 <code>eth0</code>。例如 PC 使用 <code>192.168.2.2</code> 时，Server 端可以设为 <code>192.168.2.1</code>；Client 端则要与 PLC 处于同一子网，例如设为 <code>192.168.44.1</code>。</p>
+<p>这里不能只看某一个 IP。PC、Server、Client、PLC 和 HMI 各自在哪个网段，必须先画清楚。通信失败时，我也会先检查子网与物理接口，再去怀疑上层程序。</p>
+<h3 id="section-6">VPN 与流量选择器</h3>
+<p>Server 端修改 <code>server.conf1</code>，Client 端修改 <code>client.conf1</code>。<code>local_addrs</code> 要按赛题配套文档规划，避免地址冲突；<code>local_ts</code> 和 <code>remote_ts</code> 则分别对应两端业务网段，例如 <code>192.168.2.0/24</code> 和 <code>192.168.44.0/24</code>。</p>
+<p>这一步最容易出现的不是命令不会敲，而是把本地和远端网段写反。我的检查方法是分别站在 Server 和 Client 的视角核对一次，确认两端的流量选择器能够互相对应。</p>
+<h3 id="section-7">脚本替换与开机启动</h3>
+<p>赛题文档提供了 <code>S100wlan0</code> 和 <code>guard</code> 两个脚本。替换后不能只看文件存在，还要检查粘贴内容。有一次脚本第一行的 <code>local</code> 少了前两个字母，变成 <code>cal</code>，脚本因此无法执行。这个问题看起来很小，但在限时录制里足够卡住整条加密链。</p>
+<p>最后还要在 <code>auto_defconfig</code> 中选择正确的工作模式，例如 <code>mode=eth1</code> 或 <code>mode=wlan</code>，再回到 <code>/etc/init.d/rcS</code> 取消之前的注释，使设备重启后能够自动运行加密和网络连接程序。</p>
+<p>这部分真正需要保证的不是“每个配置文件都改过”，而是串口能进入、接口没接反、两端网段对应、隧道配置互相匹配，重启后脚本仍然能够运行。</p>
+<h2 id="section-8">4. HMI 按钮与变量映射</h2>
+<p>PLC 程序由两位队友完成。程序编写结束后，需要先编译，再用网线连接工程师站与 PLC，把程序下载到设备。下面保留的是当时的部分程序截图，用来说明后续 HMI 和仿真需要对接的变量来源，并不把这部分算作我的个人代码成果。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153708161.png" alt="PLC 程序截图 1"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153710035.png" alt="PLC 程序截图 2"></p>
+<p>程序编译后，数据块会生成相应变量地址。博达特数据采集软件需要把这些地址映射到正确工位，再将执行器、传感器和可视化变量绑定到仿真对象。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153714905.png" alt="博达特变量地址映射"></p>
+<p>这里有三个接口细节必须一起核对：</p>
+<ol>
+<li><code>DB10.DBX0.0</code> 表示 DB10 数据块中偏移 0 字节、0 位的布尔变量。四个工位如果分别使用多个 DB 块，必须确认数据块编号与变量地址一致。</li>
+<li>地址映射时要选择正确工位。工位选错以后，后续绑定时可能缺少一个或多个地址，仿真流程无法正常运行。</li>
+<li>比赛还有“视觉化展示”评分项。物料到达库位后，对应库位需要变为绿色，因此相关变量也要绑定到可视化界面。</li>
+</ol>
+<p>我负责的 HMI 部分，就是使用 MCGS Pro 制作赛题要求的启动、停止等控制按钮，并把按钮变量接到 PLC 的实际地址。</p>
+<p>第一步是在组态工程中添加通信设备。本地 IP 是 HMI 设备地址，需要在触摸屏网络设置中修改；远程 IP 是 PLC 地址，需要在 TIA Portal 的硬件组态中修改并重新下载到 PLC。两端 IP 和子网掩码正确以后，HMI 才能与 PLC 通信。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153718601.png" alt="HMI 通信设备配置"></p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153720905.png" alt="HMI 与 PLC 网络参数"></p>
+<p>然后制作相应的控制按钮。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153733770.png" alt="HMI 控制按钮"></p>
+<p>最后在变量表中添加 HMI 变量，并按 PLC 程序中的实际地址建立映射。变量位于 DB 块时，需要填写对应的数据块编号和偏移地址。</p>
+<p><img src="https://raw.githubusercontent.com/jiangnanqing188/images/main/20260128153740139.png" alt="HMI 变量映射"></p>
+<p>这个接口看起来只是“一个按钮控制一个变量”，实际却跨过 HMI、网络、PLC 和仿真四层。按钮没有反应时，可能是变量地址错了，也可能是电脑、HMI 与 PLC 不在正确网段，不能只在组态界面里反复点。</p>
+<p>当时补 PLC 基础时参考过这个视频：<a href="https://www.bilibili.com/video/BV1sE4m1d7bj?vd_source=7e37fa35eb21905a6d92f905f190c6e3">西门子 1200 PLC 速成——全程无废话</a>。它适合补背景，但比赛中的 PLC 程序仍然由两位队友负责编写和修改。</p>
+<h2 id="section-9">5. 问题与第二次录制</h2>
+<p>第一次录制暴露出来的问题，并不都是什么复杂原理。</p>
+<p>第一个是节奏。PLC 程序出料流程卡滞后，队友必须继续修改，后续所有环节都被压缩到最后 20 分钟。虽然 2 小时 28 分完成了，但这个结果几乎没有容错空间。</p>
+<p>第二个是脚本细节。<code>local</code> 被粘贴成 <code>cal</code>，只缺两个字母，就足以让脚本执行失败。这类问题不能靠“我已经复制过了”来判断，只能重新打开文件核对实际内容。</p>
+<p>第三个是 IP 网段。HMI 下载、PLC 通信和加密隧道都会用到网络配置，但它们面对的设备和网段并不完全一样。忘记修改 IP，或者只改一端，是很常见的失败原因。</p>
+<p>另外，仿真软件可能异常退出，USB 加密狗温度过高时也可能响应变慢。这两项更像工具使用中的风险提示，我没有把它们写成第一次录制卡滞的已确认原因。能做的是及时保存工程，并在设备异常时重新连接检查。</p>
+<p>我们决定第二次录制，不是因为第一遍没有按时完成，而是因为第一遍太接近上限，任何一个小问题都可能让结果失效。第二次 PLC 编写只用了 1 小时，说明练习确实能明显改善交付节奏。不过我没有留下第二遍完整总耗时，所以这里不再补一个看起来更漂亮的数字。</p>
+<h2 id="section-10">6. 结果与成长</h2>
+<p>最终，我们在上述赛项中获得三等奖。这是 3 人团队共同完成的结果：两位队友负责 PLC 程序，我负责通信加密和 HMI 按钮，缺一部分都无法形成完整演示。</p>
+<p>对我来说，这个赛道最有价值的地方不是记住了多少软件菜单，而是第一次比较完整地经历了工业控制系统里的接口协作。通信加密不是两台设备能启动就结束，它要和 PC、PLC 的业务网段对上；HMI 也不是画出按钮就结束，它要写入 PLC 的正确变量，最后还要在仿真流程中看到动作。</p>
+<p>两个半小时的限制又把这些技术问题变成交付问题。哪些工作可以并行，哪些步骤必须等待，什么时候应该停止继续优化、先保证完整录制，这些判断和配置本身一样重要。</p>
+<p>本文保留的截图能支持当时使用的软件、PLC 程序片段、变量映射和 HMI 配置过程；正式结果依据已核实的团队证书。截图不是完整比赛录像，也不会把队友负责的 PLC 程序变成我的个人成果。</p>
+<p>现在回头看，这次经历让我学到的是怎样在边界清楚的分工里完成自己的部分，再通过接口把三个人的工作接起来。限时比赛里，个人做得快当然重要，但更重要的是让整条链路在截止时间前真正跑通。</p>
+<div class="article-end"><span class="eyebrow">END OF NOTE / 002</span><a class="text-link" href="../文章.html">继续阅读其他记录 →</a></div></article><aside class="toc"><details open><summary>本篇目录</summary><nav aria-label="文章目录"><a class="toc-level-2" href="#section-1">1. 赛题与分工</a><a class="toc-level-2" href="#section-2">2. 两个半小时的执行节奏</a><a class="toc-level-2" href="#section-3">3. 我负责的通信加密</a><a class="toc-level-3" href="#section-4">串口与设备状态</a><a class="toc-level-3" href="#section-5">两端业务网段</a><a class="toc-level-3" href="#section-6">VPN 与流量选择器</a><a class="toc-level-3" href="#section-7">脚本替换与开机启动</a><a class="toc-level-2" href="#section-8">4. HMI 按钮与变量映射</a><a class="toc-level-2" href="#section-9">5. 问题与第二次录制</a><a class="toc-level-2" href="#section-10">6. 结果与成长</a></nav></details><a class="back-top" href="#main">回到顶部 ↑</a></aside></div></main><footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><span>多页 UI 原型 · 未实装</span></footer></body></html>
