@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-30",
+  "tool": "image_gen.imagegen",
+  "model": "not reported by tool",
+  "quality": "not reported by tool",
+  "status": "local prototype candidate; awaiting visual review",
+  "generation": "Original adult anime catgirl; silver-white hair, warm amber eyes, white cat ears and one fluffy cat tail; charcoal utility jacket, cream opaque blouse, dark pleated skirt and tights, cream sneakers; notebook in left arm, waving right hand; detailed anime illustration, full body, true transparent background. No whale motifs, blue hair, maid apron, branding or text.",
+  "edit": "Preserve character design and pose, remove background glow and haze, transparent cutout with full ears and shoes.",
+  "generated_source": "call_Lj5GE2WVfycs5ppcX2gj25X1.png",
+  "edited_source": "call_qLyOmqXpJWraAkG4j2ecwSU4.png",
+  "conversion": "640x960, lossless WebP; preserve alpha"
+}
