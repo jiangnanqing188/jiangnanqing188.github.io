@@ -62,6 +62,11 @@ function checkSite() {
   const achievements = yaml.load(fs.readFileSync(path.join(root, 'source/_data/achievements.yml'), 'utf8'));
   const about = fs.readFileSync(path.join(output, 'about/index.html'), 'utf8');
   assert.equal((about.match(/class="award"/g) || []).length, achievements.length, 'About page must render every team achievement.');
+  const journey = about.match(/<section\b[^>]*\bid="journey"[^>]*>([\s\S]*?)<\/section>/);
+  assert.ok(journey, 'About page must include the growth journey.');
+  assert.ok(!/<pre\b|&lt;div&gt;/.test(journey[1]), 'Growth journey HTML must not render as a code block.');
+  const stages = [...journey[1].matchAll(/<li>\s*<div>\s*<small>[^<]+<\/small>\s*<h3>([^<]+)<\/h3>\s*<p>[^<]+<\/p>\s*<\/div>\s*<\/li>/g)];
+  assert.deepEqual(stages.map(stage => stage[1]), ['计算机科学与技术', '机器人比赛', 'AI 与计算机视觉', '自主移动机器人'], 'All four growth stages must render as complete list items.');
   assert.ok(fs.existsSync(path.join(output, 'search.xml')), 'Search index is missing.');
   assert.ok(fs.existsSync(path.join(output, 'sitemap.xml')), 'Sitemap is missing.');
   assert.ok(fs.existsSync(path.join(output, 'robots.txt')), 'Robots file is missing.');

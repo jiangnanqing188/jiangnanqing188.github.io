@@ -60,39 +60,35 @@ description: 江南的个人介绍、技术栈、成长经历、机器人项目�
 <h2>我的成长路线</h2>
 <p>从专业基础到真实项目，一边动手，一边把零散经验连成体系。</p>
 <ol class="about-journey">
-      <li>
-
-        <div>
+<li>
+<div>
 <small>专业基础</small>
 <h3>计算机科学与技术</h3>
 <p>学习编程、算法和计算机基础，建立解决问题的基本方法。</p>
 </div>
-      </li>
-      <li>
-
-        <div>
+</li>
+<li>
+<div>
 <small>工程实践</small>
 <h3>机器人比赛</h3>
 <p>从单车调试到双车联调，在赛场压力下练习定位和解决真实问题。</p>
 </div>
-      </li>
-      <li>
-
-        <div>
+</li>
+<li>
+<div>
 <small>能力扩展</small>
 <h3>AI 与计算机视觉</h3>
 <p>接触 OpenCV、YOLO 与 AI 辅助编程，把模型能力接入具体任务。</p>
 </div>
-      </li>
-      <li>
-
-        <div>
+</li>
+<li>
+<div>
 <small>正在继续</small>
 <h3>自主移动机器人</h3>
 <p>继续学习 ROS、仿真、电路与 PCB，让软件、算法和硬件真正协同工作。</p>
 </div>
-      </li>
-    </ol>
+</li>
+</ol>
 </section>
 <section class="detail-section" id="results">
 <h2>团队一起取得的成绩</h2>
