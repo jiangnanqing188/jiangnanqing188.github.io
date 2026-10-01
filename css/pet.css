@@ -1,0 +1,28 @@
+/* Original catgirl companion, shared across the blog. */
+.blog-pet { --pet-signal: #deb46c; position: fixed; right: 22px; bottom: 18px; z-index: 25; width: min(170px, calc((100dvh - 80px) * 2 / 3)); pointer-events: none; }
+.blog-pet [hidden] { display: none !important; }
+.pet-stage { position: relative; }
+.pet-avatar { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; border-radius: 24px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; pointer-events: auto; }
+.pet-avatar:focus-visible, .pet-hide:focus-visible, .pet-restore:focus-visible { outline: 2px solid var(--pet-signal); outline-offset: 3px; }
+.pet-art { display: block; width: 100%; height: auto; transform-origin: 50% 96%; animation: pet-sway 5s ease-in-out infinite; filter: drop-shadow(0 3px 5px #0005); }
+.pet-toolbar { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 2px; }
+.pet-caption { display: flex; align-items: center; gap: 6px; color: #d7c7ac; font-size: 11px; letter-spacing: .08em; }
+.pet-caption i { width: 4px; height: 4px; border-radius: 50%; background: var(--pet-signal); }
+.pet-hide { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #d8b77e40; border-radius: 50%; color: #d7c7ac; background: #191c24dc; font-size: 18px; line-height: 1; cursor: pointer; pointer-events: auto; }
+.pet-hide:hover { color: white; background: #3a342c; }
+.pet-bubble { position: absolute; bottom: calc(100% + 8px); left: 0; width: min(216px, calc(100vw - 24px)); padding: 13px 16px; color: #ede6db; background: #1c202af5; border: 1px solid #c3a77555; box-shadow: 0 10px 28px #03071250; border-radius: 14px; font-size: 13px; line-height: 1.8; text-align: left; pointer-events: none; }
+.blog-pet.bubble-below .pet-bubble { bottom: auto; top: calc(100% + 8px); }
+.pet-help { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.pet-restore { margin-left: auto; display: flex; align-items: center; gap: 7px; padding: 8px 12px; color: #d7c7ac; background: #1c202af5; border: 1px solid #c3a77555; border-radius: 30px; font-size: 12px; cursor: pointer; pointer-events: auto; }
+.blog-pet.is-collapsed { width: 76px; }
+.pet-restore span { color: var(--pet-signal); }
+.pet-heart { position: absolute; top: 13%; right: 13%; color: #efbc9d; font-size: 25px; opacity: 0; }
+.blog-pet.is-petted .pet-art { animation: pet-greeting 850ms ease-in-out; }
+.blog-pet.is-petted .pet-heart { animation: pet-heart 1s ease-out; }
+.blog-pet.is-dragging .pet-avatar { cursor: grabbing; }
+.blog-pet.is-dragging .pet-art { animation: none; transform: rotate(-3deg); }
+@keyframes pet-sway { 50% { transform: translateY(-2px) rotate(.7deg); } }
+@keyframes pet-greeting { 30% { transform: translateY(-4px) rotate(-2deg); } 65% { transform: rotate(1.5deg); } }
+@keyframes pet-heart { 15% { opacity: 1; } 100% { opacity: 0; transform: translateY(-18px) scale(1.12); } }
+@media (max-width: 760px) { .blog-pet { width: min(106px, calc((100dvh - 80px) * 2 / 3)); right: 10px; bottom: 12px; } .pet-toolbar { gap: 2px; margin-top: 0; } .pet-hide { width: 40px; height: 40px; border-color: transparent; background: none; } .pet-bubble { width: min(200px, calc(100vw - 24px)); font-size: 12px; } }
+@media (prefers-reduced-motion: reduce) { .blog-pet * { animation: none !important; transition: none !important; } }

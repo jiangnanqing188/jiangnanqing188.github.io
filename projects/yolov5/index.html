@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b101a">
+  <meta name="color-scheme" content="dark">
+  <title>智慧农业 · YOLOv5 视觉训练 · 江南的碎碎念</title><meta name="description" content="前期完成智慧农业智能车主代码和硬编码路径，并独立完成授粉 YOLO 模型的数据、训练与部署；后期主要处理摄像头问题。"><meta name="keywords" content="移动机器人, ROS, AI编程, 计算机视觉, Python, 机器人比赛, 比赛复盘"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/projects/yolov5/"><meta property="og:type" content="website"><meta property="og:title" content="智慧农业 · YOLOv5 视觉训练"><meta property="og:description" content="前期完成智慧农业智能车主代码和硬编码路径，并独立完成授粉 YOLO 模型的数据、训练与部署；后期主要处理摄像头问题。"><meta property="og:url" content="https://jiangnanqing188.github.io/projects/yolov5/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/covers/notebook/yolov5-vision.webp"><meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="/css/notebook.css">
+  <link rel="stylesheet" href="/css/pet.css">
+  <script src="/js/notebook.js" defer></script>
+  <script src="/js/pet.js" defer></script>
+  <script src="/js/giscus-manager.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">jn.</span><span>江南的碎碎念<small>机器人 · AI · 工程记录</small></span></a>
+    <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" aria-current="page">项目</a><a href="/archives/" >文章</a><a href="/about/" >关于</a></nav>
+    <a class="search-link" href="/archives/#search" aria-label="搜索文章"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></a>
+  </div></header>
+  <main id="main" class="container" tabindex="-1" data-page="项目"><a class="breadcrumb" href="/projects/">← 项目档案</a><header class="page-heading"><span class="eyebrow">PROJECT 02</span><h1>智慧农业 · YOLOv5 视觉训练</h1><p>前期完成智慧农业智能车主代码和硬编码路径，并独立完成授粉 YOLO 模型的数据、训练与部署；后期主要处理摄像头问题。</p></header><div class="project-detail-cover"><img src="/img/covers/notebook/yolov5-vision.webp" alt="智慧农业 · YOLOv5 视觉训练封面，AI 概念插画" width="1200" height="675"></div><p class="cover-credit">封面为 AI 概念插画，比赛证据见下方记录。</p><div class="detail-layout"><div><section class="detail-section"><span class="eyebrow">01 / PROBLEM</span><h2>要解决的问题</h2><p>让训练数据真正接近车载摄像头视角，同时避免相邻视频帧泄漏导致验证指标虚高。</p></section><section class="detail-section"><span class="eyebrow">02 / RESPONSIBILITY</span><h2>我负责的部分</h2><ul><li>完成前期主代码与硬编码路径</li><li>采集实车视频，完成授粉模型的抽帧、清洗、标注与数据集划分</li><li>配置 YOLOv5 环境，组织授粉模型的训练、验证、迭代与部署流程</li><li>整理训练脚本、验证脚本和数据集配置供后续复用</li></ul><div class="boundary"><h3>协作边界</h3><p>本人负责前期主代码、硬编码路径和授粉 YOLO 模型；完成路径和模型后，后期主要在摄像头异常时介入。硬编码路径不作为核心技术成果。</p></div></section><section class="detail-section"><span class="eyebrow">03 / OUTCOME</span><h2>结果与证据</h2><p>第二十八届中国机器人及人工智能大赛全国总决赛智慧农业一等奖；完成前期主代码、路径与授粉 YOLO 模型</p><p class="muted">1 篇完整流程与 4 份公开材料；训练指标和比赛现场原始证据仍待补充</p></section><section class="detail-section"><span class="eyebrow">04 / NOTES</span><h2>项目里的记录</h2><article class="note-row" ><div class="note-date"><time datetime="2026-01-29">2026.01.29</time><span>LOG 003</span></div><div><span class="category">工程实践</span><h3><a href="/2026/01/29/YOLOv5模型训练/">智能车日记：YOLOv5 模型训练</a></h3><p>作为智慧农业智能车项目的视觉部分，记录 YOLOv5 从实车数据采集与清洗、数据标注到模型训练和部署的问题与经验。</p></div><a class="row-arrow" href="/2026/01/29/YOLOv5模型训练/" aria-label="阅读智能车日记：YOLOv5 模型训练">↗</a></article></section></div><aside class="project-facts"><span class="eyebrow">PROJECT FILE</span><dl><dt>项目周期</dt><dd>智慧农业备赛阶段</dd><dt>团队</dt><dd>3 人团队</dd><dt>本人角色</dt><dd>前期主代码 · YOLO 模型主责</dd><dt>技术栈</dt><dd>Python · PyTorch · YOLOv5 · CUDA</dd></dl><h3>系统路线</h3><ol class="route"><li>实车数据采集</li><li>清洗与标注</li><li>YOLOv5 训练</li><li>车端部署</li></ol></aside></div>
+</main>
+  <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
+  <aside id="blog-pet" class="blog-pet" aria-label="博客小伙伴：小白">
+  <div class="pet-stage">
+    <p id="pet-message" class="pet-bubble" role="status" hidden></p>
+    <button class="pet-avatar" type="button" aria-label="和小白打招呼；可拖动或用方向键移动" aria-describedby="pet-help">
+      <img class="pet-art" src="/img/pet/catgirl.webp" width="640" height="640" alt="银白头发、琥珀眼睛的Q版猫娘小白，穿深灰外套，抱着笔记本挥手" draggable="false">
+      <span class="pet-heart" aria-hidden="true">♡</span>
+    </button>
+    <div class="pet-toolbar"><span class="pet-caption"><i aria-hidden="true"></i>小白</span><button class="pet-hide" type="button" aria-label="收起小白" title="收起">−</button></div>
+    <p id="pet-help" class="pet-help">方向键移动，Shift 加方向键加速；Enter 或空格打招呼；Escape 关闭气泡。</p>
+  </div>
+  <button class="pet-restore" type="button" aria-label="叫回小白" hidden><span aria-hidden="true">♧</span>小白</button>
+</aside>
+
+</body>
+</html>
