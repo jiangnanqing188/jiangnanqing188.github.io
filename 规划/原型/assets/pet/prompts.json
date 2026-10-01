@@ -3,7 +3,7 @@
   "tool": "image_gen.imagegen",
   "model": "not reported by tool",
   "quality": "not reported by tool",
-  "status": "local prototype candidate; awaiting visual review",
+  "status": "approved by user on 2026-10-01; integrated into local Hexo source",
   "generation": "Original Q版 / SD chibi anime catgirl, 2.3 heads tall, enormous round head, tiny torso, short stubby legs, tiny hands and shoes. Silver-white bob, amber eyes and hair clip, white cat ears and one curled fluffy tail, charcoal jacket with amber edging, cream sweater, small skirt and opaque tights, notebook and wave. Square canvas, true alpha, no background, branding or copied whale/blue-hair/maid elements.",
   "generated_source": "call_fze1unHD68JvK3amNSkoKjFF.png",
   "conversion": "640x640, lossless WebP; preserve alpha"

@@ -9,153 +9,106 @@ disableNunjucks: true
 description: 江南的个人介绍、技术栈、成长经历、机器人项目记录与公开联系方式。
 ---
 
-<div class="about-modern" id="jnq-about">
-  <section class="about-modern__hero" aria-labelledby="about-modern-title">
-    <div class="about-modern__intro">
-      <span class="about-modern__eyebrow">HELLO · 很高兴认识你</span>
-      <h2 id="about-modern-title">你好，我是江南</h2>
-      <p class="about-modern__lead">
-        长江大学计算机科学与技术专业大三学生，主要做 ROS 机器人和 AI 应用，也习惯把比赛里的问题、判断和解决过程整理成可以复用的记录。
-      </p>
-      <div class="about-modern__actions">
-        <a class="about-modern__button about-modern__button--primary" href="#about-projects">看看项目</a>
-        <a class="about-modern__button" href="mailto:jiangnanqingwqw@163.com">邮件联系</a>
-      </div>
-      <ul class="about-modern__facts" aria-label="个人关键词">
-        <li><strong>身份</strong><span>长江大学 · 计算机科学与技术</span></li>
-        <li><strong>方向</strong><span>ROS 机器人 · AI 应用</span></li>
-        <li><strong>角色</strong><span>核心开发 · 系统集成 · 项目推进</span></li>
-      </ul>
-    </div>
-    <div class="about-modern__portrait" aria-hidden="true">
-      <div class="about-modern__portrait-glow"></div>
-      <img class="nolazyload" src="/img/avatar.jpg" width="640" height="640" alt="">
-      <span class="about-modern__status">项目开发中</span>
-    </div>
-  </section>
-
-  <div id="about-achievements-root"></div>
-
-  <section class="about-modern__section" aria-labelledby="about-skills-title">
-    <header class="about-modern__section-head">
-      <span>02 · TECH STACK</span>
-      <h2 id="about-skills-title">项目中实际使用的技术</h2>
-      <p>不追求堆满图标，只展示在比赛或工程实践中真正使用过、仍在继续深入的方向。</p>
-    </header>
-    <div class="about-modern__skill-grid">
-      <article class="about-modern__skill">
-        <span>Py</span>
-        <div><h3>Python</h3><p>脚本、算法与自动化</p></div>
-      </article>
-      <article class="about-modern__skill">
-        <span>ROS</span>
-        <div><h3>ROS</h3><p>机器人系统与导航</p></div>
-      </article>
-      <article class="about-modern__skill">
-        <span>Li</span>
-        <div><h3>Linux</h3><p>开发环境与系统工具</p></div>
-      </article>
-      <article class="about-modern__skill">
-        <span>Do</span>
-        <div><h3>Docker</h3><p>环境隔离与快速复现</p></div>
-      </article>
-      <article class="about-modern__skill">
-        <span>CV</span>
-        <div><h3>OpenCV</h3><p>图像处理与视觉应用</p></div>
-      </article>
-      <article class="about-modern__skill">
-        <span>YO</span>
-        <div><h3>YOLO</h3><p>目标检测与模型训练</p></div>
-      </article>
-      <article class="about-modern__skill">
-        <span>Git</span>
-        <div><h3>Git</h3><p>版本管理与协作记录</p></div>
-      </article>
-      <article class="about-modern__skill about-modern__skill--learning">
-        <span>PCB</span>
-        <div><h3>电路与 PCB</h3><p>学习中 · 从基础开始</p></div>
-      </article>
-    </div>
-  </section>
-
-  <section class="about-modern__section" aria-labelledby="about-journey-title">
-    <header class="about-modern__section-head">
-      <span>03 · JOURNEY</span>
-      <h2 id="about-journey-title">我的成长路线</h2>
-      <p>从专业基础到真实项目，一边动手，一边把零散经验连成体系。</p>
-    </header>
-    <ol class="about-modern__timeline">
+<section class="about-hero">
+<div>
+<span class="eyebrow">ABOUT / 很高兴认识你</span>
+<h1>你好，我是江南。</h1>
+<p>长江大学 · 计算机科学与技术 · 大三</p>
+<p class="about-lead">关注机器人系统与 AI 应用。<br>我喜欢把陌生的问题一点点拆开，<br>直到它能在真实世界里跑起来。</p>
+<a class="text-link" href="mailto:jiangnanqingwqw@163.com">jiangnanqingwqw@163.com ↗</a>
+</div>
+<img src="/img/avatar.jpg" alt="江南的头像" width="240" height="240">
+</section>
+<div class="about-layout">
+<aside class="about-index">
+<span class="eyebrow">ON THIS PAGE</span>
+<a href="#practice">在做什么</a>
+<a href="#skills">技术与实践</a>
+<a href="#journey">成长路线</a>
+<a href="#results">团队成绩</a>
+<a href="#contact">保持联系</a>
+</aside>
+<div>
+<section class="detail-section" id="practice">
+<h2>在真实项目里学习</h2>
+<p>从单车调试到双车联调，从视觉训练到比赛系统集成，我主要承担代码编写、系统集成和项目推进，也把现场遇到的问题与判断留在博客里。</p>
+<p>比起只展示最后的结果，我更想写清楚：为什么选这个方案，哪些尝试没有用，以及下一次可以怎样更早发现问题。</p>
+<div class="boundary">
+<h3>我与 AI 的分工</h3>
+<p>AI 负责提高检索和修改效率，我负责定义问题、选择方案、组织实车验证、判断证据并承担最终部署结果。</p>
+</div>
+</section>
+<section class="detail-section" id="skills">
+<h2>技术，落在具体的实践里</h2>
+<div class="skill-row">
+<h3>ROS / Linux</h3>
+<p>导航主流程、多车隔离、环境迁移与现场恢复。</p>
+<a href="/projects/ruikang/">睿抗项目 ↗</a>
+</div>
+<div class="skill-row">
+<h3>Python / OpenCV / YOLO</h3>
+<p>从车载数据采集，到模型训练与视觉任务集成。</p>
+<a href="/projects/yolov5/">农业视觉 ↗</a>
+</div>
+<div class="skill-row">
+<h3>Git / Docker / 工程验证</h3>
+<p>维护可运行基线，组织分层验证并保留回退路径。</p>
+<a href="/projects/pharmacy/">智慧药房 ↗</a>
+</div>
+</section>
+<section class="detail-section" id="journey">
+<h2>我的成长路线</h2>
+<p>从专业基础到真实项目，一边动手，一边把零散经验连成体系。</p>
+<ol class="about-journey">
       <li>
-        <span class="about-modern__step">01</span>
-        <div><small>专业基础</small><h3>计算机科学与技术</h3><p>学习编程、算法和计算机基础，建立解决问题的基本方法。</p></div>
+
+        <div>
+<small>专业基础</small>
+<h3>计算机科学与技术</h3>
+<p>学习编程、算法和计算机基础，建立解决问题的基本方法。</p>
+</div>
       </li>
       <li>
-        <span class="about-modern__step">02</span>
-        <div><small>工程实践</small><h3>机器人比赛</h3><p>从单车调试到双车联调，在赛场压力下练习定位和解决真实问题。</p></div>
+
+        <div>
+<small>工程实践</small>
+<h3>机器人比赛</h3>
+<p>从单车调试到双车联调，在赛场压力下练习定位和解决真实问题。</p>
+</div>
       </li>
       <li>
-        <span class="about-modern__step">03</span>
-        <div><small>能力扩展</small><h3>AI 与计算机视觉</h3><p>接触 OpenCV、YOLO 与 AI 辅助编程，把模型能力接入具体任务。</p></div>
+
+        <div>
+<small>能力扩展</small>
+<h3>AI 与计算机视觉</h3>
+<p>接触 OpenCV、YOLO 与 AI 辅助编程，把模型能力接入具体任务。</p>
+</div>
       </li>
       <li>
-        <span class="about-modern__step">04</span>
-        <div><small>正在继续</small><h3>自主移动机器人</h3><p>继续学习 ROS、仿真、电路与 PCB，让软件、算法和硬件真正协同工作。</p></div>
+
+        <div>
+<small>正在继续</small>
+<h3>自主移动机器人</h3>
+<p>继续学习 ROS、仿真、电路与 PCB，让软件、算法和硬件真正协同工作。</p>
+</div>
       </li>
     </ol>
-  </section>
-
-  <section class="about-modern__section" id="about-projects" aria-labelledby="about-projects-title">
-    <header class="about-modern__section-head">
-      <span>04 · PROJECTS</span>
-      <h2 id="about-projects-title">代表项目与记录</h2>
-      <p>比起只写结果，我更想留下过程、判断和踩坑后的修正。</p>
-    </header>
-    <div class="about-modern__project-grid">
-      <a class="about-modern__project about-modern__project--wide" href="/2026/08/27/睿抗：从初赛到国一/">
-        <img src="/img/covers/ruikang-competition.webp" width="1200" height="675" alt="睿抗智能侦察车比赛场景">
-        <span class="about-modern__project-shade"></span>
-        <span class="about-modern__project-copy">
-          <small>ROS · 系统集成</small>
-          <strong>睿抗智能侦察车</strong>
-          <span>从 Gazebo 到 43 点导航、视觉与射击主流程</span>
-        </span>
-      </a>
-      <a class="about-modern__project" href="/2026/07/23/智慧药房机器人比赛参赛复盘/">
-        <img src="/img/covers/pharmacy-robots.webp" width="1200" height="675" alt="智慧药房双车比赛场景">
-        <span class="about-modern__project-shade"></span>
-        <span class="about-modern__project-copy">
-          <small>ROS · 双车联调</small>
-          <strong>智慧药房双车系统</strong>
-          <span>导航、OCR 与实车工作流</span>
-        </span>
-      </a>
-      <a class="about-modern__project" href="/2026/01/29/YOLOv5模型训练/">
-        <img src="/img/covers/yolov5-vision.webp" width="1200" height="675" alt="YOLOv5 计算机视觉训练">
-        <span class="about-modern__project-shade"></span>
-        <span class="about-modern__project-copy">
-          <small>智慧农业 · YOLOv5</small>
-          <strong>智能车目标检测训练</strong>
-          <span>实车数据、训练与部署</span>
-        </span>
-      </a>
-    </div>
-    <a class="about-modern__project-index" href="/projects/">
-      <span>PROJECT DOSSIER</span>
-      <strong>查看完整项目职责与证据</strong>
-      <small>4 个项目 · 7 篇相关记录 <span aria-hidden="true">→</span></small>
-    </a>
-  </section>
-
-  <section class="about-modern__section about-modern__closing" aria-labelledby="about-more-title">
-    <div class="about-modern__closing-copy">
-      <span>05 · BEYOND CODE</span>
-      <h2 id="about-more-title">技术之外，也认真生活</h2>
-      <p>喜欢古风、民谣和华语流行。这个博客会继续记录学习、比赛以及那些值得复盘的小事。</p>
-    </div>
-    <nav class="about-modern__links" aria-label="更多内容与联系方式">
-      <a href="/archives/"><span>全部文章</span><small>看看完整成长记录 →</small></a>
-      <a href="/music/"><span>最近在听</span><small>打开我的音乐页 →</small></a>
-      <a href="mailto:jiangnanqingwqw@163.com"><span>邮件联系</span><small>jiangnanqingwqw@163.com →</small></a>
-    </nav>
-  </section>
+</section>
+<section class="detail-section" id="results">
+<h2>团队一起取得的成绩</h2>
+<p class="muted">以下均为团队参赛结果，证书已核对。各项目中的个人职责与协作边界见项目档案。</p>
+<div id="notebook-awards">
+</div>
+</section>
+<section class="detail-section" id="life">
+<h2>技术之外，也认真生活</h2>
+<p>喜欢古风、民谣和华语流行。这个博客会继续记录学习、比赛以及那些值得复盘的小事。</p>
+<a class="text-link" href="/music/">最近在听 →</a>
+</section>
+<section class="detail-section" id="contact">
+<h2>保持联系</h2>
+<p>欢迎交流 ROS、计算机视觉与 AI 应用，也对继续深造、重视工程实践的团队和项目合作保持开放。</p>
+<a class="contact-email" href="mailto:jiangnanqingwqw@163.com">jiangnanqingwqw@163.com ↗</a>
+</section>
+</div>
 </div>

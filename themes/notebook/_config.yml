@@ -1,0 +1,10 @@
+# Existing public comment settings, migrated from AnZhiYu.
+giscus:
+  repo: jiangnanqing188/jiangnanqing188.github.io
+  repo_id: R_kgDOPTMnKQ
+  category_id: DIC_kwDOPTMnKc4DEBUV
+  category: Announcements
+  mapping: pathname
+  strict: "1"
+  emit_metadata: "1"
+  lang: zh-CN

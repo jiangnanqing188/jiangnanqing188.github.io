@@ -131,7 +131,7 @@ const renderStructuredData = (page, outputPath, siteData) => {
         },
         knowsAbout: ["ROS", "移动机器人", "计算机视觉", "AI 应用", "机器人系统集成"],
         award: toArray(siteData.achievements).map(
-          achievement => `${achievement.project}：${achievement.result}`
+          achievement => `${achievement.project}：${achievement.result}（团队参赛）`
         ),
         sameAs: ["https://github.com/jiangnanqing188"]
       }
@@ -725,6 +725,8 @@ hexo.extend.filter.register(
       output = output.replace("</head>", `${structuredData}</head>`);
     }
 
+    if (hexo.config.theme === "notebook") return output;
+
     if (outputPath === "index.html") {
       const mainAnchor = '<main id="blog-container">';
       const postsAnchor = '<div class="recent-posts" id="recent-posts">';
@@ -820,3 +822,7 @@ hexo.extend.generator.register("lab-legacy-redirects", () =>
     data: `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${hexo.config.url.replace(/\/$/, "")}${target}"><title>页面已移动</title></head><body><p>页面已移动到 <a href="${target}">${target}</a>。</p></body></html>`
   }))
 );
+
+// The active notebook theme retains the existing verification and resource cards.
+hexo.extend.helper.register("notebook_repro", renderReproCard);
+hexo.extend.helper.register("notebook_resources", renderResourceHub);
