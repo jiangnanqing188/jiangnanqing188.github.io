@@ -6,7 +6,8 @@ if (require.main === module) {
   const vm = require('node:vm');
   const code = fs.readFileSync(path.join(__dirname, '../themes/notebook/source/js/notebook.js'), 'utf8');
   const links = ['方案总览', '第二章：实车验证'].map(id => ({
-    hash: '#' + encodeURIComponent(id), attributes: {},
+    hash: '#' + encodeURIComponent(id), attributes: {}, events: {},
+    addEventListener(type, callback) { this.events[type] = callback; },
     setAttribute(key, value) { this.attributes[key] = value; },
     removeAttribute(key) { delete this.attributes[key]; }
   }));
@@ -33,7 +34,7 @@ if (require.main === module) {
       }
     },
     innerHeight: 720,
-    matchMedia: query => ({matches: query.includes('min-width') && desktop}),
+    matchMedia: query => ({matches: query.includes('min-width') ? desktop : !desktop}),
     addEventListener(type, callback) { events[type] = callback; },
     requestAnimationFrame(callback) { frame = callback; },
     IntersectionObserver: class { constructor(callback) { observer = callback; } observe() {} }
@@ -58,7 +59,13 @@ if (require.main === module) {
   sections[2].top = 180;
   scroll();
   assert.equal(nav.scrollTop, 0, 'Mobile TOC must not be scrolled automatically.');
+  toc.open = true;
+  links[1].events.click();
+  assert.equal(toc.open, false, 'Mobile chapter selection must collapse the sticky TOC.');
   desktop = true;
+  toc.open = true;
+  links[0].events.click();
+  assert.equal(toc.open, true, 'Desktop chapter selection must keep the TOC expanded.');
   toc.open = false;
   scroll();
   assert.equal(nav.scrollTop, 0, 'Collapsed TOC must not be scrolled automatically.');

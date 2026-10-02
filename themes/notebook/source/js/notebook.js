@@ -60,6 +60,9 @@ const toc = document.querySelector('.toc details');
 if (toc && matchMedia('(max-width: 760px)').matches) toc.open = false;
 const tocNav = document.querySelector('.toc nav');
 const links = [...document.querySelectorAll('.toc nav a')];
+links.forEach(link => link.addEventListener('click', () => {
+  if (matchMedia('(max-width: 760px)').matches) toc.open = false;
+}));
 const tocLinks = new Map(links.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
 const sections = [...document.querySelectorAll('.prose h2, .prose h3')].filter(section => tocLinks.has(section.id));
 if (sections.length) {

@@ -39,12 +39,7 @@ hexo.extend.helper.register('notebook_view', function(page) {
   const posts = array(this.site.posts.sort('date', -1)).map(normalize);
   const categories = [...new Set(posts.map(p=>p.category))];
   const featured = posts.find(p=>p.id==='008') || posts[0];
-  const homeRecent = posts.slice(0,4);
-  const homeDesktopRecent = posts.filter(post => post !== featured).slice(0,4);
-  const homeNotes = [...new Set([...homeRecent, ...homeDesktopRecent])].map(post => {
-    const visibility = !homeDesktopRecent.includes(post) ? ' home-featured-repeat' : !homeRecent.includes(post) ? ' home-extra-note' : '';
-    return postCard(post).replace('class="post-card"', `class="post-card${visibility}"`);
-  }).join('');
+  const homeNotes = posts.filter(post => post !== featured).slice(0,4).map(post => postCard(post)).join('');
   const repro = post => this.notebook_repro(post);
   const entryFacts = post => `<div class="entry-facts">${[['日志状态',post.log_status],['运行系统',post.log_system],['关注问题',post.log_focus]].filter(([,value])=>value).map(([label,value])=>`<span><small>${esc(label)}</small>${esc(({completed:'已完成',pending:'待验证',verified:'已复现',archived:'已归档',ongoing:'记录中'})[value] || value)}</span>`).join('')}</div>`;
   const comments = post => {
@@ -69,10 +64,10 @@ function profileCard(base = '') {
 <section class="lab-hero">
   <div class="hero-copy">
     <span class="eyebrow"><i class="status-dot"></i> JIANGNAN / ROBOTICS NOTEBOOK</span>
-    <p class="hero-identity desktop-only">${esc(identity.find(item => item.code === 'EDU')?.value)}</p>
+    <p class="hero-identity">${esc(identity.find(item => item.code === 'EDU')?.value)}</p>
     <h1>${esc(home.title?.[0] || "把机器人调通，")}<br><span>${esc(home.title?.[1] || "也把过程写清楚。")}</span></h1>
     <p>你好，我是江南。${esc(home.lead)}</p>
-    <div class="hero-role desktop-only"><span>项目职责</span><strong>${esc(identity.find(item => item.code === 'ROLE')?.value)}</strong></div>
+    <div class="hero-role"><span>项目职责</span><strong>${esc(identity.find(item => item.code === 'ROLE')?.value)}</strong></div>
     <div class="hero-actions"><a class="button" href="/projects/">探索项目 <span>↗</span></a><a class="secondary-button" href="/archives/">阅读技术记录 →</a></div>
     <div class="hero-topics">${['ROS / 导航','CV / 视觉','AI / 工程'].map(tag).join('')}</div>
   </div>
@@ -80,15 +75,15 @@ function profileCard(base = '') {
     <img src="${asset(representative.cover)}" alt="睿抗智能侦察车项目封面，AI 概念插画" width="1200" height="675">
     <div class="hero-visual-top"><span>${esc(representative.code)}</span><span>睿抗 · 智能侦察车</span></div>
     <div class="hero-visual-bottom">
-      <div class="hero-result desktop-only"><span>代表项目 · 团队成果</span><p>${esc(representative.result).replaceAll('一等奖', '<em>一等奖</em>').replaceAll('94 分', '<em>94 分</em>')}</p><b>查看项目职责与复盘 <span>↗</span></b></div>
+      <div class="hero-result"><span>代表项目 · 团队成果</span><p>${esc(representative.result).replaceAll('一等奖', '<em>一等奖</em>').replaceAll('94 分', '<em>94 分</em>')}</p><b>查看项目职责与复盘 <span>↗</span></b></div>
       <small>从系统迁移到正式赛场 · AI 概念封面</small>
       <strong class="hero-motto">做选择，也留下依据。 <span>↗</span></strong>
       <div class="hero-route"><span>定义问题</span><span>选择方案</span><span>实车验证</span></div>
     </div>
   </a>
 </section>
-<div class="home-layout"><div><div class="section-title"><div><span class="eyebrow">FEATURED NOTE</span><h2>值得展开的一次复盘</h2></div><span class="section-index">01</span></div><article class="feature-note"><div class="feature-number desktop-only" aria-hidden="true"><span>FIELD NOTE</span><strong>${esc(featured.id)}</strong><span>一次工程取舍</span></div><a class="cover" href="${postUrl(featured)}"><img src="${asset(featured.cover)}" width="1200" height="675" alt="睿抗智能侦察车文章封面"><span class="image-tag">比赛复盘</span></a><div class="feature-copy"><div class="feature-meta"><span class="category">实车证据与最终取舍</span><time>${featured.date.replaceAll('-','.')}</time></div><h2><a href="${postUrl(featured)}">${esc(featured.title)}</a></h2><p>${esc(featured.description)}</p><a class="text-link" href="${postUrl(featured)}">进入完整复盘 <span>↗</span></a></div></article><section class="home-latest"><div class="section-title"><div><span class="eyebrow">LATEST NOTES</span><h2>最近写下的事</h2></div><a class="text-link" href="/archives/">全部文章 ↗</a></div><div class="post-grid">${homeNotes}</div></section></div>
-<aside class="home-aside">${profileCard()}<section class="sidebar-card"><div class="aside-heading"><span class="eyebrow">PROJECT FILES</span><h2>项目档案</h2></div>${projects.slice(0,3).map((p,i)=>`<a class="mini-project" href="${projectUrl(p)}"><img src="${asset(p.cover)}" width="56" height="56" alt=""><div><h3>${esc(p.title)}</h3><small>${esc(p.role)}</small></div><span>↗</span></a>`).join('')}<a class="text-link all-projects" href="/projects/">查看全部项目 →</a></section><section class="sidebar-card reading-path"><span class="eyebrow">READING ROUTE</span><h2>从哪里开始读？</h2><a href="${postUrl(posts.find(post=>post.id==='010'))}"><span>01</span><div><strong>一段成长经历</strong><small>从初赛到国一</small></div></a><a href="${postUrl(posts.find(post=>post.id==='008'))}"><span>02</span><div><strong>一次工程取舍</strong><small>94 分复盘</small></div></a><a href="${postUrl(posts.find(post=>post.id==='009'))}"><span>03</span><div><strong>深入视觉模块</strong><small>四套视觉方案</small></div></a></section></aside></div>`);
+<div class="home-layout"><div class="home-main"><section class="home-featured"><div class="section-title"><div><span class="eyebrow">FEATURED NOTE</span><h2>值得展开的一次复盘</h2></div><span class="section-index">01</span></div><article class="feature-note"><div class="feature-number desktop-only" aria-hidden="true"><span>FIELD NOTE</span><strong>${esc(featured.id)}</strong><span>一次工程取舍</span></div><a class="cover" href="${postUrl(featured)}"><img src="${asset(featured.cover)}" width="1200" height="675" alt="睿抗智能侦察车文章封面"><span class="image-tag">比赛复盘</span></a><div class="feature-copy"><div class="feature-meta"><span class="category">实车证据与最终取舍</span><time>${featured.date.replaceAll('-','.')}</time></div><h2><a href="${postUrl(featured)}">${esc(featured.title)}</a></h2><p>${esc(featured.description)}</p><a class="text-link" href="${postUrl(featured)}">进入完整复盘 <span>↗</span></a></div></article></section><section class="home-latest"><div class="section-title"><div><span class="eyebrow">LATEST NOTES</span><h2>最近写下的事</h2></div><a class="text-link" href="/archives/">全部文章 ↗</a></div><div class="post-grid">${homeNotes}</div></section></div>
+<aside class="home-aside">${profileCard()}<section class="sidebar-card home-projects"><div class="aside-heading"><span class="eyebrow">PROJECT FILES</span><h2>项目档案</h2></div>${projects.slice(0,3).map((p,i)=>`<a class="mini-project" href="${projectUrl(p)}"><img src="${asset(p.cover)}" width="56" height="56" alt=""><div><h3>${esc(p.title)}</h3><small>${esc(p.role)}</small></div><span>↗</span></a>`).join('')}<a class="text-link all-projects" href="/projects/">查看全部项目 →</a></section><section class="sidebar-card reading-path home-reading"><span class="eyebrow">READING ROUTE</span><h2>从哪里开始读？</h2><a href="${postUrl(posts.find(post=>post.id==='010'))}"><span>01</span><div><strong>一段成长经历</strong><small>从初赛到国一</small></div></a><a href="${postUrl(posts.find(post=>post.id==='008'))}"><span>02</span><div><strong>一次工程取舍</strong><small>94 分复盘</small></div></a><a href="${postUrl(posts.find(post=>post.id==='009'))}"><span>03</span><div><strong>深入视觉模块</strong><small>四套视觉方案</small></div></a></section></aside></div>`);
   const renderProjects = () => shell('项目档案','项目',`${heading('PROJECTS / 项目档案','从一段代码，到一套系统。','一些比赛，一些真实问题。这里说明我做了什么、与谁协作，以及最后留下了什么。')}<div class="project-index">${projects.map((p,i)=>`<article class="project-list-item" id="project-${esc(p.id)}"><a class="project-cover" href="${projectUrl(p)}"><img src="${asset(p.cover)}" alt="${esc(p.title)}${concept(p.cover) ? "封面，AI 概念插画" : "封面"}" width="1200" height="675" ${i?'loading="lazy"':''}></a><div class="project-list-copy"><div class="item-meta"><span class="eyebrow">0${i+1} / ${esc(p.period)}</span>${tag(p.team.split(' · ')[0])}</div><h2><a href="${projectUrl(p)}">${esc(p.title)} ↗</a></h2><p>${esc(p.summary)}</p><div class="role-line"><span>我的职责</span>${esc(p.role)}</div><div class="tags">${p.stack.map(tag).join('')}</div><a class="text-link" href="${projectUrl(p)}">查看项目档案 →</a></div></article>`).join('')}</div>`);
   const renderProject = p => {
     const related = posts.filter(post => post.project_id === p.id);
@@ -97,7 +92,7 @@ function profileCard(base = '') {
 <div class="project-intro">
   ${heading(p.code,p.title,p.summary)}
   <div class="project-detail-cover"><img src="${asset(p.cover,'../')}" alt="${esc(p.title)}${concept(p.cover) ? "封面，AI 概念插画" : "封面"}" width="1200" height="675"></div>
-  <section class="project-brief desktop-only" aria-label="项目概要">
+  <section class="project-brief" aria-label="项目概要">
     <dl class="project-brief-facts"><div><dt>项目周期</dt><dd>${esc(p.period)}</dd></div><div><dt>团队</dt><dd>${esc(p.team)}</dd></div><div class="brief-role"><dt>本人角色</dt><dd>${esc(p.role)}</dd></div></dl>
     <div class="project-brief-result"><span class="eyebrow">团队成果与项目进展</span><p>${esc(p.result).replace(/一等奖|三等奖|94 分/g, value => `<em>${value}</em>`)}</p></div>
     <nav class="project-brief-links" aria-label="项目阅读入口"><a href="#responsibility">本人职责 ↓</a><a href="#outcome">结果与证据 ↓</a><a href="#project-notes">相关记录 ↓</a></nav>
@@ -129,7 +124,7 @@ ${concept(p.cover) ? '<p class="cover-credit">封面为 AI 概念插画，比赛
     html=html.replace(/<table\b([^>]*)>([\s\S]*?)<\/table>/g, (_, attrs, body) => {
       const firstRow = body.match(/<tr\b[^>]*>([\s\S]*?)<\/tr>/)?.[1] || '';
       const wide = (firstRow.match(/<(?:th|td)\b/g) || []).length >= 5;
-      return `<div class="table-scroll${wide ? ' table-wide' : ''}" tabindex="0" role="region" aria-label="可横向滚动的表格">${wide ? '<span class="table-scroll-hint desktop-only">↔ 横向滚动查看完整表格</span>' : ''}<table${attrs}>${body}</table></div>`;
+      return `<div class="table-scroll${wide ? ' table-wide' : ''}" tabindex="0" role="region" aria-label="可横向滚动的表格">${wide ? '<span class="table-scroll-hint">↔ 横向滚动查看完整表格</span>' : ''}<table${attrs}>${body}</table></div>`;
     });
     html=html.replace(/NOTEBOOK_FIGURE_(\d+)_END/g,(_,index)=>figures[index]);
     const project=projects.find(x=>x.id===p.project_id);
