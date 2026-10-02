@@ -85,7 +85,7 @@
   if (Number.isFinite(saved.x) && Number.isFinite(saved.y)) position(saved.x, saved.y);
   const animate = pose => {
     clearTimeout(poseTimer);
-    pet.classList.remove('is-petted', 'is-jumping');
+    pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
     void pet.offsetWidth;
     pet.classList.add(pose);
     poseTimer = setTimeout(() => pet.classList.remove(pose), 1100);
@@ -133,7 +133,7 @@
     if (action === 'nap') {
       clearTimeout(idleTimer);
       clearTimeout(poseTimer);
-      pet.classList.remove('is-petted', 'is-jumping');
+      pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
       pet.classList.add('is-sleeping');
     }
     if (action === 'top') {
@@ -157,23 +157,40 @@
     if (event.button !== 0 || !event.isPrimary) return;
     wake();
     closeMenu();
-    const box = pet.getBoundingClientRect();
-    drag = {id: event.pointerId, x: event.clientX, y: event.clientY, left: box.x, top: box.y, moved: false};
+    drag = {id: event.pointerId, x: event.clientX, y: event.clientY, previousX: event.clientX, moved: false};
     avatar.setPointerCapture(event.pointerId);
   });
   avatar.addEventListener('pointermove', event => {
     if (!drag || drag.id !== event.pointerId) return;
     const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
     if (!drag.moved && Math.hypot(dx, dy) < 6) return;
-    drag.moved = true;
-    pet.classList.add('is-dragging');
-    position(drag.left + dx, drag.top + dy);
+    if (!drag.moved) {
+      clearTimeout(poseTimer);
+      pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
+      bubble.hidden = true;
+      drag.moved = true;
+      pet.classList.add('is-dragging');
+    }
+    const angle = quiet || reducedMotion.matches ? 0 : Math.max(-8, Math.min(8, (event.clientX - drag.previousX) * -.35));
+    pet.style.setProperty('--pet-lift-angle', `${angle}deg`);
+    drag.previousX = event.clientX;
+    const width = avatar.offsetWidth;
+    // Keep the raised jacket collar under the pointer while the body hangs below.
+    position(event.clientX - width * .61, event.clientY - width * .43);
   });
   const endDrag = event => {
     if (!drag || drag.id !== event.pointerId) return;
-    if (drag.moved) { lastDrag = performance.now(); save(); }
+    const moved = drag.moved;
     drag = null;
     pet.classList.remove('is-dragging');
+    pet.style.removeProperty('--pet-lift-angle');
+    if (moved) {
+      lastDrag = performance.now();
+      lastTap = -Infinity;
+      save();
+      animate('is-landing');
+      wake();
+    }
   };
   avatar.addEventListener('pointerup', endDrag);
   avatar.addEventListener('pointercancel', endDrag);
