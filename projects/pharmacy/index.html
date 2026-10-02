@@ -20,20 +20,51 @@
     <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" aria-current="page">项目</a><a href="/archives/" >文章</a><a href="/about/" >关于</a></nav>
     <a class="search-link" href="/archives/#search" aria-label="搜索文章"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></a>
   </div></header>
-  <main id="main" class="container" tabindex="-1" data-page="项目"><a class="breadcrumb" href="/projects/">← 项目档案</a><header class="page-heading"><span class="eyebrow">PROJECT 03</span><h1>智慧药房双车系统</h1><p>将导航、OCR、双车隔离、视觉联调和现场恢复串成一条可重复检查的机器人比赛工作流。</p></header><div class="project-detail-cover"><img src="/img/covers/notebook/pharmacy-robots.webp" alt="智慧药房双车系统封面，AI 概念插画" width="1200" height="675"></div><p class="cover-credit">封面为 AI 概念插画，比赛证据见下方记录。</p><div class="detail-layout"><div><section class="detail-section"><span class="eyebrow">01 / PROBLEM</span><h2>要解决的问题</h2><p>两台车共用地图与 ROS Master，需要同时控制话题隔离、识别时序、导航稳定性和现场版本一致性。</p></section><section class="detail-section"><span class="eyebrow">02 / RESPONSIBILITY</span><h2>我负责的部分</h2><ul><li>初赛负责网络环境与实车测试，与另一支队伍的一名同学协作</li><li>国赛独立负责代码编写与维护、网络配置和全部测试</li><li>维护双车运行主流程，接入导航、OCR 与任务等待逻辑</li><li>排查命名空间、视频流和识别话题串车，推进真实视觉联调</li><li>建立 Git 基线、分层验证、跑圈记录与可回退的现场流程</li></ul><div class="boundary"><h3>协作边界</h3><p>初赛阶段与另一支队伍的一名同学合作，对方负责代码，本人负责网络和测试；国赛阶段的代码、网络和测试均由本人独立完成。</p></div></section><section class="detail-section"><span class="eyebrow">03 / OUTCOME</span><h2>结果与证据</h2><p>第二十八届中国机器人及人工智能大赛全国总决赛智慧药房三等奖；从单车基线推进到双车真实视觉联调</p><p class="muted">2 篇项目记录；语法、契约、单车、双车和真实视觉证据分层标注；1 个公开工作流仓库</p></section><section class="detail-section"><span class="eyebrow">04 / NOTES</span><h2>项目里的记录</h2><article class="note-row" ><div class="note-date"><time datetime="2026-07-30">2026.07.30</time><span>LOG 007</span></div><div><span class="category">工程复盘</span><h3><a href="/2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/">国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流</a></h3><p>国赛结束后，我重新审视智慧药房双车系统。比继续提高最高速度更重要的，是消灭静默失败，把规则、环境、代码、实车验证和工程记录连成一套可重复、可观测、可验收的工作流。</p></div><a class="row-arrow" href="/2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/" aria-label="阅读国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流">↗</a></article><article class="note-row" ><div class="note-date"><time datetime="2026-07-23">2026.07.23</time><span>LOG 005</span></div><div><span class="category">比赛复盘</span><h3><a href="/2026/07/23/智慧药房机器人比赛参赛复盘/">从单车调试到双车联调，智慧药房机器人比赛复盘</a></h3><p>第二十八届中国机器人及人工智能大赛智慧药房赛项参赛复盘，按时间记录单车调试、OCR、导航、双车隔离和赛前联调中的问题、解决办法与经验。</p></div><a class="row-arrow" href="/2026/07/23/智慧药房机器人比赛参赛复盘/" aria-label="阅读从单车调试到双车联调，智慧药房机器人比赛复盘">↗</a></article></section></div><aside class="project-facts"><span class="eyebrow">PROJECT FILE</span><dl><dt>项目周期</dt><dd>2026.07</dd><dt>团队</dt><dd>3 人团队 · 长江大学「星辰大海」队</dd><dt>本人角色</dt><dd>国赛代码、网络与测试主责</dd><dt>技术栈</dt><dd>ROS Melodic · TEB · OCR · 多车协同</dd></dl><h3>系统路线</h3><ol class="route"><li>双车网络隔离</li><li>导航主流程</li><li>OCR 识别</li><li>现场恢复</li></ol></aside></div>
+  <main id="main" class="container" tabindex="-1" data-page="项目">
+<a class="breadcrumb" href="/projects/">← 项目档案</a>
+<div class="project-intro">
+  <header class="page-heading"><span class="eyebrow">PROJECT 03</span><h1>智慧药房双车系统</h1><p>将导航、OCR、双车隔离、视觉联调和现场恢复串成一条可重复检查的机器人比赛工作流。</p></header>
+  <div class="project-detail-cover"><img src="/img/covers/notebook/pharmacy-robots.webp" alt="智慧药房双车系统封面，AI 概念插画" width="1200" height="675"></div>
+  <section class="project-brief" aria-label="项目概要">
+    <dl class="project-brief-facts"><div><dt>项目周期</dt><dd>2026.07</dd></div><div><dt>团队</dt><dd>3 人团队 · 长江大学「星辰大海」队</dd></div><div class="brief-role"><dt>本人角色</dt><dd>国赛代码、网络与测试主责</dd></div></dl>
+    <div class="project-brief-result"><span class="eyebrow">团队成果与项目进展</span><p>第二十八届中国机器人及人工智能大赛全国总决赛智慧药房<em>三等奖</em>；从单车基线推进到双车真实视觉联调</p></div>
+    <nav class="project-brief-links" aria-label="项目阅读入口"><a href="#responsibility">本人职责 ↓</a><a href="#outcome">结果与证据 ↓</a><a href="#project-notes">相关记录 ↓</a></nav>
+  </section>
+</div>
+<p class="cover-credit">封面为 AI 概念插画，比赛证据见下方记录。</p>
+<div class="detail-layout"><div>
+  <section class="detail-section"><span class="eyebrow">01 / PROBLEM</span><h2>要解决的问题</h2><p>两台车共用地图与 ROS Master，需要同时控制话题隔离、识别时序、导航稳定性和现场版本一致性。</p></section>
+  <section class="detail-section" id="responsibility"><span class="eyebrow">02 / RESPONSIBILITY</span><h2>我负责的部分</h2><ul><li>初赛负责网络环境与实车测试，与另一支队伍的一名同学协作</li><li>国赛独立负责代码编写与维护、网络配置和全部测试</li><li>维护双车运行主流程，接入导航、OCR 与任务等待逻辑</li><li>排查命名空间、视频流和识别话题串车，推进真实视觉联调</li><li>建立 Git 基线、分层验证、跑圈记录与可回退的现场流程</li></ul><div class="boundary"><h3>协作边界</h3><p>初赛阶段与另一支队伍的一名同学合作，对方负责代码，本人负责网络和测试；国赛阶段的代码、网络和测试均由本人独立完成。</p></div></section>
+  <section class="detail-section" id="outcome"><span class="eyebrow">03 / OUTCOME</span><h2>结果与证据</h2><p>第二十八届中国机器人及人工智能大赛全国总决赛智慧药房三等奖；从单车基线推进到双车真实视觉联调</p><p class="muted">2 篇项目记录；语法、契约、单车、双车和真实视觉证据分层标注；1 个公开工作流仓库</p></section>
+  <section class="detail-section" id="project-notes"><span class="eyebrow">04 / NOTES</span><h2>项目里的记录</h2><article class="note-row" ><div class="note-date"><time datetime="2026-07-30">2026.07.30</time><span>LOG 007</span></div><div><span class="category">工程复盘</span><h3><a href="/2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/">国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流</a></h3><p>国赛结束后，我重新审视智慧药房双车系统。比继续提高最高速度更重要的，是消灭静默失败，把规则、环境、代码、实车验证和工程记录连成一套可重复、可观测、可验收的工作流。</p></div><a class="row-arrow" href="/2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/" aria-label="阅读国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流">↗</a></article><article class="note-row" ><div class="note-date"><time datetime="2026-07-23">2026.07.23</time><span>LOG 005</span></div><div><span class="category">比赛复盘</span><h3><a href="/2026/07/23/智慧药房机器人比赛参赛复盘/">从单车调试到双车联调，智慧药房机器人比赛复盘</a></h3><p>第二十八届中国机器人及人工智能大赛智慧药房赛项参赛复盘，按时间记录单车调试、OCR、导航、双车隔离和赛前联调中的问题、解决办法与经验。</p></div><a class="row-arrow" href="/2026/07/23/智慧药房机器人比赛参赛复盘/" aria-label="阅读从单车调试到双车联调，智慧药房机器人比赛复盘">↗</a></article></section>
+</div><aside class="project-facts"><span class="eyebrow">PROJECT FILE</span><dl><dt>项目周期</dt><dd>2026.07</dd><dt>团队</dt><dd>3 人团队 · 长江大学「星辰大海」队</dd><dt>本人角色</dt><dd>国赛代码、网络与测试主责</dd><dt>技术栈</dt><dd>ROS Melodic · TEB · OCR · 多车协同</dd></dl><h3>系统路线</h3><ol class="route"><li>双车网络隔离</li><li>导航主流程</li><li>OCR 识别</li><li>现场恢复</li></ol></aside></div>
 </main>
   <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
-  <aside id="blog-pet" class="blog-pet" aria-label="博客小伙伴：小白">
+  <aside id="blog-pet" class="blog-pet" aria-label="博客小伙伴：小江">
   <div class="pet-stage">
     <p id="pet-message" class="pet-bubble" role="status" hidden></p>
-    <button class="pet-avatar" type="button" aria-label="和小白打招呼；可拖动或用方向键移动" aria-describedby="pet-help">
-      <img class="pet-art" src="/img/pet/catgirl.webp" width="640" height="640" alt="银白头发、琥珀眼睛的Q版猫娘小白，穿深灰外套，抱着笔记本挥手" draggable="false">
+    <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">
+      <img class="pet-art" src="/img/pet/catgirl.webp" width="640" height="640" alt="银白头发、琥珀眼睛的Q版猫娘小江，穿深灰外套，抱着笔记本挥手" draggable="false">
+      <img class="pet-lift-art" src="/img/pet/catgirl-lift.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
+      <img class="pet-nap-art pet-drowsy-art" src="/img/pet/catgirl-drowsy.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
+      <img class="pet-nap-art pet-sit-art" src="/img/pet/catgirl-sit.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
+      <img class="pet-nap-art pet-sleep-art" src="/img/pet/catgirl-sleep.webp" width="640" height="640" alt="小江蜷腿坐下，闭眼低头抱着笔记本打盹" draggable="false">
       <span class="pet-heart" aria-hidden="true">♡</span>
+      <span class="pet-sleep" aria-hidden="true">z Z z</span>
     </button>
-    <div class="pet-toolbar"><span class="pet-caption"><i aria-hidden="true"></i>小白</span><button class="pet-hide" type="button" aria-label="收起小白" title="收起">−</button></div>
-    <p id="pet-help" class="pet-help">方向键移动，Shift 加方向键加速；Enter 或空格打招呼；Escape 关闭气泡。</p>
+    <div class="pet-toolbar"><span class="pet-caption"><i aria-hidden="true"></i>小江</span><button class="pet-menu-toggle" type="button" aria-label="小江的小菜单" aria-controls="pet-menu" aria-expanded="false" title="小菜单">⋯</button><button class="pet-hide" type="button" aria-label="收起小江" title="收起">−</button></div>
+    <div id="pet-menu" class="pet-menu" role="group" aria-label="小江的小菜单" hidden>
+      <span class="pet-menu-heading">小江陪你读</span>
+      <button type="button" data-pet-action="jump">✦ 蹦一下</button>
+      <button type="button" data-pet-action="nap">☾ 打个盹</button>
+      <button type="button" data-pet-action="reset">↘ 回到右下角</button>
+      <button type="button" data-pet-action="top">↑ 回到顶部</button>
+      <a href="/archives/#search">⌕ 找文章</a>
+      <button type="button" data-pet-action="quiet" aria-pressed="false">安静陪伴</button>
+    </div>
+    <p id="pet-help" class="pet-help">点击打招呼，双击蹦跳；拖动时拎起衣领，松手落地；菜单可让她坐下打盹，点击唤醒；方向键移动，Shift 加方向键加速；Enter 或空格打招呼；Escape 关闭气泡和小菜单。</p>
   </div>
-  <button class="pet-restore" type="button" aria-label="叫回小白" hidden><span aria-hidden="true">♧</span>小白</button>
+  <button class="pet-restore" type="button" aria-label="叫回小江" hidden><span aria-hidden="true">♧</span>小江</button>
 </aside>
 
 </body>

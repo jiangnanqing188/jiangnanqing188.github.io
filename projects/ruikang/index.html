@@ -20,20 +20,51 @@
     <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" aria-current="page">项目</a><a href="/archives/" >文章</a><a href="/about/" >关于</a></nav>
     <a class="search-link" href="/archives/#search" aria-label="搜索文章"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></a>
   </div></header>
-  <main id="main" class="container" tabindex="-1" data-page="项目"><a class="breadcrumb" href="/projects/">← 项目档案</a><header class="page-heading"><span class="eyebrow">PROJECT 04</span><h1>睿抗智能侦察车</h1><p>从定位、航点与视觉候选一路调到正式赛场，保留失败方案、回退判断和最后采用的纯点位路线。</p></header><div class="project-detail-cover"><img src="/img/covers/notebook/ruikang-competition.webp" alt="睿抗智能侦察车封面，AI 概念插画" width="1200" height="675"></div><p class="cover-credit">封面为 AI 概念插画，比赛证据见下方记录。</p><div class="detail-layout"><div><section class="detail-section"><span class="eyebrow">01 / PROBLEM</span><h2>要解决的问题</h2><p>在时间紧、设备与环境持续变化的条件下，把导航、视觉、地雷和射击接成可回退的比赛主流程。</p></section><section class="detail-section"><span class="eyebrow">02 / RESPONSIBILITY</span><h2>我负责的部分</h2><ul><li>独立完成更换系统后的比赛代码、43 点导航与 ROS Noetic 迁移适配</li><li>人员、锥筒、地雷和射击任务的主流程集成</li><li>版本基线、实车证据判断、候选取舍与决赛回退</li></ul><div class="boundary"><h3>协作边界</h3><p>更换系统后的比赛代码与系统适配由本人独立完成；队友主要负责焊接；工程师调整了 IMU 配置并协助确认现场硬件问题。</p></div></section><section class="detail-section"><span class="eyebrow">03 / OUTCOME</span><h2>结果与证据</h2><p>2026 睿抗机器人开发者大赛（RAICOM）全国总决赛全域安防竞赛项目一等奖；正式比赛 94 分，纯点位版本完成全程</p><p class="muted">3 篇项目记录；正式比赛完成全程；视觉候选的验证边界已单独说明</p></section><section class="detail-section"><span class="eyebrow">04 / NOTES</span><h2>项目里的记录</h2><article class="note-row" ><div class="note-date"><time datetime="2026-08-27">2026.08.27</time><span>LOG 010</span></div><div><span class="category">成长记录</span><h3><a href="/2026/08/27/睿抗：从初赛到国一/">睿抗：从初赛到国一</a></h3><p>从十天速成Gazebo，到独立排查导航、迁移Noetic并集成视觉任务，再到94分与全国总决赛一等奖，记录一路的技术进步与个人成长。</p></div><a class="row-arrow" href="/2026/08/27/睿抗：从初赛到国一/" aria-label="阅读睿抗：从初赛到国一">↗</a></article><article class="note-row" ><div class="note-date"><time datetime="2026-08-25">2026.08.25</time><span>LOG 009</span></div><div><span class="category">工程实践</span><h3><a href="/2026/08/25/睿抗赛四套视觉方案/">睿抗赛里，我给机器人做了四套视觉方案</a></h3><p>从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。</p></div><a class="row-arrow" href="/2026/08/25/睿抗赛四套视觉方案/" aria-label="阅读睿抗赛里，我给机器人做了四套视觉方案">↗</a></article><article class="note-row" ><div class="note-date"><time datetime="2026-08-21">2026.08.21</time><span>LOG 008</span></div><div><span class="category">比赛复盘</span><h3><a href="/2026/08/21/睿抗赛94分复盘/">睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助</a></h3><p>对比睿抗智能侦察车从硬编码交接、点9恢复、两代黄线方案到Noetic 43点路线和纯点位决赛版本的实车证据与最终取舍。</p></div><a class="row-arrow" href="/2026/08/21/睿抗赛94分复盘/" aria-label="阅读睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助">↗</a></article></section></div><aside class="project-facts"><span class="eyebrow">PROJECT FILE</span><dl><dt>项目周期</dt><dd>2026.06—2026.08</dd><dt>团队</dt><dd>3 人团队</dd><dt>本人角色</dt><dd>代码主责 · 系统集成</dd><dt>技术栈</dt><dd>ROS Noetic · DWA · YOLO · 实车导航</dd></dl><h3>系统路线</h3><ol class="route"><li>系统迁移</li><li>导航主流程</li><li>视觉与射击</li><li>实车取舍与回退</li></ol></aside></div>
+  <main id="main" class="container" tabindex="-1" data-page="项目">
+<a class="breadcrumb" href="/projects/">← 项目档案</a>
+<div class="project-intro">
+  <header class="page-heading"><span class="eyebrow">PROJECT 04</span><h1>睿抗智能侦察车</h1><p>从定位、航点与视觉候选一路调到正式赛场，保留失败方案、回退判断和最后采用的纯点位路线。</p></header>
+  <div class="project-detail-cover"><img src="/img/covers/notebook/ruikang-competition.webp" alt="睿抗智能侦察车封面，AI 概念插画" width="1200" height="675"></div>
+  <section class="project-brief" aria-label="项目概要">
+    <dl class="project-brief-facts"><div><dt>项目周期</dt><dd>2026.06—2026.08</dd></div><div><dt>团队</dt><dd>3 人团队</dd></div><div class="brief-role"><dt>本人角色</dt><dd>代码主责 · 系统集成</dd></div></dl>
+    <div class="project-brief-result"><span class="eyebrow">团队成果与项目进展</span><p>2026 睿抗机器人开发者大赛（RAICOM）全国总决赛全域安防竞赛项目<em>一等奖</em>；正式比赛 <em>94 分</em>，纯点位版本完成全程</p></div>
+    <nav class="project-brief-links" aria-label="项目阅读入口"><a href="#responsibility">本人职责 ↓</a><a href="#outcome">结果与证据 ↓</a><a href="#project-notes">相关记录 ↓</a></nav>
+  </section>
+</div>
+<p class="cover-credit">封面为 AI 概念插画，比赛证据见下方记录。</p>
+<div class="detail-layout"><div>
+  <section class="detail-section"><span class="eyebrow">01 / PROBLEM</span><h2>要解决的问题</h2><p>在时间紧、设备与环境持续变化的条件下，把导航、视觉、地雷和射击接成可回退的比赛主流程。</p></section>
+  <section class="detail-section" id="responsibility"><span class="eyebrow">02 / RESPONSIBILITY</span><h2>我负责的部分</h2><ul><li>独立完成更换系统后的比赛代码、43 点导航与 ROS Noetic 迁移适配</li><li>人员、锥筒、地雷和射击任务的主流程集成</li><li>版本基线、实车证据判断、候选取舍与决赛回退</li></ul><div class="boundary"><h3>协作边界</h3><p>更换系统后的比赛代码与系统适配由本人独立完成；队友主要负责焊接；工程师调整了 IMU 配置并协助确认现场硬件问题。</p></div></section>
+  <section class="detail-section" id="outcome"><span class="eyebrow">03 / OUTCOME</span><h2>结果与证据</h2><p>2026 睿抗机器人开发者大赛（RAICOM）全国总决赛全域安防竞赛项目一等奖；正式比赛 94 分，纯点位版本完成全程</p><p class="muted">3 篇项目记录；正式比赛完成全程；视觉候选的验证边界已单独说明</p></section>
+  <section class="detail-section" id="project-notes"><span class="eyebrow">04 / NOTES</span><h2>项目里的记录</h2><article class="note-row" ><div class="note-date"><time datetime="2026-08-27">2026.08.27</time><span>LOG 010</span></div><div><span class="category">成长记录</span><h3><a href="/2026/08/27/睿抗：从初赛到国一/">睿抗：从初赛到国一</a></h3><p>从十天速成Gazebo，到独立排查导航、迁移Noetic并集成视觉任务，再到94分与全国总决赛一等奖，记录一路的技术进步与个人成长。</p></div><a class="row-arrow" href="/2026/08/27/睿抗：从初赛到国一/" aria-label="阅读睿抗：从初赛到国一">↗</a></article><article class="note-row" ><div class="note-date"><time datetime="2026-08-25">2026.08.25</time><span>LOG 009</span></div><div><span class="category">工程实践</span><h3><a href="/2026/08/25/睿抗赛四套视觉方案/">睿抗赛里，我给机器人做了四套视觉方案</a></h3><p>从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。</p></div><a class="row-arrow" href="/2026/08/25/睿抗赛四套视觉方案/" aria-label="阅读睿抗赛里，我给机器人做了四套视觉方案">↗</a></article><article class="note-row" ><div class="note-date"><time datetime="2026-08-21">2026.08.21</time><span>LOG 008</span></div><div><span class="category">比赛复盘</span><h3><a href="/2026/08/21/睿抗赛94分复盘/">睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助</a></h3><p>对比睿抗智能侦察车从硬编码交接、点9恢复、两代黄线方案到Noetic 43点路线和纯点位决赛版本的实车证据与最终取舍。</p></div><a class="row-arrow" href="/2026/08/21/睿抗赛94分复盘/" aria-label="阅读睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助">↗</a></article></section>
+</div><aside class="project-facts"><span class="eyebrow">PROJECT FILE</span><dl><dt>项目周期</dt><dd>2026.06—2026.08</dd><dt>团队</dt><dd>3 人团队</dd><dt>本人角色</dt><dd>代码主责 · 系统集成</dd><dt>技术栈</dt><dd>ROS Noetic · DWA · YOLO · 实车导航</dd></dl><h3>系统路线</h3><ol class="route"><li>系统迁移</li><li>导航主流程</li><li>视觉与射击</li><li>实车取舍与回退</li></ol></aside></div>
 </main>
   <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
-  <aside id="blog-pet" class="blog-pet" aria-label="博客小伙伴：小白">
+  <aside id="blog-pet" class="blog-pet" aria-label="博客小伙伴：小江">
   <div class="pet-stage">
     <p id="pet-message" class="pet-bubble" role="status" hidden></p>
-    <button class="pet-avatar" type="button" aria-label="和小白打招呼；可拖动或用方向键移动" aria-describedby="pet-help">
-      <img class="pet-art" src="/img/pet/catgirl.webp" width="640" height="640" alt="银白头发、琥珀眼睛的Q版猫娘小白，穿深灰外套，抱着笔记本挥手" draggable="false">
+    <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">
+      <img class="pet-art" src="/img/pet/catgirl.webp" width="640" height="640" alt="银白头发、琥珀眼睛的Q版猫娘小江，穿深灰外套，抱着笔记本挥手" draggable="false">
+      <img class="pet-lift-art" src="/img/pet/catgirl-lift.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
+      <img class="pet-nap-art pet-drowsy-art" src="/img/pet/catgirl-drowsy.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
+      <img class="pet-nap-art pet-sit-art" src="/img/pet/catgirl-sit.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
+      <img class="pet-nap-art pet-sleep-art" src="/img/pet/catgirl-sleep.webp" width="640" height="640" alt="小江蜷腿坐下，闭眼低头抱着笔记本打盹" draggable="false">
       <span class="pet-heart" aria-hidden="true">♡</span>
+      <span class="pet-sleep" aria-hidden="true">z Z z</span>
     </button>
-    <div class="pet-toolbar"><span class="pet-caption"><i aria-hidden="true"></i>小白</span><button class="pet-hide" type="button" aria-label="收起小白" title="收起">−</button></div>
-    <p id="pet-help" class="pet-help">方向键移动，Shift 加方向键加速；Enter 或空格打招呼；Escape 关闭气泡。</p>
+    <div class="pet-toolbar"><span class="pet-caption"><i aria-hidden="true"></i>小江</span><button class="pet-menu-toggle" type="button" aria-label="小江的小菜单" aria-controls="pet-menu" aria-expanded="false" title="小菜单">⋯</button><button class="pet-hide" type="button" aria-label="收起小江" title="收起">−</button></div>
+    <div id="pet-menu" class="pet-menu" role="group" aria-label="小江的小菜单" hidden>
+      <span class="pet-menu-heading">小江陪你读</span>
+      <button type="button" data-pet-action="jump">✦ 蹦一下</button>
+      <button type="button" data-pet-action="nap">☾ 打个盹</button>
+      <button type="button" data-pet-action="reset">↘ 回到右下角</button>
+      <button type="button" data-pet-action="top">↑ 回到顶部</button>
+      <a href="/archives/#search">⌕ 找文章</a>
+      <button type="button" data-pet-action="quiet" aria-pressed="false">安静陪伴</button>
+    </div>
+    <p id="pet-help" class="pet-help">点击打招呼，双击蹦跳；拖动时拎起衣领，松手落地；菜单可让她坐下打盹，点击唤醒；方向键移动，Shift 加方向键加速；Enter 或空格打招呼；Escape 关闭气泡和小菜单。</p>
   </div>
-  <button class="pet-restore" type="button" aria-label="叫回小白" hidden><span aria-hidden="true">♧</span>小白</button>
+  <button class="pet-restore" type="button" aria-label="叫回小江" hidden><span aria-hidden="true">♧</span>小江</button>
 </aside>
 
 </body>
