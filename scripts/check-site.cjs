@@ -59,6 +59,24 @@ function checkSite() {
     for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
     checkedPages++;
   }
+  const home = documents.get(path.join(output, 'index.html'));
+  const featuredUrl = home.match(/<article class="feature-note">[\s\S]*?<h2><a href="([^"]+)"/)?.[1];
+  assert.ok(featuredUrl, 'Homepage must retain the featured review.');
+  const homeCards = [...home.matchAll(/<article class="post-card([^"]*)"[^>]*>([\s\S]*?)<\/article>/g)];
+  const desktopCards = homeCards.filter(card => !card[1].includes('home-featured-repeat'));
+  assert.equal(desktopCards.length, 4, 'Desktop homepage must fill four recent notes.');
+  assert.ok(desktopCards.every(card => !card[2].includes(`href="${featuredUrl}"`)), 'Featured review must not repeat among desktop recent notes.');
+  assert.equal(homeCards.filter(card => !card[1].includes('home-extra-note')).length, 4, 'Mobile homepage must retain its original four recent notes.');
+  const projects = yaml.load(fs.readFileSync(path.join(root, 'source/_data/projects.yml'), 'utf8'));
+  for (const project of projects) {
+    const html = documents.get(path.join(output, `projects/${project.id}/index.html`));
+    const brief = html.match(/<section class="project-brief desktop-only"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+    assert.ok(brief, `${project.id}: desktop project overview missing`);
+    for (const value of [project.period, project.team, project.role, project.result]) {
+      assert.ok(unescape(brief.replace(/<[^>]*>/g, '')).includes(value), `${project.id}: overview must use current project facts`);
+    }
+    assert.ok(unescape(html).includes(project.boundary), `${project.id}: full collaboration boundary must remain available`);
+  }
   const achievements = yaml.load(fs.readFileSync(path.join(root, 'source/_data/achievements.yml'), 'utf8'));
   const about = fs.readFileSync(path.join(output, 'about/index.html'), 'utf8');
   assert.equal((about.match(/class="award"/g) || []).length, achievements.length, 'About page must render every team achievement.');

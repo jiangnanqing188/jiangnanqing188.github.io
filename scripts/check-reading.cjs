@@ -12,12 +12,17 @@ if (require.main === module) {
   }));
   const sections = [{id: 'lab-repro-title', top: 60}, {id: '方案总览', top: 200}, {id: '第二章：实车验证', top: 1200}];
   sections.forEach(section => { section.getBoundingClientRect = () => ({top: section.top}); });
+  const toc = {open: true};
+  const nav = {scrollTop: 0, getBoundingClientRect: () => ({top: 100, bottom: 400})};
+  links.forEach((link, index) => { link.getBoundingClientRect = () => ({top: 100 + index * 600 - nav.scrollTop, bottom: 120 + index * 600 - nav.scrollTop}); });
+  let desktop = true;
   const events = {};
   let frame, observer;
   vm.runInNewContext(code, {
     document: {
       querySelector(selector) {
-        if (selector === '.toc details') return {open: true};
+        if (selector === '.toc details') return toc;
+        if (selector === '.toc nav') return nav;
         if (selector === '.site-header') return {getBoundingClientRect: () => ({bottom: 82})};
         return null;
       },
@@ -28,7 +33,7 @@ if (require.main === module) {
       }
     },
     innerHeight: 720,
-    matchMedia: () => ({matches: false}),
+    matchMedia: query => ({matches: query.includes('min-width') && desktop}),
     addEventListener(type, callback) { events[type] = callback; },
     requestAnimationFrame(callback) { frame = callback; },
     IntersectionObserver: class { constructor(callback) { observer = callback; } observe() {} }
@@ -42,12 +47,24 @@ if (require.main === module) {
   sections[2].top = 180;
   scroll();
   assert.equal(current(), links[1], 'Scrolling down must activate the next chapter.');
+  assert.equal(nav.scrollTop, 320, 'A long desktop TOC must reveal the active chapter inside its own scrolling area.');
   sections[1].top = 200;
   sections[2].top = 1200;
   scroll();
   assert.equal(current(), links[0], 'Scrolling up must restore the previous chapter.');
+  assert.equal(nav.scrollTop, 0, 'Scrolling up must also reveal the earlier TOC entry.');
+  desktop = false;
+  sections[1].top = -800;
+  sections[2].top = 180;
+  scroll();
+  assert.equal(nav.scrollTop, 0, 'Mobile TOC must not be scrolled automatically.');
+  desktop = true;
+  toc.open = false;
+  scroll();
+  assert.equal(nav.scrollTop, 0, 'Collapsed TOC must not be scrolled automatically.');
   sections[1].top = 900;
+  sections[2].top = 1200;
   scroll();
   assert.equal(current(), undefined, 'No chapter should be active above the article body.');
-  console.log('Reading regression passed: encoded Chinese anchors, downward/upward scrolling, injected headings and initial article position.');
+  console.log('Reading regression passed: encoded Chinese anchors, downward/upward scrolling, injected headings, initial article position and desktop TOC visibility.');
 }

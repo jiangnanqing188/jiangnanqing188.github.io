@@ -58,6 +58,7 @@ if (search) {
 }
 const toc = document.querySelector('.toc details');
 if (toc && matchMedia('(max-width: 760px)').matches) toc.open = false;
+const tocNav = document.querySelector('.toc nav');
 const links = [...document.querySelectorAll('.toc nav a')];
 const tocLinks = new Map(links.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
 const sections = [...document.querySelectorAll('.prose h2, .prose h3')].filter(section => tocLinks.has(section.id));
@@ -73,6 +74,12 @@ if (sections.length) {
       if (link === current) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
+    if (current && toc.open && matchMedia('(min-width: 761px)').matches) {
+      const linkBox = current.getBoundingClientRect();
+      const navBox = tocNav.getBoundingClientRect();
+      if (linkBox.top < navBox.top) tocNav.scrollTop += linkBox.top - navBox.top;
+      else if (linkBox.bottom > navBox.bottom) tocNav.scrollTop += linkBox.bottom - navBox.bottom;
+    }
   };
   let pending = false;
   const scheduleToc = () => {
