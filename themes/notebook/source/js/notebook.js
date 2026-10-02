@@ -58,19 +58,32 @@ if (search) {
 }
 const toc = document.querySelector('.toc details');
 if (toc && matchMedia('(max-width: 760px)').matches) toc.open = false;
-const sections = [...document.querySelectorAll('.prose h2, .prose h3')];
+const links = [...document.querySelectorAll('.toc nav a')];
+const tocLinks = new Map(links.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
+const sections = [...document.querySelectorAll('.prose h2, .prose h3')].filter(section => tocLinks.has(section.id));
 if (sections.length) {
-  const links = [...document.querySelectorAll('.toc nav a')];
-  const observer = new IntersectionObserver(entries => {
-    const visible = entries.filter(entry => entry.isIntersecting);
-    if (!visible.length) return;
-    const id = visible[0].target.id;
+  const updateToc = () => {
+    const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom;
+    const readingLine = Math.max(headerBottom + 24, innerHeight * .35);
+    let current;
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= readingLine) current = tocLinks.get(section.id);
+    }
     links.forEach(link => {
-      if (link.hash === `#${id}`) link.setAttribute('aria-current', 'location');
+      if (link === current) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
-  }, {rootMargin: '-80px 0px -65% 0px'});
-  sections.forEach(section => observer.observe(section));
+  };
+  let pending = false;
+  const scheduleToc = () => {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => { pending = false; updateToc(); });
+  };
+  addEventListener('scroll', scheduleToc, {passive: true});
+  addEventListener('resize', scheduleToc);
+  addEventListener('load', scheduleToc);
+  updateToc();
 }
 
 // Keep code readable and comments tied to the existing article pathname.

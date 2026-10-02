@@ -33,6 +33,8 @@ hexo.extend.generator.register('notebook-404', () => ({path:'404.html',layout:'4
 hexo.extend.helper.register('notebook_view', function(page) {
   const projects = array(this.site.data.projects);
   const home = this.site.data.home || {};
+  const identity = array(home.identity);
+  const representative = projects.find(project => project.id === 'ruikang');
   const achievements = array(this.site.data.achievements);
   const posts = array(this.site.posts.sort('date', -1)).map(normalize);
   const categories = [...new Set(posts.map(p=>p.category))];
@@ -58,7 +60,27 @@ function profileCard(base = '') {
 }
 
   const renderHome = () => shell('首页','首页',`
-<section class="lab-hero"><div class="hero-copy"><span class="eyebrow"><i class="status-dot"></i> JIANGNAN / ROBOTICS NOTEBOOK</span><h1>${esc(home.title?.[0] || "把机器人调通，")}<br><span>${esc(home.title?.[1] || "也把过程写清楚。")}</span></h1><p>你好，我是江南。${esc(home.lead)}</p><div class="hero-actions"><a class="button" href="/projects/">探索项目 <span>↗</span></a><a class="secondary-button" href="/archives/">阅读技术记录 →</a></div><div class="hero-topics">${['ROS / 导航','CV / 视觉','AI / 工程'].map(tag).join('')}</div></div><a class="hero-visual" href="/projects/ruikang/" aria-label="查看睿抗智能侦察车项目"><img src="${asset(featured.cover)}" alt="睿抗智能侦察车项目封面，AI 概念插画" width="1200" height="675"><div class="hero-visual-top"><span>PROJECT / 01</span><span>睿抗 · 智能侦察车</span></div><div class="hero-visual-bottom"><small>从系统迁移到正式赛场 · AI 概念封面</small><strong>做选择，也留下依据。 <span>↗</span></strong><div class="hero-route"><span>定义问题</span><span>选择方案</span><span>实车验证</span></div></div></a></section>
+<section class="lab-hero">
+  <div class="hero-copy">
+    <span class="eyebrow"><i class="status-dot"></i> JIANGNAN / ROBOTICS NOTEBOOK</span>
+    <p class="hero-identity desktop-only">${esc(identity.find(item => item.code === 'EDU')?.value)}</p>
+    <h1>${esc(home.title?.[0] || "把机器人调通，")}<br><span>${esc(home.title?.[1] || "也把过程写清楚。")}</span></h1>
+    <p>你好，我是江南。${esc(home.lead)}</p>
+    <div class="hero-role desktop-only"><span>项目职责</span><strong>${esc(identity.find(item => item.code === 'ROLE')?.value)}</strong></div>
+    <div class="hero-actions"><a class="button" href="/projects/">探索项目 <span>↗</span></a><a class="secondary-button" href="/archives/">阅读技术记录 →</a></div>
+    <div class="hero-topics">${['ROS / 导航','CV / 视觉','AI / 工程'].map(tag).join('')}</div>
+  </div>
+  <a class="hero-visual" href="${projectUrl(representative)}" aria-label="查看睿抗智能侦察车项目">
+    <img src="${asset(representative.cover)}" alt="睿抗智能侦察车项目封面，AI 概念插画" width="1200" height="675">
+    <div class="hero-visual-top"><span>${esc(representative.code)}</span><span>睿抗 · 智能侦察车</span></div>
+    <div class="hero-visual-bottom">
+      <div class="hero-result desktop-only"><span>代表项目 · 团队成果</span><p>${esc(representative.result).replaceAll('一等奖', '<em>一等奖</em>').replaceAll('94 分', '<em>94 分</em>')}</p><b>查看项目职责与复盘 <span>↗</span></b></div>
+      <small>从系统迁移到正式赛场 · AI 概念封面</small>
+      <strong class="hero-motto">做选择，也留下依据。 <span>↗</span></strong>
+      <div class="hero-route"><span>定义问题</span><span>选择方案</span><span>实车验证</span></div>
+    </div>
+  </a>
+</section>
 <div class="home-layout"><div><div class="section-title"><div><span class="eyebrow">FEATURED NOTE</span><h2>值得展开的一次复盘</h2></div><span class="section-index">01</span></div><article class="feature-note"><a class="cover" href="${postUrl(featured)}"><img src="${asset(featured.cover)}" width="1200" height="675" alt="睿抗智能侦察车文章封面"><span class="image-tag">比赛复盘</span></a><div class="feature-copy"><div class="feature-meta"><span class="category">实车证据与最终取舍</span><time>${featured.date.replaceAll('-','.')}</time></div><h2><a href="${postUrl(featured)}">${esc(featured.title)}</a></h2><p>${esc(featured.description)}</p><a class="text-link" href="${postUrl(featured)}">进入完整复盘 <span>↗</span></a></div></article><section class="home-latest"><div class="section-title"><div><span class="eyebrow">LATEST NOTES</span><h2>最近写下的事</h2></div><a class="text-link" href="/archives/">全部文章 ↗</a></div><div class="post-grid">${posts.slice(0,4).map(p=>postCard(p)).join('')}</div></section></div>
 <aside class="home-aside">${profileCard()}<section class="sidebar-card"><div class="aside-heading"><span class="eyebrow">PROJECT FILES</span><h2>项目档案</h2></div>${projects.slice(0,3).map((p,i)=>`<a class="mini-project" href="${projectUrl(p)}"><img src="${asset(p.cover)}" width="56" height="56" alt=""><div><h3>${esc(p.title)}</h3><small>${esc(p.role)}</small></div><span>↗</span></a>`).join('')}<a class="text-link all-projects" href="/projects/">查看全部项目 →</a></section><section class="sidebar-card reading-path"><span class="eyebrow">READING ROUTE</span><h2>从哪里开始读？</h2><a href="${postUrl(posts.find(post=>post.id==='010'))}"><span>01</span><div><strong>一段成长经历</strong><small>从初赛到国一</small></div></a><a href="${postUrl(posts.find(post=>post.id==='008'))}"><span>02</span><div><strong>一次工程取舍</strong><small>94 分复盘</small></div></a><a href="${postUrl(posts.find(post=>post.id==='009'))}"><span>03</span><div><strong>深入视觉模块</strong><small>四套视觉方案</small></div></a></section></aside></div>`);
   const renderProjects = () => shell('项目档案','项目',`${heading('PROJECTS / 项目档案','从一段代码，到一套系统。','一些比赛，一些真实问题。这里说明我做了什么、与谁协作，以及最后留下了什么。')}<div class="project-index">${projects.map((p,i)=>`<article class="project-list-item" id="project-${esc(p.id)}"><a class="project-cover" href="${projectUrl(p)}"><img src="${asset(p.cover)}" alt="${esc(p.title)}${concept(p.cover) ? "封面，AI 概念插画" : "封面"}" width="1200" height="675" ${i?'loading="lazy"':''}></a><div class="project-list-copy"><div class="item-meta"><span class="eyebrow">0${i+1} / ${esc(p.period)}</span>${tag(p.team.split(' · ')[0])}</div><h2><a href="${projectUrl(p)}">${esc(p.title)} ↗</a></h2><p>${esc(p.summary)}</p><div class="role-line"><span>我的职责</span>${esc(p.role)}</div><div class="tags">${p.stack.map(tag).join('')}</div><a class="text-link" href="${projectUrl(p)}">查看项目档案 →</a></div></article>`).join('')}</div>`);

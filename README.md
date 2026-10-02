@@ -19,6 +19,7 @@ Hexo 源码位于 `master`。2026-10-01 已将确认的暗色多页 UI、五张�
 | `source/img/covers/notebook/` | 五张已确认的 AI 概念封面；旧封面保留在原路径 |
 | `source/img/pet/catgirl.webp`、`catgirl-lift.webp` | 原有 Q 版站姿与拎起衣领的拖动姿态；新姿态的生成来源记录在 2026-10-02 工作记录中 |
 | `scripts/check-site.cjs` | 检查生成页面的链接、锚点、图片、分享元数据及重复 ID |
+| `scripts/check-reading.cjs` | 检查中文目录锚点、双向滚动高亮、注入标题排除与正文前的空状态 |
 | `规划/原型/` | 此次确认的设计快照，作为视觉参考，不参与正式构建 |
 
 正式入口为 `/`、`/projects/`、`/archives/`、`/about/`。四份项目详情为 `/projects/ruikang/`、`pharmacy/`、`yolov5/`、`iscc/`。原文章、分类、标签、资源、音乐及旧跳转地址继续可用。
@@ -28,12 +29,15 @@ Hexo 源码位于 `master`。2026-10-01 已将确认的暗色多页 UI、五张�
 ```bash
 npm run build
 npm run check:site
+node scripts/check-reading.cjs
 python3 -m http.server 4175 --bind 127.0.0.1 --directory public
 ```
 
 浏览器访问 `http://localhost:4175/`。模板、过滤器或主题切换后，建议先运行 `npm run clean`，再构建和检查，避免 Hexo 缓存保留旧主题资源。`public/` 与 `db.json` 是构建产物，不直接编辑或提交。
 
 正文搜索读取现有 `search.xml`；分类、标签和文章目录使用正式链接。评论通过“加载评论”按需连接原 Giscus 仓库，原 pathname 映射及管理入口保留。此次没有新增依赖。
+
+2026-10-02 电脑端第一轮优化：首页首屏展示学校、专业、年级和项目职责，代表结果与项目编号直接读取现有数据；文章目录支持中文锚点与双向滚动高亮，正文前不显示当前章节。小江的小菜单在电脑端新增“回到右下角”，复位位置会保存。首页新增信息和复位按钮仅在宽度超过 760px 时显示，手机布局优化留待下一阶段。本轮已完成本地验证，尚未发布。
 
 ## 猫娘与封面
 

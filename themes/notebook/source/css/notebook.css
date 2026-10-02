@@ -491,3 +491,22 @@ kbd { font: 12px var(--lab-mono); padding: 2px 7px; border: 1px solid var(--lab-
   .lab-resources__hero h1 { font-size: 28px; }
   .site-footer { gap: 14px; }
 }
+
+/* Desktop entry: put identity, responsibility and verified team results in view. */
+.desktop-only { display: none; }
+@media (min-width: 761px) {
+  .desktop-only { display: block; }
+  .hero-copy { padding: 32px 36px; }
+  .hero-copy .hero-identity { margin-top: 10px; color: #b4c8eb; font-size: 12px; }
+  .hero-copy h1 { margin: 14px 0; }
+  .hero-role { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; margin-top: 18px; padding-left: 12px; border-left: 2px solid var(--lab-blue); font-size: 12px; }
+  .hero-role>span { color: var(--lab-muted); font-size: 11px; }
+  .hero-role strong { color: #dce7fa; font-weight: 500; }
+  .hero-actions { margin: 20px 0; }
+  .hero-result { margin-bottom: 20px; max-width: 450px; }
+  .hero-result>span { color: #c0d1ed; font: 10px var(--lab-mono); letter-spacing: .08em; }
+  .hero-result p { margin: 10px 0 14px; color: #dce7fa; font-size: 15px; line-height: 1.9; }
+  .hero-result em { color: #f3d39a; font-size: 23px; font-weight: 600; font-style: normal; white-space: nowrap; }
+  .hero-result b { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; font-weight: 500; color: #bcd1f3; }
+  .hero-visual-bottom .hero-motto { display: none; }
+}

@@ -136,6 +136,12 @@
       pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
       pet.classList.add('is-sleeping');
     }
+    if (action === 'reset') {
+      const box = pet.getBoundingClientRect();
+      position(innerWidth - box.width - 22, innerHeight - box.height - 18);
+      save();
+      speak('回到右下角啦，继续陪你读。');
+    }
     if (action === 'top') {
       scrollTo({top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
       speak('到啦，从这里重新出发。');
