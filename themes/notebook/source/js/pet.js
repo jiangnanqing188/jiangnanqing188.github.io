@@ -2,6 +2,7 @@
   const pet = document.querySelector('#blog-pet');
   if (!pet) return;
   const avatar = pet.querySelector('.pet-avatar');
+  const avatarLabel = avatar.getAttribute('aria-label');
   const stage = pet.querySelector('.pet-stage');
   const bubble = pet.querySelector('.pet-bubble');
   const restore = pet.querySelector('.pet-restore');
@@ -17,7 +18,7 @@
   let drag = null;
   let lastDrag = -Infinity;
   let messageIndex = 0;
-  let bubbleTimer, poseTimer, idleTimer;
+  let bubbleTimer, poseTimer, idleTimer, napTimer;
   let lastTap = -Infinity;
   const messages = {
     首页: ['你好呀，我是小江。点我打招呼，拖我换位置。', '今天也一起把想法写进笔记吧。', '先看看项目，再读一篇复盘吧。'],
@@ -55,11 +56,37 @@
     menu.hidden = true;
     menuToggle.setAttribute('aria-expanded', 'false');
   };
+  const stopNapTransition = () => {
+    clearTimeout(napTimer);
+    pet.classList.remove('is-napping', 'is-waking');
+  };
+  const nap = () => {
+    clearTimeout(idleTimer);
+    clearTimeout(poseTimer);
+    clearTimeout(bubbleTimer);
+    bubble.hidden = true;
+    pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
+    stopNapTransition();
+    pet.classList.add('is-sleeping');
+    if (!quiet && !reducedMotion.matches) {
+      pet.classList.add('is-napping');
+      napTimer = setTimeout(() => pet.classList.remove('is-napping'), 1800);
+    }
+    avatar.setAttribute('aria-label', '小江正在打盹；点击唤醒，也可拎起拖动或用方向键移动');
+  };
   const wake = () => {
     clearTimeout(idleTimer);
+    const sleeping = pet.classList.contains('is-sleeping');
+    const enteringSleep = pet.classList.contains('is-napping');
+    if (sleeping || hidden || quiet || reducedMotion.matches || document.hidden) stopNapTransition();
     pet.classList.remove('is-sleeping');
+    if (sleeping && !enteringSleep && !hidden && !quiet && !reducedMotion.matches && !document.hidden) {
+      pet.classList.add('is-waking');
+      napTimer = setTimeout(() => pet.classList.remove('is-waking'), 1000);
+    }
+    avatar.setAttribute('aria-label', avatarLabel);
     if (!hidden && !quiet && !document.hidden) idleTimer = setTimeout(() => {
-      if (menu.hidden && !drag) pet.classList.add('is-sleeping');
+      if (menu.hidden && !drag) nap();
     }, 45000);
   };
   const updateQuiet = () => {
@@ -130,12 +157,7 @@
     closeMenu();
     menuToggle.focus();
     if (action === 'jump') jump();
-    if (action === 'nap') {
-      clearTimeout(idleTimer);
-      clearTimeout(poseTimer);
-      pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
-      pet.classList.add('is-sleeping');
-    }
+    if (action === 'nap') nap();
     if (action === 'reset') {
       const box = pet.getBoundingClientRect();
       position(innerWidth - box.width - 22, innerHeight - box.height - 18);
@@ -171,6 +193,7 @@
     const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
     if (!drag.moved && Math.hypot(dx, dy) < 6) return;
     if (!drag.moved) {
+      stopNapTransition();
       clearTimeout(poseTimer);
       pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
       bubble.hidden = true;
