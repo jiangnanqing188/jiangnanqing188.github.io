@@ -14,6 +14,7 @@ Hexo 源码位于 `master`，当前主题为本仓库内的 `notebook`。2026-10
 | `themes/notebook/_config.yml` | 沿用的 Giscus 公共设置；仍按原文章 pathname 对应讨论 |
 | `scripts/lab-site.js` | 结构化数据、复现与验证卡、下载资源卡、旧地址跳转；旧主题 UI 注入仅在旧主题下运行 |
 | `source/_posts/` | 文章内容与元数据，八篇正文和原地址保留 |
+| `source/_drafts/` | 待补充的文章素材；当前智能车经验草稿等待个人学习路径，普通构建不生成 |
 | `source/_data/` | 首页信息、项目档案、奖项和能力数据；四份项目详情读取同一份 `projects.yml` |
 | `source/about/index.md` | 关于页正文；奖项占位符由当前主题读取 `achievements.yml` 渲染 |
 | `source/img/covers/notebook/` | 五张已确认的 AI 概念封面；旧封面保留在原路径 |
