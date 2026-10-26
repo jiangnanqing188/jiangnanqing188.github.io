@@ -1,14 +1,25 @@
 /* Original catgirl companion, shared across the blog. */
-.blog-pet { --pet-signal: #deb46c; position: fixed; right: 22px; bottom: 18px; z-index: 25; width: min(170px, calc((100dvh - 80px) * 2 / 3)); pointer-events: none; }
+.blog-pet { --pet-signal: #deb46c; position: fixed; right: 22px; bottom: 18px; z-index: 9; width: min(170px, calc((100dvh - 80px) * 2 / 3)); pointer-events: none; }
 .blog-pet [hidden] { display: none !important; }
 .pet-stage { position: relative; }
-.pet-avatar { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; border-radius: 24px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; pointer-events: auto; }
+/* touch-action keeps vertical page scrolling on phones: a vertical swipe reads the page,
+   a sideways drag still picks her up. The images are click-through and a transparent
+   .pet-hit layer carries the silhouette clip, so the empty corners of the square
+   artwork stop stealing clicks from links underneath. */
+.pet-avatar { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; border-radius: 24px; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; pointer-events: none; }
+.pet-art, .pet-lift-art, .pet-nap-art, .pet-heart, .pet-sleep { pointer-events: none; }
+.pet-hit { position: absolute; inset: 0; pointer-events: auto; cursor: grab; z-index: 2; clip-path: polygon(33.4% 3.1%, 32.5% 9.4%, 12.2% 15.6%, 12.5% 21.9%, 13.8% 28.1%, 15.6% 34.4%, 15.3% 40.6%, 14.7% 46.9%, 14.7% 53.1%, 19.1% 59.4%, 29.4% 65.6%, 34.1% 71.9%, 34.1% 78.1%, 40.9% 84.4%, 39.7% 90.6%, 40% 96.9%, 57.2% 96.9%, 59.4% 90.6%, 82.8% 84.4%, 87.8% 78.1%, 89.1% 71.9%, 89.1% 65.6%, 87.8% 59.4%, 80.6% 53.1%, 79.7% 46.9%, 81.9% 40.6%, 80.9% 34.4%, 77.8% 28.1%, 73.4% 21.9%, 70% 15.6%, 68.8% 9.4%, 66.2% 3.1%); }
+.blog-pet.is-dragging .pet-hit { clip-path: polygon(45.6% 3.1%, 27.2% 9.4%, 25.9% 15.6%, 16.6% 21.9%, 10.9% 28.1%, 12.2% 34.4%, 15.9% 40.6%, 18.8% 46.9%, 19.7% 53.1%, 21.2% 59.4%, 45.3% 65.6%, 45.6% 71.9%, 49.7% 78.1%, 49.7% 84.4%, 52.2% 90.6%, 69.4% 96.9%, 82.8% 96.9%, 85.9% 90.6%, 86.6% 84.4%, 85.9% 78.1%, 83.4% 71.9%, 78.1% 65.6%, 76.2% 59.4%, 70.9% 53.1%, 69.4% 46.9%, 75% 40.6%, 76.6% 34.4%, 76.6% 28.1%, 71.6% 21.9%, 65.9% 15.6%, 60.3% 9.4%, 55% 3.1%); }
+.blog-pet.is-sleeping .pet-hit { clip-path: polygon(60.6% 3.1%, 60.6% 9.4%, 60.6% 15.6%, 33.1% 21.9%, 32.2% 28.1%, 21.6% 34.4%, 16.6% 40.6%, 17.8% 46.9%, 21.6% 53.1%, 21.9% 59.4%, 21.9% 65.6%, 20% 71.9%, 16.9% 78.1%, 16.6% 84.4%, 17.5% 90.6%, 26.9% 96.9%, 52.5% 96.9%, 77.2% 90.6%, 77.2% 84.4%, 73.4% 78.1%, 71.6% 71.9%, 74.4% 65.6%, 80.6% 59.4%, 84.4% 53.1%, 84.4% 46.9%, 80% 40.6%, 76.9% 34.4%, 71.6% 28.1%, 68.4% 21.9%, 64.7% 15.6%, 64.7% 9.4%, 64.7% 3.1%); }
+.blog-pet.is-dragging .pet-hit, .blog-pet.is-dragging .pet-avatar { cursor: grabbing; }
 .blog-pet button:focus-visible, .blog-pet a:focus-visible { outline: 2px solid var(--pet-signal); outline-offset: 3px; }
+.pet-avatar:focus-visible { outline: none; }
+.pet-avatar:focus-visible .pet-hit { outline: 2px solid var(--pet-signal); outline-offset: -2px; }
 .pet-art { display: block; width: 100%; height: auto; transform-origin: 50% 96%; animation: pet-sway 5s ease-in-out infinite; filter: drop-shadow(0 3px 5px #0005); }
 .pet-lift-art { display: none; position: absolute; inset: 0; width: 100%; height: auto; transform-origin: 61% 43%; filter: drop-shadow(0 5px 7px #0005); transition: transform 80ms ease-out; }
 .pet-nap-art { display: none; position: absolute; inset: 0; width: 100%; height: auto; transform-origin: 50% 96%; filter: drop-shadow(0 3px 5px #0005); }
 .pet-toolbar { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 2px; }
-.pet-caption { display: flex; align-items: center; gap: 6px; color: #d7c7ac; font-size: 11px; letter-spacing: .08em; }
+.pet-caption { display: flex; align-items: center; gap: 6px; color: #d7c7ac; font-size: 11px; letter-spacing: .08em; white-space: nowrap; flex: 0 0 auto; }
 .pet-caption i { width: 4px; height: 4px; border-radius: 50%; background: var(--pet-signal); }
 .pet-hide, .pet-menu-toggle { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #d8b77e40; border-radius: 50%; color: #d7c7ac; background: #191c24dc; font-size: 18px; line-height: 1; cursor: pointer; pointer-events: auto; }
 .pet-hide:hover, .pet-menu-toggle:hover { color: white; background: #3a342c; }
@@ -21,7 +32,6 @@
 .pet-heart { position: absolute; top: 13%; right: 13%; color: #efbc9d; font-size: 25px; opacity: 0; }
 .blog-pet.is-petted .pet-art { animation: pet-greeting 850ms ease-in-out; }
 .blog-pet.is-petted .pet-heart { animation: pet-heart 1s ease-out; }
-.blog-pet.is-dragging .pet-avatar { cursor: grabbing; }
 .blog-pet.is-dragging .pet-art { visibility: hidden; animation: none; }
 .blog-pet.is-dragging .pet-lift-art { display: block; transform: rotate(var(--pet-lift-angle, 0deg)); }
 .blog-pet.is-dragging .pet-toolbar { visibility: hidden; }
@@ -62,8 +72,6 @@
 @keyframes pet-sway { 50% { transform: translateY(-2px) rotate(.7deg); } }
 @keyframes pet-greeting { 30% { transform: translateY(-4px) rotate(-2deg); } 65% { transform: rotate(1.5deg); } }
 @keyframes pet-heart { 15% { opacity: 1; } 100% { opacity: 0; transform: translateY(-18px) scale(1.12); } }
-@media (max-width: 760px) { .blog-pet { width: min(106px, calc((100dvh - 80px) * 2 / 3)); right: 10px; bottom: 12px; } .pet-toolbar { gap: 2px; margin-top: 0; } .pet-hide, .pet-menu-toggle { width: 40px; height: 40px; border-color: transparent; background: none; } .pet-bubble { width: min(200px, calc(100vw - 24px)); font-size: 12px; } }
+@media (max-width: 760px) { .blog-pet { width: min(106px, calc((100dvh - 80px) * 2 / 3)); right: 10px; bottom: 12px; } .pet-toolbar { gap: 2px; margin-top: 0; } .pet-caption { letter-spacing: .04em; } .pet-hide, .pet-menu-toggle { width: 40px; height: 40px; border-color: transparent; background: none; } .pet-bubble { width: min(200px, calc(100vw - 24px)); font-size: 12px; } }
 @media (prefers-reduced-motion: reduce) { .blog-pet:is(.is-napping, .is-waking) .pet-drowsy-art, .blog-pet:is(.is-napping, .is-waking) .pet-sit-art { display: none; } .blog-pet:is(.is-napping, .is-waking) .pet-art { visibility: hidden; } .blog-pet.is-waking .pet-art { visibility: visible; } .blog-pet.is-waking .pet-sleep-art { display: none; } .blog-pet .pet-lift-art { transform: none; } .blog-pet * { animation: none !important; transition: none !important; } }
 
-.pet-menu [data-pet-action="reset"] { display: none; }
-@media (min-width: 761px) { .pet-menu [data-pet-action="reset"] { display: block; } }

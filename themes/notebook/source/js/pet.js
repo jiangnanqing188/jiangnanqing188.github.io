@@ -2,6 +2,7 @@
   const pet = document.querySelector('#blog-pet');
   if (!pet) return;
   const avatar = pet.querySelector('.pet-avatar');
+  const header = document.querySelector('.site-header');
   const avatarLabel = avatar.getAttribute('aria-label');
   const stage = pet.querySelector('.pet-stage');
   const bubble = pet.querySelector('.pet-bubble');
@@ -40,10 +41,15 @@
       overlay.style.top = `${Math.max(12, Math.min(y, innerHeight - overlay.offsetHeight - 12)) - box.top}px`;
     }
   };
+  const topLimit = () => {
+    const bar = header ? header.getBoundingClientRect() : null;
+    // Keep her out from under the sticky nav so she can never sit on top of it.
+    return Math.max(10, (bar && bar.bottom > 0 ? bar.bottom : 0) + 8);
+  };
   const position = (x, y) => {
     const box = pet.getBoundingClientRect();
     pet.style.left = `${Math.max(10, Math.min(x, innerWidth - box.width - 10))}px`;
-    pet.style.top = `${Math.max(10, Math.min(y, innerHeight - box.height - 10))}px`;
+    pet.style.top = `${Math.max(topLimit(), Math.min(y, innerHeight - box.height - 10))}px`;
     pet.style.right = 'auto';
     pet.style.bottom = 'auto';
     placeBubble();
@@ -181,6 +187,14 @@
   });
   document.addEventListener('keydown', wake);
   document.addEventListener('visibilitychange', wake);
+  // Reading means scrolling. Without this she fell asleep 45s into every article.
+  let lastAwake = 0;
+  document.addEventListener('scroll', () => {
+    const now = performance.now();
+    if (now - lastAwake < 2000) return;
+    lastAwake = now;
+    wake();
+  }, {passive: true});
   avatar.addEventListener('pointerdown', event => {
     if (event.button !== 0 || !event.isPrimary) return;
     wake();
@@ -192,6 +206,9 @@
     if (!drag || drag.id !== event.pointerId) return;
     const dx = event.clientX - drag.x, dy = event.clientY - drag.y;
     if (!drag.moved && Math.hypot(dx, dy) < 6) return;
+    // On touch the browser owns vertical panning (touch-action: pan-y), so a mostly
+    // vertical swipe is someone reading the page, not picking her up.
+    if (!drag.moved && event.pointerType === 'touch' && Math.abs(dy) > Math.abs(dx)) return;
     if (!drag.moved) {
       stopNapTransition();
       clearTimeout(poseTimer);
@@ -207,9 +224,9 @@
     // Keep the raised jacket collar under the pointer while the body hangs below.
     position(event.clientX - width * .61, event.clientY - width * .43);
   });
-  const endDrag = event => {
+  const endDrag = (event, cancelled = false) => {
     if (!drag || drag.id !== event.pointerId) return;
-    const moved = drag.moved;
+    const moved = drag.moved && !cancelled;
     drag = null;
     pet.classList.remove('is-dragging');
     pet.style.removeProperty('--pet-lift-angle');
@@ -222,7 +239,7 @@
     }
   };
   avatar.addEventListener('pointerup', endDrag);
-  avatar.addEventListener('pointercancel', endDrag);
+  avatar.addEventListener('pointercancel', event => endDrag(event, true));
   avatar.addEventListener('lostpointercapture', endDrag);
   pet.querySelector('.pet-hide').addEventListener('click', () => { collapse(true); save(); restore.focus(); });
   restore.addEventListener('click', () => { collapse(false); save(); avatar.focus(); });
