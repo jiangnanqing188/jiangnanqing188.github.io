@@ -19,7 +19,7 @@
   let drag = null;
   let lastDrag = -Infinity;
   let messageIndex = 0;
-  let bubbleTimer, poseTimer, idleTimer, napTimer;
+  let bubbleTimer, poseTimer, idleTimer, napTimer, squishTimer;
   let lastTap = -Infinity;
   const messages = {
     首页: ['你好呀，我是小江。点我打招呼，拖我换位置。', '今天也一起把想法写进笔记吧。', '先看看项目，再读一篇复盘吧。'],
@@ -66,10 +66,58 @@
     clearTimeout(napTimer);
     pet.classList.remove('is-napping', 'is-waking');
   };
+  // Wander: every so often she walks a short way along the bottom of the viewport.
+  let wanderTimer, walkRaf;
+  const stopWalk = () => {
+    cancelAnimationFrame(walkRaf);
+    pet.classList.remove('is-walking', 'walk-left');
+    walkRaf = null;
+  };
+  const wander = () => {
+    clearTimeout(wanderTimer);
+    if (hidden || quiet || reducedMotion.matches || document.hidden || drag || flight) {
+      wanderTimer = setTimeout(wander, 20000);
+      return;
+    }
+    const box = pet.getBoundingClientRect();
+    const maxX = innerWidth - box.width - 10;
+    // Pick a target nearby rather than crossing the whole screen.
+    const distance = 60 + Math.random() * 140;
+    const direction = Math.random() < .5 ? -1 : 1;
+    let targetX = box.x + direction * distance;
+    if (targetX < 10 || targetX > maxX) targetX = box.x - direction * distance;
+    targetX = Math.max(10, Math.min(targetX, maxX));
+    const startX = box.x, startY = box.y;
+    const duration = Math.abs(targetX - startX) / .06;
+    pet.classList.add('is-walking');
+    pet.classList.toggle('walk-left', targetX < startX);
+    const began = performance.now();
+    const step = now => {
+      const t = Math.min(1, (now - began) / duration);
+      position(startX + (targetX - startX) * t, startY);
+      if (t < 1) { walkRaf = requestAnimationFrame(step); return; }
+      pet.classList.remove('is-walking', 'walk-left');
+      walkRaf = null;
+      save();
+      wanderTimer = setTimeout(wander, 25000 + Math.random() * 20000);
+    };
+    walkRaf = requestAnimationFrame(step);
+  };
+  wanderTimer = setTimeout(wander, 25000);
+
+  // Throw physics state lives here so nap() and collapse() can stop a throw safely.
+  let flight = null;
+  const stopFlight = () => {
+    if (flight) cancelAnimationFrame(flight.raf);
+    flight = null;
+    pet.classList.remove('is-flying');
+  };
   const nap = () => {
     clearTimeout(idleTimer);
     clearTimeout(poseTimer);
     clearTimeout(bubbleTimer);
+    stopWalk();
+    stopFlight();
     bubble.hidden = true;
     pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
     stopNapTransition();
@@ -79,6 +127,57 @@
       napTimer = setTimeout(() => pet.classList.remove('is-napping'), 1800);
     }
     avatar.setAttribute('aria-label', '小江正在打盹；点击唤醒，也可拎起拖动或用方向键移动');
+  };
+  const fling = (velocityX, velocityY) => {
+    stopFlight();
+    stopWalk();
+    clearTimeout(idleTimer);
+    const box = pet.getBoundingClientRect();
+    flight = {
+      x: box.left, y: box.top,
+      // px/ms scaled into a readable throw, capped so it never rockets off-screen.
+      vx: Math.max(-1.4, Math.min(1.4, velocityX * 2.2)),
+      vy: Math.max(-1.6, Math.min(0.6, velocityY * 2.2)),
+      raf: 0, last: performance.now(), began: performance.now()
+    };
+    pet.classList.add('is-flying');
+    const step = now => {
+      if (!flight) return;
+      const dt = Math.min(32, now - flight.last);
+      flight.last = now;
+      flight.vy += 0.0032 * dt;                 // gravity
+      flight.x += flight.vx * dt;
+      flight.y += flight.vy * dt;
+      const size = pet.getBoundingClientRect();
+      const maxX = innerWidth - size.width - 10;
+      const maxY = innerHeight - size.height - 10;
+      const floor = topLimit();
+      if (flight.x < 10) { flight.x = 10; flight.vx = Math.abs(flight.vx) * .62; }
+      if (flight.x > maxX) { flight.x = maxX; flight.vx = -Math.abs(flight.vx) * .62; }
+      if (flight.y < floor) { flight.y = floor; flight.vy = Math.abs(flight.vy) * .62; }
+      if (flight.y >= maxY) {
+        flight.y = maxY;
+        // Test the *bounce* velocity, not the impact velocity: at the moment of
+        // contact vy is at its largest, so comparing that against a small rest
+        // threshold would never settle her.
+        const bounce = Math.abs(flight.vy) * .55;
+        flight.vx *= .82;                       // ground friction
+        const settled = bounce < .35 && Math.abs(flight.vx) < .12;
+        if (settled || now - flight.began > 4000) {
+          stopFlight();
+          animate('is-landing');
+          save();
+          return;
+        }
+        flight.vy = -bounce;
+      }
+      pet.style.left = `${flight.x}px`;
+      pet.style.top = `${flight.y}px`;
+      pet.style.right = 'auto';
+      pet.style.bottom = 'auto';
+      flight.raf = requestAnimationFrame(step);
+    };
+    flight.raf = requestAnimationFrame(step);
   };
   const wake = () => {
     clearTimeout(idleTimer);
@@ -103,6 +202,8 @@
   const collapse = value => {
     hidden = value;
     closeMenu();
+    stopWalk();
+    stopFlight();
     wake();
     stage.hidden = value;
     restore.hidden = !value;
@@ -118,10 +219,19 @@
   if (Number.isFinite(saved.x) && Number.isFinite(saved.y)) position(saved.x, saved.y);
   const animate = pose => {
     clearTimeout(poseTimer);
-    pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
+    pet.classList.remove('is-petted', 'is-jumping', 'is-landing', 'is-squish');
     void pet.offsetWidth;
     pet.classList.add(pose);
     poseTimer = setTimeout(() => pet.classList.remove(pose), 1100);
+  };
+  // Quick squash on click, so a poke feels physical rather than a static swap.
+  const squish = () => {
+    if (quiet || reducedMotion.matches) return;
+    pet.classList.remove('is-squish');
+    void pet.offsetWidth;
+    pet.classList.add('is-squish');
+    clearTimeout(squishTimer);
+    squishTimer = setTimeout(() => pet.classList.remove('is-squish'), 420);
   };
   const speak = (text, pose = 'is-petted') => {
     wake();
@@ -137,6 +247,7 @@
   const jump = () => speak('接住今天的一点小开心！', 'is-jumping');
   avatar.addEventListener('click', event => {
     if (event.detail !== 0 && performance.now() - lastDrag <= 250) return;
+    squish();
     const now = performance.now();
     if (event.detail !== 0 && now - lastTap < 320) {
       jump();
@@ -164,6 +275,7 @@
     menuToggle.focus();
     if (action === 'jump') jump();
     if (action === 'nap') nap();
+    if (action === 'stroll') { wake(); if (!quiet && !reducedMotion.matches) wander(); }
     if (action === 'reset') {
       const box = pet.getBoundingClientRect();
       position(innerWidth - box.width - 22, innerHeight - box.height - 18);
@@ -199,7 +311,9 @@
     if (event.button !== 0 || !event.isPrimary) return;
     wake();
     closeMenu();
-    drag = {id: event.pointerId, x: event.clientX, y: event.clientY, previousX: event.clientX, moved: false};
+    stopWalk();
+    stopFlight();
+    drag = {id: event.pointerId, x: event.clientX, y: event.clientY, previousX: event.clientX, previousY: event.clientY, previousT: event.timeStamp, velocityX: 0, velocityY: 0, moved: false};
     avatar.setPointerCapture(event.pointerId);
   });
   avatar.addEventListener('pointermove', event => {
@@ -219,7 +333,13 @@
     }
     const angle = quiet || reducedMotion.matches ? 0 : Math.max(-8, Math.min(8, (event.clientX - drag.previousX) * -.35));
     pet.style.setProperty('--pet-lift-angle', `${angle}deg`);
+    const elapsed = Math.max(1, event.timeStamp - drag.previousT);
+    // px per ms, smoothed so one jittery sample cannot fake a throw.
+    drag.velocityX = .7 * drag.velocityX + .3 * ((event.clientX - drag.previousX) / elapsed);
+    drag.velocityY = .7 * drag.velocityY + .3 * ((event.clientY - drag.previousY) / elapsed);
     drag.previousX = event.clientX;
+    drag.previousY = event.clientY;
+    drag.previousT = event.timeStamp;
     const width = avatar.offsetWidth;
     // Keep the raised jacket collar under the pointer while the body hangs below.
     position(event.clientX - width * .61, event.clientY - width * .43);
@@ -227,15 +347,22 @@
   const endDrag = (event, cancelled = false) => {
     if (!drag || drag.id !== event.pointerId) return;
     const moved = drag.moved && !cancelled;
+    const throwVelocity = {x: drag.velocityX || 0, y: drag.velocityY || 0};
     drag = null;
     pet.classList.remove('is-dragging');
     pet.style.removeProperty('--pet-lift-angle');
     if (moved) {
       lastDrag = performance.now();
       lastTap = -Infinity;
-      save();
       animate('is-landing');
       wake();
+      // Fling her: a fast release becomes a throw that bounces off the edges.
+      const speed = Math.hypot(throwVelocity.x, throwVelocity.y);
+      if (!quiet && !reducedMotion.matches && speed > 0.35) {
+        fling(throwVelocity.x, throwVelocity.y);
+      } else {
+        save();
+      }
     }
   };
   avatar.addEventListener('pointerup', endDrag);

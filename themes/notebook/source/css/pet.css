@@ -61,6 +61,18 @@
 .blog-pet.is-quiet .pet-heart { animation: none; opacity: 0; }
 .blog-pet.is-quiet .pet-sleep { animation: none; }
 .blog-pet.is-quiet .pet-lift-art { transform: none; transition: none; }
+/* Click squish: a quick squash-and-stretch so a poke feels physical. */
+.blog-pet.is-squish .pet-art { animation: pet-squish 420ms cubic-bezier(.34, 1.56, .64, 1); }
+/* Walking along the floor during a wander. */
+.blog-pet.is-walking .pet-lift-art, .blog-pet.is-walking .pet-nap-art { display: none; }
+.blog-pet.is-walking .pet-art { animation: pet-walk 620ms ease-in-out infinite; }
+.blog-pet.is-walking .pet-toolbar { opacity: .45; }
+/* In flight after a throw: a little spin, then the existing landing bounce. */
+.blog-pet.is-flying .pet-art { animation: pet-fly 700ms ease-out; }
+.blog-pet.is-flying .pet-toolbar { visibility: hidden; }
+@keyframes pet-squish { 0% { transform: none; } 28% { transform: scale(1.09, .9); } 62% { transform: scale(.96, 1.05); } 100% { transform: none; } }
+@keyframes pet-walk { 50% { transform: translateY(-3px) rotate(1.6deg); } }
+@keyframes pet-fly { 30% { transform: rotate(-9deg); } 65% { transform: rotate(6deg); } 100% { transform: none; } }
 @keyframes pet-land { 0% { transform: translateY(-8px); } 35% { transform: translateY(3px) scale(1.04, .94); } 65% { transform: translateY(-3px) scale(.98, 1.02); } 100% { transform: none; } }
 @keyframes pet-jump { 15%, 65% { transform: translateY(3px) scale(1.03, .95); } 35% { transform: translateY(-24px) rotate(-5deg); } 50% { transform: translateY(-7px) rotate(3deg); } 80% { transform: translateY(-10px); } }
 @keyframes pet-nap-stand { 0%, 14% { opacity: 1; } 20%, 100% { opacity: 0; } }
@@ -73,5 +85,5 @@
 @keyframes pet-greeting { 30% { transform: translateY(-4px) rotate(-2deg); } 65% { transform: rotate(1.5deg); } }
 @keyframes pet-heart { 15% { opacity: 1; } 100% { opacity: 0; transform: translateY(-18px) scale(1.12); } }
 @media (max-width: 760px) { .blog-pet { width: min(106px, calc((100dvh - 80px) * 2 / 3)); right: 10px; bottom: 12px; } .pet-toolbar { gap: 2px; margin-top: 0; } .pet-caption { letter-spacing: .04em; } .pet-hide, .pet-menu-toggle { width: 40px; height: 40px; border-color: transparent; background: none; } .pet-bubble { width: min(200px, calc(100vw - 24px)); font-size: 12px; } }
-@media (prefers-reduced-motion: reduce) { .blog-pet:is(.is-napping, .is-waking) .pet-drowsy-art, .blog-pet:is(.is-napping, .is-waking) .pet-sit-art { display: none; } .blog-pet:is(.is-napping, .is-waking) .pet-art { visibility: hidden; } .blog-pet.is-waking .pet-art { visibility: visible; } .blog-pet.is-waking .pet-sleep-art { display: none; } .blog-pet .pet-lift-art { transform: none; } .blog-pet * { animation: none !important; transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .blog-pet.is-walking .pet-toolbar { opacity: 1; } .blog-pet:is(.is-napping, .is-waking) .pet-drowsy-art, .blog-pet:is(.is-napping, .is-waking) .pet-sit-art { display: none; } .blog-pet:is(.is-napping, .is-waking) .pet-art { visibility: hidden; } .blog-pet.is-waking .pet-art { visibility: visible; } .blog-pet.is-waking .pet-sleep-art { display: none; } .blog-pet .pet-lift-art { transform: none; } .blog-pet * { animation: none !important; transition: none !important; } }
 
