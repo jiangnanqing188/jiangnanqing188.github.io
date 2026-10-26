@@ -67,6 +67,18 @@
 .blog-pet.is-walking .pet-lift-art, .blog-pet.is-walking .pet-nap-art { display: none; }
 .blog-pet.is-walking .pet-art { animation: pet-walk 620ms ease-in-out infinite; }
 .blog-pet.is-walking .pet-toolbar { opacity: .45; }
+/* Face the direction of travel. The idle art is drawn facing right, so a mirrored
+   scaleX is enough and costs nothing extra. Also used for the hover lean below. */
+.blog-pet.face-left .pet-art, .blog-pet.face-left .pet-lift-art, .blog-pet.face-left .pet-nap-art { scale: -1 1; }
+/* The silhouette clip must mirror with the art, otherwise the hot zones land on
+   empty pixels after she turns around. */
+.blog-pet.face-left .pet-hit { transform: scaleX(-1); }
+.blog-pet.face-left.is-dragging .pet-hit { transform: scaleX(-1); }
+/* Hover: she leans toward the pointer. Pointer-only, so touch never triggers it. */
+@media (hover: hover) and (pointer: fine) {
+  .blog-pet .pet-avatar:hover .pet-art { animation: pet-hover 620ms ease-in-out infinite; }
+}
+@keyframes pet-hover { 50% { transform: translateY(-4px) rotate(-1.2deg); } }
 /* In flight after a throw: a little spin, then the existing landing bounce. */
 .blog-pet.is-flying .pet-art { animation: pet-fly 700ms ease-out; }
 .blog-pet.is-flying .pet-toolbar { visibility: hidden; }

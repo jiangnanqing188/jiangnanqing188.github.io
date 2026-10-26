@@ -19,14 +19,62 @@
   let drag = null;
   let lastDrag = -Infinity;
   let messageIndex = 0;
-  let bubbleTimer, poseTimer, idleTimer, napTimer, squishTimer;
+  let bubbleTimer, poseTimer, idleTimer, napTimer, squishTimer, idlePoseTimer;
+  let lastDozed = -Infinity;
   let lastTap = -Infinity;
+  // Small encouragements, shown by the "夸我一句" menu item.
+  const praise = [
+    '你已经做得很好了，别老觉得自己不够。',
+    '这段代码今天比昨天顺眼多了。',
+    '能坐下来解决问题的人，本来就不多。',
+    '卡住不代表退步，你只是还没找到那个点。',
+    '写得慢没关系，能跑通才算数。',
+    '你今天至少推进了一点点，这就够了。'
+  ];
   const messages = {
-    首页: ['你好呀，我是小江。点我打招呼，拖我换位置。', '今天也一起把想法写进笔记吧。', '先看看项目，再读一篇复盘吧。'],
-    项目: ['好方案得跑起来，还得能回退。', '每个项目，都藏着一些现场才会遇到的问题。'],
-    文章: ['慢慢读，遇到喜欢的段落可以停一会儿。', '失败的过程，往往比结论更有用。'],
-    关于: ['很高兴认识你。江南的联系方式就在这页。', '欢迎来聊机器人、视觉，或者一个新想法。']
+    首页: [
+      '你好呀，我是小江。点我打招呼，拖我换位置。',
+      '今天也一起把想法写进笔记吧。',
+      '先看看项目，再读一篇复盘吧。',
+      '右上角的「项目」里，有几个我自己也调了很久的东西。',
+      '这里的文章都留着失败的部分，不只写结论。',
+      '拖着我到处走也行，我会记住你放的位置。'
+    ],
+    项目: [
+      '好方案得跑起来，还得能回退。',
+      '每个项目，都藏着一些现场才会遇到的问题。',
+      '奖项是结果，真正花时间的是调不通的那几周。',
+      '看项目时值得多问一句：这段代码谁写的、证据在哪。',
+      '硬编码能跑通，但换台车就得重来，这不算通用方案。'
+    ],
+    文章: [
+      '慢慢读，遇到喜欢的段落可以停一会儿。',
+      '失败的过程，往往比结论更有用。',
+      '我陪着的时候不出声，除非你想聊两句。',
+      '长文可以直接看目录跳章节，不用从头读。',
+      '读到代码块，可以点右上角复制。',
+      '看完有想法的话，页尾可以留言。'
+    ],
+    关于: [
+      '很高兴认识你。江南的联系方式就在这页。',
+      '欢迎来聊机器人、视觉，或者一个新想法。',
+      '他现在的方向是机器人系统与 AI 应用。',
+      '想合作或者只是交流，邮箱都在这一页。',
+      '这页写的是他在项目里具体做了什么。'
+    ]
   };
+  // Time-aware first greeting, then the page-specific pool takes over.
+  const timeGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 5) return '这么晚还没睡？我陪你一会儿。';
+    if (hour < 9) return '早上好，今天想先从哪篇看起？';
+    if (hour < 12) return '上午好，慢慢看，不着急。';
+    if (hour < 14) return '中午了，记得先吃点东西。';
+    if (hour < 18) return '下午好，接着看吧。';
+    if (hour < 23) return '晚上好，今天也辛苦啦。';
+    return '夜深了，别熬太晚。';
+  };
+  let firstLine = true;
   const placeBubble = () => {
     const box = pet.getBoundingClientRect();
     for (const [overlay, className] of [[bubble, 'bubble-below'], [menu, 'menu-below']]) {
@@ -66,6 +114,8 @@
     clearTimeout(napTimer);
     pet.classList.remove('is-napping', 'is-waking');
   };
+  // Throw physics state lives up here so wander() can check it without a TDZ risk.
+  let flight = null;
   // Wander: every so often she walks a short way along the bottom of the viewport.
   let wanderTimer, walkRaf;
   const stopWalk = () => {
@@ -91,6 +141,8 @@
     const duration = Math.abs(targetX - startX) / .06;
     pet.classList.add('is-walking');
     pet.classList.toggle('walk-left', targetX < startX);
+    // face where she is heading: the art is drawn facing right by default
+    pet.classList.toggle('face-left', targetX < startX);
     const began = performance.now();
     const step = now => {
       const t = Math.min(1, (now - began) / duration);
@@ -105,8 +157,6 @@
   };
   wanderTimer = setTimeout(wander, 25000);
 
-  // Throw physics state lives here so nap() and collapse() can stop a throw safely.
-  let flight = null;
   const stopFlight = () => {
     if (flight) cancelAnimationFrame(flight.raf);
     flight = null;
@@ -224,6 +274,19 @@
     pet.classList.add(pose);
     poseTimer = setTimeout(() => pet.classList.remove(pose), 1100);
   };
+  // She stretches a little at random while you read, so the idle state is not frozen.
+  const idlePose = () => {
+    clearTimeout(idlePoseTimer);
+    if (hidden || quiet || reducedMotion.matches || document.hidden || drag || flight || !menu.hidden
+        || pet.classList.contains('is-sleeping') || pet.classList.contains('is-walking')) {
+      idlePoseTimer = setTimeout(idlePose, 15000);
+      return;
+    }
+    animate(Math.random() < .5 ? 'is-petted' : 'is-landing');
+    idlePoseTimer = setTimeout(idlePose, 20000 + Math.random() * 25000);
+  };
+  idlePoseTimer = setTimeout(idlePose, 18000);
+
   // Quick squash on click, so a poke feels physical rather than a static swap.
   const squish = () => {
     if (quiet || reducedMotion.matches) return;
@@ -237,7 +300,12 @@
     wake();
     closeMenu();
     const lines = messages[document.querySelector('main').dataset.page] || messages.首页;
-    bubble.textContent = text || lines[messageIndex++ % lines.length];
+    let line = text;
+    if (!line) {
+      if (firstLine) { firstLine = false; line = timeGreeting(); }
+      else line = lines[messageIndex++ % lines.length];
+    }
+    bubble.textContent = line;
     bubble.hidden = false;
     placeBubble();
     clearTimeout(bubbleTimer);
@@ -245,16 +313,43 @@
     animate(pose);
   };
   const jump = () => speak('接住今天的一点小开心！', 'is-jumping');
+  // Rapid clicking builds a streak: she gets more excited the more you poke her.
+  let streak = 0, streakTimer;
+  const combos = [
+    '哎，怎么啦？',
+    '别戳啦，我在呢。',
+    '再戳我就要生气了哦……开玩笑的。',
+    '好啦好啦，我投降！你是不是闲下来了？'
+  ];
   avatar.addEventListener('click', event => {
     if (event.detail !== 0 && performance.now() - lastDrag <= 250) return;
     squish();
     const now = performance.now();
+    streak += 1;
+    clearTimeout(streakTimer);
+    streakTimer = setTimeout(() => { streak = 0; }, 3000);
     if (event.detail !== 0 && now - lastTap < 320) {
       jump();
       lastTap = -Infinity;
+    } else if (streak >= 3) {
+      speak(combos[Math.min(streak - 3, combos.length - 1)]);
+      lastTap = event.detail === 0 ? -Infinity : now;
     } else {
       speak();
       lastTap = event.detail === 0 ? -Infinity : now;
+    }
+  });
+  // Right-click opens the menu too, the way desktop pets usually behave.
+  avatar.addEventListener('contextmenu', event => {
+    event.preventDefault();
+    wake();
+    const opening = menu.hidden;
+    closeMenu();
+    bubble.hidden = true;
+    if (opening) {
+      menu.hidden = false;
+      menuToggle.setAttribute('aria-expanded', 'true');
+      placeBubble();
     }
   });
   menuToggle.addEventListener('click', () => {
@@ -276,6 +371,7 @@
     if (action === 'jump') jump();
     if (action === 'nap') nap();
     if (action === 'stroll') { wake(); if (!quiet && !reducedMotion.matches) wander(); }
+    if (action === 'cheer') speak(praise[Math.floor(Math.random() * praise.length)], 'is-jumping');
     if (action === 'reset') {
       const box = pet.getBoundingClientRect();
       position(innerWidth - box.width - 22, innerHeight - box.height - 18);
@@ -298,11 +394,37 @@
     if (!pet.contains(event.target)) closeMenu();
   });
   document.addEventListener('keydown', wake);
-  document.addEventListener('visibilitychange', wake);
+  let lastVisible = Date.now();
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && !quiet && !hidden) {
+      const away = Date.now() - lastVisible;
+      lastVisible = Date.now();
+      // Only comment if you were actually away for a while.
+      if (away > 90000 && !drag) {
+        setTimeout(() => {
+          if (!hidden && !quiet && !document.hidden) speak('回来啦，我一直在。', 'is-petted');
+        }, 800);
+      }
+    } else if (document.hidden) {
+      lastVisible = Date.now();
+    }
+    wake();
+  });
   // Reading means scrolling. Without this she fell asleep 45s into every article.
   let lastAwake = 0;
+  let reachedEnd = false;
   document.addEventListener('scroll', () => {
     const now = performance.now();
+    // She notices when you reach the bottom of an article, once per page.
+    if (!reachedEnd && !quiet && !hidden) {
+      const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 120;
+      if (atEnd && scrollY > 400) {
+        reachedEnd = true;
+        setTimeout(() => {
+          if (!hidden && !quiet) speak('读完了？要不要去项目页看看这些是怎么做出来的。', 'is-petted');
+        }, 600);
+      }
+    }
     if (now - lastAwake < 2000) return;
     lastAwake = now;
     wake();
