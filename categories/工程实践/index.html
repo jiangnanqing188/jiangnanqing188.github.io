@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0b101a">
-  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#f7f2e7">
+  <meta name="color-scheme" content="light dark">
+  
+  <script>try{if(localStorage.getItem('lab-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
   <title>分类：工程实践 · 江南的碎碎念</title><meta name="description" content="江南的个人技术博客，记录移动机器人、ROS、AI编程、计算机视觉与比赛实践中的问题、调试过程和复盘。"><meta name="keywords" content="移动机器人, ROS, AI编程, 计算机视觉, Python, 机器人比赛, 比赛复盘"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/"><meta property="og:type" content="website"><meta property="og:title" content="分类：工程实践"><meta property="og:description" content="江南的个人技术博客，记录移动机器人、ROS、AI编程、计算机视觉与比赛实践中的问题、调试过程和复盘。"><meta property="og:url" content="https://jiangnanqing188.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/covers/notebook/ruikang-competition.webp"><meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
   <link rel="stylesheet" href="/css/notebook.css">
@@ -19,39 +21,43 @@
     <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">jn.</span><span>江南的碎碎念<small>机器人 · AI · 工程记录</small></span></a>
     <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" >项目</a><a href="/archives/" aria-current="page">文章</a><a href="/about/" >关于</a></nav>
     <a class="search-link" href="/archives/#search" aria-label="搜索文章"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式" title="切换到深色模式"><svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg><svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M2.6 12H5M19 12h2.4M5.4 5.4l1.7 1.7M16.9 16.9l1.7 1.7M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7"/></svg></button>
   </div></header>
   <main id="main" class="container" tabindex="-1" data-page="文章"><header class="page-heading"><span class="eyebrow">WRITING / 技术与生活的记录</span><h1>分类：工程实践</h1><p>沿着一个主题，继续阅读相关的记录。</p></header><div class="archive-layout"><section><section class="archive-controls" aria-label="查找文章"><label class="search-box" for="search"><span>⌕</span><input type="search" id="search" placeholder="搜索文章标题、技术或关键词" autocomplete="off"><kbd>/</kbd></label><div class="filter-bar" role="group" aria-label="文章分类"><button type="button" data-filter="全部" aria-pressed="true">全部</button><button type="button" data-filter="成长记录" aria-pressed="false">成长记录</button><button type="button" data-filter="工程实践" aria-pressed="false">工程实践</button><button type="button" data-filter="比赛复盘" aria-pressed="false">比赛复盘</button><button type="button" data-filter="工程复盘" aria-pressed="false">工程复盘</button></div></section><div class="archive-caption"><span>全部记录 / NOTEBOOK</span><span id="result-count" role="status" aria-live="polite">2 篇记录</span></div><div class="post-grid archive-list"><article class="post-card" data-note data-category="工程实践" data-search="睿抗赛里，我给机器人做了四套视觉方案 从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。 ROS 计算机视觉 睿抗机器人开发者大赛 智能侦察车 YOLO RGB-D OpenCV">
     <a class="post-card-cover" href="/2026/08/25/睿抗赛四套视觉方案/"><img src="/img/covers/notebook/ruikang-competition.webp" alt="睿抗赛里，我给机器人做了四套视觉方案封面，AI 概念插画" width="1200" height="675" loading="lazy"><span class="image-tag">工程实践</span></a>
-    <div class="post-card-body"><div class="card-meta"><time datetime="2026-08-25">2026.08.25</time><span>LOG 009</span></div><h3><a href="/2026/08/25/睿抗赛四套视觉方案/">睿抗赛里，我给机器人做了四套视觉方案</a></h3><p>从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。</p><div class="card-bottom"><span>ROS / 计算机视觉</span><a href="/2026/08/25/睿抗赛四套视觉方案/" aria-label="阅读睿抗赛里，我给机器人做了四套视觉方案">阅读全文 ↗</a></div></div>
+    <div class="post-card-body"><div class="card-meta"><time datetime="2026-08-25">2026.08.25</time><span>LOG 009</span></div><h3><a href="/2026/08/25/睿抗赛四套视觉方案/">睿抗赛里，我给机器人做了四套视觉方案</a></h3><p>从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。</p><div class="card-bottom"><span>ROS / 计算机视觉</span><a href="/2026/08/25/睿抗赛四套视觉方案/" aria-label="阅读睿抗赛里，我给机器人做了四套视觉方案">阅读全文 ↗︎</a></div></div>
   </article><article class="post-card" data-note data-category="工程实践" data-search="智能车日记：YOLOv5 模型训练 作为智慧农业智能车项目的视觉部分，记录 YOLOv5 从实车数据采集与清洗、数据标注到模型训练和部署的问题与经验。 YOLOv5 Python 计算机视觉 智慧农业 数据标注 数据清洗 模型训练">
     <a class="post-card-cover" href="/2026/01/29/YOLOv5模型训练/"><img src="/img/covers/notebook/yolov5-vision.webp" alt="智能车日记：YOLOv5 模型训练封面，AI 概念插画" width="1200" height="675" loading="lazy"><span class="image-tag">工程实践</span></a>
-    <div class="post-card-body"><div class="card-meta"><time datetime="2026-01-29">2026.01.29</time><span>LOG 003</span></div><h3><a href="/2026/01/29/YOLOv5模型训练/">智能车日记：YOLOv5 模型训练</a></h3><p>作为智慧农业智能车项目的视觉部分，记录 YOLOv5 从实车数据采集与清洗、数据标注到模型训练和部署的问题与经验。</p><div class="card-bottom"><span>YOLOv5 / Python</span><a href="/2026/01/29/YOLOv5模型训练/" aria-label="阅读智能车日记：YOLOv5 模型训练">阅读全文 ↗</a></div></div>
-  </article></div><p class="empty-state" id="empty-state" hidden>没有找到相关记录。试试其他关键词，或切换到“全部”。</p></section><aside class="home-aside"><section class="profile-card"><div class="profile-grid" aria-hidden="true"></div><img class="profile-avatar" src="/img/avatar.jpg" width="80" height="80" alt="江南的头像"><h2>江南</h2><span class="profile-caption">长江大学 · 计算机科学与技术</span><p>在 ROS、视觉与 AI 的交汇处，<br>把想法调成能运行的系统。</p><div class="profile-stats"><a href="/archives/"><strong>9</strong><span>篇技术记录</span></a><a href="/projects/"><strong>4</strong><span>个项目档案</span></a></div><a class="button button-wide" href="/about/">关于我与联系方式 ↗</a></section><section class="sidebar-card topic-card"><span class="eyebrow">EXPLORE BY TOPIC</span><h2>沿着技术读下去</h2><div class="topic-links"><a href="/archives/?q=ROS#search">ROS <span>↗</span></a><a href="/archives/?q=YOLO#search">YOLO <span>↗</span></a><a href="/archives/?q=AI%E7%BC%96%E7%A8%8B#search">AI编程 <span>↗</span></a><a href="/archives/?q=%E5%A4%9A%E8%BD%A6%E5%8D%8F%E5%90%8C#search">多车协同 <span>↗</span></a><a href="/archives/?q=Linux#search">Linux <span>↗</span></a><a href="/archives/?q=%E5%B7%A5%E7%A8%8B%E9%AA%8C%E8%AF%81#search">工程验证 <span>↗</span></a></div><p>从一个具体问题出发，<br>把零散的经验连起来。</p></section></aside></div>
+    <div class="post-card-body"><div class="card-meta"><time datetime="2026-01-29">2026.01.29</time><span>LOG 003</span></div><h3><a href="/2026/01/29/YOLOv5模型训练/">智能车日记：YOLOv5 模型训练</a></h3><p>作为智慧农业智能车项目的视觉部分，记录 YOLOv5 从实车数据采集与清洗、数据标注到模型训练和部署的问题与经验。</p><div class="card-bottom"><span>YOLOv5 / Python</span><a href="/2026/01/29/YOLOv5模型训练/" aria-label="阅读智能车日记：YOLOv5 模型训练">阅读全文 ↗︎</a></div></div>
+  </article></div><p class="empty-state" id="empty-state" hidden>没有找到相关记录。试试其他关键词，或切换到“全部”。</p></section><aside class="home-aside"><section class="profile-card"><div class="profile-grid" aria-hidden="true"></div><img class="profile-avatar" src="/img/avatar.jpg" width="80" height="80" alt="江南的头像"><h2>江南</h2><span class="profile-caption">长江大学 · 计算机科学与技术</span><p>在 ROS、视觉与 AI 的交汇处，<br>把想法调成能运行的系统。</p><div class="profile-stats"><a href="/archives/"><strong>9</strong><span>篇技术记录</span></a><a href="/projects/"><strong>4</strong><span>个项目档案</span></a></div><a class="button button-wide" href="/about/">关于我与联系方式 ↗︎</a></section><section class="sidebar-card topic-card"><span class="eyebrow">EXPLORE BY TOPIC</span><h2>沿着技术读下去</h2><div class="topic-links"><a href="/archives/?q=ROS#search">ROS <span>↗︎</span></a><a href="/archives/?q=YOLO#search">YOLO <span>↗︎</span></a><a href="/archives/?q=AI%E7%BC%96%E7%A8%8B#search">AI编程 <span>↗︎</span></a><a href="/archives/?q=%E5%A4%9A%E8%BD%A6%E5%8D%8F%E5%90%8C#search">多车协同 <span>↗︎</span></a><a href="/archives/?q=Linux#search">Linux <span>↗︎</span></a><a href="/archives/?q=%E5%B7%A5%E7%A8%8B%E9%AA%8C%E8%AF%81#search">工程验证 <span>↗︎</span></a></div><p>从一个具体问题出发，<br>把零散的经验连起来。</p></section></aside></div>
 </main>
   <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
   <aside id="blog-pet" class="blog-pet" aria-label="博客小伙伴：小江">
   <div class="pet-stage">
     <p id="pet-message" class="pet-bubble" role="status" hidden></p>
     <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">
-      <img class="pet-art" src="/img/pet/catgirl.webp" width="640" height="640" alt="银白头发、琥珀眼睛的Q版猫娘小江，穿深灰外套，抱着笔记本挥手" draggable="false">
-      <img class="pet-lift-art" src="/img/pet/catgirl-lift.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
-      <img class="pet-nap-art pet-drowsy-art" src="/img/pet/catgirl-drowsy.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
-      <img class="pet-nap-art pet-sit-art" src="/img/pet/catgirl-sit.webp" width="640" height="640" alt="" aria-hidden="true" draggable="false">
-      <img class="pet-nap-art pet-sleep-art" src="/img/pet/catgirl-sleep.webp" width="640" height="640" alt="小江蜷腿坐下，闭眼低头抱着笔记本打盹" draggable="false">
+      <img class="pet-art" src="/img/pet/catgirl.webp" width="400" height="400" alt="银白头发、琥珀眼睛的Q版猫娘小江，穿深灰外套，抱着笔记本挥手" draggable="false" decoding="async" fetchpriority="high">
+      <img class="pet-lift-art" src="/img/pet/catgirl-lift.webp" width="400" height="400" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+      <img class="pet-nap-art pet-drowsy-art" src="/img/pet/catgirl-drowsy.webp" width="400" height="400" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+      <img class="pet-nap-art pet-sit-art" src="/img/pet/catgirl-sit.webp" width="400" height="400" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+      <img class="pet-nap-art pet-sleep-art" src="/img/pet/catgirl-sleep.webp" width="400" height="400" alt="小江蜷腿坐下，闭眼低头抱着笔记本打盹" draggable="false" loading="lazy" decoding="async">
       <span class="pet-heart" aria-hidden="true">♡</span>
       <span class="pet-sleep" aria-hidden="true">z Z z</span>
+      <span class="pet-hit" aria-hidden="true"></span>
     </button>
     <div class="pet-toolbar"><span class="pet-caption"><i aria-hidden="true"></i>小江</span><button class="pet-menu-toggle" type="button" aria-label="小江的小菜单" aria-controls="pet-menu" aria-expanded="false" title="小菜单">⋯</button><button class="pet-hide" type="button" aria-label="收起小江" title="收起">−</button></div>
     <div id="pet-menu" class="pet-menu" role="group" aria-label="小江的小菜单" hidden>
       <span class="pet-menu-heading">小江陪你读</span>
       <button type="button" data-pet-action="jump">✦ 蹦一下</button>
       <button type="button" data-pet-action="nap">☾ 打个盹</button>
+      <button type="button" data-pet-action="stroll">→ 走两步</button>
+      <button type="button" data-pet-action="cheer">♡ 夸我一句</button>
       <button type="button" data-pet-action="reset">↘ 回到右下角</button>
       <button type="button" data-pet-action="top">↑ 回到顶部</button>
       <a href="/archives/#search">⌕ 找文章</a>
       <button type="button" data-pet-action="quiet" aria-pressed="false">安静陪伴</button>
     </div>
-    <p id="pet-help" class="pet-help">点击打招呼，双击蹦跳；拖动时拎起衣领，松手落地；菜单可让她坐下打盹，点击唤醒；方向键移动，Shift 加方向键加速；Enter 或空格打招呼；Escape 关闭气泡和小菜单。</p>
+    <p id="pet-help" class="pet-help">点击打招呼，双击蹦跳，连点几次她会有意见；右键也能开菜单；拖动时拎起衣领，快速甩出会飞起来落地；她也会自己走两步；菜单可让她坐下打盹，点击唤醒；手机上竖向滑动是翻页，横向拖动才会移动她；方向键移动，Shift 加方向键加速；Enter 或空格打招呼；Escape 关闭气泡和小菜单。</p>
   </div>
   <button class="pet-restore" type="button" aria-label="叫回小江" hidden><span aria-hidden="true">♧</span>小江</button>
 </aside>

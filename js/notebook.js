@@ -1,3 +1,32 @@
+// Mode switch: cream is the default, dark is opt-in and remembered.
+// The inline script in <head> already applied a stored choice before first paint.
+const themeToggle = document.querySelector('[data-theme-toggle]');
+if (themeToggle) {
+  const root = document.documentElement;
+  const label = () => {
+    const dark = root.dataset.theme === 'dark';
+    themeToggle.setAttribute('aria-pressed', String(dark));
+    const text = dark ? '切换到浅色模式' : '切换到深色模式';
+    themeToggle.setAttribute('aria-label', text);
+    themeToggle.title = text;
+    // Read the token rather than duplicating the hex, so the phone chrome can
+    // never drift away from the palette.
+    const paper = getComputedStyle(root).getPropertyValue('--lab-paper').trim();
+    if (paper) document.querySelector('meta[name="theme-color"]')?.setAttribute('content', paper);
+  };
+  themeToggle.addEventListener('click', () => {
+    const dark = root.dataset.theme === 'dark';
+    if (dark) delete root.dataset.theme;
+    else root.dataset.theme = 'dark';
+    try { localStorage.setItem('lab-theme', dark ? 'light' : 'dark'); } catch {}
+    label();
+    document.querySelector('iframe.giscus-frame')?.contentWindow?.postMessage(
+      { giscus: { setConfig: { theme: dark ? 'light' : 'dark' } } }, 'https://giscus.app'
+    );
+  });
+  label();
+}
+
 const search = document.querySelector('#search');
 if (search) {
   let category = '全部';
@@ -122,7 +151,7 @@ if (commentButton) commentButton.addEventListener('click', () => {
     const attribute = key.replace(/[A-Z]/g, letter => '-' + letter.toLowerCase());
     script.setAttribute('data-' + attribute, commentButton.dataset[key]);
   }
-  script.setAttribute('data-theme', 'dark');
+  script.setAttribute('data-theme', document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
   script.setAttribute('data-input-position', 'bottom');
   script.setAttribute('data-loading', 'lazy');
   script.addEventListener('error', () => { commentButton.disabled = false; commentButton.textContent = '重新加载评论'; script.remove(); });
