@@ -122,12 +122,15 @@
     const scrolled = scrollY;
     for (const el of document.querySelectorAll(PROTECTED)) {
       if (pet.contains(el)) continue;
+      // A sidebar card already contains the links inside it, so counting both
+      // would multiply the same pixels and skew the choice.
+      if (el.querySelector('a,button')) continue;
       const box = el.getBoundingClientRect();
       if (box.width < 3 || box.height < 3) continue;
       rects.push({
         l: box.left, r: box.right,
         t: box.top + scrolled, b: box.bottom + scrolled,
-        w: el.closest(CRITICAL) ? 1000 : 1
+        w: el.matches(CRITICAL) || el.closest(CRITICAL) ? 1000 : 1
       });
     }
     return rects;
@@ -181,14 +184,22 @@
     for (const w of widths) {
       pet.style.width = `${w}px`;
       const h = pet.offsetHeight || Math.round(w * 1.21);
-      const y = Math.max(topLimit(), innerHeight - h - 18);
+      const floorY = Math.max(topLimit(), innerHeight - h - 18);
       // Two corners only. A pet adrift in the middle of the page looks broken,
       // and on narrow windows the margin is too thin for her anyway, so an
       // exact edge anchor beats hunting a mid-page gap.
+      const sides = ['right', 'left'].map(side => ({side, x: side === 'right' ? innerWidth - w - 10 : 10, y: floorY}));
+      // A tall sidebar can own the whole floor on both sides, so also offer a
+      // perch just above it: still against the right edge, just higher up.
       for (const side of ['right', 'left']) {
-        const x = side === 'right' ? innerWidth - w - 10 : 10;
-        const score = coverScore(x, y, w, h, rects, samples);
-        if (!best || score.total < best.score.total) best = {x, y, w, side, score};
+        const aside = document.querySelector('.home-aside, .toc');
+        if (!aside) break;
+        const above = aside.getBoundingClientRect().top - h - 12;
+        if (above > topLimit()) sides.push({side, x: side === 'right' ? innerWidth - w - 10 : 10, y: above});
+      }
+      for (const spot of sides) {
+        const score = coverScore(spot.x, spot.y, w, h, rects, samples);
+        if (!best || score.total < best.score.total) best = {x: spot.x, y: spot.y, w, side: spot.side, score};
       }
       // Nothing clickable covered at this size: no smaller size can do better.
       if (best.score.critical === 0) break;
@@ -683,6 +694,10 @@
       const box = pet.getBoundingClientRect();
       const [x, y] = directions[event.key];
       const step = event.shiftKey ? 24 : 10;
+      // Nudging her with the keyboard is a placement decision too, otherwise
+      // the next reload would drop her back on the dock.
+      userMoved = true;
+      dockBand = null;
       position(box.x + x * step, box.y + y * step);
       save();
     }
