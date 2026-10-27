@@ -58,6 +58,13 @@ python3 -m http.server 4175 --bind 127.0.0.1 --directory public
 
 ## 回退与发布
 
-本次实装为独立本地提交，可整体回退以恢复此前主题和关于页。已有未提交的奖项、项目、文章及规划内容不纳入本次提交。
+2026-10-27 起不再保留 anzhiyu 主题的回退路径，以下内容已全部移除：`_config.anzhiyu.yml`、`source/css/custom.css`（3137 行、从未被任何页面引用却仍随部署分发）、`scripts/lab-site.js` 中针对旧主题 `local-search.js` 的渲染过滤器，以及 `package.json` 的 `hexo-theme-anzhiyu` 依赖（node_modules 减 3.7 MB）。
 
-`_config.anzhiyu.yml`、`source/css/custom.css` 和原主题适配代码保留作为原主题恢复来源，当前页面不加载旧主题样式。恢复主题时需重新生成页面。未经明确要求，不执行 `npm run deploy` 或 `git push`。
+如需查阅旧主题样式或配置，用 git 历史取回，不要重新引回构建链：
+
+```
+git log --oneline -- source/css/custom.css
+git checkout <commit> -- source/css/custom.css _config.anzhiyu.yml
+```
+
+当前视觉样式位于 `themes/notebook/source/css/notebook.css`（设计令牌 + 组件样式）与 `themes/notebook/source/css/pet.css`（小江桌宠）。改动后必须重新生成页面。未经明确要求，不执行 `npm run deploy` 或 `git push`。

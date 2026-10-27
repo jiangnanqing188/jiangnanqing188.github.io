@@ -44,10 +44,10 @@
 - 当前文章源文件位于 `source/_posts/`，不得直接修改 `public/` 中的生成文件。
 - 首页内容数据位于 `source/_data/home.yml`。
 - 项目档案数据位于 `source/_data/projects.yml`。
-- 关于页当前主体位于 `source/about/index.md`；`source/_data/about.yml` 和 `_config.anzhiyu.yml` 中仍有主题历史配置，修改前先确认实际渲染链，避免编辑未生效的副本。
-- 首页、项目档案、资源页和文章附加信息主要由 `scripts/lab-site.js` 注入，视觉样式位于 `source/css/custom.css`。
+- 关于页当前主体位于 `source/about/index.md`；该页直接由 Markdown 内的 HTML 分段构成，`source/_data/about.yml` 目前不被任何脚本读取，修改它不会生效。
+- 首页、项目档案、资源页和文章附加信息由 `themes/notebook/scripts/view.js` 渲染，`scripts/lab-site.js` 只保留结构化数据、JSON-LD、外链 `rel="noopener"` 和旧链接重定向。视觉样式位于 `themes/notebook/source/css/notebook.css`（设计令牌 + 组件）和 `themes/notebook/source/css/pet.css`（小江桌宠）。
 - 八篇现有文章的详细重构顺序、范围和验收标准位于 `规划/博客文章重构计划.md`。
-- 站点基础配置位于 `_config.yml`，主题配置位于 `_config.anzhiyu.yml`。
+- 站点基础配置位于 `_config.yml`，主题配置位于 `themes/notebook/_config.yml`。anzhiyu 主题的回退文件已于 2026-10-27 全部移除，需要时用 git 历史取回，不要重新引回构建链。
 - GitHub 主页与其他项目仓库属于站外范围；未经用户明确授权，不修改、创建或推送站外仓库内容。
 - 用户当前不把 GitHub 作为优化重点，现有仓库也不足以承担主要能力出口；站内优先引导到项目档案和文章证据，不为了求职包装空仓库。
 
