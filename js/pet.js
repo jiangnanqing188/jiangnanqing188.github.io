@@ -12,10 +12,6 @@
   const quietButton = pet.querySelector('[data-pet-action="quiet"]');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const storageKey = 'jiangnan-blog-pet-v1';
-  // Positions saved before the docking rewrite were all the old fixed corner,
-  // which parked her on top of the sidebar. Bumping the version retires those
-  // coordinates once, so returning readers get the new placement as well.
-  const STORAGE_VERSION = 2;
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { /* Storage may be disabled. */ }
   let hidden = saved.hidden === true;
@@ -106,113 +102,9 @@
     pet.style.bottom = 'auto';
     placeBubble();
   };
-  // ---- Docking -----------------------------------------------------------
-  // A fixed bottom-right corner parked her on top of the home sidebar and on
-  // article tables of contents. Docking measures the page instead: it prefers
-  // the empty margin outside the text column, then whichever corner she covers
-  // least, and shrinks her rather than sit on something a reader needs.
-  const PROTECTED = 'h1,h2,h3,h4,h5,h6,p,li,dt,dd,time,img,table,pre,blockquote,figcaption,footer,input,textarea,select,button,a,.toc,.lab-repro,.mini-project,.home-aside,.profile-grid';
-  // Two tiers, because not all pixels cost the same. Losing a link or a whole
-  // sidebar card is a real defect; grazing a paragraph's last character is not.
-  const CRITICAL = 'a,button,input,textarea,select,label,.toc,.home-aside,.profile-grid,.mini-project,.lab-repro';
-  let userMoved = false;   // once you drag her somewhere, docking stops arguing
-  let dockBand = null;     // the range she may stroll in without leaving her spot
-  const protectedRects = () => {
-    const rects = [];
-    const scrolled = scrollY;
-    for (const el of document.querySelectorAll(PROTECTED)) {
-      if (pet.contains(el)) continue;
-      const box = el.getBoundingClientRect();
-      if (box.width < 3 || box.height < 3) continue;
-      rects.push({
-        l: box.left, r: box.right,
-        t: box.top + scrolled, b: box.bottom + scrolled,
-        w: el.closest(CRITICAL) ? 1000 : 1
-      });
-    }
-    return rects;
-  };
-  const textColumn = () => {
-    const box = document.querySelector('main');
-    if (!box) return {left: 0, right: 0};
-    const r = box.getBoundingClientRect();
-    return {left: Math.max(0, r.left), right: Math.max(0, innerWidth - r.right)};
-  };
-  const scrollSamples = maxScroll => {
-    const out = [0];
-    for (let s = 600; s < maxScroll; s += 600) out.push(s);
-    if (maxScroll > 0) out.push(maxScroll);
-    return out;
-  };
-  const coverScore = (x, y, w, h, rects, samples) => {
-    // Score the silhouette rather than the square: the artwork's corners are empty.
-    const left = x + w * .12, right = x + w * .9;
-    const top = y + w * .03, bottom = y + w * .97;
-    let critical = 0, cosmetic = 0;
-    for (const s of samples) {
-      const t = top + s, b = bottom + s;
-      for (const q of rects) {
-        const oy = Math.min(b, q.b) - Math.max(t, q.t);
-        if (oy <= 0) continue;
-        const ox = Math.min(right, q.r) - Math.max(left, q.l);
-        if (ox <= 0) continue;
-        const area = ox * oy;
-        if (q.w > 1) critical += area; else cosmetic += area;
-      }
-      const tt = y + h - 34 + s, tb = y + h + s;   // her buttons are real targets too
-      for (const q of rects) {
-        const oy = Math.min(tb, q.b) - Math.max(tt, q.t);
-        if (oy <= 0) continue;
-        const ox = Math.min(x + w, q.r) - Math.max(x, q.l);
-        if (ox > 0) (q.w > 1 ? critical += ox * oy : cosmetic += ox * oy * .5);
-      }
-    }
-    return {critical, cosmetic, total: critical * 1000 + cosmetic};
-  };
-  const dock = () => {
-    if (hidden) return;
-    const maxW = Math.min(innerWidth <= 760 ? 106 : 170, Math.floor((innerHeight - 80) * 2 / 3));
-    const rects = protectedRects();
-    const samples = scrollSamples(Math.max(0, document.documentElement.scrollHeight - innerHeight));
-    // Try the largest size first and only shrink as far as the page forces.
-    const widths = [maxW, Math.round(maxW * .87), Math.round(maxW * .74), Math.round(maxW * .62)]
-      .filter((w, i, all) => w >= 88 && all.indexOf(w) === i);
-    let best = null;
-    for (const w of widths) {
-      pet.style.width = `${w}px`;
-      const h = pet.offsetHeight || Math.round(w * 1.21);
-      const y = Math.max(topLimit(), innerHeight - h - 18);
-      // Two corners only. A pet adrift in the middle of the page looks broken,
-      // and on narrow windows the margin is too thin for her anyway, so an
-      // exact edge anchor beats hunting a mid-page gap.
-      for (const side of ['right', 'left']) {
-        const x = side === 'right' ? innerWidth - w - 10 : 10;
-        const score = coverScore(x, y, w, h, rects, samples);
-        if (!best || score.total < best.score.total) best = {x, y, w, side, score};
-      }
-      // Nothing clickable covered at this size: no smaller size can do better.
-      if (best.score.critical === 0) break;
-    }
-    if (!best) return;
-    pet.style.width = `${best.w}px`;
-    // Room to stroll without leaving the clear area she was just given.
-    const column = textColumn();
-    const lane = best.side === 'right' ? column.right : column.left;
-    dockBand = lane < best.w + 12
-      ? {min: best.x, max: best.x}
-      : {min: 10, max: Math.max(10, innerWidth - best.w - 10)};
-    position(best.x, best.y);
-  };
   const save = () => {
     const box = pet.getBoundingClientRect();
-    try {
-      localStorage.setItem(storageKey, JSON.stringify({
-        v: STORAGE_VERSION, auto: !userMoved,
-        hidden, quiet,
-        x: Math.round(box.x), y: Math.round(box.y),
-        w: hidden ? undefined : Math.round(box.width)
-      }));
-    } catch { /* The pet still works without persistence. */ }
+    try { localStorage.setItem(storageKey, JSON.stringify({hidden, quiet, x: box.x, y: box.y})); } catch { /* The pet still works without persistence. */ }
   };
   const closeMenu = () => {
     menu.hidden = true;
@@ -238,21 +130,13 @@
       return;
     }
     const box = pet.getBoundingClientRect();
-    // Wander inside her docking lane only: strolling across the page is what
-    // used to walk her back over the sidebar and the table of contents.
-    const lane = dockBand || {min: 10, max: Math.max(10, innerWidth - box.width - 10)};
-    const maxX = lane.max;
+    const maxX = innerWidth - box.width - 10;
     // Pick a target nearby rather than crossing the whole screen.
     const distance = 60 + Math.random() * 140;
     const direction = Math.random() < .5 ? -1 : 1;
     let targetX = box.x + direction * distance;
-    if (targetX < lane.min || targetX > maxX) targetX = box.x - direction * distance;
-    targetX = Math.max(lane.min, Math.min(targetX, maxX));
-    // A lane too narrow to actually walk in is not worth a walk animation.
-    if (Math.abs(targetX - box.x) < 12) {
-      wanderTimer = setTimeout(wander, 25000);
-      return;
-    }
+    if (targetX < 10 || targetX > maxX) targetX = box.x - direction * distance;
+    targetX = Math.max(10, Math.min(targetX, maxX));
     const startX = box.x, startY = box.y;
     const duration = Math.abs(targetX - startX) / .06;
     pet.classList.add('is-walking');
@@ -376,30 +260,13 @@
     pet.classList.toggle('is-collapsed', value);
     bubble.hidden = true;
     clearTimeout(bubbleTimer);
-    // The collapsed pill gets its width from CSS, so drop the docking override.
-    if (value) { pet.style.removeProperty('width'); return; }
-    if (userMoved) {
-      const box = pet.getBoundingClientRect();
-      position(box.x, box.y);
-      return;
-    }
-    dock();
+    const box = pet.getBoundingClientRect();
+    position(box.x, box.y);
   };
   updateQuiet();
   wake();
   if (hidden) collapse(true);
-  // Only a position you placed yourself outranks docking. Coordinates saved by
-  // the old fixed corner are exactly the ones covering the sidebar, so they are
-  // ignored rather than restored.
-  const savedOwnSpot = saved.v === STORAGE_VERSION && saved.auto === false
-    && Number.isFinite(saved.x) && Number.isFinite(saved.y);
-  if (savedOwnSpot) {
-    userMoved = true;
-    if (Number.isFinite(saved.w)) pet.style.width = `${saved.w}px`;
-    position(saved.x, saved.y);
-  } else {
-    dock();
-  }
+  if (Number.isFinite(saved.x) && Number.isFinite(saved.y)) position(saved.x, saved.y);
   // Semantic actions. Each one means something specific, instead of reusing a
   // generic wobble: waving back, nodding along, looking around, peeking, shrugging.
   const ACTIONS = {
@@ -480,10 +347,6 @@
     '好啦好啦，我投降！你是不是闲下来了？'
   ];
   avatar.addEventListener('click', event => {
-    // She only reacts to clicks she really is under; otherwise hand the click
-    // to whatever the reader could see through her—the link still works.
-    const below = event.detail !== 0 ? yieldTarget(event.clientX, event.clientY) : null;
-    if (below) { below.click(); return; }
     if (event.detail !== 0 && performance.now() - lastDrag <= 250) return;
     squish();
     const now = performance.now();
@@ -535,10 +398,10 @@
     if (action === 'stroll') { wake(); if (!quiet && !reducedMotion.matches) wander(); }
     if (action === 'cheer') speak(praise[Math.floor(Math.random() * praise.length)], 'clap');
     if (action === 'reset') {
-      userMoved = false;
-      dock();
+      const box = pet.getBoundingClientRect();
+      position(innerWidth - box.width - 22, innerHeight - box.height - 18);
       save();
-      speak('回到不挡字的位置啦，继续陪你读。', 'settle');
+      speak('回到右下角啦，继续陪你读。', 'settle');
     }
     if (action === 'top') {
       scrollTo({top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
@@ -591,27 +454,8 @@
     lastAwake = now;
     wake();
   }, {passive: true});
-  const hitLayer = pet.querySelector('.pet-hit');
-  // What the reader would hit if she were not in the way. Her own layer is on
-  // top, so it has to be switched off for the question to have an answer.
-  const underPointer = (x, y) => {
-    if (!hitLayer) return null;
-    const previous = hitLayer.style.pointerEvents;
-    hitLayer.style.pointerEvents = 'none';
-    const element = document.elementFromPoint(x, y);
-    hitLayer.style.pointerEvents = previous;
-    return element;
-  };
-  // On a narrow window there may be nowhere to stand that is fully clear, so
-  // the pixel decides: where a link or button is what the reader sees under the
-  // pointer, the click belongs to the page. Returns that element, or null.
-  const yieldTarget = (x, y) => {
-    const below = underPointer(x, y);
-    return below && below.closest('a,button,input,textarea,select,label,summary') ? below : null;
-  };
   avatar.addEventListener('pointerdown', event => {
     if (event.button !== 0 || !event.isPrimary) return;
-    if (yieldTarget(event.clientX, event.clientY)) return;
     wake();
     closeMenu();
     stopWalk();
@@ -659,9 +503,6 @@
       lastTap = -Infinity;
       play('settle');
       wake();
-      // She stays where you put her, even if that overlaps the text.
-      userMoved = true;
-      dockBand = null;
       // Fling her: a fast release becomes a throw that bounces off the edges.
       const speed = Math.hypot(throwVelocity.x, throwVelocity.y);
       if (!quiet && !reducedMotion.matches && speed > 0.35) {
@@ -694,8 +535,6 @@
   });
   addEventListener('resize', () => {
     if (!pet.style.left) { placeBubble(); return; }
-    // A narrow window no longer has a margin to stand in, so re-decide the spot.
-    if (!userMoved) { dock(); return; }
     const box = pet.getBoundingClientRect();
     position(box.x, box.y);
   });
