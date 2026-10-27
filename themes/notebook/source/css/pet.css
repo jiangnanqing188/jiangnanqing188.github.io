@@ -99,3 +99,8 @@
 @media (max-width: 760px) { .blog-pet { width: min(106px, calc((100dvh - 80px) * 2 / 3)); right: 10px; bottom: 12px; } .pet-toolbar { gap: 2px; margin-top: 0; } .pet-caption { letter-spacing: .04em; } .pet-hide, .pet-menu-toggle { width: 40px; height: 40px; border-color: transparent; background: none; } .pet-bubble { width: min(200px, calc(100vw - 24px)); font-size: 12px; } }
 @media (prefers-reduced-motion: reduce) { .blog-pet.is-walking .pet-toolbar { opacity: 1; } .blog-pet:is(.is-napping, .is-waking) .pet-drowsy-art, .blog-pet:is(.is-napping, .is-waking) .pet-sit-art { display: none; } .blog-pet:is(.is-napping, .is-waking) .pet-art { visibility: hidden; } .blog-pet.is-waking .pet-art { visibility: visible; } .blog-pet.is-waking .pet-sleep-art { display: none; } .blog-pet .pet-lift-art { transform: none; } .blog-pet * { animation: none !important; transition: none !important; } }
 
+/* Printing: she is a screen-only companion. Without this she lands on top of the
+   article title in print preview and every saved PDF. */
+@media print {
+  .blog-pet { display: none !important; }
+}
