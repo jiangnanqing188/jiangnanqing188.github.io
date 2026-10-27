@@ -1,5 +1,5 @@
 /* Original catgirl companion, shared across the blog. */
-.blog-pet { --pet-signal: #deb46c; position: fixed; right: 22px; bottom: 18px; z-index: 9; width: min(170px, calc((100dvh - 80px) * 2 / 3)); pointer-events: none; }
+.blog-pet { --pet-signal: var(--lab-blue, #1f4d3d); position: fixed; right: 22px; bottom: 18px; z-index: 9; width: min(170px, calc((100dvh - 80px) * 2 / 3)); pointer-events: none; }
 .blog-pet [hidden] { display: none !important; }
 .pet-stage { position: relative; }
 /* touch-action keeps vertical page scrolling on phones: a vertical swipe reads the page,
@@ -18,18 +18,18 @@
 .pet-art { display: block; width: 100%; height: auto; transform-origin: 50% 96%; animation: pet-sway 5s ease-in-out infinite; filter: drop-shadow(0 3px 5px #0005); }
 .pet-lift-art { display: none; position: absolute; inset: 0; width: 100%; height: auto; transform-origin: 61% 43%; filter: drop-shadow(0 5px 7px #0005); transition: transform 80ms ease-out; }
 .pet-nap-art { display: none; position: absolute; inset: 0; width: 100%; height: auto; transform-origin: 50% 96%; filter: drop-shadow(0 3px 5px #0005); }
-.pet-toolbar { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 2px; }
-.pet-caption { display: flex; align-items: center; gap: 6px; color: #d7c7ac; font-size: 11px; letter-spacing: .08em; white-space: nowrap; flex: 0 0 auto; }
+.pet-toolbar { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; }
+.pet-caption { display: flex; align-items: center; gap: 8px; color: var(--lab-muted); font-size: 12px; letter-spacing: .08em; white-space: nowrap; flex: 0 0 auto; }
 .pet-caption i { width: 4px; height: 4px; border-radius: 50%; background: var(--pet-signal); }
-.pet-hide, .pet-menu-toggle { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid #d8b77e40; border-radius: 50%; color: #d7c7ac; background: #191c24dc; font-size: 18px; line-height: 1; cursor: pointer; pointer-events: auto; }
-.pet-hide:hover, .pet-menu-toggle:hover { color: white; background: #3a342c; }
-.pet-bubble { position: absolute; bottom: calc(100% + 8px); left: 0; width: min(216px, calc(100vw - 24px)); padding: 13px 16px; color: #ede6db; background: #1c202af5; border: 1px solid #c3a77555; box-shadow: 0 10px 28px #03071250; border-radius: 14px; font-size: 13px; line-height: 1.8; text-align: left; pointer-events: none; }
+.pet-hide, .pet-menu-toggle { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 1px solid var(--lab-rule); border-radius: 50%; color: var(--lab-muted); background: var(--lab-panel); font-size: 20px; line-height: 1; cursor: pointer; pointer-events: auto; }
+.pet-hide:hover, .pet-menu-toggle:hover { color: var(--lab-ink); background: var(--lab-inset); }
+.pet-bubble { position: absolute; bottom: calc(100% + 8px); left: 0; width: min(216px, calc(100vw - 24px)); padding: 12px 16px; color: var(--lab-ink); background: var(--lab-panel); border: 1px solid var(--lab-rule); box-shadow: 0 10px 28px rgb(var(--lab-scrim) / 0.22); border-radius: var(--r-card); font-size: 14px; line-height: 1.8; text-align: left; pointer-events: none; }
 .blog-pet.bubble-below .pet-bubble { bottom: auto; top: calc(100% + 8px); }
 .pet-help { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.pet-restore { margin-left: auto; display: flex; align-items: center; gap: 7px; padding: 8px 12px; color: #d7c7ac; background: #1c202af5; border: 1px solid #c3a77555; border-radius: 30px; font-size: 12px; cursor: pointer; pointer-events: auto; }
+.pet-restore { margin-left: auto; display: flex; align-items: center; gap: 7px; padding: 8px 12px; color: var(--lab-muted); background: var(--lab-panel); border: 1px solid var(--lab-rule); border-radius: var(--r-control); font-size: 12px; cursor: pointer; pointer-events: auto; }
 .blog-pet.is-collapsed { width: 76px; }
 .pet-restore span { color: var(--pet-signal); }
-.pet-heart { position: absolute; top: 13%; right: 13%; color: #efbc9d; font-size: 25px; opacity: 0; }
+.pet-heart { position: absolute; top: 13%; right: 13%; color: var(--pet-signal); font-size: 28px; opacity: 0; }
 .blog-pet.is-petted .pet-art { animation: pet-greeting 850ms ease-in-out; }
 .blog-pet.is-petted .pet-heart { animation: pet-heart 1s ease-out; }
 .blog-pet.is-dragging .pet-art { visibility: hidden; animation: none; }
@@ -37,13 +37,13 @@
 .blog-pet.is-dragging .pet-toolbar { visibility: hidden; }
 .blog-pet.is-landing .pet-art { animation: pet-land 550ms ease-out; }
 .pet-menu-toggle { font-size: 20px; }
-.pet-menu { position: absolute; bottom: calc(100% + 8px); left: 0; width: min(208px, calc(100vw - 24px)); box-sizing: border-box; max-height: calc(100dvh - 24px); overflow-y: auto; padding: 12px; border: 1px solid #c3a77555; border-radius: 14px; background: #1c202af5; color: #ede6db; pointer-events: auto; }
+.pet-menu { position: absolute; bottom: calc(100% + 8px); left: 0; width: min(208px, calc(100vw - 24px)); box-sizing: border-box; max-height: calc(100dvh - 24px); overflow-y: auto; padding: 12px; border: 1px solid var(--lab-rule); border-radius: var(--r-control); background: var(--lab-panel); color: var(--lab-ink); box-shadow: 0 10px 28px rgb(var(--lab-scrim) / 0.22); pointer-events: auto; }
 .blog-pet.menu-below .pet-menu { bottom: auto; top: calc(100% + 8px); }
-.pet-menu-heading { display: block; padding: 3px 8px 9px; color: var(--pet-signal); font-size: 11px; letter-spacing: .08em; }
-.pet-menu button, .pet-menu a { display: block; width: 100%; box-sizing: border-box; padding: 10px 8px; border: 0; border-radius: 7px; text-align: left; background: none; color: inherit; font: inherit; font-size: 13px; text-decoration: none; cursor: pointer; }
-.pet-menu button:hover, .pet-menu a:hover { background: #deb46c14; color: #f4d7a0; }
+.pet-menu-heading { display: block; padding: 3px 8px 9px; color: var(--pet-signal); font-size: 12px; letter-spacing: .08em; }
+.pet-menu button, .pet-menu a { display: block; width: 100%; box-sizing: border-box; padding: 10px 8px; border: 0; border-radius: var(--r-chip); text-align: left; background: none; color: inherit; font: inherit; font-size: 14px; text-decoration: none; cursor: pointer; }
+.pet-menu button:hover, .pet-menu a:hover { background: var(--lab-inset); color: var(--lab-ink); }
 .pet-menu [aria-pressed="true"] { color: var(--pet-signal); }
-.pet-sleep { position: absolute; top: 6%; right: 6%; color: var(--pet-signal); font-size: 17px; letter-spacing: 4px; opacity: 0; }
+.pet-sleep { position: absolute; top: 6%; right: 6%; color: var(--pet-signal); font-size: 16px; letter-spacing: 4px; opacity: 0; }
 .blog-pet.is-jumping .pet-art { animation: pet-jump 1s ease-in-out; }
 .blog-pet.is-sleeping .pet-art { visibility: hidden; animation: none; }
 .blog-pet.is-sleeping .pet-sleep-art { display: block; animation: pet-breathe 4s ease-in-out infinite; }
@@ -96,11 +96,99 @@
 @keyframes pet-sway { 50% { transform: translateY(-2px) rotate(.7deg); } }
 @keyframes pet-greeting { 30% { transform: translateY(-4px) rotate(-2deg); } 65% { transform: rotate(1.5deg); } }
 @keyframes pet-heart { 15% { opacity: 1; } 100% { opacity: 0; transform: translateY(-18px) scale(1.12); } }
-@media (max-width: 760px) { .blog-pet { width: min(106px, calc((100dvh - 80px) * 2 / 3)); right: 10px; bottom: 12px; } .pet-toolbar { gap: 2px; margin-top: 0; } .pet-caption { letter-spacing: .04em; } .pet-hide, .pet-menu-toggle { width: 40px; height: 40px; border-color: transparent; background: none; } .pet-bubble { width: min(200px, calc(100vw - 24px)); font-size: 12px; } }
+@media (max-width: 760px) { .blog-pet { width: min(106px, calc((100dvh - 80px) * 2 / 3)); right: 10px; bottom: 12px; } .pet-toolbar { gap: 4px; margin-top: 0; } .pet-caption { letter-spacing: .04em; } .pet-hide, .pet-menu-toggle { width: 40px; height: 40px; border-color: transparent; background: none; } .pet-bubble { width: min(200px, calc(100vw - 24px)); font-size: 12px; } }
 @media (prefers-reduced-motion: reduce) { .blog-pet.is-walking .pet-toolbar { opacity: 1; } .blog-pet:is(.is-napping, .is-waking) .pet-drowsy-art, .blog-pet:is(.is-napping, .is-waking) .pet-sit-art { display: none; } .blog-pet:is(.is-napping, .is-waking) .pet-art { visibility: hidden; } .blog-pet.is-waking .pet-art { visibility: visible; } .blog-pet.is-waking .pet-sleep-art { display: none; } .blog-pet .pet-lift-art { transform: none; } .blog-pet * { animation: none !important; transition: none !important; } }
 
 /* Printing: she is a screen-only companion. Without this she lands on top of the
    article title in print preview and every saved PDF. */
 @media print {
   .blog-pet { display: none !important; }
+}
+
+/* ---- Semantic actions -------------------------------------------------
+   Each animation is shaped for the thing that actually happened, instead of
+   one generic wobble reused everywhere. Amplitudes differ on purpose:
+   a greeting is bigger than a nod, a stretch is slower than a shrug. */
+.blog-pet[class*="act-"] .pet-lift-art,
+.blog-pet[class*="act-"] .pet-nap-art { display: none; }
+
+/* 打招呼：抬手挥两下，身体跟着轻轻弹 */
+.blog-pet.act-wave .pet-art { animation: act-wave 1200ms cubic-bezier(.34,1.4,.64,1); }
+@keyframes act-wave {
+  0%   { transform: none; }
+  18%  { transform: translateY(-5px) rotate(-3deg); }
+  38%  { transform: translateY(-2px) rotate(2.5deg); }
+  58%  { transform: translateY(-4px) rotate(-2deg); }
+  76%  { transform: translateY(-1px) rotate(1.2deg); }
+  100% { transform: none; }
+}
+/* 点头：竖向小幅下压再回，幅度小、方向单一 */
+.blog-pet.act-nod .pet-art { animation: act-nod 900ms ease-in-out; }
+@keyframes act-nod {
+  0%, 100% { transform: none; }
+  30% { transform: translateY(4px) scale(1.01, .985); }
+  55% { transform: translateY(1px); }
+  75% { transform: translateY(3px) scale(1.005, .992); }
+}
+/* 张望：左右转头，横向为主 */
+.blog-pet.act-look-around .pet-art { animation: act-look-around 2000ms ease-in-out; }
+@keyframes act-look-around {
+  0%, 100% { transform: none; }
+  20% { transform: translateX(-4px) rotate(-2.5deg); }
+  45% { transform: translateX(-2px) rotate(-1deg); }
+  70% { transform: translateX(4px) rotate(2.5deg); }
+  88% { transform: translateX(2px) rotate(1deg); }
+}
+/* 凑近看：向前倾、放大一点点，像探头看屏幕 */
+.blog-pet.act-peer .pet-art { animation: act-peer 1400ms ease-out; }
+@keyframes act-peer {
+  0%   { transform: none; }
+  35%  { transform: translateY(3px) scale(1.05) rotate(-1deg); }
+  70%  { transform: translateY(1px) scale(1.03); }
+  100% { transform: none; }
+}
+/* 耸肩：横向轻微摆一下，收得比挥手机械 */
+.blog-pet.act-shrug .pet-art { animation: act-shrug 1100ms ease-in-out; }
+@keyframes act-shrug {
+  0%, 100% { transform: none; }
+  25% { transform: translateY(2px) rotate(3deg); }
+  55% { transform: translateY(-1px) rotate(-2.5deg); }
+  80% { transform: translateY(1px) rotate(1deg); }
+}
+/* 抬头：短促地往上一提，像听到声音 */
+.blog-pet.act-perk .pet-art { animation: act-perk 800ms cubic-bezier(.22,1.6,.5,1); }
+@keyframes act-perk {
+  0%   { transform: none; }
+  35%  { transform: translateY(-7px) scale(1.03); }
+  70%  { transform: translateY(-2px); }
+  100% { transform: none; }
+}
+/* 伸懒腰：慢、幅度大、有拉伸感 */
+.blog-pet.act-stretch .pet-art { animation: act-stretch 1500ms ease-in-out; }
+@keyframes act-stretch {
+  0%, 100% { transform: none; }
+  40% { transform: translateY(-6px) scale(.97, 1.06); }
+  70% { transform: translateY(-3px) scale(.99, 1.03); }
+}
+/* 拍手：快速连续的小跳两下 */
+.blog-pet.act-clap .pet-art { animation: act-clap 900ms ease-out; }
+@keyframes act-clap {
+  0%, 100% { transform: none; }
+  20% { transform: translateY(-6px) scale(1.02, .98); }
+  40% { transform: translateY(0) scale(.99, 1.01); }
+  60% { transform: translateY(-4px); }
+  80% { transform: translateY(0); }
+}
+/* 安顿：落地后轻轻沉一下再稳，幅度最小 */
+.blog-pet.act-settle .pet-art { animation: act-settle 1300ms ease-out; }
+@keyframes act-settle {
+  0%   { transform: translateY(-6px); }
+  30%  { transform: translateY(2px) scale(1.03, .96); }
+  55%  { transform: translateY(-1px) scale(.995, 1.005); }
+  75%  { transform: translateY(1px) scale(1.005, .996); }
+  100% { transform: none; }
+}
+/* 减少动画偏好：保留状态切换但不播放形变 */
+@media (prefers-reduced-motion: reduce) {
+  .blog-pet[class*="act-"] .pet-art { animation: none !important; }
 }

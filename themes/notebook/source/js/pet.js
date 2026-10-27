@@ -215,7 +215,7 @@
         const settled = bounce < .35 && Math.abs(flight.vx) < .12;
         if (settled || now - flight.began > 4000) {
           stopFlight();
-          animate('is-landing');
+          play('settle');
           save();
           return;
         }
@@ -267,12 +267,34 @@
   wake();
   if (hidden) collapse(true);
   if (Number.isFinite(saved.x) && Number.isFinite(saved.y)) position(saved.x, saved.y);
-  const animate = pose => {
+  // Semantic actions. Each one means something specific, instead of reusing a
+  // generic wobble: waving back, nodding along, looking around, peeking, shrugging.
+  const ACTIONS = {
+    'wave':       { cls: 'act-wave',       ms: 1200 },  // 打招呼 / 回应你
+    'nod':        { cls: 'act-nod',        ms: 900 },   // 同意、应声
+    'peer':       { cls: 'act-peer',       ms: 1400 },  // 凑近看你在读什么
+    'look-around':{ cls: 'act-look-around',ms: 2000 },  // 左右张望
+    'shrug':      { cls: 'act-shrug',      ms: 1100 },  // 没办法、随你
+    'perk':       { cls: 'act-perk',       ms: 800 },   // 听到动静，抬头
+    'stretch':    { cls: 'act-stretch',    ms: 1500 },  // 伸懒腰
+    'clap':       { cls: 'act-clap',       ms: 900 },   // 高兴、认可
+    'settle':     { cls: 'act-settle',     ms: 1300 }   // 落地/安顿下来
+  };
+  const ACTION_CLASSES = Object.values(ACTIONS).map(a => a.cls);
+  const play = name => {
+    const action = ACTIONS[name] || ACTIONS.wave;
+    // Quiet mode and reduced-motion users still get state changes, but no mime.
+    if ((quiet || reducedMotion.matches) && name !== 'settle') return;
     clearTimeout(poseTimer);
-    pet.classList.remove('is-petted', 'is-jumping', 'is-landing', 'is-squish');
+    pet.classList.remove(...ACTION_CLASSES);
     void pet.offsetWidth;
-    pet.classList.add(pose);
-    poseTimer = setTimeout(() => pet.classList.remove(pose), 1100);
+    pet.classList.add(action.cls);
+    poseTimer = setTimeout(() => pet.classList.remove(action.cls), action.ms);
+  };
+  // Kept for the older call sites that passed a raw class name.
+  const animate = pose => {
+    const byClass = Object.entries(ACTIONS).find(([, a]) => a.cls === pose);
+    play(byClass ? byClass[0] : 'wave');
   };
   // She stretches a little at random while you read, so the idle state is not frozen.
   const idlePose = () => {
@@ -282,7 +304,10 @@
       idlePoseTimer = setTimeout(idlePose, 15000);
       return;
     }
-    animate(Math.random() < .5 ? 'is-petted' : 'is-landing');
+    // Idle should look like idling: glance around, stretch, or settle.
+    // Never a greeting wave (that would mean you just arrived).
+    const idleActions = ['look-around', 'stretch', 'peer'];
+    play(idleActions[Math.floor(Math.random() * idleActions.length)]);
     idlePoseTimer = setTimeout(idlePose, 20000 + Math.random() * 25000);
   };
   idlePoseTimer = setTimeout(idlePose, 18000);
@@ -296,7 +321,7 @@
     clearTimeout(squishTimer);
     squishTimer = setTimeout(() => pet.classList.remove('is-squish'), 420);
   };
-  const speak = (text, pose = 'is-petted') => {
+  const speak = (text, action = 'wave') => {
     wake();
     closeMenu();
     const lines = messages[document.querySelector('main').dataset.page] || messages.首页;
@@ -310,9 +335,9 @@
     placeBubble();
     clearTimeout(bubbleTimer);
     bubbleTimer = setTimeout(() => { bubble.hidden = true; }, 6000);
-    animate(pose);
+    play(action);
   };
-  const jump = () => speak('接住今天的一点小开心！', 'is-jumping');
+  const jump = () => { speak('接住今天的一点小开心！', 'clap'); pet.classList.add('is-jumping'); };
   // Rapid clicking builds a streak: she gets more excited the more you poke her.
   let streak = 0, streakTimer;
   const combos = [
@@ -332,7 +357,7 @@
       jump();
       lastTap = -Infinity;
     } else if (streak >= 3) {
-      speak(combos[Math.min(streak - 3, combos.length - 1)]);
+      speak(combos[Math.min(streak - 3, combos.length - 1)], 'shrug');
       lastTap = event.detail === 0 ? -Infinity : now;
     } else {
       speak();
@@ -371,22 +396,22 @@
     if (action === 'jump') jump();
     if (action === 'nap') nap();
     if (action === 'stroll') { wake(); if (!quiet && !reducedMotion.matches) wander(); }
-    if (action === 'cheer') speak(praise[Math.floor(Math.random() * praise.length)], 'is-jumping');
+    if (action === 'cheer') speak(praise[Math.floor(Math.random() * praise.length)], 'clap');
     if (action === 'reset') {
       const box = pet.getBoundingClientRect();
       position(innerWidth - box.width - 22, innerHeight - box.height - 18);
       save();
-      speak('回到右下角啦，继续陪你读。');
+      speak('回到右下角啦，继续陪你读。', 'settle');
     }
     if (action === 'top') {
       scrollTo({top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
-      speak('到啦，从这里重新出发。');
+      speak('到啦，从这里重新出发。', 'look-around');
     }
     if (action === 'quiet') {
       quiet = !quiet;
       updateQuiet();
       save();
-      speak(quiet ? '好，我安静陪着你。' : '小江又精神起来啦。');
+      speak(quiet ? '好，我安静陪着你。' : '小江又精神起来啦。', quiet ? 'settle' : 'perk');
     }
   });
   document.addEventListener('pointerdown', event => {
@@ -402,7 +427,7 @@
       // Only comment if you were actually away for a while.
       if (away > 90000 && !drag) {
         setTimeout(() => {
-          if (!hidden && !quiet && !document.hidden) speak('回来啦，我一直在。', 'is-petted');
+          if (!hidden && !quiet && !document.hidden) speak('回来啦，我一直在。', 'perk');
         }, 800);
       }
     } else if (document.hidden) {
@@ -421,7 +446,7 @@
       if (atEnd && scrollY > 400) {
         reachedEnd = true;
         setTimeout(() => {
-          if (!hidden && !quiet) speak('读完了？要不要去项目页看看这些是怎么做出来的。', 'is-petted');
+          if (!hidden && !quiet) speak('读完了？要不要去项目页看看这些是怎么做出来的。', 'nod');
         }, 600);
       }
     }
@@ -476,7 +501,7 @@
     if (moved) {
       lastDrag = performance.now();
       lastTap = -Infinity;
-      animate('is-landing');
+      play('settle');
       wake();
       // Fling her: a fast release becomes a throw that bounces off the edges.
       const speed = Math.hypot(throwVelocity.x, throwVelocity.y);
