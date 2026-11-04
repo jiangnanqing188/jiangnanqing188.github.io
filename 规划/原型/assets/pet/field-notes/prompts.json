@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-04",
+  "tool": "image_gen.imagegen",
+  "model": "not reported by tool",
+  "quality": "not reported by tool",
+  "status": "style concept awaiting user review; not integrated into production; motion implementation paused",
+  "references": [
+    {
+      "role": "character identity",
+      "path": "source/img/pet/catgirl.webp"
+    },
+    {
+      "role": "user-selected first UI concept",
+      "thread_title": "重设计博客 UI 并复刻",
+      "thread_id": "01a1a707-9947-7e92-963a-0a83a9ef0455",
+      "file": "call_xOtvBFgLxbdd6Q0lS3fBI2Ve.png"
+    }
+  ],
+  "generation": "Restyle the existing original silver-haired catgirl mascot 小江 into a warm editorial ROBOTICS FIELD NOTES illustrated companion that matches the supplied WEBSITE DESIGN reference, especially the tiny catgirl at the bottom right of that website. Deliver ONE single standalone FULL BODY character with TRUE TRANSPARENT BACKGROUND, no text, no grid, no scene. Use the supplied current character image only for identity: short soft silver-white bob, white cat ears with warm pink interiors, amber-gold eyes, tiny warm orange diamond hair clip on viewer right, one soft curled white tail, little dark notebook. She must still be instantly recognizable as 小江. Use the supplied website screenshot as the authoritative STYLE and PALETTE reference, NOT as something to recreate in this output. New style: elegant small Japanese sketchbook / engineering notebook mascot, hand-inked fine graphite outlines with subtle natural line variation, restrained 2D flat color with 2 or 3 soft cel-shaded tones, warm ivory highlights, matte paper-like color INSIDE shapes only. Low saturation, warm and friendly, careful simple shapes. MUCH LESS glossy anime rendering and no shiny plastic look, no 3D, no realism, no elaborate hair highlights, no ornate trim, not pixel art, not a stuffed plush. Head-to-body proportion around 1:1.4 (cute 2.4-head-high full figure), not an enormous floating head. Loose forest-green #183f35 hooded workshop jacket, muted sage folds #8d9c83, cream #f5f3eb ribbed inner top, a small restrained terracotta-orange #c66d3d tab on sleeve, simple charcoal shorts/skirt, dark soft leggings, ivory sneakers with sage details. Original gold-piped dark jacket is REPLACED with simpler green outfit to match new website. A compact cream-and-graphite over-ear communication headset with a single tiny muted orange circular accent sits AROUND the ears, keeping both cat ears fully visible; no boom microphone covering mouth. A small closed forest-green field notebook with one tiny orange bookmark is tucked against chest in left hand; no text or brand marks on notebook. Full standing gentle welcoming pose, right hand lifted in a small friendly wave at shoulder level, relaxed legs, grounded feet at same baseline, tail curls to viewer right. Cheerful but calm small mouth smile, amber eyes with restrained single highlight. 3/4 front view, facing just slightly toward viewer left so she looks into the webpage from its right margin. Silhouette must read clearly at 110px tall. Character alone centered in a square transparent canvas, at least 8% empty margins on all sides. All ears/tail/feet/hands fully inside canvas. NO desk, NO laptop, NO ground plane, NO platform, NO cast shadow, NO background paper rectangle, NO props beyond notebook and headset, NO floating symbols, NO written captions. This is an original reusable transparent mascot production asset, not a sticker with an enclosing white contour.",
+  "transparent_background": true,
+  "generated_source": "call_pzcDeaMCOe4R7vVBCEQJQ19m.png",
+  "outputs": {
+    "original": "catgirl-field-notes.png",
+    "web": "catgirl-field-notes.webp"
+  },
+  "conversion": "ImageMagick proportional resize to 640x640 and lossless WebP encoding; original alpha preserved; no manual repainting"
+}
