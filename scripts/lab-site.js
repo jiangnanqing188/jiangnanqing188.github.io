@@ -183,13 +183,15 @@ const renderResourceHub = posts => {
     .map(resource => {
       const external = String(resource.href).startsWith("http");
       return `
-        <a class="lab-resources__card" href="${escapeHtml(resource.href)}"${external ? ' target="_blank" rel="noopener"' : " download"}>
+        <article class="lab-resources__card">
           <span class="lab-resources__kind">${escapeHtml(resource.kind || "FILE")}</span>
-          <strong>${escapeHtml(resource.label)}</strong>
-          <p>${escapeHtml(resource.description || "项目材料")}</p>
-          <small>来自 ${escapeHtml(formatLogId(resource.post.log_id))} · ${escapeHtml(resource.post.title)}</small>
-          <i aria-hidden="true">${external ? "↗" : "↓"}</i>
-        </a>`;
+          <div class="lab-resources__body">
+            <h2>${escapeHtml(resource.label)}</h2>
+            <p>${escapeHtml(resource.description || "项目材料")}</p>
+            <div class="lab-resources__source">来源：<a href="${escapeHtml(postPath(resource.post))}">${escapeHtml(formatLogId(resource.post.log_id))} · ${escapeHtml(resource.post.title)}</a></div>
+          </div>
+          <div class="lab-resources__actions"><a class="button" href="${escapeHtml(resource.href)}"${external ? ' target="_blank" rel="noopener"' : " download"}>${external ? "打开外部页面 ↗" : "下载文件 ↓"}</a></div>
+        </article>`;
     })
     .join("");
 
@@ -197,7 +199,7 @@ const renderResourceHub = posts => {
     <div class="lab-resources">
       <header class="lab-resources__hero">
         <span>BUILD ARTIFACTS / DOWNLOADS</span>
-        <h1>资源下载</h1>
+        <h1>资源与公开材料。</h1>
         <p>文章里真正使用或公开的脚本、配置与项目入口集中放在这里，并保留它们来自哪篇记录。</p>
         <strong>${resources.length.toString().padStart(2, "0")} ITEMS AVAILABLE</strong>
       </header>

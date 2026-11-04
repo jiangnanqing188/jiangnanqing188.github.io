@@ -76,6 +76,16 @@ if (search) {
     apply();
   }));
   search.addEventListener('input', apply);
+  document.querySelector('[data-reset-search]')?.addEventListener('click', () => {
+    search.value = '';
+    category = '全部';
+    filters.forEach(item => item.setAttribute('aria-pressed', String(item.dataset.filter === category)));
+    const url = new URL(location.href);
+    url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+    apply();
+    search.focus();
+  });
   search.value = new URLSearchParams(location.search).get('q') || '';
   apply();
   document.addEventListener('keydown', event => {
@@ -85,13 +95,20 @@ if (search) {
     }
   });
 }
+// One shared breakpoint for article, project and about-page disclosure navigation.
+const compactNavigation = matchMedia('(max-width: 760px)');
+const disclosures = [...document.querySelectorAll('[data-responsive-details]')];
+const updateDisclosures = () => disclosures.forEach(details => { details.open = !compactNavigation.matches; });
+updateDisclosures();
+compactNavigation.addEventListener('change', updateDisclosures);
+for (const details of disclosures) {
+  details.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    if (compactNavigation.matches) details.open = false;
+  }));
+}
 const toc = document.querySelector('.toc details');
-if (toc && matchMedia('(max-width: 760px)').matches) toc.open = false;
 const tocNav = document.querySelector('.toc nav');
 const links = [...document.querySelectorAll('.toc nav a')];
-links.forEach(link => link.addEventListener('click', () => {
-  if (matchMedia('(max-width: 760px)').matches) toc.open = false;
-}));
 const tocLinks = new Map(links.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
 const sections = [...document.querySelectorAll('.prose h2, .prose h3')].filter(section => tocLinks.has(section.id));
 if (sections.length) {

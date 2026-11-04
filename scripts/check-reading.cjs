@@ -13,11 +13,22 @@ if (require.main === module) {
   }));
   const sections = [{id: 'lab-repro-title', top: 60}, {id: '方案总览', top: 200}, {id: '第二章：实车验证', top: 1200}];
   sections.forEach(section => { section.getBoundingClientRect = () => ({top: section.top}); });
-  const toc = {open: true};
+  const toc = {open: true, querySelectorAll: selector => selector === 'a' ? links : []};
   const nav = {scrollTop: 0, getBoundingClientRect: () => ({top: 100, bottom: 400})};
   links.forEach((link, index) => { link.getBoundingClientRect = () => ({top: 100 + index * 600 - nav.scrollTop, bottom: 120 + index * 600 - nav.scrollTop}); });
   let desktop = true;
   const events = {};
+  // MediaQueryList.matches stays live; change listeners fire on breakpoint changes.
+  const mediaQueries = new Map();
+  const matchMedia = query => {
+    if (!mediaQueries.has(query)) mediaQueries.set(query, {
+      media: query, listeners: new Set(),
+      get matches() { return query.includes('min-width') ? desktop : !desktop; },
+      addEventListener(type, callback) { if (type === 'change') this.listeners.add(callback); }
+    });
+    return mediaQueries.get(query);
+  };
+  const changeMedia = () => mediaQueries.forEach(media => media.listeners.forEach(callback => callback({matches: media.matches, media: media.media})));
   let frame, observer;
   vm.runInNewContext(code, {
     document: {
@@ -30,11 +41,12 @@ if (require.main === module) {
       querySelectorAll(selector) {
         if (selector === '.prose h2, .prose h3') return sections;
         if (selector === '.toc nav a') return links;
+        if (selector === '[data-responsive-details]') return [toc];
         return [];
       }
     },
     innerHeight: 720,
-    matchMedia: query => ({matches: query.includes('min-width') ? desktop : !desktop}),
+    matchMedia,
     addEventListener(type, callback) { events[type] = callback; },
     requestAnimationFrame(callback) { frame = callback; },
     IntersectionObserver: class { constructor(callback) { observer = callback; } observe() {} }
@@ -73,5 +85,17 @@ if (require.main === module) {
   sections[2].top = 1200;
   scroll();
   assert.equal(current(), undefined, 'No chapter should be active above the article body.');
-  console.log('Reading regression passed: encoded Chinese anchors, downward/upward scrolling, injected headings, initial article position and desktop TOC visibility.');
+  assert.ok([...mediaQueries.values()].some(media => media.listeners.size), 'Responsive navigation must subscribe to media-query changes.');
+  desktop = false;
+  changeMedia();
+  assert.equal(toc.open, false, 'Changing to mobile must collapse the real responsive TOC node.');
+  toc.open = true;
+  links[0].events.click();
+  assert.equal(toc.open, false, 'Responsive details must bind their own descendant navigation links.');
+  desktop = true;
+  changeMedia();
+  assert.equal(toc.open, true, 'Changing back to desktop must expand the TOC.');
+  links[0].events.click();
+  assert.equal(toc.open, true, 'Desktop selection after a breakpoint change must keep the TOC expanded.');
+  console.log('Reading regression passed: encoded Chinese anchors, downward/upward scrolling, injected headings, initial article position, desktop TOC visibility, live media-query change events and responsive-details links.');
 }

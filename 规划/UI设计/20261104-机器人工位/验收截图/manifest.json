@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-04",
+  "kind": "actual-browser-viewport-screenshots-not-design-mockups",
+  "source_head": "30a85fa plus reviewed uncommitted implementation",
+  "css_sha256": "f907c64c4f87ae37f5a82322d7e64dceff48ed04dcb48356fd6725578122a2d8",
+  "pet_js_sha256": "21b1166038ddb8122a44ff0700f6896dafc289aee7f3eda0b8be493fb18754fe",
+  "screenshots": [
+    {
+      "file": "home-desktop-light.jpg",
+      "title": "首页 · 桌面浅色",
+      "width": 1265,
+      "height": 712,
+      "bytes": 87306,
+      "sha256": "c26f6f6db88c267e7fc8bc268be3d571adc4ef3ea832dfc6317575d12e772479"
+    },
+    {
+      "file": "home-desktop-dark.jpg",
+      "title": "首页 · 桌面深色",
+      "width": 1265,
+      "height": 712,
+      "bytes": 88389,
+      "sha256": "060f7fddd9ed3a0855d2b290f58da70e1704d86c15eb9555d53381d86947535d"
+    },
+    {
+      "file": "home-mobile-light.jpg",
+      "title": "首页 · 手机浅色",
+      "width": 375,
+      "height": 812,
+      "bytes": 41605,
+      "sha256": "256c9061728504edfb9a67d9dedc955164dc89ac572bd25ba62fa7d879e1c556"
+    },
+    {
+      "file": "home-mobile-dark.jpg",
+      "title": "首页 · 手机深色",
+      "width": 375,
+      "height": 812,
+      "bytes": 42333,
+      "sha256": "25489d7152daf5ae270f78849b6a5452978b607af3717aeecc255371a4e47834"
+    },
+    {
+      "file": "projects-desktop-light.jpg",
+      "title": "项目列表 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 92890,
+      "sha256": "c319af7229c2368774ea9d701ea06ea4869546f1caf2cc41450d08dfba6aecec"
+    },
+    {
+      "file": "project-detail-desktop-light.jpg",
+      "title": "项目详情 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 92336,
+      "sha256": "4c30c80b7fedf3db3e4169465e4b6ed4b29a3b0b92f4657f6ee42c4b804f350b"
+    },
+    {
+      "file": "articles-desktop-light.jpg",
+      "title": "文章列表 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 54755,
+      "sha256": "b1eefc6e87f4e8fd92e957c67b4ac7ac6789af6fcf5a93dd8ce728a1b530f32e"
+    },
+    {
+      "file": "reading-desktop-light.jpg",
+      "title": "阅读 · 桌面浅色",
+      "width": 1265,
+      "height": 889,
+      "bytes": 92410,
+      "sha256": "e1bed511ccb2a1974d4c35b19da47729a933db872871a2d323b1c82eb95ee83e"
+    },
+    {
+      "file": "reading-desktop-dark.jpg",
+      "title": "阅读 · 桌面深色",
+      "width": 1265,
+      "height": 889,
+      "bytes": 92965,
+      "sha256": "20bb25239cea042820c1854e7966be380422a5108f3f929bd595074d446c949a"
+    },
+    {
+      "file": "reading-mobile-light.jpg",
+      "title": "阅读 · 手机浅色",
+      "width": 375,
+      "height": 812,
+      "bytes": 40721,
+      "sha256": "b714c2accc5bdc9fef8ca74486eb6b239185a8ce4c7b9c5d1da8aaa68ceb51e6"
+    },
+    {
+      "file": "about-desktop-light.jpg",
+      "title": "关于 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 58231,
+      "sha256": "d2732a2e7be3959be15fa94622846669ae6e7ab23c39e4e3ab2149da0b7cfaeb"
+    },
+    {
+      "file": "about-mobile-light.jpg",
+      "title": "关于 · 手机",
+      "width": 375,
+      "height": 812,
+      "bytes": 35632,
+      "sha256": "5a5a9886e6fead2fd0aa70bd3577db74836eca3db99917a1c7ba5acba8088a80"
+    },
+    {
+      "file": "resources-desktop-light.jpg",
+      "title": "资源 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 49010,
+      "sha256": "fccb3e740089fc5367cca3e91c21caa2abad198ca1a2d029fd3be3f61701dfe5"
+    },
+    {
+      "file": "resources-mobile-light.jpg",
+      "title": "资源 · 手机",
+      "width": 375,
+      "height": 812,
+      "bytes": 30369,
+      "sha256": "9aabdba951706a4ead34d2eb0233891e6c6db26c57a3096bf81025755b024770"
+    },
+    {
+      "file": "categories-desktop-light.jpg",
+      "title": "分类 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 41546,
+      "sha256": "bb4728085dd380c215f0d6a7d14c50357144da724676d85a80ef89dc10885e84"
+    },
+    {
+      "file": "tags-desktop-light.jpg",
+      "title": "标签 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 46631,
+      "sha256": "89fbf50dbc14433796b6a344d4c859fbde7f16edae4732f835615e3a26b386d2"
+    },
+    {
+      "file": "music-desktop-light.jpg",
+      "title": "音乐 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 46075,
+      "sha256": "f86a0dabad2f91bf97bf3add27e2a57047d770686275f45773e5b8e2ca2c4d4f"
+    },
+    {
+      "file": "404-desktop-light.jpg",
+      "title": "404 · 桌面",
+      "width": 1265,
+      "height": 712,
+      "bytes": 39344,
+      "sha256": "0479cbfed8eda2c4d066eeb99c567944e0bc6926fc3b4c4a1c5db35275b9b4b7"
+    }
+  ],
+  "limitations": [
+    "Desktop browser viewport emulation is not physical-phone testing.",
+    "Pet behavior is dynamic; cosmetic paragraph overlap remains a pre-existing limitation.",
+    "Comments service was not externally loaded or posted to.",
+    "No video exists; theme poster is static."
+  ]
+}

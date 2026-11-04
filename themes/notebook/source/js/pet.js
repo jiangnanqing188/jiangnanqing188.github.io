@@ -111,10 +111,10 @@
   // article tables of contents. Docking measures the page instead: it prefers
   // the empty margin outside the text column, then whichever corner she covers
   // least, and shrinks her rather than sit on something a reader needs.
-  const PROTECTED = 'h1,h2,h3,h4,h5,h6,p,li,dt,dd,time,img,table,pre,blockquote,figcaption,footer,input,textarea,select,button,a,.toc,.lab-repro,.mini-project,.home-aside,.profile-grid';
+  const PROTECTED = 'h1,h2,h3,h4,h5,h6,p,li,dt,dd,time,img,table,pre,blockquote,figcaption,footer,input,textarea,select,button,summary,a,.toc,.lab-repro,.mini-project,.home-aside,.profile-grid';
   // Two tiers, because not all pixels cost the same. Losing a link or a whole
   // sidebar card is a real defect; grazing a paragraph's last character is not.
-  const CRITICAL = 'a,button,input,textarea,select,label,.toc,.home-aside,.profile-grid,.mini-project,.lab-repro';
+  const CRITICAL = 'a,button,input,textarea,select,label,summary,.toc,.home-aside,.profile-grid,.mini-project,.lab-repro';
   let userMoved = false;   // once you drag her somewhere, docking stops arguing
   let dockBand = null;     // the range she may stroll in without leaving her spot
   const protectedRects = () => {

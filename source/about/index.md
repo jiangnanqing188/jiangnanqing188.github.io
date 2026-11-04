@@ -21,12 +21,16 @@ description: 江南的个人介绍、技术栈、成长经历、机器人项目�
 </section>
 <div class="about-layout">
 <aside class="about-index">
-<span class="eyebrow">ON THIS PAGE</span>
+<details open data-responsive-details>
+<summary>页内导航</summary>
+<nav aria-label="关于页导航">
 <a href="#practice">在做什么</a>
 <a href="#skills">技术与实践</a>
 <a href="#journey">成长路线</a>
 <a href="#results">团队成绩</a>
 <a href="#contact">保持联系</a>
+</nav>
+</details>
 </aside>
 <div>
 <section class="detail-section" id="practice">

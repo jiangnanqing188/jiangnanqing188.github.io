@@ -2,7 +2,7 @@
   "date": "2026-11-04",
   "baseline": "793aa9f",
   "branch": "master",
-  "status": "design-only-not-implemented",
+  "status": "design-pack-complete-with-separate-local-implementation",
   "image_tool": "image_gen.imagegen",
   "model_verification": "Tool has no model selector and returned no model identity; requested Image 2.5 is not independently verified.",
   "images": [
@@ -174,5 +174,6 @@
       "sha256": "90eaa3c17a9b34894b4776d1638148680d1db92b31e7d7963dcc02bf2e884f20",
       "generation_file": "call_GvmnUFHQqWaup2bTfUysCPRb.png"
     }
-  ]
+  ],
+  "actual_screenshots": "验收截图/index.html"
 }
