@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f5f3eb">
+  <meta name="theme-color" content="#f7f2e8">
   <meta name="color-scheme" content="light dark">
   
   <script>try{if(localStorage.getItem('lab-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
   <title>从Ctrl+V工程师到让AI自己调小车，我的AI使用体验 · 江南的碎碎念</title><meta name="description" content="记录我从向 AI 索要答案，到让它进入代码库，再到组织机器人闭环测试的过程，以及上下文、记录、权限和实车验证带来的方法变化。"><meta name="keywords" content="AI编程, Codex, ROS, TEB"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/"><meta property="og:type" content="article"><meta property="og:title" content="从Ctrl+V工程师到让AI自己调小车，我的AI使用体验"><meta property="og:description" content="记录我从向 AI 索要答案，到让它进入代码库，再到组织机器人闭环测试的过程，以及上下文、记录、权限和实车验证带来的方法变化。"><meta property="og:url" content="https://jiangnanqing188.github.io/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/covers/notebook/20261105/ai-feedback-loop.webp"><meta name="twitter:card" content="summary_large_image"><meta property="article:published_time" content="2026-07-23T16:00:00.000Z"><meta property="article:modified_time" content="2026-07-23T16:00:00.000Z">
   <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="/css/notebook.css">
-  <link rel="stylesheet" href="/css/pet.css">
-  <script src="/js/notebook.js" defer></script>
-  <script src="/js/pet.js" defer></script>
+  <link rel="stylesheet" href="/css/notebook.css?v=a79887d7b271">
+  <link rel="stylesheet" href="/css/pet.css?v=ed2d3b5234da">
+  <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
+  <script src="/js/pet.js?v=fcb81b96cc08" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从Ctrl+V工程师到让AI自己调小车，我的AI使用体验","description":"记录我从向 AI 索要答案，到让它进入代码库，再到组织机器人闭环测试的过程，以及上下文、记录、权限和实车验证带来的方法变化。","image":"https://jiangnanqing188.github.io/img/covers/notebook/20261105/ai-feedback-loop.webp","url":"https://jiangnanqing188.github.io/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/","mainEntityOfPage":"https://jiangnanqing188.github.io/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/","datePublished":"2026-07-23T16:00:00.000Z","dateModified":"2026-07-23T16:00:00.000Z","author":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"publisher":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"keywords":"AI编程, Codex, Gemini, ROS, TEB","articleSection":"成长记录"}</script></head>
 <body>
@@ -28,7 +28,7 @@
 <p>回头看，这半年真正变化的不是我换了多少模型，而是 AI 在项目里扮演的角色：最早是答案生成器，后来是代码库协作者，最后才变成一个能进入测试闭环的实验工具。</p>
 <span id="more"></span>
 
-<h2 id="第一阶段：答案生成器"><a href="#第一阶段：答案生成器" class="headerlink" title="第一阶段：答案生成器"></a>第一阶段：答案生成器</h2><p>我第一次大规模使用 AI，应该是在 2025 年 11 月。</p>
+<h2 id="第一阶段：答案生成器" data-field-section><a href="#第一阶段：答案生成器" class="headerlink" title="第一阶段：答案生成器"></a>第一阶段：答案生成器</h2><p>我第一次大规模使用 AI，应该是在 2025 年 11 月。</p>
 <p>当时要做 C++ 课程设计。因为上课一直玩手机，没怎么认真听课，所以真到自己打开 Visual Studio 的时候，基本属于两眼一黑。这个状态，可能也算不少大学生的日常了。。。</p>
 <p>经学长推荐，我开始使用 Google 的 Gemini。具体是哪个版本，现在已经记不清了，只记得第一次用的时候非常惊艳。我把课程设计要求发给它，再描述一下问题，它就能直接给出代码。程序报错了，我也不用怎么分析，复制错误信息，粘贴过去，再等它回复。</p>
 <p>那段时间的我，就是一个非常标准的 Ctrl+V 工程师。</p>
@@ -39,7 +39,7 @@
 <p>C++ 课程设计只需要在一台电脑上运行，环境相对简单。机器人代码却要放到真实小车上，牵扯 ROS、传感器、网络、底盘和硬件状态。偏偏我当时给 AI 看的还不是完整代码库，只有零零散散的几个主要文件。</p>
 <p>它看不到完整环境，也拿不到真实反馈，改起来自然有点盲人摸象。</p>
 <p>这一阶段我学到的第一件事，是 AI 给出的答案只能覆盖它看到的问题。如果我自己都没有把环境、限制和成功条件讲清楚，一段“看起来能跑”的代码，并不能证明真实系统已经可用。</p>
-<h2 id="第二阶段：代码库协作者"><a href="#第二阶段：代码库协作者" class="headerlink" title="第二阶段：代码库协作者"></a>第二阶段：代码库协作者</h2><p>真正的变化发生在 2026 年 5 月。我转去做智慧药房，第一次接触能直接在项目目录里读代码、改文件和执行命令的编程 Agent。</p>
+<h2 id="第二阶段：代码库协作者" data-field-section><a href="#第二阶段：代码库协作者" class="headerlink" title="第二阶段：代码库协作者"></a>第二阶段：代码库协作者</h2><p>真正的变化发生在 2026 年 5 月。我转去做智慧药房，第一次接触能直接在项目目录里读代码、改文件和执行命令的编程 Agent。</p>
 <p>智慧药房初赛阶段，我和另一支队伍的一名同学合作，他负责代码，我负责网络和测试；到了国赛阶段，代码、网络和测试都由我独立推进。任务时间很紧，没有可以直接继承的完整代码，我的相关知识储备也不够，写功能、补知识、上车测试和处理报错全挤在一起。</p>
 <p>第一次看到 Claude Code 直接读目录、修改文件、执行命令，那种感觉很奇妙。我只说了几句话，等一会儿再打开文件，工作已经完成了。</p>
 <p>真的，感觉太好了。</p>
@@ -59,7 +59,7 @@
 <p>这有点像给项目留下存档点。</p>
 <p>模型可以换，对话可以重新开，开发环境甚至可能重建，但只要版本基线和记录还在，工作就不至于完全断掉。前面被误删的 Docker 镜像能够较快复刻出来，其实也说明了遗留信息到底有多重要。</p>
 <p>这一阶段我学会的，不再是“怎样让 AI 多写一点代码”，而是怎样给它完整上下文、怎样先搭框架、怎样留下可回退的基线。AI 可以高效执行一个方案，但方向如果一开始就错了，它也只会以很高的效率，把错误方向修得越来越完整。</p>
-<h2 id="第三阶段：带反馈的实验工具"><a href="#第三阶段：带反馈的实验工具" class="headerlink" title="第三阶段：带反馈的实验工具"></a>第三阶段：带反馈的实验工具</h2><p>最让我惊喜的一次，是让 GPT-5.6 Sol 参与单车 TEB 参数的闭环测试。</p>
+<h2 id="第三阶段：带反馈的实验工具" data-field-section><a href="#第三阶段：带反馈的实验工具" class="headerlink" title="第三阶段：带反馈的实验工具"></a>第三阶段：带反馈的实验工具</h2><p>最让我惊喜的一次，是让 GPT-5.6 Sol 参与单车 TEB 参数的闭环测试。</p>
 <p>先说清楚这次实验的范围。对象只有一辆车，任务限定在固定场地里的整圈导航和一组相对有限的 TEB 参数，测试目标也比较明确；现场有人能够随时停止小车。我没有把它当成可以任意探索物理环境的机器人，更不会把这套做法直接搬到开放或危险场景里。</p>
 <p>当时我接手比赛的时间很紧，对 ROS 的知识储备也不够。TEB 调参大概率要控制变量，一轮一轮对比效果，问题是我连应该先动哪个参数、往哪个方向调都没有头绪。如果完全靠自己摸索，不仅慢，每次测试可能都不知道应该观察什么。</p>
 <p>于是我让 GPT-5.6 Sol 编写整圈测试脚本，运行小车，读取测试结果，再根据结果调整参数并进入下一轮。它不再只给我一组建议，然后等我自己去验证，而是把“写测试—运行—获得反馈—修改参数—再次测试”串成了一个闭环。</p>
@@ -68,7 +68,7 @@
 <p>这件事写下来不是为了把无人监管包装成能力。恰恰相反，它让我后来更明确地把任务范围、现场急停和人工最终判断放在实验前面。那次能够跑通，依赖的是成熟的 ROS 环境、明确而有限的测试目标和现场停止条件；换一个环境，我不会这样做。</p>
 <p>我真正惊喜的是，AI 开始通过代码和命令获得物理世界的反馈。以前我问 Gemini 怎么调参数，它给出一组建议，更像开环；建议到底有没有用，它不知道。现在 Agent 可以运行测试，再根据结果修正下一步动作，它才真正摸到了这台小车当时的状态。</p>
 <p>这大概就是 Loop Engineering 最吸引我的地方：不是把问题丢给 AI，拿到一段看起来正确的答案就结束，而是由我限定目标和安全边界，让工具进入真实环境获得反馈，再用证据决定下一步。</p>
-<h2 id="回头看：我学会的不是“把事情都交给-AI”"><a href="#回头看：我学会的不是“把事情都交给-AI”" class="headerlink" title="回头看：我学会的不是“把事情都交给 AI”"></a>回头看：我学会的不是“把事情都交给 AI”</h2><p>2025 年 11 月，我把报错复制给 Gemini，等它吐出一段代码。2026 年 7 月，我已经开始让 Codex 进入完整项目，读取目录、执行检查、保存工作记录，并参与实体小车的测试。</p>
+<h2 id="回头看：我学会的不是“把事情都交给-AI”" data-field-section data-field-heading><a href="#回头看：我学会的不是“把事情都交给-AI”" class="headerlink" title="回头看：我学会的不是“把事情都交给 AI”"></a>回头看：我学会的不是“把事情都交给 AI”</h2><p>2025 年 11 月，我把报错复制给 Gemini，等它吐出一段代码。2026 年 7 月，我已经开始让 Codex 进入完整项目，读取目录、执行检查、保存工作记录，并参与实体小车的测试。</p>
 <p>从索要答案，到一起改代码，再到组织闭环实验，中间只过了大半年。</p>
 <p>这个过程中，我也吃过很具体的亏：没有完整上下文时，AI 会盲人摸象；方向错了，它会把错误方案越做越完整；权限给得太宽，它能很快删掉重要环境；没有记录时，对话和模型一换，前面的判断就可能丢失；进入实车以后，没有停止条件和人工判断，效率越高反而越危险。</p>
 <p>所以我现在更关心的，是自己能不能把问题定义清楚，能不能给出足够上下文，能不能设计有效反馈，能不能区分“代码通过检查”和“实车真的可用”，以及什么时候应该拒绝一个看起来很厉害、但证据还不够的结果。</p>
@@ -77,7 +77,8 @@
 <div class="article-end"><span class="eyebrow">END OF NOTE / 006</span><a class="text-link" href="/archives/">继续阅读其他记录 →︎</a></div><section id="post-comment" class="comments-section"><div class="comment-head"><h2 class="comment-headline">交流与评论</h2></div><div id="giscus-wrap"><button class="button" id="load-comments" type="button" data-repo="jiangnanqing188/jiangnanqing188.github.io" data-repo-id="R_kgDOPTMnKQ" data-category-id="DIC_kwDOPTMnKc4DEBUV" data-category="Announcements" data-mapping="pathname" data-strict="1" data-emit-metadata="1" data-lang="zh-CN">加载评论</button></div><p class="muted comment-note">使用 GitHub 账号参与讨论。</p></section></article><aside class="toc"><details open data-responsive-details><summary>本篇目录</summary><nav aria-label="文章目录"><a class="toc-level-2" href="#第一阶段：答案生成器">第一阶段：答案生成器</a><a class="toc-level-2" href="#第二阶段：代码库协作者">第二阶段：代码库协作者</a><a class="toc-level-2" href="#第三阶段：带反馈的实验工具">第三阶段：带反馈的实验工具</a><a class="toc-level-2" href="#回头看：我学会的不是“把事情都交给-AI”">回头看：我学会的不是“把事情都交给 AI”</a></nav></details><a class="back-top" href="#main">回到顶部 ↑</a></aside></div>
 </main>
   <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
-  <aside id="blog-pet" class="blog-pet" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
+  <div class="pet-workstation container" aria-label="小江的纸边工位"><div class="pet-station-copy"><span>COMPANION / 纸边工位</span><p>读到这里，歇一会儿。</p><small>小江在这里陪你。点开小菜单，或把她拖到喜欢的位置。</small></div>
+<aside id="blog-pet" class="blog-pet is-flow" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
   <div class="pet-stage">
     <p id="pet-message" class="pet-bubble" role="status" hidden></p>
     <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">
@@ -108,6 +109,7 @@
   </div>
   <button class="pet-restore" type="button" aria-label="叫回小江" hidden><span aria-hidden="true">♧</span>小江</button>
 </aside>
+</div>
 
 </body>
 </html>

@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f5f3eb">
+  <meta name="theme-color" content="#f7f2e8">
   <meta name="color-scheme" content="light dark">
   
   <script>try{if(localStorage.getItem('lab-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
   <title>从单车调试到双车联调，智慧药房机器人比赛复盘 · 江南的碎碎念</title><meta name="description" content="第二十八届中国机器人及人工智能大赛智慧药房赛项参赛复盘，按时间记录单车调试、OCR、导航、双车隔离和赛前联调中的问题、解决办法与经验。"><meta name="keywords" content="ROS, 计算机视觉, 智慧药房, 中国机器人及人工智能大赛, 移动机器人, 多车协同, OCR, 视觉定位"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/"><meta property="og:type" content="article"><meta property="og:title" content="从单车调试到双车联调，智慧药房机器人比赛复盘"><meta property="og:description" content="第二十八届中国机器人及人工智能大赛智慧药房赛项参赛复盘，按时间记录单车调试、OCR、导航、双车隔离和赛前联调中的问题、解决办法与经验。"><meta property="og:url" content="https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/covers/notebook/20261105/pharmacy-dual-robots.webp"><meta name="twitter:card" content="summary_large_image"><meta property="article:published_time" content="2026-07-23T12:00:00.000Z"><meta property="article:modified_time" content="2026-07-23T12:00:00.000Z">
   <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="/css/notebook.css">
-  <link rel="stylesheet" href="/css/pet.css">
-  <script src="/js/notebook.js" defer></script>
-  <script src="/js/pet.js" defer></script>
+  <link rel="stylesheet" href="/css/notebook.css?v=a79887d7b271">
+  <link rel="stylesheet" href="/css/pet.css?v=ed2d3b5234da">
+  <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
+  <script src="/js/pet.js?v=fcb81b96cc08" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从单车调试到双车联调，智慧药房机器人比赛复盘","description":"第二十八届中国机器人及人工智能大赛智慧药房赛项参赛复盘，按时间记录单车调试、OCR、导航、双车隔离和赛前联调中的问题、解决办法与经验。","image":"https://jiangnanqing188.github.io/img/covers/notebook/20261105/pharmacy-dual-robots.webp","url":"https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/","mainEntityOfPage":"https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/","datePublished":"2026-07-23T12:00:00.000Z","dateModified":"2026-07-23T12:00:00.000Z","author":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"publisher":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"keywords":"ROS, 计算机视觉, 智慧药房, 中国机器人及人工智能大赛, 移动机器人, 多车协同, OCR, 视觉定位","articleSection":"比赛复盘","about":{"@type":"Thing","name":"智慧药房双车系统","url":"https://jiangnanqing188.github.io/projects/#project-pharmacy"}}</script></head>
 <body>
@@ -59,7 +59,7 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">起点 → 识别板1 → 体检窗口 → 识别板2 → 化验窗口 → 起点 → 双车交接</span><br></pre></td></tr></table></figure>
 
 <p>真正的工作，就是把这条看起来很简单的流程，一点点变成两台真车可以执行的系统。</p>
-<div class="table-scroll" tabindex="0" role="region" aria-label="可横向滚动的表格"><table>
+<div class="table-scroll" tabindex="0" role="region" aria-label="可横向滚动的表格"><span class="table-scroll-hint">↔ 可左右滑动，查看表格其余列</span><table>
 <thead>
 <tr>
 <th>日期</th>
@@ -122,7 +122,7 @@
 </blockquote>
 <span id="more"></span>
 
-<h2 id="7-月-9-日，先建立一个可信的单车基线"><a href="#7-月-9-日，先建立一个可信的单车基线" class="headerlink" title="7 月 9 日，先建立一个可信的单车基线"></a>7 月 9 日，先建立一个可信的单车基线</h2><p>最早的工作不是调高速度，也不是直接做双车，而是先把车 1 现有的流程弄清楚。</p>
+<h2 id="7-月-9-日，先建立一个可信的单车基线" data-field-section><a href="#7-月-9-日，先建立一个可信的单车基线" class="headerlink" title="7 月 9 日，先建立一个可信的单车基线"></a>7 月 9 日，先建立一个可信的单车基线</h2><p>最早的工作不是调高速度，也不是直接做双车，而是先把车 1 现有的流程弄清楚。</p>
 <p>我做的第一件事，是给整个目录建立 Git 基线和可回退点。原来的代码能跑，但里面夹着一些试验逻辑和保底方案。后面不管改 OCR、路径还是导航参数，如果没有一个明确基线，很容易改着改着，连当前真车跑的是哪一版都说不清。</p>
 <p>识别板 1 当时有一个预设方案。真实二维码识别失败以后，程序可以用默认任务继续运行。这个做法调试时看起来很省事，因为车不会停在那里，但它会制造一个更麻烦的问题，路线跑完了，不代表识别成功了。</p>
 <p>我把这个保底方案去掉，识别超时以后重新打开识别，只接受真实结果。主流程也改成每次向 <code>move_base</code> 发送目标前都清理一次代价地图，避免旧障碍持续影响后面的路径。</p>
@@ -134,7 +134,7 @@
 <p>回头看，7 月 9 日做得最重要的事情，不是解决了多少问题，而是把「真的成功」和「看起来能继续运行」分开了。</p>
 <p>没有真实识别结果，就不写识别成功。试验路线效果不好，就回退。通信只测通端口，就只记录端口可达。</p>
 <p>这给后面所有调试定了一个很重要的标准，先建立可信基线，再往上加功能。保底数据可以让演示继续，却也可能把真正的问题藏起来。</p>
-<h2 id="7-月-10-日，把-OCR-真正接进任务流程"><a href="#7-月-10-日，把-OCR-真正接进任务流程" class="headerlink" title="7 月 10 日，把 OCR 真正接进任务流程"></a>7 月 10 日，把 OCR 真正接进任务流程</h2><p>第二天的工作基本围绕 OCR 展开。</p>
+<h2 id="7-月-10-日，把-OCR-真正接进任务流程" data-field-section><a href="#7-月-10-日，把-OCR-真正接进任务流程" class="headerlink" title="7 月 10 日，把 OCR 真正接进任务流程"></a>7 月 10 日，把 OCR 真正接进任务流程</h2><p>第二天的工作基本围绕 OCR 展开。</p>
 <p>识别板 2 的牌子只有两类意思，空闲时快速通过，忙碌时等待 5 到 10 秒。但 OCR 原文并不稳定，同一块牌子可能多一个空格、少一个字，也可能把数字识别错。</p>
 <p>我没有让主状态机直接处理这些原始文字，而是把视觉输出收敛成一个很小的集合，<code>WAIT-0</code>、<code>WAIT-5</code> 到 <code>WAIT-10</code>，以及 <code>UNKNOWN</code>。</p>
 <p>车到达识别板 2 后，先关闭触发，等待车体和画面稳定 2 秒，再启动本轮 OCR。单次结果最多等待 8 秒，一共尝试 3 次。识别到 <code>WAIT-0</code> 就继续，识别到具体秒数就按结果等待。连续失败后记录 <code>UNKNOWN</code>，流程不会永久卡死。</p>
@@ -144,7 +144,7 @@
 <p>这个验证边界当时写得很明确，代码能编译，不等于 OCR 已经可用。</p>
 <p>这一天留下的经验，主要是视觉系统不能只盯识别算法。图像是不是到站后的新帧，结果属于哪一次触发，超时以后状态机怎么走，这些时序问题和识别率一样重要。</p>
 <p>还有一点后来一直在坚持，每次记录都要写清楚「已经验证到哪里」。语法通过就是语法通过，不顺手把它扩写成功能通过。</p>
-<h2 id="7-月-11-日到-12-日，导航问题开始真正暴露"><a href="#7-月-11-日到-12-日，导航问题开始真正暴露" class="headerlink" title="7 月 11 日到 12 日，导航问题开始真正暴露"></a>7 月 11 日到 12 日，导航问题开始真正暴露</h2><p>OCR 流程接进去以后，工作重心转到了导航和现场调参。</p>
+<h2 id="7-月-11-日到-12-日，导航问题开始真正暴露" data-field-section><a href="#7-月-11-日到-12-日，导航问题开始真正暴露" class="headerlink" title="7 月 11 日到 12 日，导航问题开始真正暴露"></a>7 月 11 日到 12 日，导航问题开始真正暴露</h2><p>OCR 流程接进去以后，工作重心转到了导航和现场调参。</p>
 <p>为了能在电脑端实时调整 TEB，我把 <code>rqt_reconfigure</code> 安装并固化进 ROS Melodic Docker 镜像，启动命令也补进现场文档。这样调参数不再依赖某一台车上临时装好的环境。</p>
 <p>同一阶段，RViz 里的雷达点看起来一顿一顿。车 1 同时存在 <code>/scan</code> 和 <code>/scan_filtered</code>，当时 RViz 用的是原始 <code>/scan</code>。实际测下来，原始话题虽然平均接近 10 Hz，但消息间隔和延迟偶尔会跳到 <code>0.27 s</code> 左右。切换到更稳定的 <code>/scan_filtered</code>，再把队列设为 1、衰减设为 0 后，显示才正常下来。</p>
 <p>我还完整检查了 TF 主链。</p>
@@ -160,7 +160,7 @@
 <p>处理办法也很直接。停止高速整圈测试，把 footprint 按实车尺寸修正为 <code>0.35 m × 0.22 m</code>，统一 TEB 和底盘轴距，再恢复保守速度，从开阔区域的低速转弯重新验证。后面的测试也改成监测程序先开始记录，确认订阅正常以后，才允许发送实车目标。</p>
 <p>这一阶段的经验很明确，调参之前先检查物理模型和数据链。车长、车宽、轴距、最小转弯半径写错了，调参只是围着错误前提继续优化。</p>
 <p>而事故没有完整数据时，就老老实实写「原因尚未确认」。猜得再像，也不能代替证据。</p>
-<h2 id="7-月-13-日，恢复稳定基线，不再盲目提速"><a href="#7-月-13-日，恢复稳定基线，不再盲目提速" class="headerlink" title="7 月 13 日，恢复稳定基线，不再盲目提速"></a>7 月 13 日，恢复稳定基线，不再盲目提速</h2><p>几何参数修正后，我把新配置同步到车 1。TEB 和底盘轴距都统一为 <code>0.163 m</code>，规划 footprint 按 <code>0.35 m × 0.22 m</code> 设置，代价地图再保留 <code>0.01 m</code> 的 padding。</p>
+<h2 id="7-月-13-日，恢复稳定基线，不再盲目提速" data-field-section><a href="#7-月-13-日，恢复稳定基线，不再盲目提速" class="headerlink" title="7 月 13 日，恢复稳定基线，不再盲目提速"></a>7 月 13 日，恢复稳定基线，不再盲目提速</h2><p>几何参数修正后，我把新配置同步到车 1。TEB 和底盘轴距都统一为 <code>0.163 m</code>，规划 footprint 按 <code>0.35 m × 0.22 m</code> 设置，代价地图再保留 <code>0.01 m</code> 的 padding。</p>
 <p>这个过程里电脑还突然断过一次电。</p>
 <p>ROS Master 和 <code>rqt_reconfigure</code> 里的在线参数全部丢失，只能从断电前的记录中找回最后稳定的 <code>0.70/0.45</code>。那组只把 <code>acc_lim_x</code> 提到 <code>0.55</code> 的未完成试验也被重新辨认出来，它曾让 C 段从大约 <code>10 s</code> 变成 <code>14.8 s</code>，所以明确废弃，没有写回 YAML。</p>
 <p>重新启动时又碰到非交互 SSH 缺少 <code>ROBOT_TYPE</code>。厂家底盘代码还依赖交互式 <code>top -n1</code>，普通 <code>nohup</code> 会让 CPU 和电池监测线程退出。后来把导航放进车端 <code>tmux</code> 会话，<code>/battery</code> 才恢复到大约 1 Hz。</p>
@@ -170,13 +170,13 @@
 <p>这一天的经验有两条。</p>
 <p>在线参数一定要写回配置文件，稳定基线也要留在版本记录里。否则一次断电，就能把几个小时的试验重新打回记忆题。</p>
 <p>速度对比则必须看完整路线和分段数据。比赛比的是稳定完成任务，不是参数文件里的最大值。某一圈快了 1 秒，不一定值得换掉已经验证过的稳定性。</p>
-<h2 id="7-月-14-日，把裁判通信从主流程里拆出来"><a href="#7-月-14-日，把裁判通信从主流程里拆出来" class="headerlink" title="7 月 14 日，把裁判通信从主流程里拆出来"></a>7 月 14 日，把裁判通信从主流程里拆出来</h2><p>导航基线稳定以后，我开始核对裁判软件的通信协议。</p>
+<h2 id="7-月-14-日，把裁判通信从主流程里拆出来" data-field-section><a href="#7-月-14-日，把裁判通信从主流程里拆出来" class="headerlink" title="7 月 14 日，把裁判通信从主流程里拆出来"></a>7 月 14 日，把裁判通信从主流程里拆出来</h2><p>导航基线稳定以后，我开始核对裁判软件的通信协议。</p>
 <p>官方要求小车通过 TCP 发送 6 个字段，包括车辆编号、速度、二维坐标、当前任务、识别板 2 结果和识别板 1 结果，频率为 1 到 2 Hz。</p>
 <p>原来的实现会频繁建立连接，字段类型和消息边界也不够明确。后来改成长连接，每 <code>0.5 s</code> 发送一次 JSON，并在消息末尾追加换行。连接或发送失败以后关闭失效套接字，后续周期自动重连。</p>
 <p>更重要的是，通信放进独立线程。裁判电脑没开、IP 不通或者连接中断，都不能反过来卡住导航状态机。主流程照常执行，通信线程自己处理重连。</p>
 <p>这一天没有启动裁判软件，也没有做实车联机，只完成了协议核对和代码改写。所以结论仍然是「格式按官方要求实现，现场通信待验证」。</p>
 <p>留下的经验是，附加功能不能控制核心任务的生死。裁判通信、日志上传、语音播报这些功能当然重要，但它们出错时，不能把正在运动的机器人一起拖死。</p>
-<h2 id="7-月-15-日，从一辆车扩展到两辆车"><a href="#7-月-15-日，从一辆车扩展到两辆车" class="headerlink" title="7 月 15 日，从一辆车扩展到两辆车"></a>7 月 15 日，从一辆车扩展到两辆车</h2><p>这一天开始，项目真正进入双车阶段。</p>
+<h2 id="7-月-15-日，从一辆车扩展到两辆车" data-field-section><a href="#7-月-15-日，从一辆车扩展到两辆车" class="headerlink" title="7 月 15 日，从一辆车扩展到两辆车"></a>7 月 15 日，从一辆车扩展到两辆车</h2><p>这一天开始，项目真正进入双车阶段。</p>
 <p>最明显的问题是车 2 位姿乱飞。车 2 明明停在原地，<code>map → car2/base_footprint</code> 却会在场地中大幅跳动。排查 ROS 图以后发现，车 2 的 EKF 误订阅了车 1 的全局 <code>/odom</code>。</p>
 <p>修复时没有把输入写死成另一个绝对话题，而是改成命名空间内的相对话题 <code>odom</code>。因为 EKF 节点运行在 <code>/car2</code> 下，它会自动解析为 <code>/car2/odom</code>。修复后连续采样 6 秒，车 2 位姿稳定下来，不再跟着车 1 移动。</p>
 <p>接着检查 RViz，又发现两份配置也有串车风险。车 1 的 RViz 指向了一些并不存在的 <code>/car1</code> 话题，车 2 的 RobotModel 仍读取全局 <code>robot_description</code>，初始位姿和导航目标也没有完整走车 2 专用接口。</p>
@@ -186,7 +186,7 @@
 <p>双车阶段留下的经验是，命名空间不是给节点名加一个 <code>/car2</code> 就结束了。</p>
 <p>topic、TF、action、service、参数、RobotModel、RViz 输入都要一起隔离。少改一层，系统未必立即报错，却可能表现成位姿跳动、目标发错车或者一辆车误用另一辆车的传感器数据。</p>
 <p>自动契约测试也从这个阶段开始变得很有价值。它不能替代实车，但能在每次修改以后，先把那些低级而危险的串车问题拦下来。</p>
-<h2 id="7-月-16-日，用-8-圈测试覆盖所有路线"><a href="#7-月-16-日，用-8-圈测试覆盖所有路线" class="headerlink" title="7 月 16 日，用 8 圈测试覆盖所有路线"></a>7 月 16 日，用 8 圈测试覆盖所有路线</h2><p>双车接口稳定后，我开始做完整交替跑圈。</p>
+<h2 id="7-月-16-日，用-8-圈测试覆盖所有路线" data-field-section><a href="#7-月-16-日，用-8-圈测试覆盖所有路线" class="headerlink" title="7 月 16 日，用 8 圈测试覆盖所有路线"></a>7 月 16 日，用 8 圈测试覆盖所有路线</h2><p>双车接口稳定后，我开始做完整交替跑圈。</p>
 <p>当天两台车各跑 4 圈，共 8 圈，依次覆盖化验区 4、3、2、1。车 1 每圈回到起点后通知车 2，车 2 跑完再通知车 1，双车交接服务在 8 圈中正常工作。</p>
 <p>这轮测试也暴露了不少只有实车连续跑才会出现的问题。</p>
 <p>车 1 去化验区 3、4 时容易冲过停车点。最初以为只是点位太深，把目标调整到车 2 已经跑稳的位置以后，车还是没有明显减速。继续结合制动距离看，主要问题其实是末段速度太高。</p>
@@ -199,7 +199,7 @@
 <p>窗口前制动不够，就只限制末段速度。狭窄区域不适合立即转向，就先做受里程计约束的直线退出。进板角度不稳定，就增加一个能约束末段方向的前置点。</p>
 <p>对比赛路线来说，局部措施往往比把整套导航参数重新拧一遍更容易验证，也更不容易影响已经跑稳的其他路段。</p>
 <p>还有一个边界需要说明，这 8 圈的识别板 1 使用了人工发布的任务消息。它证明了导航、点位和双车交接能够覆盖所有化验窗口，但不能拿来证明真实视觉已经可靠。</p>
-<h2 id="7-月-17-日，统一视觉并完成真实识别联调"><a href="#7-月-17-日，统一视觉并完成真实识别联调" class="headerlink" title="7 月 17 日，统一视觉并完成真实识别联调"></a>7 月 17 日，统一视觉并完成真实识别联调</h2><p>赛前最后一轮较大的改动，是把识别板 1 也迁到电脑端。</p>
+<h2 id="7-月-17-日，统一视觉并完成真实识别联调" data-field-section><a href="#7-月-17-日，统一视觉并完成真实识别联调" class="headerlink" title="7 月 17 日，统一视觉并完成真实识别联调"></a>7 月 17 日，统一视觉并完成真实识别联调</h2><p>赛前最后一轮较大的改动，是把识别板 1 也迁到电脑端。</p>
 <p>原来识别板 1 和识别板 2 分别读取同一个 HTTP 视频流，两个程序可能争抢摄像头。后来每辆车只保留一个电脑端视觉进程，由同一个采集线程持续保存最新帧。识别板 1 负责解析任务码，识别板 2 负责 OCR，但共用同一路画面。</p>
 <p>两台车仍然各运行一个进程。车 1 和车 2 的视频地址、触发话题、结果话题全部独立。车端 launch 删除旧的识别板 1 节点，只保留导航、Astra 和 <code>web_video_server</code>，避免比赛时重复占用视频流或重复发布结果。</p>
 <p>车 2 的触发时序也做了修改。到达板 1 后先发送 <code>False</code>，等待 <code>0.2 s</code>，再发送 <code>True</code>，形成明确的上升沿，给电脑端留下完整的识别时间。</p>
@@ -211,7 +211,7 @@
 <p>不过第一轮暴露的偶发失败依然被保留在工作记录里，没有因为第二轮成功就删掉。赛前版本冻结后，这类问题仍然属于需要重点观察的风险。</p>
 <p>这一天的经验，是完整跑圈也要拆开看每一条证据链。车回到了起点，不等于识别正确。第二次成功，也不能抹掉第一次失败。</p>
 <p>真实视觉联调的意义，就是让之前靠人工消息验证的导航流程，终于和相机、识别时序、等待逻辑连在一起。只有所有环节都使用比赛时的真实输入，整圈成功才有完整含义。</p>
-<h2 id="比赛结束后，再看这段准备过程"><a href="#比赛结束后，再看这段准备过程" class="headerlink" title="比赛结束后，再看这段准备过程"></a>比赛结束后，再看这段准备过程</h2><p>从 7 月 9 日建立单车基线，到 7 月 17 日完成双车真实视觉联调，整个过程并不是沿着最初设计一路顺利实现。</p>
+<h2 id="比赛结束后，再看这段准备过程" data-field-section data-field-heading><a href="#比赛结束后，再看这段准备过程" class="headerlink" title="比赛结束后，再看这段准备过程"></a>比赛结束后，再看这段准备过程</h2><p>从 7 月 9 日建立单车基线，到 7 月 17 日完成双车真实视觉联调，整个过程并不是沿着最初设计一路顺利实现。</p>
 <p>二维码的默认保底被删掉，OCR 从固定等待变成带门禁和新帧约束的状态机。TEB 调参中发生碰墙以后，我回过头修正 footprint 和轴距。单车扩展到双车时，又重新整理 topic、TF、RViz 和视觉接口。到了完整跑圈阶段，还要继续处理末段制动、狭窄区域退出、语音路径和触发时序。</p>
 <p>很多措施看起来都不复杂，甚至有些很笨。清理代价地图、增加前置点、末段限速、直线倒退、写启动手册、给文件算哈希，这些都不是拿出来很亮眼的算法。</p>
 <p>但它们让系统从「某一次能够跑完」，慢慢变成「知道为什么能跑完，也知道失败时该停在哪里」。</p>
@@ -229,7 +229,8 @@
 <div class="article-end"><span class="eyebrow">END OF NOTE / 005</span><a class="text-link" href="/archives/">继续阅读其他记录 →︎</a></div><section id="post-comment" class="comments-section"><div class="comment-head"><h2 class="comment-headline">交流与评论</h2></div><div id="giscus-wrap"><button class="button" id="load-comments" type="button" data-repo="jiangnanqing188/jiangnanqing188.github.io" data-repo-id="R_kgDOPTMnKQ" data-category-id="DIC_kwDOPTMnKc4DEBUV" data-category="Announcements" data-mapping="pathname" data-strict="1" data-emit-metadata="1" data-lang="zh-CN">加载评论</button></div><p class="muted comment-note">使用 GitHub 账号参与讨论。</p></section></article><aside class="toc"><details open data-responsive-details><summary>本篇目录</summary><nav aria-label="文章目录"><a class="toc-level-2" href="#7-月-9-日，先建立一个可信的单车基线">7 月 9 日，先建立一个可信的单车基线</a><a class="toc-level-2" href="#7-月-10-日，把-OCR-真正接进任务流程">7 月 10 日，把 OCR 真正接进任务流程</a><a class="toc-level-2" href="#7-月-11-日到-12-日，导航问题开始真正暴露">7 月 11 日到 12 日，导航问题开始真正暴露</a><a class="toc-level-2" href="#7-月-13-日，恢复稳定基线，不再盲目提速">7 月 13 日，恢复稳定基线，不再盲目提速</a><a class="toc-level-2" href="#7-月-14-日，把裁判通信从主流程里拆出来">7 月 14 日，把裁判通信从主流程里拆出来</a><a class="toc-level-2" href="#7-月-15-日，从一辆车扩展到两辆车">7 月 15 日，从一辆车扩展到两辆车</a><a class="toc-level-2" href="#7-月-16-日，用-8-圈测试覆盖所有路线">7 月 16 日，用 8 圈测试覆盖所有路线</a><a class="toc-level-2" href="#7-月-17-日，统一视觉并完成真实识别联调">7 月 17 日，统一视觉并完成真实识别联调</a><a class="toc-level-2" href="#比赛结束后，再看这段准备过程">比赛结束后，再看这段准备过程</a></nav></details><a class="text-link toc-project" href="/projects/pharmacy/">返回项目档案 ↗</a><a class="back-top" href="#main">回到顶部 ↑</a></aside></div>
 </main>
   <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
-  <aside id="blog-pet" class="blog-pet" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
+  <div class="pet-workstation container" aria-label="小江的纸边工位"><div class="pet-station-copy"><span>COMPANION / 纸边工位</span><p>读到这里，歇一会儿。</p><small>小江在这里陪你。点开小菜单，或把她拖到喜欢的位置。</small></div>
+<aside id="blog-pet" class="blog-pet is-flow" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
   <div class="pet-stage">
     <p id="pet-message" class="pet-bubble" role="status" hidden></p>
     <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">
@@ -260,6 +261,7 @@
   </div>
   <button class="pet-restore" type="button" aria-label="叫回小江" hidden><span aria-hidden="true">♧</span>小江</button>
 </aside>
+</div>
 
 </body>
 </html>

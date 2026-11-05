@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f5f3eb">
+  <meta name="theme-color" content="#f7f2e8">
   <meta name="color-scheme" content="light dark">
   
   <script>try{if(localStorage.getItem('lab-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
-  <title>江南的碎碎念</title><meta name="description" content="江南的个人技术博客，记录移动机器人、ROS、AI编程、计算机视觉与比赛实践中的问题、调试过程和复盘。"><meta name="keywords" content="移动机器人, ROS, AI编程, 计算机视觉, Python, 机器人比赛, 比赛复盘"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/"><meta property="og:type" content="website"><meta property="og:title" content="江南的碎碎念"><meta property="og:description" content="江南的个人技术博客，记录移动机器人、ROS、AI编程、计算机视觉与比赛实践中的问题、调试过程和复盘。"><meta property="og:url" content="https://jiangnanqing188.github.io/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/covers/notebook/ruikang-competition.webp"><meta name="twitter:card" content="summary_large_image">
+  <title>江南的碎碎念</title><meta name="description" content="江南的个人技术博客，记录移动机器人、ROS、AI编程、计算机视觉与比赛实践中的问题、调试过程和复盘。"><meta name="keywords" content="移动机器人, ROS, AI编程, 计算机视觉, Python, 机器人比赛, 比赛复盘"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/"><meta property="og:type" content="website"><meta property="og:title" content="江南的碎碎念"><meta property="og:description" content="江南的个人技术博客，记录移动机器人、ROS、AI编程、计算机视觉与比赛实践中的问题、调试过程和复盘。"><meta property="og:url" content="https://jiangnanqing188.github.io/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/workshop/ruikang-blueprint.webp"><meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="/css/notebook.css">
-  <link rel="stylesheet" href="/css/pet.css">
-  <script src="/js/notebook.js" defer></script>
-  <script src="/js/pet.js" defer></script>
+  <link rel="stylesheet" href="/css/notebook.css?v=a79887d7b271">
+  <link rel="stylesheet" href="/css/pet.css?v=ed2d3b5234da">
+  <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
+  <script src="/js/pet.js?v=fcb81b96cc08" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":"https://jiangnanqing188.github.io/","name":"江南的碎碎念","description":"江南的个人技术博客，记录移动机器人、ROS、AI编程、计算机视觉与比赛实践中的问题、调试过程和复盘。","mainEntity":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/","affiliation":{"@type":"CollegeOrUniversity","name":"长江大学"},"knowsAbout":["ROS","移动机器人","计算机视觉","AI 应用","机器人系统集成"],"award":["睿抗智能侦察车：全域安防竞赛项目一等奖 · 94 分（团队参赛）","智慧农业：全国总决赛一等奖（团队参赛）","智慧药房：全国总决赛三等奖（团队参赛）","ISCC 微型工厂：全国总决赛三等奖（团队参赛）"],"sameAs":["https://github.com/jiangnanqing188"]}}</script></head>
 <body>
@@ -26,32 +26,37 @@
   <main id="main" class="container" tabindex="-1" data-page="首页">
 <section class="lab-hero">
   <div class="hero-copy">
-    <span class="eyebrow"><i class="status-dot" aria-hidden="true"></i>JIANGNAN LAB NOTE / 2026</span>
-    <h1>把机器人调通，<br><span class="pencil-mark">也把过程写清楚。</span></h1>
+    <span class="eyebrow"><i class="status-dot" aria-hidden="true"></i>FIELD NOTES / VOL. 2026</span>
+    <p class="hero-greeting brush-label">你好，我是江南<span class="sketch-rays" aria-hidden="true"></span></p>
+    <h1>把机器人调通，<br>也把过程<br><span class="pencil-mark">写清楚。</span></h1>
     <p class="hero-identity">长江大学 · 计算机科学与技术 · 大三</p>
-    <p class="hero-lead">我是江南，关注机器人系统与 AI 应用。这里记录 ROS 导航、视觉与系统集成中的实践和取舍。</p>
-    <div class="hero-role"><span>项目职责</span><strong>代码主责 · 系统集成 · 项目推进</strong></div>
+    <p class="hero-lead">关注 ROS 导航、计算机视觉与 AI 应用，承担<span class="hero-role">代码主责 · 系统集成 · 项目推进</span>；记录每次调通、踩坑与改进。</p>
     <div class="hero-actions"><a class="button" href="/projects/">翻开项目档案 ↗</a><a class="secondary-button" href="/archives/">读一篇手记 →</a></div>
+    <ul class="hero-disciplines" aria-label="实践方向"><li><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="5" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="19" cy="5" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="19" r="1"/><circle cx="12" cy="19" r="1"/><circle cx="19" cy="19" r="1"/></svg>ROS 导航</li><li><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h5l2-3h4l2 3h5v15H3Z"/><circle cx="12" cy="13" r="4"/></svg>计算机视觉</li><li><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/></svg>AI 工程</li></ul>
   </div>
   <figure class="hero-visual">
-    <video controls playsinline preload="none" poster="/img/workshop/tuning-film-poster.webp" width="1280" height="720" aria-label="播放机器人调试日常短片" aria-describedby="tuning-video-caption">
-      <source src="/media/tuning-workshop.mp4" type="video/mp4">
-      <track kind="captions" src="/media/tuning-workshop.zh-CN.vtt" srclang="zh-CN" label="声音说明">
-      您的浏览器不支持视频播放，可<a href="/media/tuning-workshop.mp4" download>下载短片 MP4</a>观看。
-    </video>
-    <figcaption id="tuning-video-caption"><strong>工位日常</strong><small>75秒无对白概念短片 · 非比赛实录</small></figcaption>
+    <div class="testground-scene" aria-hidden="true"><img class="testground-art" src="/img/fieldnotes/hero-testground-4bfaf6cf83.webp" alt="" width="1685" height="933" fetchpriority="high"><span class="scene-note">先跑一圈？<span>↘</span></span><span class="scene-cross cross-one">＋</span><span class="scene-cross cross-two">＋</span><svg class="scene-axis" viewBox="0 0 100 80"><path d="M24 8v50h58m-63-44 5-6 5 6m47 39 6 5-6 5" fill="none" stroke="currentColor" stroke-width="1"/><text x="9" y="73">O</text><text x="28" y="13">y</text><text x="85" y="63">x</text></svg></div>
+    <span class="scene-disclosure brush-label">概念插画 · 非比赛实录</span>
+    <details class="tuning-player" data-tuning-player>
+      <summary><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 3 15 9-15 9Z" fill="currentColor" stroke-linejoin="round"/></svg><span class="watch-label">看一段调车日常</span><span class="return-label">收起短片，返回试验场</span><span class="film-duration">01:15</span></summary>
+      <figure class="tuning-screen"><video controls playsinline preload="none" poster="/img/workshop/tuning-film-poster.webp" width="1280" height="720" aria-label="播放机器人调试日常短片" aria-describedby="tuning-video-caption">
+        <source src="/media/tuning-workshop.mp4" type="video/mp4">
+        <track kind="captions" src="/media/tuning-workshop.zh-CN.vtt" srclang="zh-CN" label="声音说明">
+        您的浏览器不支持视频播放，可<a href="/media/tuning-workshop.mp4" download>下载短片 MP4</a>观看。
+      </video><figcaption id="tuning-video-caption"><strong>工位日常</strong><small>75秒无对白概念短片 · 非比赛实录</small></figcaption></figure>
+    </details>
   </figure>
 </section>
 <section class="result-strip" aria-label="团队结果与站内记录">
   <strong>团队参赛成果 <span aria-hidden="true">／</span></strong>
-  <a href="/projects/ruikang/"><span>RAICOM 2026</span> 全国一等奖</a>
-  <a href="/projects/ruikang/">正式赛 <b>94</b> 分</a>
-  <a href="/projects/"><b>4</b> 个项目档案</a>
-  <a href="/archives/"><b>9</b> 篇技术手记</a>
+  <a href="/projects/ruikang/"><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v7a5 5 0 0 1-10 0Zm5 12v5m-4 1h8M7 5H3v3a4 4 0 0 0 4 4m10-7h4v3a4 4 0 0 1-4 4"/></svg><span>RAICOM 2026 · 全国一等奖</span></a>
+  <a href="/projects/ruikang/"><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><circle cx="12" cy="9" r="3"/><path d="m8 14-3 7 6-2m5-5 3 7-6-2"/></svg>正式赛 <b>94</b> 分</a>
+  <a href="/projects/"><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 7 10-5 10 5-10 5Zm0 5 10 5 10-5M2 17l10 5 10-5"/></svg><b>4</b> 个项目档案</a>
+  <a href="/archives/"><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2h9l5 5v15H5Zm9 0v6h5M8 12h8M8 16h8M8 19h5"/></svg><b>9</b> 篇技术手记</a>
 </section>
 <section class="selected-projects" aria-labelledby="selected-title">
   <div class="section-title"><div><span class="eyebrow">SELECTED PROJECTS</span><h2 id="selected-title">从赛场，带回来的东西。</h2></div><a class="text-link" href="/projects/">全部项目 ↗</a></div>
-  <div class="selected-project-grid"><article class="selected-project selected-project-lead"><a class="project-cover" href="/projects/ruikang/"><img src="/img/workshop/ruikang-blueprint.webp" alt="睿抗智能侦察车封面，AI 概念插画，非比赛现场照片" width="1200" height="675" loading="lazy"><span class="image-tag">概念插画 · 非现场照片</span></a><div><span class="eyebrow">PROJECT 04</span><h3><a href="/projects/ruikang/">睿抗智能侦察车</a></h3><p>从定位、航点与视觉候选一路调到正式赛场，保留失败方案、回退判断和最后采用的纯点位路线。</p><div class="role-line"><span>本人角色</span>代码主责 · 系统集成</div><a class="text-link" href="/projects/ruikang/">项目档案 ↗</a><a class="text-link" href="/2026/08/21/睿抗赛94分复盘/">阅读复盘 →</a></div></article><article class="selected-project"><a class="project-cover" href="/projects/pharmacy/"><img src="/img/covers/notebook/pharmacy-robots.webp" alt="智慧药房双车系统封面，AI 概念插画，非比赛现场照片" width="1200" height="675" loading="lazy"><span class="image-tag">概念插画 · 非现场照片</span></a><div><span class="eyebrow">PROJECT 03</span><h3><a href="/projects/pharmacy/">智慧药房双车系统</a></h3><p>将导航、OCR、双车隔离、视觉联调和现场恢复串成一条可重复检查的机器人比赛工作流。</p><div class="role-line"><span>本人角色</span>国赛代码、网络与测试主责</div><a class="text-link" href="/projects/pharmacy/">项目档案 ↗</a></div></article><article class="selected-project"><a class="project-cover" href="/projects/yolov5/"><img src="/img/covers/notebook/yolov5-vision.webp" alt="智慧农业 · YOLOv5 视觉训练封面，AI 概念插画，非比赛现场照片" width="1200" height="675" loading="lazy"><span class="image-tag">概念插画 · 非现场照片</span></a><div><span class="eyebrow">PROJECT 02</span><h3><a href="/projects/yolov5/">智慧农业 · YOLOv5 视觉训练</a></h3><p>前期完成智慧农业智能车主代码和硬编码路径，并独立完成授粉 YOLO 模型的数据、训练与部署；后期主要处理摄像头问题。</p><div class="role-line"><span>本人角色</span>前期主代码 · YOLO 模型主责</div><a class="text-link" href="/projects/yolov5/">项目档案 ↗</a></div></article></div>
+  <div class="selected-project-grid"><article class="selected-project selected-project-lead"><a class="project-cover" href="/projects/ruikang/"><img src="/img/fieldnotes/project-banner-ac71989ce5.webp" alt="睿抗智能侦察车封面，AI 概念插画，非比赛现场照片" width="2172" height="724" loading="lazy"><span class="image-tag">PROJECT 04 · 概念插画</span></a><div class="selected-project-copy"><div class="project-lead-heading"><h3><a href="/projects/ruikang/">睿抗智能侦察车</a></h3><span class="result-ticket">团队一等奖 / 94 分</span></div><p>从定位、航点与视觉候选一路调到正式赛场，保留失败方案、回退判断和最后采用的纯点位路线。</p><div class="role-line"><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="4"/><path d="M4 22v-4a8 8 0 0 1 16 0v4Z"/></svg><span>本人角色</span>代码主责 · 系统集成</div><a class="text-link" href="/projects/ruikang/">项目档案 ↗</a><a class="text-link" href="/2026/08/21/睿抗赛94分复盘/">阅读复盘 →</a></div></article><article class="selected-project"><a class="project-cover" href="/projects/pharmacy/"><img src="/img/covers/notebook/20261105/pharmacy-dual-robots.webp" alt="智慧药房双车系统封面，AI 概念插画，非比赛现场照片" width="1200" height="675" loading="lazy"><span class="image-tag">PROJECT 03 · 概念插画</span></a><div class="selected-project-copy"><div class="project-lead-heading"><h3><a href="/projects/pharmacy/">智慧药房双车系统</a></h3></div><p>将导航、OCR、双车隔离、视觉联调和现场恢复串成一条可重复检查的机器人比赛工作流。</p><div class="role-line"><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="4"/><path d="M4 22v-4a8 8 0 0 1 16 0v4Z"/></svg><span>本人角色</span>国赛代码、网络与测试主责</div><a class="text-link" href="/projects/pharmacy/">项目档案 ↗</a></div></article><article class="selected-project"><a class="project-cover" href="/projects/yolov5/"><img src="/img/covers/notebook/20261105/yolov5-pollination.webp" alt="智慧农业 · YOLOv5 视觉训练封面，AI 概念插画，非比赛现场照片" width="1200" height="675" loading="lazy"><span class="image-tag">PROJECT 02 · 概念插画</span></a><div class="selected-project-copy"><div class="project-lead-heading"><h3><a href="/projects/yolov5/">智慧农业 · YOLOv5 视觉训练</a></h3></div><p>前期完成智慧农业智能车主代码和硬编码路径，并独立完成授粉 YOLO 模型的数据、训练与部署；后期主要处理摄像头问题。</p><div class="role-line"><svg class="field-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="4"/><path d="M4 22v-4a8 8 0 0 1 16 0v4Z"/></svg><span>本人角色</span>前期主代码 · YOLO 模型主责</div><a class="text-link" href="/projects/yolov5/">项目档案 ↗</a></div></article></div>
 </section>
 <div class="home-layout"><div class="home-main">
   <section class="home-featured"><div class="section-title"><div><span class="eyebrow">FEATURED NOTE</span><h2>值得展开的一次复盘</h2></div><span class="section-index">01</span></div><article class="feature-note"><a class="cover" href="/2026/08/21/睿抗赛94分复盘/"><img src="/img/covers/notebook/20261105/ruikang-route-review.webp" width="1200" height="675" alt="睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助封面，AI 概念插画" loading="lazy"></a><div class="feature-copy"><div class="feature-meta"><span class="category">比赛复盘</span><time datetime="2026-08-21">2026.08.21</time></div><h2><a href="/2026/08/21/睿抗赛94分复盘/">睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助</a></h2><p>对比睿抗智能侦察车从硬编码交接、点9恢复、两代黄线方案到Noetic 43点路线和纯点位决赛版本的实车证据与最终取舍。</p><a class="text-link" href="/2026/08/21/睿抗赛94分复盘/">进入完整复盘 ↗</a></div></article></section>
@@ -71,7 +76,8 @@
 </div><aside class="home-aside"><section class="reading-path"><details open data-responsive-details><summary>从这里开始读 <span class="eyebrow">READING ROUTE</span></summary><div><a href="/2026/08/27/睿抗：从初赛到国一/"><span>01</span><div><strong>完整经历</strong><small>从初赛到国一</small></div><b aria-hidden="true">↗</b></a><a href="/2026/08/21/睿抗赛94分复盘/"><span>02</span><div><strong>工程取舍</strong><small>94 分复盘</small></div><b aria-hidden="true">↗</b></a><a href="/2026/08/25/睿抗赛四套视觉方案/"><span>03</span><div><strong>技术深入</strong><small>四套视觉方案</small></div><b aria-hidden="true">↗</b></a></div></details></section><section class="aside-note"><span class="eyebrow">ABOUT THE NOTEBOOK</span><p>做选择，<br>也留下依据。</p><a class="text-link" href="/about/">关于我与联系方式 ↗</a></section></aside></div>
 </main>
   <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
-  <aside id="blog-pet" class="blog-pet" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
+  <div class="pet-workstation container" aria-label="小江的纸边工位"><div class="pet-station-copy"><span>COMPANION / 纸边工位</span><p>读到这里，歇一会儿。</p><small>小江在这里陪你。点开小菜单，或把她拖到喜欢的位置。</small></div>
+<aside id="blog-pet" class="blog-pet is-flow" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
   <div class="pet-stage">
     <p id="pet-message" class="pet-bubble" role="status" hidden></p>
     <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">
@@ -102,6 +108,7 @@
   </div>
   <button class="pet-restore" type="button" aria-label="叫回小江" hidden><span aria-hidden="true">♧</span>小江</button>
 </aside>
+</div>
 
 </body>
 </html>

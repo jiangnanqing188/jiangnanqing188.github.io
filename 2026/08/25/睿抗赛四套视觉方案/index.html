@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f5f3eb">
+  <meta name="theme-color" content="#f7f2e8">
   <meta name="color-scheme" content="light dark">
   
   <script>try{if(localStorage.getItem('lab-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
   <title>睿抗赛里，我给机器人做了四套视觉方案 · 江南的碎碎念</title><meta name="description" content="从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。"><meta name="keywords" content="ROS, 计算机视觉, 睿抗机器人开发者大赛, 智能侦察车, YOLO, RGB-D, OpenCV"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/"><meta property="og:type" content="article"><meta property="og:title" content="睿抗赛里，我给机器人做了四套视觉方案"><meta property="og:description" content="从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。"><meta property="og:url" content="https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/covers/notebook/20261105/ruikang-vision-studies.webp"><meta name="twitter:card" content="summary_large_image"><meta property="article:published_time" content="2026-08-25T13:00:00.000Z"><meta property="article:modified_time" content="2026-08-25T13:00:00.000Z">
   <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="/css/notebook.css">
-  <link rel="stylesheet" href="/css/pet.css">
-  <script src="/js/notebook.js" defer></script>
-  <script src="/js/pet.js" defer></script>
+  <link rel="stylesheet" href="/css/notebook.css?v=a79887d7b271">
+  <link rel="stylesheet" href="/css/pet.css?v=ed2d3b5234da">
+  <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
+  <script src="/js/pet.js?v=fcb81b96cc08" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"睿抗赛里，我给机器人做了四套视觉方案","description":"从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。","image":"https://jiangnanqing188.github.io/img/covers/notebook/20261105/ruikang-vision-studies.webp","url":"https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/","mainEntityOfPage":"https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/","datePublished":"2026-08-25T13:00:00.000Z","dateModified":"2026-08-25T13:00:00.000Z","author":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"publisher":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"keywords":"睿抗机器人开发者大赛, 智能侦察车, YOLO, RGB-D, OpenCV, ROS, 计算机视觉","articleSection":"工程实践","about":{"@type":"Thing","name":"睿抗智能侦察车","url":"https://jiangnanqing188.github.io/projects/#project-ruikang"}}</script></head>
 <body>
@@ -66,7 +66,7 @@
 <blockquote>
 <p><strong>睿抗系列导读：</strong> 当前这篇讲视觉模块的实现、作用和验证边界；《<a href="/2026/08/27/%E7%9D%BF%E6%8A%97%EF%BC%9A%E4%BB%8E%E5%88%9D%E8%B5%9B%E5%88%B0%E5%9B%BD%E4%B8%80/">睿抗：从初赛到国一</a>》讲技术成长与完整经历；《<a href="/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/">睿抗赛94分复盘</a>》讲候选方案、实车证据和最终取舍。</p>
 </blockquote>
-<h2 id="四套方案先放在一起看"><a href="#四套方案先放在一起看" class="headerlink" title="四套方案先放在一起看"></a>四套方案先放在一起看</h2><div class="table-scroll table-wide" tabindex="0" role="region" aria-label="可横向滚动的表格"><span class="table-scroll-hint">↔ 横向滚动查看完整表格</span><table>
+<h2 id="四套方案先放在一起看" data-field-section data-field-heading><a href="#四套方案先放在一起看" class="headerlink" title="四套方案先放在一起看"></a>四套方案先放在一起看</h2><div class="table-scroll table-wide" tabindex="0" role="region" aria-label="可横向滚动的表格"><span class="table-scroll-hint">↔ 可左右滑动，查看表格其余列</span><table>
 <thead>
 <tr>
 <th>方案</th>
@@ -111,7 +111,7 @@
 </tr>
 </tbody></table></div>
 <p>这张表里的“进入主链”和“完成多轮验收”是两件事。一个节点能被主程序调用，不代表它已经单独稳定通过了所有现场条件。</p>
-<h2 id="第一套视觉方案，把识别交给-YOLO"><a href="#第一套视觉方案，把识别交给-YOLO" class="headerlink" title="第一套视觉方案，把识别交给 YOLO"></a>第一套视觉方案，把识别交给 YOLO</h2><p>最早也最容易想到的方案，就是 YOLO。</p>
+<h2 id="第一套视觉方案，把识别交给-YOLO" data-field-section><a href="#第一套视觉方案，把识别交给-YOLO" class="headerlink" title="第一套视觉方案，把识别交给 YOLO"></a>第一套视觉方案，把识别交给 YOLO</h2><p>最早也最容易想到的方案，就是 YOLO。</p>
 <p>比赛里需要识别人质、敌军和友军。它们不是三个颜色固定的塑料块，而是外观、姿态、大小都会变化的目标。这个时候再手工写一堆颜色和轮廓规则，很容易写成一座纸房子。光线一变、人物一转身、背景里多出一块相似颜色，房子就塌了。</p>
 <p>YOLO 的思路不一样。</p>
 <p>我们先收集图片，给目标画框，再标出 <code>enemy</code>、<code>friendly</code>、<code>hostage</code> 三个类别。模型通过这些标注数据自己学习特征，推理时直接给出类别、位置和置信度。主程序到达战区后停车，调用识别服务取一帧图像，再根据识别结果决定后续任务。</p>
@@ -122,7 +122,7 @@
 <p>最费时间的往往不是写推理代码，而是收集数据、清洗错误图片、检查漏标错标、平衡不同类别，再把车端运行环境和模型版本对齐。训练集里没有强曝光画面，模型到了强曝光场地一样可能认不出来。训练图片里目标总在正面，比赛时相机从侧上方看过去，准确率也会掉。</p>
 <p>模型很强，但它只能学习我们真正喂给它的世界。</p>
 <p>这也是我对 YOLO 最大的感受。它的上限高，代价也高。数据集不是准备工作，数据集本身就是算法的一部分。</p>
-<h2 id="第二套视觉方案，用颜色和形状数锥筒"><a href="#第二套视觉方案，用颜色和形状数锥筒" class="headerlink" title="第二套视觉方案，用颜色和形状数锥筒"></a>第二套视觉方案，用颜色和形状数锥筒</h2><p>YOLO 要准备数据、训练模型，还要考虑车端算力。锥筒刚开始并没有走这条路，而是用了更轻、更直接的颜色识别。</p>
+<h2 id="第二套视觉方案，用颜色和形状数锥筒" data-field-section><a href="#第二套视觉方案，用颜色和形状数锥筒" class="headerlink" title="第二套视觉方案，用颜色和形状数锥筒"></a>第二套视觉方案，用颜色和形状数锥筒</h2><p>YOLO 要准备数据、训练模型，还要考虑车端算力。锥筒刚开始并没有走这条路，而是用了更轻、更直接的颜色识别。</p>
 <p>相机拿到的虽然是彩色图，但程序并不是直接比较 RGB 三个数值，而是先把 BGR 图像转换到 HSV 空间。HSV 会把色相、饱和度和明暗程度拆开，红色和蓝色的阈值比直接用 RGB 更容易调整。</p>
 <p>得到颜色掩膜以后，再做形态学去噪、连通域分析、面积过滤和轮廓筛选。最初的想法很朴素，画面里有几个符合条件的红色区域，就算几个红锥筒，蓝色同理。</p>
 <p>理论上很轻巧。</p>
@@ -135,7 +135,7 @@
 <p>但我并不觉得这条路白走了。</p>
 <p>颜色规则的优势依然很明显。它不需要训练，推理快，车端 CPU 压力小，每一步为什么通过、为什么被过滤都能解释。只要环境受控、颜色对比明显、相机位置固定，它甚至比模型更省事。</p>
 <p>问题不在于传统视觉落后，而在于我们把它放进了一个变化超出规则承受范围的场景。</p>
-<h2 id="第三套视觉方案，让反坦克雷进入三维地图"><a href="#第三套视觉方案，让反坦克雷进入三维地图" class="headerlink" title="第三套视觉方案，让反坦克雷进入三维地图"></a>第三套视觉方案，让反坦克雷进入三维地图</h2><p>反坦克雷看起来也可以用颜色识别。</p>
+<h2 id="第三套视觉方案，让反坦克雷进入三维地图" data-field-section><a href="#第三套视觉方案，让反坦克雷进入三维地图" class="headerlink" title="第三套视觉方案，让反坦克雷进入三维地图"></a>第三套视觉方案，让反坦克雷进入三维地图</h2><p>反坦克雷看起来也可以用颜色识别。</p>
 <p>它有明显的红色圆环和白色中心，背景主要是灰色地面。程序先在 HSV 图像里找到红色区域，再检查候选中心是否足够亮，确认它更像红环白心的目标，而不是地面上一块普通红色干扰。</p>
 <p>但相机不是垂直俯视地面，而是斜着向前看。</p>
 <p>一个现实中的圆，投影到图像里会变成椭圆。早期算法把圆度和宽高比限制得太死，远处或者斜视的地雷直接就漏掉了。后来方案改成椭圆拟合，按照椭圆的红环区域、白心区域、长短轴比例和填充率进行判断，才适应了这个视角。</p>
@@ -150,7 +150,7 @@
 <p>当然，它仍然会受曝光影响。红环如果在强光下失去颜色，RGB 前端就找不到候选。彩色图和深度图没有正确对齐，读取到的可能是旁边地面的距离。TF 有偏差，地雷进入地图后的位置也会跟着偏。</p>
 <p>所以深度不是给颜色识别加了一个无敌外挂。</p>
 <p>它只是把二维看见，推进到了三维定位。</p>
-<h2 id="第四套视觉方案，把黄线变成导航偏好"><a href="#第四套视觉方案，把黄线变成导航偏好" class="headerlink" title="第四套视觉方案，把黄线变成导航偏好"></a>第四套视觉方案，把黄线变成导航偏好</h2><p>黄线方案是四套里面最绕的一套，也是我之前最难讲清楚的一套。</p>
+<h2 id="第四套视觉方案，把黄线变成导航偏好" data-field-section><a href="#第四套视觉方案，把黄线变成导航偏好" class="headerlink" title="第四套视觉方案，把黄线变成导航偏好"></a>第四套视觉方案，把黄线变成导航偏好</h2><p>黄线方案是四套里面最绕的一套，也是我之前最难讲清楚的一套。</p>
 <p>一开始我只知道它用了深度摄像头。重新看完代码以后才明白，深度图根本不负责识别黄色。</p>
 <p>真正的处理链是这样的。</p>
 <p>Orbbec 的彩色图先转成 HSV，通过黄色阈值得到掩膜，再用开闭运算清理噪点。程序只保留感兴趣区域里足够大的黄色连通域，并从中稀疏采样像素。接着在对齐深度图的对应位置读取距离，根据相机内参把每一个黄色像素恢复成三维点，再通过 TF 转换到 <code>base_link</code> 和 <code>odom</code>。</p>
@@ -185,7 +185,8 @@
 <div class="article-end"><span class="eyebrow">END OF NOTE / 009</span><a class="text-link" href="/archives/">继续阅读其他记录 →︎</a></div><section id="post-comment" class="comments-section"><div class="comment-head"><h2 class="comment-headline">交流与评论</h2></div><div id="giscus-wrap"><button class="button" id="load-comments" type="button" data-repo="jiangnanqing188/jiangnanqing188.github.io" data-repo-id="R_kgDOPTMnKQ" data-category-id="DIC_kwDOPTMnKc4DEBUV" data-category="Announcements" data-mapping="pathname" data-strict="1" data-emit-metadata="1" data-lang="zh-CN">加载评论</button></div><p class="muted comment-note">使用 GitHub 账号参与讨论。</p></section></article><aside class="toc"><details open data-responsive-details><summary>本篇目录</summary><nav aria-label="文章目录"><a class="toc-level-2" href="#四套方案先放在一起看">四套方案先放在一起看</a><a class="toc-level-2" href="#第一套视觉方案，把识别交给-YOLO">第一套视觉方案，把识别交给 YOLO</a><a class="toc-level-2" href="#第二套视觉方案，用颜色和形状数锥筒">第二套视觉方案，用颜色和形状数锥筒</a><a class="toc-level-2" href="#第三套视觉方案，让反坦克雷进入三维地图">第三套视觉方案，让反坦克雷进入三维地图</a><a class="toc-level-2" href="#第四套视觉方案，把黄线变成导航偏好">第四套视觉方案，把黄线变成导航偏好</a></nav></details><a class="text-link toc-project" href="/projects/ruikang/">返回项目档案 ↗</a><a class="back-top" href="#main">回到顶部 ↑</a></aside></div>
 </main>
   <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
-  <aside id="blog-pet" class="blog-pet" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
+  <div class="pet-workstation container" aria-label="小江的纸边工位"><div class="pet-station-copy"><span>COMPANION / 纸边工位</span><p>读到这里，歇一会儿。</p><small>小江在这里陪你。点开小菜单，或把她拖到喜欢的位置。</small></div>
+<aside id="blog-pet" class="blog-pet is-flow" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
   <div class="pet-stage">
     <p id="pet-message" class="pet-bubble" role="status" hidden></p>
     <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">
@@ -216,6 +217,7 @@
   </div>
   <button class="pet-restore" type="button" aria-label="叫回小江" hidden><span aria-hidden="true">♧</span>小江</button>
 </aside>
+</div>
 
 </body>
 </html>

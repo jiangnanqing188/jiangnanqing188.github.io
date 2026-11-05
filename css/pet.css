@@ -1,5 +1,14 @@
 /* Original field-notes companion. Poses share one atlas and one motion owner. */
 .blog-pet { --pet-signal: var(--lab-blue, #1f4d3d); position: fixed; right: 22px; bottom: 18px; z-index: 9; width: min(170px, calc((100dvh - 80px) * 2 / 3)); pointer-events: none; }
+/* Without JavaScript the companion already owns normal document space. */
+.pet-workstation { display: flex; align-items: end; justify-content: space-between; gap: 24px; min-height: 228px; padding: 24px 16px; margin: 24px auto; border-top: 1px solid var(--lab-rule); }
+.pet-station-copy { align-self: center; max-width: 460px; color: var(--lab-muted); }
+.pet-station-copy>span { font: 10px/1.8 var(--lab-mono); letter-spacing: .12em; }
+.pet-station-copy p { margin: 8px 0; color: var(--lab-blue); font: 700 23px/1.5 var(--lab-display); }
+.pet-station-copy small { font-size: 12px; }
+.pet-workstation.is-vacant { display: contents; }
+.pet-workstation.is-vacant>.pet-station-copy { display: none; }
+.blog-pet.is-flow { position: relative; inset: auto; flex: 0 0 auto; width: 150px; z-index: 2; }
 .blog-pet [hidden] { display: none !important; }
 .pet-stage { position: relative; }
 /* Vertical touch swipes scroll the page; sideways drags can pick her up.
@@ -52,6 +61,11 @@
 @keyframes pet-heart { 15% { opacity: 1; } 100% { opacity: 0; transform: translateY(-18px) scale(1.1); } }
 @media (max-width: 760px) {
   .blog-pet { width: min(106px, calc((100dvh - 80px) * 2 / 3)); right: 10px; bottom: 12px; }
+  .pet-workstation { min-height: 176px; gap: 16px; padding: 16px 4px; }
+  .pet-station-copy { max-width: 190px; }
+  .pet-station-copy p { font-size: 18px; }
+  .pet-station-copy small { font-size: 11px; }
+  .blog-pet.is-flow { width: 106px; }
   .pet-toolbar { gap: 4px; margin-top: 0; }
   .pet-caption { letter-spacing: .04em; }
   .pet-hide, .pet-menu-toggle { width: 40px; height: 40px; border-color: transparent; background: none; }
@@ -61,4 +75,4 @@
   .blog-pet * { animation: none !important; transition: none !important; }
   .blog-pet.is-walking .pet-toolbar { opacity: 1; }
 }
-@media print { .blog-pet { display: none !important; } }
+@media print { .blog-pet, .pet-workstation { display: none !important; } }
