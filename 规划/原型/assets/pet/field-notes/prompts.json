@@ -3,7 +3,7 @@
   "tool": "image_gen.imagegen",
   "model": "not reported by tool",
   "quality": "not reported by tool",
-  "status": "style concept awaiting user review; not integrated into production; motion implementation paused",
+  "status": "style approved by user on 2026-11-04; 20-pose atlas integrated into local theme; not deployed",
   "references": [
     {
       "role": "character identity",
@@ -23,5 +23,36 @@
     "original": "catgirl-field-notes.png",
     "web": "catgirl-field-notes.webp"
   },
-  "conversion": "ImageMagick proportional resize to 640x640 and lossless WebP encoding; original alpha preserved; no manual repainting"
+  "conversion": "ImageMagick proportional resize to 640x640 and lossless WebP encoding; original alpha preserved; no manual repainting",
+  "motion_generation": {
+    "date": "2026-11-04",
+    "tool": "image_gen.imagegen",
+    "model": "not reported by tool",
+    "quality": "not reported by tool",
+    "reference": "catgirl-field-notes.webp",
+    "transparent_background": true,
+    "outputs": [
+      {
+        "source": "call_g8O78BvT1eaHM487TmgTQnBd.png",
+        "saved_as": "motions-source.png",
+        "grid": "4x4",
+        "frames": "0–15: greeting, notebook, yawn/stretch, walk"
+      },
+      {
+        "source": "call_g8feoAQlG3JbpKi6ADXFu0vZ.png",
+        "saved_as": "states-source.png",
+        "grid": "2x2",
+        "frames": "16–19: drowsy, sitting awake, sleeping, lifted"
+      }
+    ],
+    "prompt_set": [
+      "Production animation sprite sheet for an existing original catgirl website companion, EXACTLY matching the supplied APPROVED character reference. This is an identity-preserve image edit into a sprite atlas, not a redesign. Use warm engineering field-notes hand-ink illustration, fine graphite outlines, very restrained matte flat coloring, subtle paper grain only INSIDE the shapes, muted sage/forest green hooded jacket with cream ribbed sweater, terracotta sleeve tab, charcoal skirt and tights, cream-and-sage sneakers, ivory over-ear headset with tiny muted orange circles, silver-white bob, white cat ears, amber eyes, orange diamond hair clip, fluffy white tail. Do not change the face, hairstyle, clothes, headset, body proportions, notebook or drawing style from reference. TRUE alpha transparent background. ONE square sheet of exactly FOUR COLUMNS and FOUR ROWS = 16 frames. Equal square cells occupying exact quarters of width/height, no gutters or borders, one full-body character per cell, no labels/text/effects. All cells same scale and same perspective, head size must NEVER change, torso center fixed at 47% cell width, sole baseline 92% cell height, ears top approximately 9% cell height. Do not enlarge shorter poses. Leave 6% empty margin in EACH cell, no clipping, no character overlaps. Mostly front view facing a tiny bit viewer-left, as reference. Each frame must be visibly articulated limbs/eyes/book, not rotating the entire drawing.\nROW ONE: greeting four frames: (1) starting pose matching reference, right hand near shoulder small wave, left holds notebook; (2) right palm up facing viewer, elbow raised, warm smile; (3) right wrist bends toward head with fingers relaxed, warm smile; (4) hand waving outward, eyes smiling closed. Stable grounded feet.\nROW TWO: notebook four frames: (1) both hands begin lifting closed notebook to chest, gaze down; (2) notebook open, eyes reading down; (3) right hand turns a page of open book, eyes focused; (4) eyes look up toward viewer with small smile, book still open. Feet and head size unchanged.\nROW THREE: yawn/stretch four frames: (1) right hand gently covers yawning mouth, half-closed eyes, left notebook held safely at hip; (2) eyes closed, right elbow raising and left elbow relaxed out; (3) right arm stretches above shoulder, gentle happy closed-eye smile, left notebook at hip, spine only slightly extended; (4) arms relaxing back toward chest, eyes opening. No distorted limbs, do not increase head size or overall scale.\nROW FOUR: walking four frames: consistent 3/4 front view angled a little viewer-left, notebook hugged against chest throughout, normal two arms and two legs. (1) viewer-left foot forward, right foot back contact; (2) legs passing with right knee bent lifting foot, torso drops just 1%; (3) right foot forward, left foot back contact; (4) left knee bent lifting foot on passing, torso drops just 1%. Clear alternating foot positions; boots touch same ground baseline as other rows. Tail gently sways just a little. NO new props, no ground/shadow, no text, no white sticker outline, no background paper rectangle. Match the reference EXACTLY at small web-mascot scale. Consistent 2D matte hand-sketch art, not polished glossy anime, not 3D or pixel art.",
+      "Create a production 2 COLUMN by 2 ROW SPRITE SHEET, FOUR poses of EXACTLY the same original catgirl 小江 from the provided approved character reference. This is an identity-preserve animation asset edit, NOT a redesign. TRUE transparent alpha background; all space outside characters must be transparent, no solid background, no paper rectangle, no grid lines/text/labels/effects, no ground or external shadow. Precisely the same warm matte field-notes hand-ink sketch illustration: silver-white short bob, white cat ears with pink interiors, amber eyes, small orange diamond hair clip viewer-right, ivory over-ear headset with muted orange circle, loose muted forest/sage-green jacket, cream turtleneck, charcoal skirt and tights, cream/sage sneakers, fluffy white tail, green field notebook with orange bookmark. All four poses FULL BODY, same head size and same scale as each other. Each equal square cell: standing-height character would span 80% of cell height, head width about 43% of cell width; keep this scale even for crouching poses, DO NOT enlarge sitting figures to fill the cell. All feet/lowest parts share baseline at 93% cell height, keep complete tail and ears inside respective cell, at least 6% empty margin. Same 3/4 front view slightly viewer-left, tail stays viewer-right. The FOUR poses in reading order:\nTOP LEFT: DROWSY standing transition: feet together at baseline, eyes half closed, sleepy mouth, right hand gently covers yawn, left arm holds CLOSED green notebook at belly, shoulders softened. Head scale identical to approved character, knees just a little bent.\nTOP RIGHT: SITTING AWAKE transition: sits on the floor with both knees folded neatly close to chest, shoes both touching baseline, notebook hugged with both hands at chest, eyes half-open/downward drowsy but NOT closed, head upright. The whole seated figure is substantially SHORTER than standing frame while HEAD SIZE stays the same. Tail curled at her viewer-right beside her feet.\nBOTTOM LEFT: SLEEPING seated end pose: EXACT same seated folded-knee silhouette/position as top-right, SAME head size and same foot baseline, eyes fully closed, chin slightly drooped onto the notebook hugged at chest, small calm sleeping mouth, ears relaxed slightly, tail gently curled. No Zs or written words. This is a small restful change from sitting pose, NOT a different sprawled character.\nBOTTOM RIGHT: LIFTED BY JACKET COLLAR: torso and limbs hang gently downward, both feet float just above baseline with knees slightly bent, right arm hanging relaxed with open hand, left hand still safely grips CLOSED notebook; jacket back-collar folds form a small lifted point near the nape (no outside hand visible). Head slightly tilted and amber eyes open in amused surprise with tiny 'o' mouth, headphones stay on, tail hanging softly to viewer right. Do NOT include hand, string, hook, or another character. Maintain natural small two hands and two legs, modest covered clothing, no body distortion. This is a playful desktop companion being picked up by collar. All four character designs must match reference and each other; NO glossy anime shading, no 3D, no pixel art. Thin organic graphite lines and restrained sage/cream/orange fills, subtle paper grain INSIDE artwork only."
+    ],
+    "processing": "scripts/build-pet-atlas.cjs: fixed-grid extraction, 320px cells, 4x5 atlas, WebP quality 90 / alpha-quality 100; preserve originals; no repainting",
+    "runtime_outputs": [
+      "source/img/pet/field-notes/idle.webp",
+      "source/img/pet/field-notes/actions.webp"
+    ]
+  }
 }

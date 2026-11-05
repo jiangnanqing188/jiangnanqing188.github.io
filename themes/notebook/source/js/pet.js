@@ -23,8 +23,7 @@
   let drag = null;
   let lastDrag = -Infinity;
   let messageIndex = 0;
-  let bubbleTimer, poseTimer, idleTimer, napTimer, squishTimer, idlePoseTimer;
-  let lastDozed = -Infinity;
+  let bubbleTimer, idleTimer, idlePoseTimer;
   let lastTap = -Infinity;
   // Small encouragements, shown by the "夸我一句" menu item.
   const praise = [
@@ -229,242 +228,328 @@
     menu.hidden = true;
     menuToggle.setAttribute('aria-expanded', 'false');
   };
-  const stopNapTransition = () => {
-    clearTimeout(napTimer);
-    pet.classList.remove('is-napping', 'is-waking');
+  // One pose lane owns every gesture, sleep transition and locomotion. Cancelling
+  // it invalidates its timer before another action can change the visible pose.
+  const visual = pet.querySelector('.pet-visual');
+  const sprite = pet.querySelector('.pet-sprite');
+  const previousSprite = pet.querySelector('.pet-previous');
+  let motion = 'idle', pose = 0, motionToken = 0, motionTimer, bodyAnimation;
+  let blendTimer, blends = [], pendingAction = null, atlasReady = false;
+  const animated = () => !quiet && !reducedMotion.matches;
+  const posePosition = frame => `${frame % 4 * 100 / 3}% ${Math.floor(frame / 4) * 25}%`;
+  const clearBlend = () => {
+    clearTimeout(blendTimer);
+    blends.forEach(animation => animation.cancel());
+    blends = [];
+    previousSprite.hidden = true;
   };
-  // Throw physics state lives up here so wander() can check it without a TDZ risk.
-  let flight = null;
-  // Wander: every so often she walks a short way along the bottom of the viewport.
-  let wanderTimer, walkRaf;
+  const setPose = (frame, blend = false) => {
+    if (frame === pose) return;
+    clearBlend();
+    if (blend && atlasReady && animated() && !document.hidden) {
+      previousSprite.style.backgroundPosition = posePosition(pose);
+      previousSprite.hidden = false;
+      blends = [
+        previousSprite.animate([{opacity: 1}, {opacity: 0}], {duration: 100, fill: 'both'}),
+        sprite.animate([{opacity: 0}, {opacity: 1}], {duration: 100, fill: 'both'})
+      ];
+      blendTimer = setTimeout(clearBlend, 110);
+    }
+    pose = frame;
+    sprite.style.backgroundPosition = posePosition(frame);
+    pet.dataset.pose = String(frame);
+  };
+  const setMotion = name => {
+    motion = name;
+    pet.dataset.motion = name;
+    for (const state of ['sleeping', 'napping', 'waking', 'dragging', 'flying']) {
+      pet.classList.toggle(`is-${state}`, name === state);
+    }
+    pet.classList.toggle('is-walking', ['walk-start', 'walking', 'walk-stop'].includes(name));
+  };
+  const cancelMotion = () => {
+    const transform = getComputedStyle(visual).transform;
+    ++motionToken;
+    clearTimeout(motionTimer);
+    bodyAnimation?.cancel();
+    bodyAnimation = null;
+    clearBlend();
+    return transform;
+  };
+  const rest = () => {
+    cancelMotion();
+    pendingAction = null;
+    setMotion('idle');
+    pet.dataset.phase = 'rest';
+    setPose(0, true);
+  };
+  // Each step is [pose, milliseconds, phase]. Short overlaps are only used at
+  // posture boundaries; gait/hand frames stay crisp rather than dissolving.
+  const run = (name, steps, {loop = false, end = 'idle', keys, done} = {}) => {
+    const from = cancelMotion();
+    const token = motionToken;
+    setMotion(name);
+    const duration = steps.reduce((sum, step) => sum + step[1], 0);
+    if (!keys && animated() && from !== 'none') {
+      bodyAnimation = visual.animate([{transform: from}, {transform: 'none'}], {duration: 140, easing: 'ease-out', fill: 'both'});
+    }
+    if (keys && animated()) {
+      bodyAnimation = visual.animate([{transform: from}, ...keys, {transform: 'none'}], {
+        duration, iterations: loop ? Infinity : 1, easing: 'ease-in-out', fill: 'both'
+      });
+    }
+    let index = 0;
+    const step = () => {
+      if (token !== motionToken) return;
+      if (index === steps.length) {
+        if (loop) index = 0;
+        else {
+          bodyAnimation?.cancel();
+          bodyAnimation = null;
+          setMotion(end);
+          pet.dataset.phase = 'rest';
+          setPose(end === 'sleeping' ? 18 : 0, true);
+          done?.();
+          return;
+        }
+      }
+      const [frame, ms, phase = 'perform'] = steps[index++];
+      pet.dataset.phase = phase;
+      setPose(frame, ['napping', 'waking'].includes(name));
+      motionTimer = setTimeout(step, ms);
+    };
+    step();
+  };
+  // The first neutral frame is shared with idle.webp: no style/scale jump when
+  // the atlas finishes decoding. A failed atlas leaves the static pet usable.
+  const atlas = new Image();
+  atlas.fetchPriority = 'low';
+  atlas.decoding = 'async';
+  atlas.onload = async () => {
+    try { await atlas.decode(); } catch { return; }
+    atlasReady = true;
+    sprite.hidden = false;
+    pet.classList.add('has-motions');
+  };
+  atlas.src = '/img/pet/field-notes/actions.webp';
+
+  const ACTIONS = {
+    wave: {steps: [[0, 100, 'prepare'], [1, 180], [2, 160], [1, 180], [3, 220], [1, 160], [0, 160, 'recover']]},
+    read: {steps: [[0, 120, 'prepare'], [4, 240], [5, 650], [6, 300], [5, 600], [7, 350], [4, 200], [0, 180, 'recover']]},
+    stretch: {steps: [[0, 120, 'prepare'], [8, 360], [9, 350], [10, 650], [11, 350], [0, 220, 'recover']],
+      keys: [{transform: 'translateY(-2px) scale(.99, 1.02)'}, {transform: 'translateY(-3px) scale(.99, 1.025)'}]},
+    yawn: {steps: [[0, 120, 'prepare'], [8, 500], [9, 450], [8, 220], [0, 200, 'recover']]},
+    nod: {steps: [[0, 900]], keys: [{transform: 'translateY(3px) rotate(1deg)'}, {transform: 'translateY(1px)'}]},
+    peer: {steps: [[4, 250, 'prepare'], [7, 700], [4, 200], [0, 180, 'recover']],
+      keys: [{transform: 'translateX(-2px) rotate(-2deg)'}, {transform: 'translateX(-2px) rotate(-2deg)'}]},
+    'look-around': {steps: [[0, 1800]], keys: [{transform: 'rotate(-2deg)'}, {transform: 'rotate(2deg)'}]},
+    shrug: {steps: [[11, 280], [0, 220], [11, 250], [0, 180, 'recover']],
+      keys: [{transform: 'rotate(2deg)'}, {transform: 'rotate(-2deg)'}]},
+    perk: {steps: [[0, 700]], keys: [{transform: 'translateY(-4px)'}, {transform: 'translateY(-1px)'}]},
+    cheer: {steps: [[0, 100, 'prepare'], [3, 600], [1, 180], [0, 200, 'recover']],
+      keys: [{transform: 'translateY(-4px)'}, {transform: 'translateY(-1px)'}]},
+    settle: {steps: [[0, 480, 'recover']],
+      keys: [{transform: 'translateY(2px) scale(1.025, .97)'}, {transform: 'translateY(-1px)'}]},
+    jump: {steps: [[0, 160, 'prepare'], [3, 360, 'airborne'], [0, 180, 'land'], [0, 260, 'recover']],
+      keys: [{transform: 'translateY(3px) scale(1.04, .94)', offset: .15},
+        {transform: 'translateY(-24px) rotate(-3deg)', offset: .38},
+        {transform: 'translateY(0)', offset: .58},
+        {transform: 'translateY(3px) scale(1.04, .95)', offset: .68},
+        {transform: 'translateY(-2px)', offset: .82}]}
+  };
+  let flight = null, wanderTimer, walkRaf;
   const stopWalk = () => {
     cancelAnimationFrame(walkRaf);
-    pet.classList.remove('is-walking', 'walk-left');
     walkRaf = null;
+    if (['walk-start', 'walking', 'walk-stop'].includes(motion)) rest();
   };
-  const wander = () => {
-    clearTimeout(wanderTimer);
-    if (hidden || quiet || reducedMotion.matches || document.hidden || drag || flight) {
-      wanderTimer = setTimeout(wander, 20000);
-      return;
-    }
-    const box = pet.getBoundingClientRect();
-    // Wander inside her docking lane only: strolling across the page is what
-    // used to walk her back over the sidebar and the table of contents.
-    const lane = dockBand || {min: 10, max: Math.max(10, innerWidth - box.width - 10)};
-    const maxX = lane.max;
-    // Pick a target nearby rather than crossing the whole screen.
-    const distance = 60 + Math.random() * 140;
-    const direction = Math.random() < .5 ? -1 : 1;
-    let targetX = box.x + direction * distance;
-    if (targetX < lane.min || targetX > maxX) targetX = box.x - direction * distance;
-    targetX = Math.max(lane.min, Math.min(targetX, maxX));
-    // A lane too narrow to actually walk in is not worth a walk animation.
-    if (Math.abs(targetX - box.x) < 12) {
-      wanderTimer = setTimeout(wander, 25000);
-      return;
-    }
-    const startX = box.x, startY = box.y;
-    const duration = Math.abs(targetX - startX) / .06;
-    pet.classList.add('is-walking');
-    pet.classList.toggle('walk-left', targetX < startX);
-    // face where she is heading: the art is drawn facing right by default
-    pet.classList.toggle('face-left', targetX < startX);
-    const began = performance.now();
-    const step = now => {
-      const t = Math.min(1, (now - began) / duration);
-      position(startX + (targetX - startX) * t, startY);
-      if (t < 1) { walkRaf = requestAnimationFrame(step); return; }
-      pet.classList.remove('is-walking', 'walk-left');
-      walkRaf = null;
-      save();
-      wanderTimer = setTimeout(wander, 25000 + Math.random() * 20000);
-    };
-    walkRaf = requestAnimationFrame(step);
-  };
-  wanderTimer = setTimeout(wander, 25000);
-
   const stopFlight = () => {
     if (flight) cancelAnimationFrame(flight.raf);
     flight = null;
-    pet.classList.remove('is-flying');
+    if (motion === 'flying') rest();
+  };
+  const play = name => {
+    if (hidden || drag || document.hidden) return;
+    if (['sleeping', 'napping', 'waking'].includes(motion)) {
+      pendingAction = name; // Latest intent wins; never replay a backlog of clicks.
+      wake();
+      return;
+    }
+    stopWalk();
+    stopFlight();
+    if (!animated()) { rest(); return; }
+    if (name === 'stroll') { rest(); wander(); return; }
+    const action = ACTIONS[name];
+    run(name, action.steps, {keys: action.keys});
+  };
+  const canIdle = () => !hidden && animated() && !document.hidden && !drag && !flight && menu.hidden && motion === 'idle';
+  const wander = () => {
+    clearTimeout(wanderTimer);
+    wanderTimer = setTimeout(wander, 25000 + Math.random() * 20000);
+    if (!canIdle()) return;
+    const box = pet.getBoundingClientRect();
+    const lane = dockBand || {min: 10, max: Math.max(10, innerWidth - box.width - 10)};
+    const distance = 60 + Math.random() * 140;
+    const direction = Math.random() < .5 ? -1 : 1;
+    let targetX = box.x + direction * distance;
+    if (targetX < lane.min || targetX > lane.max) targetX = box.x - direction * distance;
+    targetX = Math.max(lane.min, Math.min(targetX, lane.max));
+    if (Math.abs(targetX - box.x) < 12) { play('look-around'); return; }
+    pet.classList.toggle('face-right', targetX > box.x);
+    run('walk-start', [[0, 180, 'prepare']], {done: () => {
+      const began = performance.now();
+      const duration = Math.abs(targetX - box.x) / .055;
+      run('walking', [[12, 180], [13, 180], [14, 180], [15, 180]], {loop: true,
+        keys: [{transform: 'translateY(-1px)'}, {transform: 'none'}]});
+      const step = now => {
+        const t = Math.min(1, (now - began) / duration);
+        const eased = t * t * (3 - 2 * t); // Both departure and arrival have zero velocity.
+        position(box.x + (targetX - box.x) * eased, box.y);
+        if (t < 1) { walkRaf = requestAnimationFrame(step); return; }
+        walkRaf = null;
+        run('walk-stop', [[0, 260, 'recover']], {done: save});
+      };
+      walkRaf = requestAnimationFrame(step);
+    }});
   };
   const nap = () => {
     clearTimeout(idleTimer);
-    clearTimeout(poseTimer);
     clearTimeout(bubbleTimer);
+    pendingAction = null;
     stopWalk();
     stopFlight();
     bubble.hidden = true;
-    pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
-    stopNapTransition();
-    pet.classList.add('is-sleeping');
-    if (!quiet && !reducedMotion.matches) {
-      pet.classList.add('is-napping');
-      napTimer = setTimeout(() => pet.classList.remove('is-napping'), 1800);
-    }
     avatar.setAttribute('aria-label', '小江正在打盹；点击唤醒，也可拎起拖动或用方向键移动');
+    if (!animated()) {
+      cancelMotion();
+      setMotion('sleeping');
+      setPose(18);
+      return;
+    }
+    run('napping', [[8, 380, 'drowsy'], [16, 500, 'drowsy'], [17, 550, 'sit'], [18, 400, 'doze']], {end: 'sleeping'});
+  };
+  const wake = () => {
+    clearTimeout(idleTimer);
+    if (!hidden && !quiet && !document.hidden) idleTimer = setTimeout(() => {
+      if (canIdle()) nap();
+      else if (!['sleeping', 'napping'].includes(motion)) wake();
+    }, 45000);
+    avatar.setAttribute('aria-label', avatarLabel);
+    if (!['sleeping', 'napping', 'waking'].includes(motion)) return;
+    if (hidden || !animated() || document.hidden) { rest(); return; }
+    if (motion === 'waking') return; // Repeated pointer/keyboard activity must not restart waking.
+    const steps = pose >= 17 ? [[17, 300, 'sit'], [16, 340, 'stand'], [0, 220, 'recover']]
+      : [[pose, 160, 'stand'], [0, 220, 'recover']];
+    run('waking', steps, {done: () => {
+      const next = pendingAction;
+      pendingAction = null;
+      if (next) play(next);
+    }});
   };
   const fling = (velocityX, velocityY) => {
     stopFlight();
     stopWalk();
+    cancelMotion();
     clearTimeout(idleTimer);
+    pendingAction = null;
+    setMotion('flying');
+    setPose(19);
     const box = pet.getBoundingClientRect();
-    flight = {
-      x: box.left, y: box.top,
-      // px/ms scaled into a readable throw, capped so it never rockets off-screen.
+    flight = {x: box.left, y: box.top,
       vx: Math.max(-1.4, Math.min(1.4, velocityX * 2.2)),
-      vy: Math.max(-1.6, Math.min(0.6, velocityY * 2.2)),
-      raf: 0, last: performance.now(), began: performance.now()
-    };
-    pet.classList.add('is-flying');
+      vy: Math.max(-1.6, Math.min(.6, velocityY * 2.2)),
+      raf: 0, last: performance.now(), began: performance.now()};
     const step = now => {
       if (!flight) return;
       const dt = Math.min(32, now - flight.last);
       flight.last = now;
-      flight.vy += 0.0032 * dt;                 // gravity
+      flight.vy += .0032 * dt;
       flight.x += flight.vx * dt;
       flight.y += flight.vy * dt;
       const size = pet.getBoundingClientRect();
-      const maxX = innerWidth - size.width - 10;
-      const maxY = innerHeight - size.height - 10;
-      const floor = topLimit();
+      const maxX = Math.max(10, innerWidth - size.width - 10);
+      const floor = topLimit(), maxY = Math.max(floor, innerHeight - size.height - 10);
       if (flight.x < 10) { flight.x = 10; flight.vx = Math.abs(flight.vx) * .62; }
       if (flight.x > maxX) { flight.x = maxX; flight.vx = -Math.abs(flight.vx) * .62; }
       if (flight.y < floor) { flight.y = floor; flight.vy = Math.abs(flight.vy) * .62; }
       if (flight.y >= maxY) {
         flight.y = maxY;
-        // Test the *bounce* velocity, not the impact velocity: at the moment of
-        // contact vy is at its largest, so comparing that against a small rest
-        // threshold would never settle her.
         const bounce = Math.abs(flight.vy) * .55;
-        flight.vx *= .82;                       // ground friction
-        const settled = bounce < .35 && Math.abs(flight.vx) < .12;
-        if (settled || now - flight.began > 4000) {
+        flight.vx *= .82;
+        position(flight.x, flight.y); // Commit the contact point before saving/ending flight.
+        if ((bounce < .35 && Math.abs(flight.vx) < .12) || now - flight.began > 4000) {
           stopFlight();
           play('settle');
           save();
+          wake();
           return;
         }
         flight.vy = -bounce;
       }
-      pet.style.left = `${flight.x}px`;
-      pet.style.top = `${flight.y}px`;
-      pet.style.right = 'auto';
-      pet.style.bottom = 'auto';
+      position(flight.x, flight.y);
       flight.raf = requestAnimationFrame(step);
     };
     flight.raf = requestAnimationFrame(step);
-  };
-  const wake = () => {
-    clearTimeout(idleTimer);
-    const sleeping = pet.classList.contains('is-sleeping');
-    const enteringSleep = pet.classList.contains('is-napping');
-    if (sleeping || hidden || quiet || reducedMotion.matches || document.hidden) stopNapTransition();
-    pet.classList.remove('is-sleeping');
-    if (sleeping && !enteringSleep && !hidden && !quiet && !reducedMotion.matches && !document.hidden) {
-      pet.classList.add('is-waking');
-      napTimer = setTimeout(() => pet.classList.remove('is-waking'), 1000);
-    }
-    avatar.setAttribute('aria-label', avatarLabel);
-    if (!hidden && !quiet && !document.hidden) idleTimer = setTimeout(() => {
-      if (menu.hidden && !drag) nap();
-    }, 45000);
   };
   const updateQuiet = () => {
     pet.classList.toggle('is-quiet', quiet);
     quietButton.setAttribute('aria-pressed', String(quiet));
     quietButton.textContent = quiet ? '恢复活泼' : '安静陪伴';
   };
+  const cancelDrag = () => {
+    if (!drag) return;
+    const previous = drag;
+    drag = null;
+    if (previous.moved) {
+      userMoved = true;
+      dockBand = null;
+      lastDrag = performance.now();
+    }
+    if (avatar.hasPointerCapture(previous.id)) avatar.releasePointerCapture(previous.id);
+    pet.style.removeProperty('--pet-lift-angle');
+    rest();
+    save();
+  };
   const collapse = value => {
     hidden = value;
+    cancelDrag();
     closeMenu();
     stopWalk();
     stopFlight();
+    rest();
     wake();
     stage.hidden = value;
     restore.hidden = !value;
     pet.classList.toggle('is-collapsed', value);
     bubble.hidden = true;
     clearTimeout(bubbleTimer);
-    // The collapsed pill gets its width from CSS, so drop the docking override.
     if (value) { pet.style.removeProperty('width'); return; }
     if (userMoved) {
       const box = pet.getBoundingClientRect();
       position(box.x, box.y);
-      return;
-    }
-    dock();
+    } else dock();
   };
   updateQuiet();
   wake();
-  if (hidden) collapse(true);
-  // Only a position you placed yourself outranks docking. Coordinates saved by
-  // the old fixed corner are exactly the ones covering the sidebar, so they are
-  // ignored rather than restored.
   const savedOwnSpot = saved.v === STORAGE_VERSION && saved.auto === false
     && Number.isFinite(saved.x) && Number.isFinite(saved.y);
   if (savedOwnSpot) {
     userMoved = true;
     if (Number.isFinite(saved.w)) pet.style.width = `${saved.w}px`;
     position(saved.x, saved.y);
-  } else {
-    dock();
-  }
-  // Semantic actions. Each one means something specific, instead of reusing a
-  // generic wobble: waving back, nodding along, looking around, peeking, shrugging.
-  const ACTIONS = {
-    'wave':       { cls: 'act-wave',       ms: 1200 },  // 打招呼 / 回应你
-    'nod':        { cls: 'act-nod',        ms: 900 },   // 同意、应声
-    'peer':       { cls: 'act-peer',       ms: 1400 },  // 凑近看你在读什么
-    'look-around':{ cls: 'act-look-around',ms: 2000 },  // 左右张望
-    'shrug':      { cls: 'act-shrug',      ms: 1100 },  // 没办法、随你
-    'perk':       { cls: 'act-perk',       ms: 800 },   // 听到动静，抬头
-    'stretch':    { cls: 'act-stretch',    ms: 1500 },  // 伸懒腰
-    'clap':       { cls: 'act-clap',       ms: 900 },   // 高兴、认可
-    'settle':     { cls: 'act-settle',     ms: 1300 }   // 落地/安顿下来
-  };
-  const ACTION_CLASSES = Object.values(ACTIONS).map(a => a.cls);
-  const play = name => {
-    const action = ACTIONS[name] || ACTIONS.wave;
-    // Quiet mode and reduced-motion users still get state changes, but no mime.
-    if ((quiet || reducedMotion.matches) && name !== 'settle') return;
-    clearTimeout(poseTimer);
-    pet.classList.remove(...ACTION_CLASSES);
-    void pet.offsetWidth;
-    pet.classList.add(action.cls);
-    poseTimer = setTimeout(() => pet.classList.remove(action.cls), action.ms);
-  };
-  // Kept for the older call sites that passed a raw class name.
-  const animate = pose => {
-    const byClass = Object.entries(ACTIONS).find(([, a]) => a.cls === pose);
-    play(byClass ? byClass[0] : 'wave');
-  };
-  // She stretches a little at random while you read, so the idle state is not frozen.
+  } else dock();
+  if (hidden) collapse(true);
+  let lastIdleAction = '';
   const idlePose = () => {
     clearTimeout(idlePoseTimer);
-    if (hidden || quiet || reducedMotion.matches || document.hidden || drag || flight || !menu.hidden
-        || pet.classList.contains('is-sleeping') || pet.classList.contains('is-walking')) {
-      idlePoseTimer = setTimeout(idlePose, 15000);
-      return;
-    }
-    // Idle should look like idling: glance around, stretch, or settle.
-    // Never a greeting wave (that would mean you just arrived).
-    const idleActions = ['look-around', 'stretch', 'peer'];
-    play(idleActions[Math.floor(Math.random() * idleActions.length)]);
-    idlePoseTimer = setTimeout(idlePose, 20000 + Math.random() * 25000);
+    idlePoseTimer = setTimeout(idlePose, 16000 + Math.random() * 14000);
+    if (!canIdle()) return;
+    const pool = ['read', 'stretch', 'yawn', 'look-around'].filter(name => name !== lastIdleAction);
+    lastIdleAction = pool[Math.floor(Math.random() * pool.length)];
+    play(lastIdleAction);
   };
   idlePoseTimer = setTimeout(idlePose, 18000);
-
-  // Quick squash on click, so a poke feels physical rather than a static swap.
-  const squish = () => {
-    if (quiet || reducedMotion.matches) return;
-    pet.classList.remove('is-squish');
-    void pet.offsetWidth;
-    pet.classList.add('is-squish');
-    clearTimeout(squishTimer);
-    squishTimer = setTimeout(() => pet.classList.remove('is-squish'), 420);
-  };
+  wanderTimer = setTimeout(wander, 27000);
   const speak = (text, action = 'wave') => {
     wake();
     closeMenu();
@@ -481,7 +566,7 @@
     bubbleTimer = setTimeout(() => { bubble.hidden = true; }, 6000);
     play(action);
   };
-  const jump = () => { speak('接住今天的一点小开心！', 'clap'); pet.classList.add('is-jumping'); };
+  const jump = () => speak('接住今天的一点小开心！', 'jump');
   // Rapid clicking builds a streak: she gets more excited the more you poke her.
   let streak = 0, streakTimer;
   const combos = [
@@ -496,7 +581,6 @@
     const below = event.detail !== 0 ? yieldTarget(event.clientX, event.clientY) : null;
     if (below) { below.click(); return; }
     if (event.detail !== 0 && performance.now() - lastDrag <= 250) return;
-    squish();
     const now = performance.now();
     streak += 1;
     clearTimeout(streakTimer);
@@ -515,6 +599,8 @@
   // Right-click opens the menu too, the way desktop pets usually behave.
   avatar.addEventListener('contextmenu', event => {
     event.preventDefault();
+    stopWalk();
+    stopFlight();
     wake();
     const opening = menu.hidden;
     closeMenu();
@@ -526,6 +612,8 @@
     }
   });
   menuToggle.addEventListener('click', () => {
+    stopWalk();
+    stopFlight();
     wake();
     const opening = menu.hidden;
     closeMenu();
@@ -542,10 +630,15 @@
     closeMenu();
     menuToggle.focus();
     if (action === 'jump') jump();
+    if (action === 'read') speak('这页我也想再看一遍。', 'read');
+    if (action === 'stretch') speak('伸个懒腰，继续慢慢来。', 'stretch');
     if (action === 'nap') nap();
-    if (action === 'stroll') { wake(); if (!quiet && !reducedMotion.matches) wander(); }
-    if (action === 'cheer') speak(praise[Math.floor(Math.random() * praise.length)], 'clap');
+    if (action === 'stroll') { wake(); play('stroll'); }
+    if (action === 'cheer') speak(praise[Math.floor(Math.random() * praise.length)], 'cheer');
     if (action === 'reset') {
+      stopWalk();
+      stopFlight();
+      rest();
       userMoved = false;
       dock();
       save();
@@ -557,6 +650,9 @@
     }
     if (action === 'quiet') {
       quiet = !quiet;
+      stopWalk();
+      stopFlight();
+      rest();
       updateQuiet();
       save();
       speak(quiet ? '好，我安静陪着你。' : '小江又精神起来啦。', quiet ? 'settle' : 'perk');
@@ -580,8 +676,21 @@
       }
     } else if (document.hidden) {
       lastVisible = Date.now();
+      cancelDrag();
+      stopWalk();
+      stopFlight();
+      rest();
+      save();
     }
     wake();
+  });
+  reducedMotion.addEventListener('change', () => {
+    cancelDrag();
+    stopWalk();
+    stopFlight();
+    rest();
+    wake();
+    save();
   });
   // Reading means scrolling. Without this she fell asleep 45s into every article.
   let lastAwake = 0;
@@ -594,7 +703,7 @@
       if (atEnd && scrollY > 400) {
         reachedEnd = true;
         setTimeout(() => {
-          if (!hidden && !quiet) speak('读完了？要不要去项目页看看这些是怎么做出来的。', 'nod');
+          if (!hidden && !quiet && !document.hidden) speak('读完了？要不要去项目页看看这些是怎么做出来的。', 'nod');
         }, 600);
       }
     }
@@ -638,12 +747,12 @@
     // vertical swipe is someone reading the page, not picking her up.
     if (!drag.moved && event.pointerType === 'touch' && Math.abs(dy) > Math.abs(dx)) return;
     if (!drag.moved) {
-      stopNapTransition();
-      clearTimeout(poseTimer);
-      pet.classList.remove('is-petted', 'is-jumping', 'is-landing');
+      cancelMotion();
+      pendingAction = null;
+      setMotion('dragging');
+      setPose(19, true);
       bubble.hidden = true;
       drag.moved = true;
-      pet.classList.add('is-dragging');
     }
     const angle = quiet || reducedMotion.matches ? 0 : Math.max(-8, Math.min(8, (event.clientX - drag.previousX) * -.35));
     pet.style.setProperty('--pet-lift-angle', `${angle}deg`);
@@ -656,30 +765,27 @@
     drag.previousT = event.timeStamp;
     const width = avatar.offsetWidth;
     // Keep the raised jacket collar under the pointer while the body hangs below.
-    position(event.clientX - width * .61, event.clientY - width * .43);
+    position(event.clientX - width * (pet.classList.contains('face-right') ? .52 : .48), event.clientY - width * .46);
   });
   const endDrag = (event, cancelled = false) => {
     if (!drag || drag.id !== event.pointerId) return;
-    const moved = drag.moved && !cancelled;
-    const throwVelocity = {x: drag.velocityX || 0, y: drag.velocityY || 0};
+    const moved = drag.moved;
+    // A fast move followed by a pause is a placement, not a delayed throw.
+    const fresh = event.timeStamp - drag.previousT < 100;
+    const velocity = {x: fresh ? drag.velocityX : 0, y: fresh ? drag.velocityY : 0};
     drag = null;
-    pet.classList.remove('is-dragging');
     pet.style.removeProperty('--pet-lift-angle');
-    if (moved) {
-      lastDrag = performance.now();
-      lastTap = -Infinity;
-      play('settle');
-      wake();
-      // She stays where you put her, even if that overlaps the text.
-      userMoved = true;
-      dockBand = null;
-      // Fling her: a fast release becomes a throw that bounces off the edges.
-      const speed = Math.hypot(throwVelocity.x, throwVelocity.y);
-      if (!quiet && !reducedMotion.matches && speed > 0.35) {
-        fling(throwVelocity.x, throwVelocity.y);
-      } else {
-        save();
-      }
+    if (!moved) return;
+    lastDrag = performance.now();
+    lastTap = -Infinity;
+    rest();
+    wake();
+    userMoved = true;
+    dockBand = null;
+    if (!cancelled && animated() && Math.hypot(velocity.x, velocity.y) > .35) fling(velocity.x, velocity.y);
+    else {
+      if (!cancelled) play('settle');
+      save();
     }
   };
   avatar.addEventListener('pointerup', endDrag);
@@ -691,6 +797,10 @@
     const directions = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]};
     if (directions[event.key]) {
       event.preventDefault();
+      stopWalk();
+      stopFlight();
+      rest();
+      wake();
       const box = pet.getBoundingClientRect();
       const [x, y] = directions[event.key];
       const step = event.shiftKey ? 24 : 10;
@@ -708,6 +818,9 @@
     if (!menu.hidden) { closeMenu(); menuToggle.focus(); }
   });
   addEventListener('resize', () => {
+    cancelDrag();
+    stopWalk();
+    stopFlight();
     if (!pet.style.left) { placeBubble(); return; }
     // A narrow window no longer has a margin to stand in, so re-decide the spot.
     if (!userMoved) { dock(); return; }
