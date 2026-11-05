@@ -1,0 +1,25 @@
+{
+  "created": "2026-11-04",
+  "source": "image_gen.imagegen; model id not returned",
+  "concept_only": true,
+  "files": [
+    {
+      "file": "assets/engineer.png",
+      "bytes": 1722134,
+      "sha256": "860d3d4dbb8ac5b08378a96bc9ba75df11f0e884dc16be31dc870e06bd9ba4fc",
+      "purpose": "透明四姿态角色精灵图"
+    },
+    {
+      "file": "assets/field.png",
+      "bytes": 2101675,
+      "sha256": "a1f2753d9402976e221da91d61b7e92315b7728465701ea680975fcdcb9e1b2c",
+      "purpose": "空场地背景"
+    },
+    {
+      "file": "assets/rover.png",
+      "bytes": 1565661,
+      "sha256": "9cb74d30c40447208976c8fe2caadb1115cf1b6514365e77e8502d729de2229b",
+      "purpose": "透明四方向履带车精灵图"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-04",
+  "concept_only": true,
+  "video": {
+    "file": "source/media/tuning-workshop.mp4",
+    "duration_seconds": 75.0,
+    "frames": 1800,
+    "fps": 24,
+    "width": 1280,
+    "height": 720,
+    "codec": "h264",
+    "pix_fmt": "yuv420p",
+    "audio": "aac 44100Hz stereo",
+    "faststart": true
+  },
+  "verification": {
+    "sol_high_unified_checks": "passed",
+    "pages": 63,
+    "local_references": 2707,
+    "ui_contract_groups": 9,
+    "vtt_cues": 14,
+    "full_decode": "passed",
+    "sampled_frames_reviewed_seconds": [
+      0,
+      7,
+      14,
+      22,
+      29,
+      32,
+      38,
+      48,
+      59,
+      68,
+      74
+    ]
+  },
+  "audio_signal": {
+    "decoded_peak": 0.120516,
+    "decoded_rms": 0.01546,
+    "clipping_samples": 0,
+    "last_sample": 0,
+    "human_listening_review": false
+  },
+  "browser": {
+    "local_url": "http://127.0.0.1:4176/",
+    "desktop_viewport": [
+      1280,
+      720
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "physical_mobile": false,
+    "initial": {
+      "paused": true,
+      "readyState": 0,
+      "currentTime": 0
+    },
+    "played": {
+      "paused": false,
+      "readyState": 4,
+      "duration": 75,
+      "width": 1280,
+      "height": 720,
+      "observed_currentTime": 69.01673
+    },
+    "ended": {
+      "paused": true,
+      "ended": true,
+      "currentTime": 75
+    },
+    "mobile_play_pause": true,
+    "horizontal_overflow": false,
+    "laya_used": false
+  },
+  "files": [
+    {
+      "path": "source/media/tuning-workshop.mp4",
+      "bytes": 12393485,
+      "sha256": "88c840b17ae93dcf70a4d5a3f596a646f8a8460fd10b8d925d9b77c00c026bb4"
+    },
+    {
+      "path": "source/media/tuning-workshop.zh-CN.vtt",
+      "bytes": 1191,
+      "sha256": "e2191dcb73654c80946f57a528e5a7accbde7ec7dd764bba61c1a3a57bbd63dc"
+    },
+    {
+      "path": "scripts/video/create-tuning-film.cjs",
+      "bytes": 33201,
+      "sha256": "9df552b13cd67034799f89e3262d1c87cc1c72c555aa210b9b3c06ce1cc349a9"
+    },
+    {
+      "path": "规划/视频/20261104-小胖子调车/验收截图/home-desktop-dark.png",
+      "bytes": 79503,
+      "sha256": "77d97c606e05483051a028ab2ddda32ef8d298fec300c27738d64bc3b03b8d8c"
+    },
+    {
+      "path": "规划/视频/20261104-小胖子调车/验收截图/home-desktop-loaded.png",
+      "bytes": 78504,
+      "sha256": "63b1c66f41366910bfe4d7e21eebe325da26f0b44d78a444ceefbf1687a23f05"
+    },
+    {
+      "path": "规划/视频/20261104-小胖子调车/验收截图/home-mobile-dark.png",
+      "bytes": 39944,
+      "sha256": "49cb5cf6246b1a1c672f2eb1151fd47268cef01006533c9f0399b034b9e4c63e"
+    },
+    {
+      "path": "规划/视频/20261104-小胖子调车/验收截图/home-mobile-loaded.png",
+      "bytes": 39421,
+      "sha256": "8f0c23ea3f5ec18a8811d65aca77c62fea26160b23d5f33dd23d56dc95b6e5e0"
+    },
+    {
+      "path": "规划/视频/20261104-小胖子调车/验收截图/home-mobile-poster.png",
+      "bytes": 41995,
+      "sha256": "98c1c4bbc4628e71e64a9ff3676154b2fb18185303eb9200bbdf2f66dbd85736"
+    }
+  ]
+}

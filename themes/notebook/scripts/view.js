@@ -70,8 +70,12 @@ function postCard(p, base = '', filter = false) {
     <div class="hero-actions"><a class="button" href="/projects/">翻开项目档案 ↗</a><a class="secondary-button" href="/archives/">读一篇手记 →</a></div>
   </div>
   <figure class="hero-visual">
-    <img src="/img/workshop/tuning-poster.webp" alt="机器人试验场主题概念插画：履带车沿航点绕过路锥和障碍，江南的虚构角色在一旁用电脑调车；非比赛实录" width="1536" height="1024" fetchpriority="high">
-    <figcaption><strong>小胖子调车</strong><small>主题短片筹备中 · 画面为概念插画</small></figcaption>
+    <video controls playsinline preload="none" poster="/img/workshop/tuning-poster.webp" width="1280" height="720" aria-label="播放《小胖子调车》概念动画" aria-describedby="tuning-video-caption">
+      <source src="/media/tuning-workshop.mp4" type="video/mp4">
+      <track kind="captions" src="/media/tuning-workshop.zh-CN.vtt" srclang="zh-CN" label="中文字幕">
+      您的浏览器不支持视频播放，可<a href="/media/tuning-workshop.mp4" download>下载《小胖子调车》MP4</a>观看。
+    </video>
+    <figcaption id="tuning-video-caption"><strong>小胖子调车</strong><small>75秒概念动画 · 非比赛实录</small></figcaption>
   </figure>
 </section>
 <section class="result-strip" aria-label="团队结果与站内记录">
