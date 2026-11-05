@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f5f3eb">
+  <meta name="theme-color" content="#f7f2e8">
   <meta name="color-scheme" content="light dark">
   <%# Runs before first paint so a reader who chose dark never sees a cream flash.
       No stored choice means cream: ink-green on paper is the site's primary look. %>
   <script>try{if(localStorage.getItem('lab-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
   <%- notebook_head(page) %>
   <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="/css/notebook.css">
-  <link rel="stylesheet" href="/css/pet.css">
-  <script src="/js/notebook.js" defer></script>
-  <script src="/js/pet.js" defer></script>
+  <link rel="stylesheet" href="<%- notebook_versioned_asset('/css/notebook.css') %>">
+  <link rel="stylesheet" href="<%- notebook_versioned_asset('/css/pet.css') %>">
+  <script src="<%- notebook_versioned_asset('/js/notebook.js') %>" defer></script>
+  <script src="<%- notebook_versioned_asset('/js/pet.js') %>" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
 </head>
 <body>

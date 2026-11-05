@@ -1,0 +1,14 @@
+{
+  "source": "Local NotoSerifCJK-Bold.ttc SC face 2",
+  "family": "Fieldnotes Song",
+  "weight": 700,
+  "format": "woff",
+  "asset": "/fonts/fieldnotes-song/fieldnotes-song-bold-ff70fba80e.woff",
+  "sha256": "ff70fba80ea2b4d08715d14e57bbd29712cbd236f4a784792855c1b532eff78e",
+  "bytes": 717720,
+  "input_characters": 1405,
+  "glyphs": 2756,
+  "license": "SIL Open Font License 1.1; OFL.txt included",
+  "external_font_request": false,
+  "delivery": "same-origin static font URL"
+}

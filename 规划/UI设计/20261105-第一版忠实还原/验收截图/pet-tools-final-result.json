@@ -1,0 +1,808 @@
+{
+  "started": "2026-11-05T19:02:35.725Z",
+  "scope": "Final short-label build: limited screenshots and immutable target hashes only; prior behavior evidence retained, not rerun",
+  "before": {
+    "themes/notebook/source/js/pet.js": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+    "themes/notebook/source/js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "themes/notebook/source/css/pet.css": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+    "themes/notebook/source/css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "themes/notebook/layout/_partial/pet.ejs": "dc91325a46a014028642d3eed4a1136dc6976d6c764e335a6b234cb92303e31c",
+    "themes/notebook/layout/layout.ejs": "8a1cc05a67bbc8581601e125615da9b48247666c49e51209f5cf8af164a5d406",
+    "themes/notebook/scripts/view.js": "874f92917886cc5aae71b94601189487019e84670e927ce05a8d116364801718",
+    "source/music/index.md": "236a42b6d02ec8fa8f0676939a32e6cc6aa0c0a16a269a6ab50f5bf055c1c46b",
+    "source/img/fieldnotes/music-notebook-4cdbbe9341.webp": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+    "source/img/fieldnotes/detour-notebook-13bcf3e306.webp": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+    "public/js/pet.js": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+    "public/js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "public/css/pet.css": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+    "public/css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "public/2026/08/21/睿抗赛94分复盘/index.html": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+    "public/music/index.html": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+    "public/404.html": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+    "public/img/fieldnotes/music-notebook-4cdbbe9341.webp": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+    "public/img/fieldnotes/detour-notebook-13bcf3e306.webp": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+    "public/downloads/index.html": "2d68f3619cac4d2f6c225f26301a5f969fade8d61f65aa177f246ca078653b14"
+  },
+  "pages": [
+    {
+      "type": "mobile-flow",
+      "servedSha256": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+      "metrics": {
+        "url": "http://127.0.0.1:4176/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": {
+          "html": 390,
+          "body": 390
+        },
+        "fontStatus": "loaded",
+        "theme": "light",
+        "bodyColor": "rgb(32, 35, 29)",
+        "bodyBackground": "rgb(247, 242, 232)",
+        "paperVar": "#f7f2e8",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 20,
+              "y": 677.625,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 20,
+            "y": 664.625,
+            "width": 190,
+            "height": 131.78125,
+            "right": 210,
+            "bottom": 796.40625
+          }
+        },
+        "pet": {
+          "x": 264,
+          "y": 657.515625,
+          "width": 106,
+          "height": 146,
+          "right": 370,
+          "bottom": 803.515625,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 16,
+          "y": 640.515625,
+          "width": 358,
+          "height": 179,
+          "right": 374,
+          "bottom": 819.515625
+        },
+        "illustration": []
+      },
+      "screenshots": [
+        "/tmp/innerpage-visual-20261105/final-text-lock/mobile-reading-flow-short-label.png"
+      ]
+    },
+    {
+      "type": "mobile-nojs-flow",
+      "servedSha256": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+      "metrics": {
+        "url": "http://127.0.0.1:4176/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": {
+          "html": 390,
+          "body": 390
+        },
+        "fontStatus": "loaded",
+        "theme": "light",
+        "bodyColor": "rgb(32, 35, 29)",
+        "bodyBackground": "rgb(247, 242, 232)",
+        "paperVar": "#f7f2e8",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 20,
+              "y": 678.21875,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 20,
+            "y": 665.21875,
+            "width": 190,
+            "height": 131.78125,
+            "right": 210,
+            "bottom": 797
+          }
+        },
+        "pet": {
+          "x": 264,
+          "y": 658.109375,
+          "width": 106,
+          "height": 146,
+          "right": 370,
+          "bottom": 804.109375,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 16,
+          "y": 641.109375,
+          "width": 358,
+          "height": 179,
+          "right": 374,
+          "bottom": 820.109375
+        },
+        "illustration": []
+      },
+      "screenshots": [
+        "/tmp/innerpage-visual-20261105/final-text-lock/mobile-reading-nojs-flow-short-label.png"
+      ]
+    },
+    {
+      "type": "desktop-music",
+      "servedSha256": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+      "imageSha256": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+      "light": {
+        "url": "http://127.0.0.1:4176/music/",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "overflow": {
+          "html": 1440,
+          "body": 1440
+        },
+        "fontStatus": "loaded",
+        "theme": "light",
+        "bodyColor": "rgb(32, 35, 29)",
+        "bodyBackground": "rgb(247, 242, 232)",
+        "paperVar": "#f7f2e8",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 56,
+              "y": 940.15625,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 56,
+            "y": 927.15625,
+            "width": 300.015625,
+            "height": 109.6875,
+            "right": 356.015625,
+            "bottom": 1036.84375
+          }
+        },
+        "pet": {
+          "x": 1234,
+          "y": 889,
+          "width": 150,
+          "height": 186,
+          "right": 1384,
+          "bottom": 1075,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 40,
+          "y": 864,
+          "width": 1360,
+          "height": 235,
+          "right": 1400,
+          "bottom": 1099
+        },
+        "illustration": [
+          {
+            "src": "/img/fieldnotes/music-notebook-4cdbbe9341.webp",
+            "naturalWidth": 1536,
+            "naturalHeight": 1024,
+            "fit": "contain",
+            "x": 714.28125,
+            "y": 156.25,
+            "width": 565.71875,
+            "height": 377.140625,
+            "right": 1280,
+            "bottom": 533.390625
+          }
+        ]
+      },
+      "dark": {
+        "url": "http://127.0.0.1:4176/music/",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "overflow": {
+          "html": 1440,
+          "body": 1440
+        },
+        "fontStatus": "loaded",
+        "theme": "dark",
+        "bodyColor": "rgb(238, 233, 220)",
+        "bodyBackground": "rgb(22, 30, 26)",
+        "paperVar": "#161e1a",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 56,
+              "y": 940.15625,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 56,
+            "y": 927.15625,
+            "width": 300.015625,
+            "height": 109.6875,
+            "right": 356.015625,
+            "bottom": 1036.84375
+          }
+        },
+        "pet": {
+          "x": 1234,
+          "y": 889,
+          "width": 150,
+          "height": 186,
+          "right": 1384,
+          "bottom": 1075,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 40,
+          "y": 864,
+          "width": 1360,
+          "height": 235,
+          "right": 1400,
+          "bottom": 1099
+        },
+        "illustration": [
+          {
+            "src": "/img/fieldnotes/music-notebook-4cdbbe9341.webp",
+            "naturalWidth": 1536,
+            "naturalHeight": 1024,
+            "fit": "contain",
+            "x": 714.28125,
+            "y": 156.25,
+            "width": 565.71875,
+            "height": 377.140625,
+            "right": 1280,
+            "bottom": 533.390625
+          }
+        ]
+      },
+      "screenshots": [
+        "/tmp/innerpage-visual-20261105/final-text-lock/desktop-music-light-full.png",
+        "/tmp/innerpage-visual-20261105/final-text-lock/desktop-music-dark-full.png"
+      ]
+    },
+    {
+      "type": "desktop-404",
+      "servedSha256": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+      "imageSha256": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+      "light": {
+        "url": "http://127.0.0.1:4176/404.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "overflow": {
+          "html": 1440,
+          "body": 1440
+        },
+        "fontStatus": "loaded",
+        "theme": "light",
+        "bodyColor": "rgb(32, 35, 29)",
+        "bodyBackground": "rgb(247, 242, 232)",
+        "paperVar": "#f7f2e8",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 56,
+              "y": 929.234375,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 56,
+            "y": 916.234375,
+            "width": 300.015625,
+            "height": 109.6875,
+            "right": 356.015625,
+            "bottom": 1025.921875
+          }
+        },
+        "pet": {
+          "x": 1234,
+          "y": 878.078125,
+          "width": 150,
+          "height": 186,
+          "right": 1384,
+          "bottom": 1064.078125,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 40,
+          "y": 853.078125,
+          "width": 1360,
+          "height": 235,
+          "right": 1400,
+          "bottom": 1088.078125
+        },
+        "illustration": [
+          {
+            "src": "/img/fieldnotes/detour-notebook-13bcf3e306.webp",
+            "naturalWidth": 1536,
+            "naturalHeight": 1024,
+            "fit": "contain",
+            "x": 710.09375,
+            "y": 164.5625,
+            "width": 569.90625,
+            "height": 379.9375,
+            "right": 1280,
+            "bottom": 544.5
+          }
+        ]
+      },
+      "dark": {
+        "url": "http://127.0.0.1:4176/404.html",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "overflow": {
+          "html": 1440,
+          "body": 1440
+        },
+        "fontStatus": "loaded",
+        "theme": "dark",
+        "bodyColor": "rgb(238, 233, 220)",
+        "bodyBackground": "rgb(22, 30, 26)",
+        "paperVar": "#161e1a",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 56,
+              "y": 929.234375,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 56,
+            "y": 916.234375,
+            "width": 300.015625,
+            "height": 109.6875,
+            "right": 356.015625,
+            "bottom": 1025.921875
+          }
+        },
+        "pet": {
+          "x": 1234,
+          "y": 878.078125,
+          "width": 150,
+          "height": 186,
+          "right": 1384,
+          "bottom": 1064.078125,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 40,
+          "y": 853.078125,
+          "width": 1360,
+          "height": 235,
+          "right": 1400,
+          "bottom": 1088.078125
+        },
+        "illustration": [
+          {
+            "src": "/img/fieldnotes/detour-notebook-13bcf3e306.webp",
+            "naturalWidth": 1536,
+            "naturalHeight": 1024,
+            "fit": "contain",
+            "x": 710.09375,
+            "y": 164.5625,
+            "width": 569.90625,
+            "height": 379.9375,
+            "right": 1280,
+            "bottom": 544.5
+          }
+        ]
+      },
+      "screenshots": [
+        "/tmp/innerpage-visual-20261105/final-text-lock/desktop-404-light-full.png",
+        "/tmp/innerpage-visual-20261105/final-text-lock/desktop-404-dark-full.png"
+      ]
+    },
+    {
+      "type": "mobile-music",
+      "servedSha256": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+      "imageSha256": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+      "light": {
+        "url": "http://127.0.0.1:4176/music/",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": {
+          "html": 390,
+          "body": 390
+        },
+        "fontStatus": "loaded",
+        "theme": "light",
+        "bodyColor": "rgb(32, 35, 29)",
+        "bodyBackground": "rgb(247, 242, 232)",
+        "paperVar": "#f7f2e8",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 20,
+              "y": 939.265625,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 20,
+            "y": 926.265625,
+            "width": 190,
+            "height": 131.78125,
+            "right": 210,
+            "bottom": 1058.046875
+          }
+        },
+        "pet": {
+          "x": 264,
+          "y": 919.15625,
+          "width": 106,
+          "height": 146,
+          "right": 370,
+          "bottom": 1065.15625,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 16,
+          "y": 902.15625,
+          "width": 358,
+          "height": 179,
+          "right": 374,
+          "bottom": 1081.15625
+        },
+        "illustration": [
+          {
+            "src": "/img/fieldnotes/music-notebook-4cdbbe9341.webp",
+            "naturalWidth": 1536,
+            "naturalHeight": 1024,
+            "fit": "contain",
+            "x": 45,
+            "y": 490.96875,
+            "width": 300,
+            "height": 200,
+            "right": 345,
+            "bottom": 690.96875
+          }
+        ]
+      },
+      "dark": {
+        "url": "http://127.0.0.1:4176/music/",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": {
+          "html": 390,
+          "body": 390
+        },
+        "fontStatus": "loaded",
+        "theme": "dark",
+        "bodyColor": "rgb(238, 233, 220)",
+        "bodyBackground": "rgb(22, 30, 26)",
+        "paperVar": "#161e1a",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 20,
+              "y": 939.265625,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 20,
+            "y": 926.265625,
+            "width": 190,
+            "height": 131.78125,
+            "right": 210,
+            "bottom": 1058.046875
+          }
+        },
+        "pet": {
+          "x": 264,
+          "y": 919.15625,
+          "width": 106,
+          "height": 146,
+          "right": 370,
+          "bottom": 1065.15625,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 16,
+          "y": 902.15625,
+          "width": 358,
+          "height": 179,
+          "right": 374,
+          "bottom": 1081.15625
+        },
+        "illustration": [
+          {
+            "src": "/img/fieldnotes/music-notebook-4cdbbe9341.webp",
+            "naturalWidth": 1536,
+            "naturalHeight": 1024,
+            "fit": "contain",
+            "x": 45,
+            "y": 490.96875,
+            "width": 300,
+            "height": 200,
+            "right": 345,
+            "bottom": 690.96875
+          }
+        ]
+      },
+      "screenshots": [
+        "/tmp/innerpage-visual-20261105/final-text-lock/mobile-music-light-full.png",
+        "/tmp/innerpage-visual-20261105/final-text-lock/mobile-music-dark-full.png"
+      ]
+    },
+    {
+      "type": "mobile-404",
+      "servedSha256": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+      "imageSha256": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+      "light": {
+        "url": "http://127.0.0.1:4176/404.html",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": {
+          "html": 390,
+          "body": 390
+        },
+        "fontStatus": "loaded",
+        "theme": "light",
+        "bodyColor": "rgb(32, 35, 29)",
+        "bodyBackground": "rgb(247, 242, 232)",
+        "paperVar": "#f7f2e8",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 20,
+              "y": 985.5,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 20,
+            "y": 972.5,
+            "width": 190,
+            "height": 131.78125,
+            "right": 210,
+            "bottom": 1104.28125
+          }
+        },
+        "pet": {
+          "x": 264,
+          "y": 965.390625,
+          "width": 106,
+          "height": 146,
+          "right": 370,
+          "bottom": 1111.390625,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 16,
+          "y": 948.390625,
+          "width": 358,
+          "height": 179,
+          "right": 374,
+          "bottom": 1127.390625
+        },
+        "illustration": [
+          {
+            "src": "/img/fieldnotes/detour-notebook-13bcf3e306.webp",
+            "naturalWidth": 1536,
+            "naturalHeight": 1024,
+            "fit": "contain",
+            "x": 35,
+            "y": 499.875,
+            "width": 320,
+            "height": 213.328125,
+            "right": 355,
+            "bottom": 713.203125
+          }
+        ]
+      },
+      "dark": {
+        "url": "http://127.0.0.1:4176/404.html",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "overflow": {
+          "html": 390,
+          "body": 390
+        },
+        "fontStatus": "loaded",
+        "theme": "dark",
+        "bodyColor": "rgb(238, 233, 220)",
+        "bodyBackground": "rgb(22, 30, 26)",
+        "paperVar": "#161e1a",
+        "label": {
+          "text": "COMPANION / 纸边工位",
+          "rects": [
+            {
+              "x": 20,
+              "y": 985.5,
+              "width": 131.21875,
+              "height": 11
+            }
+          ],
+          "lineCount": 1,
+          "parent": {
+            "x": 20,
+            "y": 972.5,
+            "width": 190,
+            "height": 131.78125,
+            "right": 210,
+            "bottom": 1104.28125
+          }
+        },
+        "pet": {
+          "x": 264,
+          "y": 965.390625,
+          "width": 106,
+          "height": 146,
+          "right": 370,
+          "bottom": 1111.390625,
+          "position": "relative",
+          "flow": true,
+          "visible": true
+        },
+        "slot": {
+          "x": 16,
+          "y": 948.390625,
+          "width": 358,
+          "height": 179,
+          "right": 374,
+          "bottom": 1127.390625
+        },
+        "illustration": [
+          {
+            "src": "/img/fieldnotes/detour-notebook-13bcf3e306.webp",
+            "naturalWidth": 1536,
+            "naturalHeight": 1024,
+            "fit": "contain",
+            "x": 35,
+            "y": 499.875,
+            "width": 320,
+            "height": 213.328125,
+            "right": 355,
+            "bottom": 713.203125
+          }
+        ]
+      },
+      "screenshots": [
+        "/tmp/innerpage-visual-20261105/final-text-lock/mobile-404-light-full.png",
+        "/tmp/innerpage-visual-20261105/final-text-lock/mobile-404-dark-full.png"
+      ]
+    }
+  ],
+  "confirmedBuildHashes": {
+    "themes/notebook/layout/_partial/pet.ejs": "dc91325a46a014028642d3eed4a1136dc6976d6c764e335a6b234cb92303e31c",
+    "public/downloads/index.html": "2d68f3619cac4d2f6c225f26301a5f969fade8d61f65aa177f246ca078653b14"
+  },
+  "deltasFromPrior": [
+    {
+      "file": "themes/notebook/layout/_partial/pet.ejs",
+      "prior": "7db5c25bb4b2db191ebc3417b588f11f230fb4db32001c1b2ae9f490e66e8a44",
+      "current": "dc91325a46a014028642d3eed4a1136dc6976d6c764e335a6b234cb92303e31c",
+      "exactShortLabelOnly": true
+    },
+    {
+      "file": "public/2026/08/21/睿抗赛94分复盘/index.html",
+      "prior": "c7f39be2c02250ba7597bfba209963c499c0bfdbf2a35f199d0d332a9c9fa983",
+      "current": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+      "exactShortLabelOnly": true
+    },
+    {
+      "file": "public/music/index.html",
+      "prior": "f9133216a7481279ac54718b185f5da3778227828429f82c5ef933d9cba813d1",
+      "current": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+      "exactShortLabelOnly": true
+    },
+    {
+      "file": "public/404.html",
+      "prior": "ea0f887bbdb819c3a8e5c76d79ed5aff16f11a76490e7af6f84ca02d8b734615",
+      "current": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+      "exactShortLabelOnly": true
+    }
+  ],
+  "after": {
+    "themes/notebook/source/js/pet.js": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+    "themes/notebook/source/js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "themes/notebook/source/css/pet.css": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+    "themes/notebook/source/css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "themes/notebook/layout/_partial/pet.ejs": "dc91325a46a014028642d3eed4a1136dc6976d6c764e335a6b234cb92303e31c",
+    "themes/notebook/layout/layout.ejs": "8a1cc05a67bbc8581601e125615da9b48247666c49e51209f5cf8af164a5d406",
+    "themes/notebook/scripts/view.js": "874f92917886cc5aae71b94601189487019e84670e927ce05a8d116364801718",
+    "source/music/index.md": "236a42b6d02ec8fa8f0676939a32e6cc6aa0c0a16a269a6ab50f5bf055c1c46b",
+    "source/img/fieldnotes/music-notebook-4cdbbe9341.webp": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+    "source/img/fieldnotes/detour-notebook-13bcf3e306.webp": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+    "public/js/pet.js": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+    "public/js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "public/css/pet.css": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+    "public/css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "public/2026/08/21/睿抗赛94分复盘/index.html": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+    "public/music/index.html": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+    "public/404.html": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+    "public/img/fieldnotes/music-notebook-4cdbbe9341.webp": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+    "public/img/fieldnotes/detour-notebook-13bcf3e306.webp": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+    "public/downloads/index.html": "2d68f3619cac4d2f6c225f26301a5f969fade8d61f65aa177f246ca078653b14"
+  },
+  "finished": "2026-11-05T19:02:38.582Z",
+  "changedDuringCapture": [],
+  "screenshotHashes": {
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-reading-flow-short-label.png": "ffc3396c16cbf95fcf9ebb79a57731a71208fcc2271e9a3b2455aee44a2222f6",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-reading-nojs-flow-short-label.png": "1a054f34f65e6c73f4306d617014ce00ac5f0d61edce10ab131ed1925328b4dd",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-music-light-full.png": "a1c99732f49ae0a142bdbac6c2b0b49bd5023a38c2cf93015cd462891fc3f449",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-music-dark-full.png": "8ed6b64e7a0333ccaa7dc87d16ec999b49bab4dac264128622e5fe5671a89177",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-404-light-full.png": "f57ebfd7852148a818d4fcf0c762067b9e369ce7d2a814793d42a5f0b636cecd",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-404-dark-full.png": "e877c8bbe2e9a6152cf96a6724108774263c48fa1d0ab9475b32d4b668c4550f",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-music-light-full.png": "4f7aacb92f1dfc8e8821d4d76fda797ba4842ef88fc1dd6f5d9e343b43916b90",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-music-dark-full.png": "0bc65a2ac1f855464ff3a75d0403e60b7d027567b9572eb9fb5875f37103271e",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-404-light-full.png": "8745b8080b59b2ac12889c03c31227ef3644523dbec947bf67540cbf268156b7",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-404-dark-full.png": "1572f82d585288fe9573d4d1fe0c1d94787f318827707411cfc243508d7070dc"
+  }
+}

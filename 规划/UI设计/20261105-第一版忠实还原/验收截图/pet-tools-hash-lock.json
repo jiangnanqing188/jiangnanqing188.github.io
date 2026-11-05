@@ -1,0 +1,52 @@
+{
+  "lockedAt": "2026-11-05T19:08:21.419308+00:00",
+  "scope": "20 explicitly scoped source/generated/media files; not a whole-site lock",
+  "hashes": {
+    "themes/notebook/source/js/pet.js": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+    "themes/notebook/source/js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "themes/notebook/source/css/pet.css": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+    "themes/notebook/source/css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "themes/notebook/layout/_partial/pet.ejs": "dc91325a46a014028642d3eed4a1136dc6976d6c764e335a6b234cb92303e31c",
+    "themes/notebook/layout/layout.ejs": "8a1cc05a67bbc8581601e125615da9b48247666c49e51209f5cf8af164a5d406",
+    "themes/notebook/scripts/view.js": "874f92917886cc5aae71b94601189487019e84670e927ce05a8d116364801718",
+    "source/music/index.md": "236a42b6d02ec8fa8f0676939a32e6cc6aa0c0a16a269a6ab50f5bf055c1c46b",
+    "source/img/fieldnotes/music-notebook-4cdbbe9341.webp": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+    "source/img/fieldnotes/detour-notebook-13bcf3e306.webp": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+    "public/js/pet.js": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+    "public/js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "public/css/pet.css": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+    "public/css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "public/2026/08/21/睿抗赛94分复盘/index.html": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+    "public/music/index.html": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+    "public/404.html": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+    "public/img/fieldnotes/music-notebook-4cdbbe9341.webp": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+    "public/img/fieldnotes/detour-notebook-13bcf3e306.webp": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+    "public/downloads/index.html": "2d68f3619cac4d2f6c225f26301a5f969fade8d61f65aa177f246ca078653b14"
+  },
+  "allEqualBeforeAfterAndPostVisualReview": true,
+  "contentManifestSha256": "edc79601980140ff2729ae6747d7931cd77105e7ce1fba2b5b996d92ffddb41a",
+  "reviewedScreenshots": [
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-reading-flow-short-label.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-reading-nojs-flow-short-label.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-music-light-full.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-music-dark-full.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-404-light-full.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-404-dark-full.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-music-light-full.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-music-dark-full.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-404-light-full.png",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-404-dark-full.png"
+  ],
+  "screenshotHashes": {
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-reading-flow-short-label.png": "ffc3396c16cbf95fcf9ebb79a57731a71208fcc2271e9a3b2455aee44a2222f6",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-reading-nojs-flow-short-label.png": "1a054f34f65e6c73f4306d617014ce00ac5f0d61edce10ab131ed1925328b4dd",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-music-light-full.png": "a1c99732f49ae0a142bdbac6c2b0b49bd5023a38c2cf93015cd462891fc3f449",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-music-dark-full.png": "8ed6b64e7a0333ccaa7dc87d16ec999b49bab4dac264128622e5fe5671a89177",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-404-light-full.png": "f57ebfd7852148a818d4fcf0c762067b9e369ce7d2a814793d42a5f0b636cecd",
+    "/tmp/innerpage-visual-20261105/final-text-lock/desktop-404-dark-full.png": "e877c8bbe2e9a6152cf96a6724108774263c48fa1d0ab9475b32d4b668c4550f",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-music-light-full.png": "4f7aacb92f1dfc8e8821d4d76fda797ba4842ef88fc1dd6f5d9e343b43916b90",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-music-dark-full.png": "0bc65a2ac1f855464ff3a75d0403e60b7d027567b9572eb9fb5875f37103271e",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-404-light-full.png": "8745b8080b59b2ac12889c03c31227ef3644523dbec947bf67540cbf268156b7",
+    "/tmp/innerpage-visual-20261105/final-text-lock/mobile-404-dark-full.png": "1572f82d585288fe9573d4d1fe0c1d94787f318827707411cfc243508d7070dc"
+  }
+}

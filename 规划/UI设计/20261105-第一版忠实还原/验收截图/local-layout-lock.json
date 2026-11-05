@@ -1,0 +1,1134 @@
+{
+  "started": "2026-11-05T19:19:53.328Z",
+  "scope": "Actual final local screenshots; no hidden pet, no injected style or storage manipulation",
+  "pages": [
+    {
+      "id": "home",
+      "url": "/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "江南的碎碎念",
+        "h1": [
+          "把机器人调通，也把过程写清楚。"
+        ],
+        "images": [
+          {
+            "src": "/img/fieldnotes/hero-testground-4bfaf6cf83.webp",
+            "width": 1685,
+            "height": 933
+          },
+          {
+            "src": "/img/fieldnotes/project-banner-ac71989ce5.webp",
+            "width": 2172,
+            "height": 724
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/robot-growth.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/ruikang-national-first.jpg",
+            "width": 1706,
+            "height": 1279
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-workflow.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-home-top.png",
+        "/tmp/final-review-locked-20261105/desktop-home-full.png"
+      ]
+    },
+    {
+      "id": "about",
+      "url": "/about/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "关于 · 江南的碎碎念",
+        "h1": [
+          "你好，我是江南。"
+        ],
+        "images": [
+          {
+            "src": "/img/fieldnotes/about-notebook-ce22731fe9.webp",
+            "width": 1536,
+            "height": 1024
+          },
+          {
+            "src": "/img/avatar.jpg",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-about-top.png",
+        "/tmp/final-review-locked-20261105/desktop-about-full.png",
+        "/tmp/final-review-locked-20261105/desktop-about-journey.png"
+      ]
+    },
+    {
+      "id": "projects",
+      "url": "/projects/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "项目档案 · 江南的碎碎念",
+        "h1": [
+          "项目档案"
+        ],
+        "images": [
+          {
+            "src": "/img/workshop/ruikang-blueprint.webp",
+            "width": 1672,
+            "height": 941
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/iscc-secure-factory.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-projects-top.png",
+        "/tmp/final-review-locked-20261105/desktop-projects-full.png"
+      ]
+    },
+    {
+      "id": "ruikang",
+      "url": "/projects/ruikang/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "睿抗智能侦察车 · 江南的碎碎念",
+        "h1": [
+          "睿抗智能侦察车"
+        ],
+        "images": [
+          {
+            "src": "/img/workshop/ruikang-blueprint.webp",
+            "width": 1672,
+            "height": 941
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-ruikang-top.png"
+      ]
+    },
+    {
+      "id": "pharmacy",
+      "url": "/projects/pharmacy/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "智慧药房双车系统 · 江南的碎碎念",
+        "h1": [
+          "智慧药房双车系统"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-pharmacy-top.png"
+      ]
+    },
+    {
+      "id": "yolov5",
+      "url": "/projects/yolov5/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "智慧农业 · YOLOv5 视觉训练 · 江南的碎碎念",
+        "h1": [
+          "智慧农业 · YOLOv5 视觉训练"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-yolov5-top.png"
+      ]
+    },
+    {
+      "id": "iscc",
+      "url": "/projects/iscc/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "ISCC 微型工厂 · 江南的碎碎念",
+        "h1": [
+          "ISCC 微型工厂"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/iscc-secure-factory.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-iscc-top.png"
+      ]
+    },
+    {
+      "id": "archives",
+      "url": "/archives/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "文章 · 江南的碎碎念",
+        "h1": [
+          "技术手记"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/robot-growth.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/ruikang-national-first.jpg",
+            "width": 1706,
+            "height": 1279
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-workflow.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ai-feedback-loop.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/iscc-secure-factory.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-archives-top.png"
+      ]
+    },
+    {
+      "id": "reading",
+      "url": "/2026/08/21/睿抗赛94分复盘/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助 · 江南的碎碎念",
+        "h1": [
+          "睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "fixed"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-reading-top.png"
+      ]
+    },
+    {
+      "id": "resources",
+      "url": "/downloads/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "资源下载 · 江南的碎碎念",
+        "h1": [
+          "资源与公开材料。"
+        ],
+        "images": [
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-resources-top.png",
+        "/tmp/final-review-locked-20261105/desktop-resources-full.png"
+      ]
+    },
+    {
+      "id": "categories",
+      "url": "/categories/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "categories · 江南的碎碎念",
+        "h1": [
+          "沿着主题继续读。"
+        ],
+        "images": [
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-categories-top.png",
+        "/tmp/final-review-locked-20261105/desktop-categories-full.png"
+      ]
+    },
+    {
+      "id": "tags",
+      "url": "/tags/",
+      "device": "desktop",
+      "metrics": {
+        "width": 1536,
+        "scrollWidth": 1536,
+        "title": "tags · 江南的碎碎念",
+        "h1": [
+          "给好奇心找条路。"
+        ],
+        "images": [
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/desktop-tags-top.png",
+        "/tmp/final-review-locked-20261105/desktop-tags-full.png"
+      ]
+    },
+    {
+      "id": "home",
+      "url": "/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "江南的碎碎念",
+        "h1": [
+          "把机器人调通，也把过程写清楚。"
+        ],
+        "images": [
+          {
+            "src": "/img/fieldnotes/hero-testground-4bfaf6cf83.webp",
+            "width": 1685,
+            "height": 933
+          },
+          {
+            "src": "/img/fieldnotes/project-banner-ac71989ce5.webp",
+            "width": 2172,
+            "height": 724
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/robot-growth.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/ruikang-national-first.jpg",
+            "width": 1706,
+            "height": 1279
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-workflow.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-home-top.png",
+        "/tmp/final-review-locked-20261105/mobile-home-full.png"
+      ]
+    },
+    {
+      "id": "about",
+      "url": "/about/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "关于 · 江南的碎碎念",
+        "h1": [
+          "你好，我是江南。"
+        ],
+        "images": [
+          {
+            "src": "/img/fieldnotes/about-notebook-ce22731fe9.webp",
+            "width": 1536,
+            "height": 1024
+          },
+          {
+            "src": "/img/avatar.jpg",
+            "width": 640,
+            "height": 640
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-about-top.png",
+        "/tmp/final-review-locked-20261105/mobile-about-full.png",
+        "/tmp/final-review-locked-20261105/mobile-about-journey.png"
+      ]
+    },
+    {
+      "id": "projects",
+      "url": "/projects/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "项目档案 · 江南的碎碎念",
+        "h1": [
+          "项目档案"
+        ],
+        "images": [
+          {
+            "src": "/img/workshop/ruikang-blueprint.webp",
+            "width": 1672,
+            "height": 941
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/iscc-secure-factory.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-projects-top.png",
+        "/tmp/final-review-locked-20261105/mobile-projects-full.png"
+      ]
+    },
+    {
+      "id": "ruikang",
+      "url": "/projects/ruikang/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "睿抗智能侦察车 · 江南的碎碎念",
+        "h1": [
+          "睿抗智能侦察车"
+        ],
+        "images": [
+          {
+            "src": "/img/workshop/ruikang-blueprint.webp",
+            "width": 1672,
+            "height": 941
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-ruikang-top.png"
+      ]
+    },
+    {
+      "id": "pharmacy",
+      "url": "/projects/pharmacy/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "智慧药房双车系统 · 江南的碎碎念",
+        "h1": [
+          "智慧药房双车系统"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-pharmacy-top.png"
+      ]
+    },
+    {
+      "id": "yolov5",
+      "url": "/projects/yolov5/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "智慧农业 · YOLOv5 视觉训练 · 江南的碎碎念",
+        "h1": [
+          "智慧农业 · YOLOv5 视觉训练"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-yolov5-top.png"
+      ]
+    },
+    {
+      "id": "iscc",
+      "url": "/projects/iscc/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "ISCC 微型工厂 · 江南的碎碎念",
+        "h1": [
+          "ISCC 微型工厂"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/iscc-secure-factory.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-iscc-top.png"
+      ]
+    },
+    {
+      "id": "archives",
+      "url": "/archives/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "文章 · 江南的碎碎念",
+        "h1": [
+          "技术手记"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/robot-growth.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/ruikang-national-first.jpg",
+            "width": 1706,
+            "height": 1279
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-workflow.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ai-feedback-loop.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/covers/notebook/20261105/iscc-secure-factory.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-archives-top.png"
+      ]
+    },
+    {
+      "id": "reading",
+      "url": "/2026/08/21/睿抗赛94分复盘/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助 · 江南的碎碎念",
+        "h1": [
+          "睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助"
+        ],
+        "images": [
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536,
+            "height": 864
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-reading-top.png"
+      ]
+    },
+    {
+      "id": "resources",
+      "url": "/downloads/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "资源下载 · 江南的碎碎念",
+        "h1": [
+          "资源与公开材料。"
+        ],
+        "images": [
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-resources-top.png",
+        "/tmp/final-review-locked-20261105/mobile-resources-full.png"
+      ]
+    },
+    {
+      "id": "categories",
+      "url": "/categories/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "categories · 江南的碎碎念",
+        "h1": [
+          "沿着主题继续读。"
+        ],
+        "images": [
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-categories-top.png",
+        "/tmp/final-review-locked-20261105/mobile-categories-full.png"
+      ]
+    },
+    {
+      "id": "tags",
+      "url": "/tags/",
+      "device": "mobile",
+      "metrics": {
+        "width": 390,
+        "scrollWidth": 390,
+        "title": "tags · 江南的碎碎念",
+        "h1": [
+          "给好奇心找条路。"
+        ],
+        "images": [
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320,
+            "height": 320
+          }
+        ],
+        "petPosition": "relative"
+      },
+      "screenshots": [
+        "/tmp/final-review-locked-20261105/mobile-tags-top.png",
+        "/tmp/final-review-locked-20261105/mobile-tags-full.png"
+      ]
+    }
+  ],
+  "before": {
+    "2026/01/28/ISCC微型工厂模拟赛道经验分享/index.html": "dc0c3c28a1542b4d0ea20309bbcf5d3df6511e831565c6565ae7b02d3f470280",
+    "2026/01/29/YOLOv5模型训练/index.html": "0d2062e273dec26178acabaaf5d5a824323f5019c94b2c44280f10fd20017d14",
+    "2026/07/23/智慧药房机器人比赛参赛复盘/index.html": "d35608590c6012191451596b4e875aa47bd06744f36580e555092be03e006173",
+    "2026/07/24/AI使用感受/index.html": "f4c6f7d6314c7d33e3566b9b883101d6cd74378850aa7ecc8e9c328666152187",
+    "2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/index.html": "7f1df833930eeb17680645f1229014ac1564bbf0ee10330f3c31f443dc8f840f",
+    "2026/08/21/睿抗赛94分复盘/index.html": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+    "2026/08/25/睿抗赛四套视觉方案/index.html": "71eec40cf036672199512c2e77e824d6a17db236f4b80e24aebb34f2fa22bef0",
+    "2026/08/27/睿抗：从初赛到国一/index.html": "31653890ff080eab84f0551aabc60ada54ba22461bbf0c8a854ecce346d97e59",
+    "2026/10/12/智能车项目经验与比赛流程/index.html": "0ccf9924b6174bf1e351e410dba342b87b35a70fa46044e1efaacd559640d1fa",
+    "404.html": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+    "about/index.html": "28bd2450dbddd8914ae136e49cf96edb65793705e476de2ab4c4035a8fee88d1",
+    "archives/2026/01/index.html": "dcaf9559e165eac8d0d296f1ad05f8b1d90e9cc53977c1546010aa2817055bcc",
+    "archives/2026/07/index.html": "1cda5730a5904c0ce2cd91628e85eb9a61b5ed6d5f1f35039498283cacae875a",
+    "archives/2026/08/index.html": "0296c1c1b855546490b1fae8f55dcf04a0135663cf435a777aad7bd74954a1ac",
+    "archives/2026/10/index.html": "441a551fa15924aa31f409d8a3fedf5eab6fe30beede8a859309b02cd2d1b590",
+    "archives/2026/index.html": "943fd769990dff978f8d79f6d38025c931b9004356cd28bc98c28a2e334d1902",
+    "archives/index.html": "5a77a1ba6bf3a369365169366c3d4f3e6fd46eed23ac769f2f60da441436cebb",
+    "categories/index.html": "042febf4ede4976d3709f0f0586ff3ed49a1a62bb98c8c6ad7ee3749927a137a",
+    "categories/工程复盘/index.html": "6b92465032f041f82f9fb72318d90b63228ed39cf9cc00f01c90f3983a5d8c21",
+    "categories/工程实践/index.html": "76fb08a7494061979759e1f06f321d45f67f6adec9148b1bdc3194b58bddc9b4",
+    "categories/成长记录/index.html": "3266f799858a3712283b002dcb6aac2e34799c46837ef270cf5c49911e9dae21",
+    "categories/比赛/index.html": "46f8c5a61f38b2d2c35b0c406602245873ee29a49e891f840ac4e1e19404e749",
+    "categories/比赛复盘/index.html": "034acae744943eb88af70076cd72ef58142f37b291bfac0e9b441a16c10efc44",
+    "css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "css/pet.css": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+    "downloads/index.html": "2d68f3619cac4d2f6c225f26301a5f969fade8d61f65aa177f246ca078653b14",
+    "downloads/mydata.yaml": "9a15b0f2c71cef4f188bb1a87c94dd3fe15d40924425fec76c1e91e5e8df03bb",
+    "downloads/mydata_yolov5s.yaml": "570cbe500556772add07886f2f370156391a9172478062a2e95977dadab8354a",
+    "downloads/train.py": "1f1cd2447d60c711c7615686df446c8f5ec24b88c528a0fdd448ca5d953e61f5",
+    "downloads/val.py": "55fd8d2ff56ba961e2a9b5670446c65426298fc6a1b573f463c7925ad91f85ec",
+    "fonts/fieldnotes-song/OFL.txt": "687ab9c08fe27d25451054c06a4b8fb6802b320e4ba0b250e90760474b6a17cd",
+    "fonts/fieldnotes-song/fieldnotes-song-bold-ff70fba80e.woff": "ff70fba80ea2b4d08715d14e57bbd29712cbd236f4a784792855c1b532eff78e",
+    "fonts/fieldnotes-song/fieldnotes-text-regular-a9766c263e.woff": "a9766c263e9878a24f8e495e1a9ba88a51bb3ef409fb5796d84cbe4c1d80fd26",
+    "img/avatar.jpg": "cce1028c360213d836a9f8ab2c7cdded0d8d97ded6ba71a69ce3386ed54394d8",
+    "img/covers/ai-robot-tuning.webp": "05cea40671f4dc9d40f7b44b081cc594d7fc998be17247d568519001154fa87d",
+    "img/covers/algorithms.webp": "a51bab409ef81f38943db0d86e9bf744ec5867bfedc8211d6dfc5a40b433d11a",
+    "img/covers/iscc-plc.png": "30ae0f7dc1ee979aca30224252f7b849188127d633c636ba501bfd1d2bf2ca9f",
+    "img/covers/notebook/20261105/ai-feedback-loop.webp": "800cf4b07901219308946ca442db65accac1d4e82b802561e492c0f83b9b35c0",
+    "img/covers/notebook/20261105/iscc-secure-factory.webp": "4a73c0bf5c75ab8719c6ee73713e36721ab335177e16e07983e9c2b1f936eb9a",
+    "img/covers/notebook/20261105/pharmacy-dual-robots.webp": "b586925b1febf6b14386832de2a4043dd65ec4eed9ce58fca2391d2e0ec3d443",
+    "img/covers/notebook/20261105/pharmacy-workflow.webp": "1c6446017ad50db8a548e921b74bdb43ea48e16fe04beb13009699527025722c",
+    "img/covers/notebook/20261105/robot-growth.webp": "67b10a3eb40cd5aaecaf06874f05ac1e0d35088e740dc4f32e98a5ac809ab291",
+    "img/covers/notebook/20261105/ruikang-route-review.webp": "db9e7d4caf9789e7ccc488a326d4996c9e839c39e5cf49ffa1812875238478a9",
+    "img/covers/notebook/20261105/ruikang-vision-studies.webp": "0c50fe200c41f3bcebc1dc31f69b9266cf388fe7200d46b4c60c24b586d99f34",
+    "img/covers/notebook/20261105/yolov5-pollination.webp": "d40890c1a7c714bc4a95c9f9f1a7207b9b7b5a6f94f922249ca3ab79b564a5a6",
+    "img/covers/notebook/ai-robot-tuning.webp": "769315aa1f9415dd070d7768c903529d4478eece0c0cc3ce372fc7cbcc987951",
+    "img/covers/notebook/iscc-plc.webp": "feea0bec997c0d5cb49a97ff956f7dcdc89cf2e0445ce6fb3b75cd3730298c7b",
+    "img/covers/notebook/pharmacy-robots.webp": "993e16a5f4fcc75deafb568a415f3f54b6834e6fe3233f1e36b5b1945aa07be9",
+    "img/covers/notebook/ruikang-competition.webp": "201ec16eda4f5852d2068b873a751ca2a2a94b59996753e87d6702b00fdff64f",
+    "img/covers/notebook/yolov5-vision.webp": "77417f2a6151e936bb1ebc9522cf6769a565032023c063f1fdcdb5b67326ebd6",
+    "img/covers/pharmacy-robots.webp": "7d5c574f61d940c065d498ab5702d911fae2de1e57e9ea05bf74352dcc6ae451",
+    "img/covers/python-basics.webp": "f01553316d73ef7e6504ecac12af69f5db16f82c1070a89a227261ac542941f5",
+    "img/covers/ruikang-competition.webp": "fde40021761dc22d4b0400500bc3c44c9d1c2612971eb4a0df4799760a113c71",
+    "img/covers/ruikang-national-first.jpg": "ea4ddecc8155c479504be99edb254102094d69eadb4c8abd92fc7685e48c250f",
+    "img/covers/yolov5-vision.webp": "1049369fa046a3d46d47ad8ae5b23606ef5b2f004362c24fc08f73bc55398f51",
+    "img/fieldnotes/about-notebook-ce22731fe9.webp": "ce22731fe990e95ec8691631d69e017390464b3db7b013b4837fae920003176c",
+    "img/fieldnotes/detour-notebook-13bcf3e306.webp": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+    "img/fieldnotes/hero-testground-4bfaf6cf83.webp": "4bfaf6cf83d0e2efa1202196053e9dddf23b6661632c4ee8533eeb5992a70b92",
+    "img/fieldnotes/music-notebook-4cdbbe9341.webp": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+    "img/fieldnotes/project-banner-ac71989ce5.webp": "ac71989ce54d0d7a3495a9864d5e0658f9320b6b501ced8f5b788fb36543c7f2",
+    "img/home/hero-growth.webp": "5f3608690abecb36779f91d133a618dc7cefcdf8976dee968a6e1b8033eeb261",
+    "img/pet/catgirl-drowsy.webp": "386a9e468e57b60459055a07eae4f97159af0f9a30dcb9c016a3d7d302fbdc8b",
+    "img/pet/catgirl-lift.webp": "aefddaf51cc23380621920e5fd49ea3c1971ed7d0778cb8d2111f0b271393a18",
+    "img/pet/catgirl-sit.webp": "f4e2367ee4ae2154aa6290a26430ada853876e4e9d0123de9d36e142693edc5b",
+    "img/pet/catgirl-sleep.webp": "1644d666fa77060d66ac2436acd1ae375e07809988cee815ad37ec2f2d9736a8",
+    "img/pet/catgirl.webp": "28419ee9a335d8e85dcf18c292c682b6c77f63536127a3048f909e5dc6e34769",
+    "img/pet/field-notes/actions.webp": "5a6f8cc23c5ef1de03c6fe464e444f547be46de06e28511de8c16680d926b3cb",
+    "img/pet/field-notes/idle.webp": "ec8b54488809323179370f5d73a805e99c2abee8b4c5ea3f136607c9f5a8f2fa",
+    "img/workshop/ruikang-blueprint.webp": "e433b71d628cb9f3f48e75a841a956b1c079f2d8a65313be46bd1cd387f60b55",
+    "img/workshop/tuning-film-poster.webp": "0a876f08b163899c7c384b40d803c86c877a2d02ba3077139295e43050696d09",
+    "img/workshop/tuning-poster.webp": "459b86ff3b091c29a54ddf32f9f7f821330930ffc9b0008c81197f2c5c812169",
+    "index.html": "9e4abd1b81f17dcf064c42a43244cf9445ccc687cd90ee0ba3040dc11cf149d0",
+    "js/giscus-manager.js": "73ace3df0d13a25d6d9464ae0e5afbee733bbaf9296b91d75aeeef3ff43f47c4",
+    "js/lab-accessibility.js": "c03dc9356af5d2370beb04dd67c0088b22bd25ffcd58122d9e93024785ad7613",
+    "js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "js/pet.js": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+    "media/tuning-workshop.mp4": "8f6e2bfe58371a313dca08d7b0379d8a07ec8b57f5d4072a852dae5382f78fc9",
+    "media/tuning-workshop.zh-CN.vtt": "8b2983fc81ff8168eb9ba8e94fa5e43edc9960e2b32c5a36e7a47e63e74f4c67",
+    "music/index.html": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+    "projects/index.html": "64f5fb76b7ada1d9d60678c968f82299d54965fded3fa76a98d9fe85bec167a7",
+    "projects/iscc/index.html": "e5c3aa0d8b3681e153e25293d10fe736a2b3c7b4b2a685c83d3aa9522a05889e",
+    "projects/pharmacy/index.html": "fa764c3ec941a65e662337cf1cd657c0a8aed852053b18197190420dee71d1ea",
+    "projects/ruikang/index.html": "d6f730c62f3d4708bb5283ffe8cd65a8af84e33d758c09a355b53c0972da33bc",
+    "projects/yolov5/index.html": "1906ff6579e0b8ce1671280e35d585222e50ee84bb837747785a389204dc5170",
+    "robots.txt": "b272cd8ecca7f77b25b45c383cbfd6a63fd0dea946262a34bca311d6aab88960",
+    "search.xml": "b94a71dbfd40b35cbde4cb1458eb8d7ad3c277136f6250a74deb52b86b9e386e",
+    "sitemap.xml": "20553512ec58334ef2d77534976b96da06f1ede13bd0cd2352aaa3e0ec591270",
+    "tags/AI编程/index.html": "e9dbd2a9e0197cd8e4551a632e71d5555c4756aaae6b8121bfd1db38f88ec9ce",
+    "tags/Agent-Skills/index.html": "ab4fa4ee2de0b4420ce3440c9a843940207ad316ec1c4c19b8ec3a2a21d0ee09",
+    "tags/Claude-Code/index.html": "d30f1fc7e8d2e0c2228b47614eb918ed6ff2bd50e4d880bf4f9c17e46deb7330",
+    "tags/Codex/index.html": "5ee75648960a0bbd85437c88e7d37cde6c8806f1e1c7691efe3b3858a6ef5b0d",
+    "tags/DWA/index.html": "36dfaa96b4bc1426fdcaa565fb50276b952f6cd3e02167d2767504814ab698e6",
+    "tags/Gazebo/index.html": "185845d11a1b4bb9c3b80d548218e55301c872856141af85515845e7e6eb64de",
+    "tags/HMI/index.html": "1ab9af39a899107da5d7a01821fdfeea369b19427ddb60156f6d20082d5e073b",
+    "tags/ISCC/index.html": "b5200afb727b54d5386095a1a7f2565618fb1044cd219ffe3a36c285c37ee4c0",
+    "tags/OCR/index.html": "5853c314790516a8f2a2a6cc663ebacc2b352904f2ded03bf33fb304b5dc7204",
+    "tags/OpenCV/index.html": "a20180cd88546b8d78e4f5974bd95910723bf29f44263f95f48bee39d0b49789",
+    "tags/PLC/index.html": "e598914a5b7b1a4ae89ecf3c7589fac026f37587124fe9b878ff9fa3292bac49",
+    "tags/Python/index.html": "02100c98d2cc1256aa77e63af9a16262c5eb8e1c1862e879d0870c5398a50ba1",
+    "tags/RGB-D/index.html": "2795bff3fa89a078591bd003dfdb3f8760424ba5f1c30359577c6b3922bfa1a7",
+    "tags/ROS/index.html": "b7568cc0445fe82cc71f3c66edfccd32768fce52f38438e5a28680b39edd3464",
+    "tags/TEB/index.html": "668d8023e1f05f1ebbff50f00a47dd734b6d58de19409d010cf3d88810e5a708",
+    "tags/YOLO/index.html": "13ba096bab7bc27b48294401aef4fd7586be8891f1bc3e53b38a280e6ef348a7",
+    "tags/YOLOv5/index.html": "f2052d8f08b19925895d260637aff0c57051190307a451bfab447f5a2c3d3786",
+    "tags/index.html": "6f734759d0e830d966f35fb16ab61b0c8259556d0e6a5004357fa959a4230124",
+    "tags/python/index.html": "c181e1ad53604cc731cec123ba03db39e973d730788621daadbaf9e0587a3fc2",
+    "tags/中国机器人及人工智能大赛/index.html": "fdf324c1dd52c82c2d645ea06459c825b150bb60cee66ec7f1b34c9bdaf27c9c",
+    "tags/多车协同/index.html": "aa79ded1799166a72c0bfa801b3c097391a0bdee200f798048b6df81b176baf0",
+    "tags/工业网络/index.html": "60c061c4e0ec0fbbfcfbf1dfea43f6b158593b332f8488699909c0007aaee899",
+    "tags/数据标注/index.html": "020261edd044c1ad0631df02f4fa4ba6699838328bd674fe6f02d665c8bb2518",
+    "tags/数据清洗/index.html": "3f3ed52584d1cc633924ee4fb50d05f95245d712129d31501d663339ec3f1321",
+    "tags/智慧农业/index.html": "4ff92cfab5060c3f6a3a946f62b5d3d320ada9643b7da2166c43b806d39ddbde",
+    "tags/智慧药房/index.html": "08d2bfe2fe9282ab1562a6374835daccad59c39b6e0379aa5b2322d8612477c0",
+    "tags/智能侦察车/index.html": "e4389d542ffb21427cfaf02b28c3fc6af85ed364d0c03def525f27e118c5ee9f",
+    "tags/智能车/index.html": "1f2c7408223e3b5302765c3500aa95e51d5fa849145782f492e0f07b21cb71fa",
+    "tags/机器人比赛/index.html": "ad2c71e7019918a58cd53687ea57a04c53fbe82b574b39031d5c0ebd142a619d",
+    "tags/模型训练/index.html": "818953231e38738bed5e37f763ab2ab295c89cc9700ed2ed5bb9a0cec986d2b2",
+    "tags/睿抗机器人开发者大赛/index.html": "598da3ed3ccf328911b228e7e21d5ebd1b53a1e02fa09e38469b7d87dc1c7f83",
+    "tags/移动机器人/index.html": "daa4247817fbe8f333f4cafc2ea41ecff1d810246d7d97f7798cfccb9bf5d199",
+    "tags/视觉定位/index.html": "0859e541c412a734da2b932ba830e3696113fa705dcbcd06bb058824ca858fee",
+    "tags/计算机视觉/index.html": "f9eb98173191bc452edf98d9c3384822f7a51e8c9ec7b204d7092854db7ce6f3"
+  },
+  "after": {
+    "2026/01/28/ISCC微型工厂模拟赛道经验分享/index.html": "dc0c3c28a1542b4d0ea20309bbcf5d3df6511e831565c6565ae7b02d3f470280",
+    "2026/01/29/YOLOv5模型训练/index.html": "0d2062e273dec26178acabaaf5d5a824323f5019c94b2c44280f10fd20017d14",
+    "2026/07/23/智慧药房机器人比赛参赛复盘/index.html": "d35608590c6012191451596b4e875aa47bd06744f36580e555092be03e006173",
+    "2026/07/24/AI使用感受/index.html": "f4c6f7d6314c7d33e3566b9b883101d6cd74378850aa7ecc8e9c328666152187",
+    "2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/index.html": "7f1df833930eeb17680645f1229014ac1564bbf0ee10330f3c31f443dc8f840f",
+    "2026/08/21/睿抗赛94分复盘/index.html": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+    "2026/08/25/睿抗赛四套视觉方案/index.html": "71eec40cf036672199512c2e77e824d6a17db236f4b80e24aebb34f2fa22bef0",
+    "2026/08/27/睿抗：从初赛到国一/index.html": "31653890ff080eab84f0551aabc60ada54ba22461bbf0c8a854ecce346d97e59",
+    "2026/10/12/智能车项目经验与比赛流程/index.html": "0ccf9924b6174bf1e351e410dba342b87b35a70fa46044e1efaacd559640d1fa",
+    "404.html": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+    "about/index.html": "28bd2450dbddd8914ae136e49cf96edb65793705e476de2ab4c4035a8fee88d1",
+    "archives/2026/01/index.html": "dcaf9559e165eac8d0d296f1ad05f8b1d90e9cc53977c1546010aa2817055bcc",
+    "archives/2026/07/index.html": "1cda5730a5904c0ce2cd91628e85eb9a61b5ed6d5f1f35039498283cacae875a",
+    "archives/2026/08/index.html": "0296c1c1b855546490b1fae8f55dcf04a0135663cf435a777aad7bd74954a1ac",
+    "archives/2026/10/index.html": "441a551fa15924aa31f409d8a3fedf5eab6fe30beede8a859309b02cd2d1b590",
+    "archives/2026/index.html": "943fd769990dff978f8d79f6d38025c931b9004356cd28bc98c28a2e334d1902",
+    "archives/index.html": "5a77a1ba6bf3a369365169366c3d4f3e6fd46eed23ac769f2f60da441436cebb",
+    "categories/index.html": "042febf4ede4976d3709f0f0586ff3ed49a1a62bb98c8c6ad7ee3749927a137a",
+    "categories/工程复盘/index.html": "6b92465032f041f82f9fb72318d90b63228ed39cf9cc00f01c90f3983a5d8c21",
+    "categories/工程实践/index.html": "76fb08a7494061979759e1f06f321d45f67f6adec9148b1bdc3194b58bddc9b4",
+    "categories/成长记录/index.html": "3266f799858a3712283b002dcb6aac2e34799c46837ef270cf5c49911e9dae21",
+    "categories/比赛/index.html": "46f8c5a61f38b2d2c35b0c406602245873ee29a49e891f840ac4e1e19404e749",
+    "categories/比赛复盘/index.html": "034acae744943eb88af70076cd72ef58142f37b291bfac0e9b441a16c10efc44",
+    "css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "css/pet.css": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+    "downloads/index.html": "2d68f3619cac4d2f6c225f26301a5f969fade8d61f65aa177f246ca078653b14",
+    "downloads/mydata.yaml": "9a15b0f2c71cef4f188bb1a87c94dd3fe15d40924425fec76c1e91e5e8df03bb",
+    "downloads/mydata_yolov5s.yaml": "570cbe500556772add07886f2f370156391a9172478062a2e95977dadab8354a",
+    "downloads/train.py": "1f1cd2447d60c711c7615686df446c8f5ec24b88c528a0fdd448ca5d953e61f5",
+    "downloads/val.py": "55fd8d2ff56ba961e2a9b5670446c65426298fc6a1b573f463c7925ad91f85ec",
+    "fonts/fieldnotes-song/OFL.txt": "687ab9c08fe27d25451054c06a4b8fb6802b320e4ba0b250e90760474b6a17cd",
+    "fonts/fieldnotes-song/fieldnotes-song-bold-ff70fba80e.woff": "ff70fba80ea2b4d08715d14e57bbd29712cbd236f4a784792855c1b532eff78e",
+    "fonts/fieldnotes-song/fieldnotes-text-regular-a9766c263e.woff": "a9766c263e9878a24f8e495e1a9ba88a51bb3ef409fb5796d84cbe4c1d80fd26",
+    "img/avatar.jpg": "cce1028c360213d836a9f8ab2c7cdded0d8d97ded6ba71a69ce3386ed54394d8",
+    "img/covers/ai-robot-tuning.webp": "05cea40671f4dc9d40f7b44b081cc594d7fc998be17247d568519001154fa87d",
+    "img/covers/algorithms.webp": "a51bab409ef81f38943db0d86e9bf744ec5867bfedc8211d6dfc5a40b433d11a",
+    "img/covers/iscc-plc.png": "30ae0f7dc1ee979aca30224252f7b849188127d633c636ba501bfd1d2bf2ca9f",
+    "img/covers/notebook/20261105/ai-feedback-loop.webp": "800cf4b07901219308946ca442db65accac1d4e82b802561e492c0f83b9b35c0",
+    "img/covers/notebook/20261105/iscc-secure-factory.webp": "4a73c0bf5c75ab8719c6ee73713e36721ab335177e16e07983e9c2b1f936eb9a",
+    "img/covers/notebook/20261105/pharmacy-dual-robots.webp": "b586925b1febf6b14386832de2a4043dd65ec4eed9ce58fca2391d2e0ec3d443",
+    "img/covers/notebook/20261105/pharmacy-workflow.webp": "1c6446017ad50db8a548e921b74bdb43ea48e16fe04beb13009699527025722c",
+    "img/covers/notebook/20261105/robot-growth.webp": "67b10a3eb40cd5aaecaf06874f05ac1e0d35088e740dc4f32e98a5ac809ab291",
+    "img/covers/notebook/20261105/ruikang-route-review.webp": "db9e7d4caf9789e7ccc488a326d4996c9e839c39e5cf49ffa1812875238478a9",
+    "img/covers/notebook/20261105/ruikang-vision-studies.webp": "0c50fe200c41f3bcebc1dc31f69b9266cf388fe7200d46b4c60c24b586d99f34",
+    "img/covers/notebook/20261105/yolov5-pollination.webp": "d40890c1a7c714bc4a95c9f9f1a7207b9b7b5a6f94f922249ca3ab79b564a5a6",
+    "img/covers/notebook/ai-robot-tuning.webp": "769315aa1f9415dd070d7768c903529d4478eece0c0cc3ce372fc7cbcc987951",
+    "img/covers/notebook/iscc-plc.webp": "feea0bec997c0d5cb49a97ff956f7dcdc89cf2e0445ce6fb3b75cd3730298c7b",
+    "img/covers/notebook/pharmacy-robots.webp": "993e16a5f4fcc75deafb568a415f3f54b6834e6fe3233f1e36b5b1945aa07be9",
+    "img/covers/notebook/ruikang-competition.webp": "201ec16eda4f5852d2068b873a751ca2a2a94b59996753e87d6702b00fdff64f",
+    "img/covers/notebook/yolov5-vision.webp": "77417f2a6151e936bb1ebc9522cf6769a565032023c063f1fdcdb5b67326ebd6",
+    "img/covers/pharmacy-robots.webp": "7d5c574f61d940c065d498ab5702d911fae2de1e57e9ea05bf74352dcc6ae451",
+    "img/covers/python-basics.webp": "f01553316d73ef7e6504ecac12af69f5db16f82c1070a89a227261ac542941f5",
+    "img/covers/ruikang-competition.webp": "fde40021761dc22d4b0400500bc3c44c9d1c2612971eb4a0df4799760a113c71",
+    "img/covers/ruikang-national-first.jpg": "ea4ddecc8155c479504be99edb254102094d69eadb4c8abd92fc7685e48c250f",
+    "img/covers/yolov5-vision.webp": "1049369fa046a3d46d47ad8ae5b23606ef5b2f004362c24fc08f73bc55398f51",
+    "img/fieldnotes/about-notebook-ce22731fe9.webp": "ce22731fe990e95ec8691631d69e017390464b3db7b013b4837fae920003176c",
+    "img/fieldnotes/detour-notebook-13bcf3e306.webp": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+    "img/fieldnotes/hero-testground-4bfaf6cf83.webp": "4bfaf6cf83d0e2efa1202196053e9dddf23b6661632c4ee8533eeb5992a70b92",
+    "img/fieldnotes/music-notebook-4cdbbe9341.webp": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+    "img/fieldnotes/project-banner-ac71989ce5.webp": "ac71989ce54d0d7a3495a9864d5e0658f9320b6b501ced8f5b788fb36543c7f2",
+    "img/home/hero-growth.webp": "5f3608690abecb36779f91d133a618dc7cefcdf8976dee968a6e1b8033eeb261",
+    "img/pet/catgirl-drowsy.webp": "386a9e468e57b60459055a07eae4f97159af0f9a30dcb9c016a3d7d302fbdc8b",
+    "img/pet/catgirl-lift.webp": "aefddaf51cc23380621920e5fd49ea3c1971ed7d0778cb8d2111f0b271393a18",
+    "img/pet/catgirl-sit.webp": "f4e2367ee4ae2154aa6290a26430ada853876e4e9d0123de9d36e142693edc5b",
+    "img/pet/catgirl-sleep.webp": "1644d666fa77060d66ac2436acd1ae375e07809988cee815ad37ec2f2d9736a8",
+    "img/pet/catgirl.webp": "28419ee9a335d8e85dcf18c292c682b6c77f63536127a3048f909e5dc6e34769",
+    "img/pet/field-notes/actions.webp": "5a6f8cc23c5ef1de03c6fe464e444f547be46de06e28511de8c16680d926b3cb",
+    "img/pet/field-notes/idle.webp": "ec8b54488809323179370f5d73a805e99c2abee8b4c5ea3f136607c9f5a8f2fa",
+    "img/workshop/ruikang-blueprint.webp": "e433b71d628cb9f3f48e75a841a956b1c079f2d8a65313be46bd1cd387f60b55",
+    "img/workshop/tuning-film-poster.webp": "0a876f08b163899c7c384b40d803c86c877a2d02ba3077139295e43050696d09",
+    "img/workshop/tuning-poster.webp": "459b86ff3b091c29a54ddf32f9f7f821330930ffc9b0008c81197f2c5c812169",
+    "index.html": "9e4abd1b81f17dcf064c42a43244cf9445ccc687cd90ee0ba3040dc11cf149d0",
+    "js/giscus-manager.js": "73ace3df0d13a25d6d9464ae0e5afbee733bbaf9296b91d75aeeef3ff43f47c4",
+    "js/lab-accessibility.js": "c03dc9356af5d2370beb04dd67c0088b22bd25ffcd58122d9e93024785ad7613",
+    "js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "js/pet.js": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+    "media/tuning-workshop.mp4": "8f6e2bfe58371a313dca08d7b0379d8a07ec8b57f5d4072a852dae5382f78fc9",
+    "media/tuning-workshop.zh-CN.vtt": "8b2983fc81ff8168eb9ba8e94fa5e43edc9960e2b32c5a36e7a47e63e74f4c67",
+    "music/index.html": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+    "projects/index.html": "64f5fb76b7ada1d9d60678c968f82299d54965fded3fa76a98d9fe85bec167a7",
+    "projects/iscc/index.html": "e5c3aa0d8b3681e153e25293d10fe736a2b3c7b4b2a685c83d3aa9522a05889e",
+    "projects/pharmacy/index.html": "fa764c3ec941a65e662337cf1cd657c0a8aed852053b18197190420dee71d1ea",
+    "projects/ruikang/index.html": "d6f730c62f3d4708bb5283ffe8cd65a8af84e33d758c09a355b53c0972da33bc",
+    "projects/yolov5/index.html": "1906ff6579e0b8ce1671280e35d585222e50ee84bb837747785a389204dc5170",
+    "robots.txt": "b272cd8ecca7f77b25b45c383cbfd6a63fd0dea946262a34bca311d6aab88960",
+    "search.xml": "b94a71dbfd40b35cbde4cb1458eb8d7ad3c277136f6250a74deb52b86b9e386e",
+    "sitemap.xml": "20553512ec58334ef2d77534976b96da06f1ede13bd0cd2352aaa3e0ec591270",
+    "tags/AI编程/index.html": "e9dbd2a9e0197cd8e4551a632e71d5555c4756aaae6b8121bfd1db38f88ec9ce",
+    "tags/Agent-Skills/index.html": "ab4fa4ee2de0b4420ce3440c9a843940207ad316ec1c4c19b8ec3a2a21d0ee09",
+    "tags/Claude-Code/index.html": "d30f1fc7e8d2e0c2228b47614eb918ed6ff2bd50e4d880bf4f9c17e46deb7330",
+    "tags/Codex/index.html": "5ee75648960a0bbd85437c88e7d37cde6c8806f1e1c7691efe3b3858a6ef5b0d",
+    "tags/DWA/index.html": "36dfaa96b4bc1426fdcaa565fb50276b952f6cd3e02167d2767504814ab698e6",
+    "tags/Gazebo/index.html": "185845d11a1b4bb9c3b80d548218e55301c872856141af85515845e7e6eb64de",
+    "tags/HMI/index.html": "1ab9af39a899107da5d7a01821fdfeea369b19427ddb60156f6d20082d5e073b",
+    "tags/ISCC/index.html": "b5200afb727b54d5386095a1a7f2565618fb1044cd219ffe3a36c285c37ee4c0",
+    "tags/OCR/index.html": "5853c314790516a8f2a2a6cc663ebacc2b352904f2ded03bf33fb304b5dc7204",
+    "tags/OpenCV/index.html": "a20180cd88546b8d78e4f5974bd95910723bf29f44263f95f48bee39d0b49789",
+    "tags/PLC/index.html": "e598914a5b7b1a4ae89ecf3c7589fac026f37587124fe9b878ff9fa3292bac49",
+    "tags/Python/index.html": "02100c98d2cc1256aa77e63af9a16262c5eb8e1c1862e879d0870c5398a50ba1",
+    "tags/RGB-D/index.html": "2795bff3fa89a078591bd003dfdb3f8760424ba5f1c30359577c6b3922bfa1a7",
+    "tags/ROS/index.html": "b7568cc0445fe82cc71f3c66edfccd32768fce52f38438e5a28680b39edd3464",
+    "tags/TEB/index.html": "668d8023e1f05f1ebbff50f00a47dd734b6d58de19409d010cf3d88810e5a708",
+    "tags/YOLO/index.html": "13ba096bab7bc27b48294401aef4fd7586be8891f1bc3e53b38a280e6ef348a7",
+    "tags/YOLOv5/index.html": "f2052d8f08b19925895d260637aff0c57051190307a451bfab447f5a2c3d3786",
+    "tags/index.html": "6f734759d0e830d966f35fb16ab61b0c8259556d0e6a5004357fa959a4230124",
+    "tags/python/index.html": "c181e1ad53604cc731cec123ba03db39e973d730788621daadbaf9e0587a3fc2",
+    "tags/中国机器人及人工智能大赛/index.html": "fdf324c1dd52c82c2d645ea06459c825b150bb60cee66ec7f1b34c9bdaf27c9c",
+    "tags/多车协同/index.html": "aa79ded1799166a72c0bfa801b3c097391a0bdee200f798048b6df81b176baf0",
+    "tags/工业网络/index.html": "60c061c4e0ec0fbbfcfbf1dfea43f6b158593b332f8488699909c0007aaee899",
+    "tags/数据标注/index.html": "020261edd044c1ad0631df02f4fa4ba6699838328bd674fe6f02d665c8bb2518",
+    "tags/数据清洗/index.html": "3f3ed52584d1cc633924ee4fb50d05f95245d712129d31501d663339ec3f1321",
+    "tags/智慧农业/index.html": "4ff92cfab5060c3f6a3a946f62b5d3d320ada9643b7da2166c43b806d39ddbde",
+    "tags/智慧药房/index.html": "08d2bfe2fe9282ab1562a6374835daccad59c39b6e0379aa5b2322d8612477c0",
+    "tags/智能侦察车/index.html": "e4389d542ffb21427cfaf02b28c3fc6af85ed364d0c03def525f27e118c5ee9f",
+    "tags/智能车/index.html": "1f2c7408223e3b5302765c3500aa95e51d5fa849145782f492e0f07b21cb71fa",
+    "tags/机器人比赛/index.html": "ad2c71e7019918a58cd53687ea57a04c53fbe82b574b39031d5c0ebd142a619d",
+    "tags/模型训练/index.html": "818953231e38738bed5e37f763ab2ab295c89cc9700ed2ed5bb9a0cec986d2b2",
+    "tags/睿抗机器人开发者大赛/index.html": "598da3ed3ccf328911b228e7e21d5ebd1b53a1e02fa09e38469b7d87dc1c7f83",
+    "tags/移动机器人/index.html": "daa4247817fbe8f333f4cafc2ea41ecff1d810246d7d97f7798cfccb9bf5d199",
+    "tags/视觉定位/index.html": "0859e541c412a734da2b932ba830e3696113fa705dcbcd06bb058824ca858fee",
+    "tags/计算机视觉/index.html": "f9eb98173191bc452edf98d9c3384822f7a51e8c9ec7b204d7092854db7ce6f3"
+  },
+  "unchanged": true,
+  "finished": "2026-11-05T19:20:01.955Z"
+}

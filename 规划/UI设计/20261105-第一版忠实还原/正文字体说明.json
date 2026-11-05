@@ -1,0 +1,11 @@
+{
+  "source": "Local NotoSerifCJK-Regular.ttc SC face 2",
+  "family": "Fieldnotes Text",
+  "weight": 400,
+  "format": "woff",
+  "asset": "/fonts/fieldnotes-song/fieldnotes-text-regular-a9766c263e.woff",
+  "bytes": 696460,
+  "sha256": "a9766c263e9878a24f8e495e1a9ba88a51bb3ef409fb5796d84cbe4c1d80fd26",
+  "glyphs": 2756,
+  "purpose": "Self-hosted readable serif body on mobile devices without local Chinese serif fonts; same OFL license and renamed derivative"
+}

@@ -1,6 +1,7 @@
 (() => {
   const pet = document.querySelector('#blog-pet');
   if (!pet) return;
+  const workstation = pet.closest('.pet-workstation');
   const avatar = pet.querySelector('.pet-avatar');
   const header = document.querySelector('.site-header');
   const avatarLabel = avatar.getAttribute('aria-label');
@@ -12,9 +13,8 @@
   const quietButton = pet.querySelector('[data-pet-action="quiet"]');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const storageKey = 'jiangnan-blog-pet-v1';
-  // Positions saved before the docking rewrite were all the old fixed corner,
-  // which parked her on top of the sidebar. Bumping the version retires those
-  // coordinates once, so returning readers get the new placement as well.
+  // Keep v2 manual positions, quiet and hidden preferences unchanged.
+  // Automatic docking no longer chooses an overlapping corner as a fallback.
   const STORAGE_VERSION = 2;
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { /* Storage may be disabled. */ }
@@ -83,8 +83,15 @@
     for (const [overlay, className] of [[bubble, 'bubble-below'], [menu, 'menu-below']]) {
       if (overlay.hidden) continue;
       const width = overlay.offsetWidth;
-      const x = Math.max(12, Math.min(box.left + (box.width - width) / 2, innerWidth - width - 12));
+      const viewportWidth = document.documentElement.clientWidth;
+      const x = Math.max(12, Math.min(box.left + (box.width - width) / 2, viewportWidth - width - 12));
       overlay.style.left = `${x - box.left}px`;
+      if (pet.classList.contains('is-flow')) {
+        pet.classList.remove(className);
+        overlay.style.top = 'auto';
+        overlay.style.bottom = 'calc(100% + 8px)';
+        continue;
+      }
       const below = box.top < overlay.offsetHeight + 16;
       pet.classList.toggle(className, below);
       const y = below ? box.bottom + 8 : box.top - overlay.offsetHeight - 8;
@@ -120,7 +127,7 @@
     const rects = [];
     const scrolled = scrollY;
     for (const el of document.querySelectorAll(PROTECTED)) {
-      if (pet.contains(el)) continue;
+      if (pet.contains(el) || workstation?.contains(el)) continue;
       // A sidebar card already contains the links inside it, so counting both
       // would multiply the same pixels and skew the choice.
       if (el.querySelector('a,button')) continue;
@@ -135,7 +142,7 @@
     return rects;
   };
   const textColumn = () => {
-    const box = document.querySelector('main');
+    const box = document.querySelector('.reading-layout') || document.querySelector('main');
     if (!box) return {left: 0, right: 0};
     const r = box.getBoundingClientRect();
     return {left: Math.max(0, r.left), right: Math.max(0, innerWidth - r.right)};
@@ -171,47 +178,52 @@
     }
     return {critical, cosmetic, total: critical * 1000 + cosmetic};
   };
+  const leaveFlow = () => {
+    if (!pet.classList.contains('is-flow')) return;
+    const box = pet.getBoundingClientRect();
+    pet.classList.remove('is-flow');
+    workstation?.classList.add('is-vacant');
+    pet.style.width = `${box.width}px`;
+    position(box.x, box.y);
+  };
+  const dockInFlow = () => {
+    pet.classList.add('is-flow');
+    workstation?.classList.remove('is-vacant');
+    for (const name of ['left', 'top', 'right', 'bottom', 'width']) pet.style.removeProperty(name);
+    dockBand = null;
+    placeBubble();
+  };
   const dock = () => {
     if (hidden) return;
-    const maxW = Math.min(innerWidth <= 760 ? 106 : 170, Math.floor((innerHeight - 80) * 2 / 3));
+    if (innerWidth <= 760) { dockInFlow(); return; }
+    const column = textColumn();
+    const maxW = Math.min(170, Math.floor((innerHeight - 80) * 2 / 3));
     const rects = protectedRects();
     const samples = scrollSamples(Math.max(0, document.documentElement.scrollHeight - innerHeight));
-    // Try the largest size first and only shrink as far as the page forces.
     const widths = [maxW, Math.round(maxW * .87), Math.round(maxW * .74), Math.round(maxW * .62)]
       .filter((w, i, all) => w >= 88 && all.indexOf(w) === i);
-    let best = null;
+    // A real clear side margin is required. The old least-bad overlapping corner
+    // is no longer an automatic fallback; the page has a dedicated paper edge.
     for (const w of widths) {
-      pet.style.width = `${w}px`;
-      const h = pet.offsetHeight || Math.round(w * 1.21);
-      const floorY = Math.max(topLimit(), innerHeight - h - 18);
-      // Two corners only. A pet adrift in the middle of the page looks broken,
-      // and on narrow windows the margin is too thin for her anyway, so an
-      // exact edge anchor beats hunting a mid-page gap.
-      const sides = ['right', 'left'].map(side => ({side, x: side === 'right' ? innerWidth - w - 10 : 10, y: floorY}));
-      // A tall sidebar can own the whole floor on both sides, so also offer a
-      // perch just above it: still against the right edge, just higher up.
       for (const side of ['right', 'left']) {
-        const aside = document.querySelector('.home-aside, .toc');
-        if (!aside) break;
-        const above = aside.getBoundingClientRect().top - h - 12;
-        if (above > topLimit()) sides.push({side, x: side === 'right' ? innerWidth - w - 10 : 10, y: above});
+        const space = column[side];
+        if (space < w + 12) continue;
+        pet.style.width = `${w}px`;
+        const h = pet.offsetHeight || Math.round(w * 1.21);
+        const x = side === 'right' ? innerWidth - w - 10 : 10;
+        const y = Math.max(topLimit(), innerHeight - h - 18);
+        const score = coverScore(x, y, w, h, rects, samples);
+        if (score.total !== 0) continue;
+        leaveFlow();
+        pet.style.width = `${w}px`;
+        dockBand = side === 'right'
+          ? {min: innerWidth - space + 2, max: innerWidth - w - 10}
+          : {min: 10, max: Math.max(10, space - w - 2)};
+        position(x, y);
+        return;
       }
-      for (const spot of sides) {
-        const score = coverScore(spot.x, spot.y, w, h, rects, samples);
-        if (!best || score.total < best.score.total) best = {x: spot.x, y: spot.y, w, side: spot.side, score};
-      }
-      // Nothing clickable covered at this size: no smaller size can do better.
-      if (best.score.critical === 0) break;
     }
-    if (!best) return;
-    pet.style.width = `${best.w}px`;
-    // Room to stroll without leaving the clear area she was just given.
-    const column = textColumn();
-    const lane = best.side === 'right' ? column.right : column.left;
-    dockBand = lane < best.w + 12
-      ? {min: best.x, max: best.x}
-      : {min: 10, max: Math.max(10, innerWidth - best.w - 10)};
-    position(best.x, best.y);
+    dockInFlow();
   };
   const save = () => {
     const box = pet.getBoundingClientRect();
@@ -386,7 +398,7 @@
   const wander = () => {
     clearTimeout(wanderTimer);
     wanderTimer = setTimeout(wander, 25000 + Math.random() * 20000);
-    if (!canIdle()) return;
+    if (!canIdle() || pet.classList.contains('is-flow')) return;
     const box = pet.getBoundingClientRect();
     const lane = dockBand || {min: 10, max: Math.max(10, innerWidth - box.width - 10)};
     const distance = 60 + Math.random() * 140;
@@ -534,6 +546,7 @@
   const savedOwnSpot = saved.v === STORAGE_VERSION && saved.auto === false
     && Number.isFinite(saved.x) && Number.isFinite(saved.y);
   if (savedOwnSpot) {
+    leaveFlow();
     userMoved = true;
     if (Number.isFinite(saved.w)) pet.style.width = `${saved.w}px`;
     position(saved.x, saved.y);
@@ -628,12 +641,19 @@
     const action = event.target.closest('[data-pet-action]')?.dataset.petAction;
     if (!action) return;
     closeMenu();
-    menuToggle.focus();
+    menuToggle.focus({preventScroll: true});
     if (action === 'jump') jump();
     if (action === 'read') speak('这页我也想再看一遍。', 'read');
     if (action === 'stretch') speak('伸个懒腰，继续慢慢来。', 'stretch');
     if (action === 'nap') nap();
-    if (action === 'stroll') { wake(); play('stroll'); }
+    if (action === 'stroll') {
+      leaveFlow();
+      userMoved = true;
+      dockBand = null;
+      save();
+      wake();
+      play('stroll');
+    }
     if (action === 'cheer') speak(praise[Math.floor(Math.random() * praise.length)], 'cheer');
     if (action === 'reset') {
       stopWalk();
@@ -703,7 +723,7 @@
       if (atEnd && scrollY > 400) {
         reachedEnd = true;
         setTimeout(() => {
-          if (!hidden && !quiet && !document.hidden) speak('读完了？要不要去项目页看看这些是怎么做出来的。', 'nod');
+          if (!hidden && !quiet && !document.hidden && menu.hidden && !drag && motion === 'idle') speak('读完了？要不要去项目页看看这些是怎么做出来的。', 'nod');
         }, 600);
       }
     }
@@ -747,6 +767,7 @@
     // vertical swipe is someone reading the page, not picking her up.
     if (!drag.moved && event.pointerType === 'touch' && Math.abs(dy) > Math.abs(dx)) return;
     if (!drag.moved) {
+      leaveFlow();
       cancelMotion();
       pendingAction = null;
       setMotion('dragging');
@@ -801,6 +822,7 @@
       stopFlight();
       rest();
       wake();
+      leaveFlow();
       const box = pet.getBoundingClientRect();
       const [x, y] = directions[event.key];
       const step = event.shiftKey ? 24 : 10;
@@ -815,14 +837,13 @@
   pet.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return;
     bubble.hidden = true;
-    if (!menu.hidden) { closeMenu(); menuToggle.focus(); }
+    if (!menu.hidden) { closeMenu(); menuToggle.focus({preventScroll: true}); }
   });
   addEventListener('resize', () => {
     cancelDrag();
     stopWalk();
     stopFlight();
-    if (!pet.style.left) { placeBubble(); return; }
-    // A narrow window no longer has a margin to stand in, so re-decide the spot.
+    // Only automatic placement follows the available page margins.
     if (!userMoved) { dock(); return; }
     const box = pet.getBoundingClientRect();
     position(box.x, box.y);

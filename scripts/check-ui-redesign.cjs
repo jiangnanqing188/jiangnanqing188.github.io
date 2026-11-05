@@ -119,6 +119,12 @@ function checkUiRedesign() {
     assert.equal(videos.length, 1, 'Homepage must contain exactly one real video');
     const hero = elements(body, 'figure').find(item => hasClass(item.attrs, 'hero-visual'));
     assert.ok(hero && elements(hero.inner, 'video').length === 1, 'Video must stay inside the homepage hero');
+    const disclosure = elements(hero.inner, 'details').find(item => 'data-tuning-player' in item.attrs);
+    assert.ok(disclosure && !('open' in disclosure.attrs), 'Video must start collapsed behind a native no-JS details control');
+    contains(elements(disclosure.inner, 'summary')[0]?.inner || '', '看一段调车日常', 'Real native video entry');
+    contains(disclosure.inner, '返回试验场', 'Native details must offer a return to the static scene');
+    assert.ok(tags(hero.inner, 'img').some(a => a.src === '/img/fieldnotes/hero-testground-4bfaf6cf83.webp'), 'Independent transparent test ground is present');
+    contains(hero.inner, '概念插画 · 非比赛实录', 'Static scene disclosure');
     const video = videos[0];
     assert.equal(video.attrs.poster, poster, 'Use the actual laptop-film frame poster, not the old desktop illustration');
     for (const name of ['controls', 'playsinline']) assert.ok(name in video.attrs, `Native video requires ${name}`);
@@ -151,7 +157,9 @@ function checkUiRedesign() {
     assert.ok(!elements(body, '(?:button|a)').some(item => /^(?:[▶►⏵]|播放|暂停|音量|全屏)/.test(text(item.inner).trim())), 'No placeholder playback action');
     assert.ok(!/\b\d{1,2}:\d{2}\s*[/／]\s*\d{1,2}:\d{2}\b/.test(text(body)), 'No invented playback duration');
     for (const html of [home, projectIndex, page('/projects/ruikang/')]) {
-      assert.ok(tags(main(html), 'img').some(a => a.src === blueprint), 'RuiKang project exhibition must use its separate concept illustration');
+      const expected = html === home ? '/img/fieldnotes/project-banner-ac71989ce5.webp' : blueprint;
+      assert.ok(tags(main(html), 'img').some(a => a.src === expected), 'RuiKang uses the dedicated full-robot paper banner on home, original full blueprint on project pages');
+      fileFor(expected);
       contains(main(html), '概念', 'Project art disclosure');
     }
     const files = [];
@@ -168,7 +176,7 @@ function checkUiRedesign() {
       if (!html.includes(blueprint)) continue;
       const relative = path.relative(output, file).split(path.sep).join('/');
       assert.ok(['index.html', 'projects/index.html', 'projects/ruikang/index.html'].includes(relative), `${relative}: blueprint leaked outside project exhibition`);
-      assert.ok(!tags(html, 'meta').some(a => ['og:image', 'twitter:image'].includes(a.property || a.name) && (a.content || '').includes(blueprint)), `${relative}: concept exhibition must not replace share image`);
+      assert.ok(tags(html, 'meta').some(a => a.property === 'og:image' && new URL(a.content).pathname === blueprint), `${relative}: project exhibition and share image must now use the same paper blueprint`);
     }
   });
 
@@ -223,7 +231,9 @@ function checkUiRedesign() {
   check('about retains existing avatar and only the approved public email', () => {
     const body = main(about);
     const images = tags(body, 'img');
-    assert.ok(images.length && images.every(a => a.src === '/img/avatar.jpg'), 'About must retain the existing avatar, not introduce a portrait');
+    sameSet(images.map(a => a.src), ['/img/avatar.jpg', '/img/fieldnotes/about-notebook-ce22731fe9.webp'], 'About retains exactly the original cat avatar plus the approved notebook concept illustration');
+    assert.equal(images.filter(a => a.src === '/img/avatar.jpg').length, 1, 'Original avatar appears once');
+    assert.ok(images.some(a => a.src.includes('about-notebook-') && /概念插画/.test(a.alt)), 'Notebook remains explicitly conceptual');
     const email = 'jiangnanqingwqw@163.com';
     const mails = tags(body, 'a').filter(a => a.href?.startsWith('mailto:')).map(a => a.href.slice(7));
     assert.ok(mails.length, 'Approved contact email must be usable');
@@ -240,7 +250,7 @@ function checkUiRedesign() {
     sameSet(local.map(item => item.href), ['/downloads/train.py', '/downloads/val.py', '/downloads/mydata.yaml', '/downloads/mydata_yolov5s.yaml'], 'Four real local resources');
     sameSet(artifacts.filter(item => /^https?:/.test(item.href)).map(item => item.href), ['https://github.com/jiangnanqing188/roscar-work-loop'], 'Existing external workflow repository only');
     const body = main(downloads);
-    const cards = elements(body, '(?:article|a)').filter(item => hasClass(item.attrs, 'lab-resources__card'));
+    const cards = elements(body, 'tr').filter(item => hasClass(item.attrs, 'lab-resources__row'));
     assert.equal(cards.length, 5, 'Exactly five genuine resource entries');
     for (const artifact of artifacts) {
       const card = cards.find(item => compact(text(item.inner)).includes(compact(artifact.label)));
@@ -279,7 +289,13 @@ function checkUiRedesign() {
       assert.equal(tags(html, 'aside').filter(a => a.id === 'blog-pet').length, 1, 'Exactly one existing pet');
       assert.ok(tags(html, 'button').some(a => hasClass(a, 'pet-restore')), 'Pet restore control retained');
       assert.ok(tags(html, 'div').some(a => a.id === 'pet-menu'), 'Pet interaction menu retained');
-      for (const src of ['/js/notebook.js', '/js/pet.js', '/js/giscus-manager.js']) assert.ok(tags(html, 'script').some(a => a.src === src), `Existing behavior asset missing: ${src}`);
+      for (const src of ['/js/notebook.js', '/js/pet.js', '/js/giscus-manager.js']) assert.ok(tags(html, 'script').some(a => a.src && new URL(a.src, site).pathname === src), `Existing behavior asset missing: ${src}`);
+      for (const [element, attr, src] of [['script', 'src', '/js/notebook.js'], ['link', 'href', '/css/notebook.css'], ['script', 'src', '/js/pet.js'], ['link', 'href', '/css/pet.css']]) {
+        const asset = tags(html, element).find(a => a[attr] && new URL(a[attr], site).pathname === src);
+        assert.ok(asset, `Shared asset missing: ${src}`);
+        const digest = require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(output, src))).digest('hex').slice(0, 12);
+        assert.equal(new URL(asset[attr], site).searchParams.get('v'), digest, `Shared ${src} version must match shipped bytes`);
+      }
       assert.ok(tags(html, 'a').some(a => a.href === '#main'), 'Skip-to-content link retained');
     }
     for (const html of [home, projectIndex, ...posts.map(post => page(post.href))]) assert.ok(tags(html, 'script').some(a => a.type === 'application/ld+json'), 'Existing structured data retained');

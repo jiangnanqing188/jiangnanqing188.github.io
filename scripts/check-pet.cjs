@@ -50,7 +50,7 @@ async function main() {
   const key = 'jiangnan-blog-pet-v1';
   async function open({width = 1440, height = 1000, reducedMotion = 'no-preference', phone = false, url = '/__pet_fixture__/', saved, noAtlas = false, js = true, clock = true, random} = {}) {
     const context = await browser.newContext({viewport: {width, height}, reducedMotion, isMobile: phone, hasTouch: phone, javaScriptEnabled: js});
-    if (saved) await context.addInitScript(({key, saved}) => localStorage.setItem(key, JSON.stringify(saved)), {key, saved});
+    if (saved) await context.addInitScript(({key, saved}) => { if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(saved)); }, {key, saved});
     if (random !== undefined) await context.addInitScript(value => { Math.random = () => value; }, random);
     const page = await context.newPage();
     page.setDefaultTimeout(7000);
@@ -235,12 +235,84 @@ async function main() {
           assert.equal(response.status(), 200, 'Screenshot route must exist, not fall back to 404.');
           await page.waitForSelector('#blog-pet.has-motions');
           const box = await page.locator('#blog-pet').boundingBox();
-          assert.ok(box.x >= 0 && box.y >= 0 && box.x + box.width <= width + 1 && box.y + box.height <= height + 1);
+          const flowing = await page.locator('#blog-pet').evaluate(el => getComputedStyle(el).position !== 'fixed');
+          if (flowing) {
+            const slot = await page.locator('.pet-workstation').boundingBox();
+            const geometry = await page.evaluate(() => ({height: document.documentElement.scrollHeight, y: scrollY}));
+            assert.ok(slot && slot.height >= box.height, 'Flow slot must reserve the companion’s real height');
+            assert.ok(box.x >= slot.x && box.x + box.width <= slot.x + slot.width + 1, 'Flow pet stays in its owned paper edge');
+            assert.ok(box.y + geometry.y >= 0 && box.y + geometry.y + box.height <= geometry.height + 1, 'Flow companion remains in the document, not hidden');
+            await page.locator('.pet-art').evaluate(img => img.decode());
+          } else assert.ok(box.x >= 0 && box.y >= 0 && box.x + box.width <= width + 1 && box.y + box.height <= height + 1);
           assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
           await page.screenshot({path: path.join(qa, `${label}-${route === '/' ? 'home' : route.includes('projects') ? 'projects' : 'article'}.png`)});
         }
       });
     }
+    await test('real mobile default flow owns space / no text overlap / menu and drag / reset', {width: 390, height: 844, phone: true, url: articleRoute, clock: false}, async page => {
+      const pet = page.locator('#blog-pet');
+      assert.ok(await pet.evaluate(el => el.classList.contains('is-flow') && getComputedStyle(el).position === 'relative'));
+      assert.equal(await page.evaluate(key => localStorage.getItem(key), key), null, 'Automatic defaults must not manufacture saved positions');
+      const overlap = async () => pet.evaluate(el => {
+        const b = el.getBoundingClientRect();
+        const hits = [];
+        for (const node of document.querySelectorAll('main p,main h1,main h2,main li,main small,main strong')) {
+          const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+          while (walker.nextNode()) {
+            const range = document.createRange(); range.selectNodeContents(walker.currentNode);
+            for (const r of range.getClientRects()) if (r.width && r.bottom > 0 && r.top < innerHeight && r.right > b.left && r.left < b.right && r.bottom > b.top && r.top < b.bottom) hits.push(node.textContent.slice(0, 60));
+          }
+        }
+        return hits;
+      });
+      assert.deepEqual(await overlap(), [], 'Default mobile companion does not intersect visible prose');
+      await pet.scrollIntoViewIfNeeded();
+      await page.locator('.pet-art').evaluate(img => img.decode());
+      assert.deepEqual(await overlap(), [], 'Paper edge is not laid over the final paragraph');
+      const before = await page.evaluate(() => scrollY);
+      await page.locator('.pet-menu-toggle').click();
+      assert.ok(await page.locator('#pet-menu').isVisible());
+      await page.locator('[data-pet-action="read"]').click();
+      assert.ok(await pet.evaluate(el => el.classList.contains('is-flow')), 'Static gestures stay at the paper edge');
+      await pet.scrollIntoViewIfNeeded();
+      const p = await point(page); await page.mouse.move(p.x, p.y); await page.mouse.down(); await page.mouse.move(p.x - 55, p.y - 35, {steps: 8}); await page.waitForTimeout(160); await page.mouse.up();
+      assert.equal(await pet.evaluate(el => getComputedStyle(el).position), 'fixed', 'Explicit drag leaves the flow slot');
+      assert.equal((await page.evaluate(key => JSON.parse(localStorage.getItem(key)), key)).auto, false);
+      await action(page, 'reset');
+      assert.ok(await pet.evaluate(el => el.classList.contains('is-flow')), 'Reset uses default safe docking again');
+      const resetY = await page.evaluate(() => scrollY);
+      await page.waitForTimeout(100);
+      assert.equal(await page.evaluate(() => scrollY), resetY, 'Returning to flow does not initiate page scrolling');
+      assert.ok(before >= 0);
+      await action(page, 'stroll');
+      assert.equal(await pet.evaluate(el => getComputedStyle(el).position), 'fixed', 'An explicit stroll may leave the paper edge');
+      await action(page, 'reset');
+      await pet.scrollIntoViewIfNeeded();
+      await page.locator('.pet-avatar').press('ArrowLeft');
+      assert.equal(await pet.evaluate(el => getComputedStyle(el).position), 'fixed', 'Keyboard placement remains a deliberate fixed position');
+    });
+    await test('real mobile v2 manual position / quiet / hidden are respected', {width: 390, height: 844, phone: true, url: articleRoute, saved: {...placed, x: 10, y: 480, w: 106, quiet: true}, clock: false}, async page => {
+      const pet = page.locator('#blog-pet');
+      assert.equal(await pet.evaluate(el => getComputedStyle(el).position), 'fixed');
+      assert.equal((await state(page)).x, 10); assert.equal((await state(page)).y, 480);
+      assert.equal(await page.locator('[data-pet-action="quiet"]').getAttribute('aria-pressed'), 'true');
+      await page.reload({waitUntil: 'load'}); await page.waitForSelector('#blog-pet.has-motions');
+      assert.equal(await pet.evaluate(el => getComputedStyle(el).position), 'fixed');
+      assert.equal((await state(page)).y, 480);
+      await page.locator('.pet-hide').click();
+      assert.equal((await page.evaluate(key => JSON.parse(localStorage.getItem(key)), key)).hidden, true);
+      await page.reload({waitUntil: 'load'});
+      assert.equal(await page.locator('.pet-stage').evaluate(el => el.hidden), true, 'Stored hidden preference survives flow-aware startup');
+      assert.ok(await page.locator('.pet-restore').isVisible());
+    });
+    await test('real mobile no-JS uses the visible owned flow slot', {width: 390, height: 844, phone: true, url: articleRoute, js: false, clock: false}, async page => {
+      const pet = page.locator('#blog-pet');
+      assert.equal(await pet.evaluate(el => getComputedStyle(el).position), 'relative');
+      await pet.scrollIntoViewIfNeeded(); await page.locator('.pet-art').evaluate(img => img.decode());
+      const b = await pet.boundingBox(), slot = await page.locator('.pet-workstation').boundingBox();
+      assert.ok(slot.height >= b.height && b.y >= slot.y && b.y + b.height <= slot.y + slot.height + 1);
+      assert.ok(await page.locator('.pet-menu-toggle').isVisible());
+    });
     await test('mobile native vertical touch scroll does not drag the pet', {width: 390, height: 844, phone: true, saved: {...placed, x: 10, y: 480, w: 106}, clock: false}, async page => {
       const p = await point(page), before = await state(page); const cdp = await page.context().newCDPSession(page);
       await cdp.send('Input.dispatchTouchEvent', {type: 'touchStart', touchPoints: [{x: p.x, y: p.y}]});

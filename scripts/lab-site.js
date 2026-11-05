@@ -179,32 +179,26 @@ const renderResourceHub = posts => {
       .map(item => ({ ...item, post }))
   );
 
-  const cards = resources
-    .map(resource => {
-      const external = String(resource.href).startsWith("http");
-      return `
-        <article class="lab-resources__card">
-          <span class="lab-resources__kind">${escapeHtml(resource.kind || "FILE")}</span>
-          <div class="lab-resources__body">
-            <h2>${escapeHtml(resource.label)}</h2>
-            <p>${escapeHtml(resource.description || "项目材料")}</p>
-            <div class="lab-resources__source">来源：<a href="${escapeHtml(postPath(resource.post))}">${escapeHtml(formatLogId(resource.post.log_id))} · ${escapeHtml(resource.post.title)}</a></div>
-          </div>
-          <div class="lab-resources__actions"><a class="button" href="${escapeHtml(resource.href)}"${external ? ' target="_blank" rel="noopener"' : " download"}>${external ? "打开外部页面 ↗" : "下载文件 ↓"}</a></div>
-        </article>`;
-    })
-    .join("");
+  const rows = resources.map((resource, index) => {
+    const external = String(resource.href).startsWith("http");
+    return `<tr class="lab-resources__row"><td>${String(index + 1).padStart(2, "0")}</td>
+      <th scope="row">${escapeHtml(resource.label)}<small class="resource-kind">${escapeHtml(resource.kind || "FILE")}</small></th>
+      <td class="resource-source"><a href="${escapeHtml(postPath(resource.post))}">${escapeHtml(resource.post.title)}</a></td>
+      <td><code>${escapeHtml(resource.href)}</code></td>
+      <td class="resource-purpose">${escapeHtml(resource.description || "项目材料")}</td>
+      <td><a class="resource-action" href="${escapeHtml(resource.href)}"${external ? ' target="_blank" rel="noopener"' : " download"}>${external ? "打开仓库 ↗" : "下载文件 ↓"}</a></td></tr>`;
+  }).join("");
 
-  return `
-    <div class="lab-resources">
-      <header class="lab-resources__hero">
-        <span>BUILD ARTIFACTS / DOWNLOADS</span>
-        <h1>资源与公开材料。</h1>
-        <p>文章里真正使用或公开的脚本、配置与项目入口集中放在这里，并保留它们来自哪篇记录。</p>
-        <strong>${resources.length.toString().padStart(2, "0")} ITEMS AVAILABLE</strong>
-      </header>
-      <section class="lab-resources__grid" aria-label="可用资源">${cards}</section>
-    </div>`;
+  return `<div class="lab-resources">
+    <header class="lab-resources__hero"><span>BUILD ARTIFACTS / DOWNLOADS</span><h1>资源与公开材料。</h1>
+      <p>文章里真正使用或公开的脚本、配置与项目入口集中放在这里，并保留它们来自哪篇记录。</p>
+      <strong>${resources.length.toString().padStart(2, "0")} ITEMS AVAILABLE</strong></header>
+    <p class="resource-table-hint" id="resource-table-hint">↔ 左右滑动表格，查看完整路径、用途和下载入口。</p>
+    <div class="resource-table-wrap" tabindex="0" role="region" aria-label="五项真实公开资源" aria-describedby="resource-table-hint">
+      <table class="resource-table"><caption>按来源文章收录 · ${resources.length} 项真实材料</caption>
+      <thead><tr><th scope="col">#</th><th scope="col">资源文件 / 项目</th><th scope="col">来源文章</th><th scope="col">文件路径 / 地址</th><th scope="col">用途</th><th scope="col">获取</th></tr></thead>
+      <tbody>${rows}</tbody></table></div></div>`;
+
 };
 
 const addAccessibleNames = html =>

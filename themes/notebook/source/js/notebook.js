@@ -177,3 +177,22 @@ if (commentButton) commentButton.addEventListener('click', () => {
   script.addEventListener('load', () => commentButton.remove());
   document.querySelector('#giscus-wrap').append(script);
 });
+
+// Native details remains useful without JavaScript. Closing always stops sound;
+// opening only reveals controls, it never starts a download or autoplay.
+for (const player of document.querySelectorAll('[data-tuning-player]')) {
+  player.addEventListener('toggle', () => {
+    const video = player.querySelector('video');
+    if (!player.open) video.pause();
+  });
+}
+
+// The hint stays available without JS on narrow screens; with layout information
+// only genuinely overflowing tables announce horizontal scrolling.
+for (const region of document.querySelectorAll('.table-scroll')) {
+  const hint = region.querySelector('.table-scroll-hint');
+  if (!hint) continue;
+  const update = () => { hint.hidden = region.scrollWidth > region.clientWidth ? false : true; };
+  new ResizeObserver(update).observe(region);
+  update();
+}

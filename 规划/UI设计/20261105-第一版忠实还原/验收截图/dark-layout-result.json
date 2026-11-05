@@ -1,0 +1,271 @@
+{
+  "scope": "Final real dark-mode layout and readability captures per template and project instance",
+  "started": "2026-11-05T19:40:07.398Z",
+  "pages": [
+    {
+      "id": "home",
+      "url": "/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-home-dark.png"
+    },
+    {
+      "id": "about",
+      "url": "/about/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-about-dark.png"
+    },
+    {
+      "id": "projects",
+      "url": "/projects/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-projects-dark.png"
+    },
+    {
+      "id": "ruikang",
+      "url": "/projects/ruikang/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-ruikang-dark.png"
+    },
+    {
+      "id": "pharmacy",
+      "url": "/projects/pharmacy/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-pharmacy-dark.png"
+    },
+    {
+      "id": "yolov5",
+      "url": "/projects/yolov5/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-yolov5-dark.png"
+    },
+    {
+      "id": "iscc",
+      "url": "/projects/iscc/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-iscc-dark.png"
+    },
+    {
+      "id": "archives",
+      "url": "/archives/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-archives-dark.png"
+    },
+    {
+      "id": "reading",
+      "url": "/2026/08/21/睿抗赛94分复盘/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-reading-dark.png"
+    },
+    {
+      "id": "resources",
+      "url": "/downloads/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-resources-dark.png"
+    },
+    {
+      "id": "categories",
+      "url": "/categories/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-categories-dark.png"
+    },
+    {
+      "id": "tags",
+      "url": "/tags/",
+      "device": "desktop",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 1536
+      },
+      "file": "/tmp/final-dark-review-20261105/desktop-tags-dark.png"
+    },
+    {
+      "id": "home",
+      "url": "/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-home-dark.png"
+    },
+    {
+      "id": "about",
+      "url": "/about/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-about-dark.png"
+    },
+    {
+      "id": "projects",
+      "url": "/projects/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-projects-dark.png"
+    },
+    {
+      "id": "ruikang",
+      "url": "/projects/ruikang/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-ruikang-dark.png"
+    },
+    {
+      "id": "pharmacy",
+      "url": "/projects/pharmacy/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-pharmacy-dark.png"
+    },
+    {
+      "id": "yolov5",
+      "url": "/projects/yolov5/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-yolov5-dark.png"
+    },
+    {
+      "id": "iscc",
+      "url": "/projects/iscc/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-iscc-dark.png"
+    },
+    {
+      "id": "archives",
+      "url": "/archives/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-archives-dark.png"
+    },
+    {
+      "id": "reading",
+      "url": "/2026/08/21/睿抗赛94分复盘/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-reading-dark.png"
+    },
+    {
+      "id": "resources",
+      "url": "/downloads/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-resources-dark.png"
+    },
+    {
+      "id": "categories",
+      "url": "/categories/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-categories-dark.png"
+    },
+    {
+      "id": "tags",
+      "url": "/tags/",
+      "device": "mobile",
+      "colors": {
+        "bg": "rgb(22, 30, 26)",
+        "ink": "rgb(238, 233, 220)",
+        "wide": 390
+      },
+      "file": "/tmp/final-dark-review-20261105/mobile-tags-dark.png"
+    }
+  ],
+  "finished": "2026-11-05T19:40:13.685Z"
+}

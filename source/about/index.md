@@ -10,58 +10,59 @@ description: 江南的个人介绍、技术栈、成长经历、机器人项目�
 ---
 
 <section class="about-hero">
-<div>
+<div class="about-copy">
 <span class="eyebrow">ABOUT / 很高兴认识你</span>
-<h1>你好，我是江南。</h1>
-<p>长江大学 · 计算机科学与技术 · 大三</p>
+<h1>你好，我是江南<span>。</span></h1>
+<p class="about-motto brush-label">慢慢来，也能走很远。<span class="sketch-rays" aria-hidden="true"></span></p>
+<p class="hero-identity">长江大学 · 计算机科学与技术 · 大三</p>
 <p class="about-lead">关注机器人系统与 AI 应用。<br>我喜欢把陌生的问题一点点拆开，<br>直到它能在真实世界里跑起来。</p>
-<a class="text-link" href="mailto:jiangnanqingwqw@163.com">jiangnanqingwqw@163.com ↗</a>
+<a class="text-link" href="mailto:jiangnanqingwqw@163.com"><span data-field-icon="mail"></span>jiangnanqingwqw@163.com ↗</a>
 </div>
-<img src="/img/avatar.jpg" alt="江南的头像" width="240" height="240">
+<figure class="about-art"><img class="about-notebook" src="/img/fieldnotes/about-notebook-ce22731fe9.webp" alt="机器人手绘笔记本概念插画，非比赛实录" width="1536" height="1024"><img class="about-avatar" src="/img/avatar.jpg" alt="江南的原猫头像" width="240" height="240"><figcaption>概念插画 · 非比赛实录</figcaption></figure>
 </section>
 <div class="about-layout">
 <aside class="about-index">
 <details open data-responsive-details>
 <summary>页内导航</summary>
 <nav aria-label="关于页导航">
-<a href="#practice">在做什么</a>
-<a href="#skills">技术与实践</a>
-<a href="#journey">成长路线</a>
-<a href="#results">团队成绩</a>
-<a href="#contact">保持联系</a>
+<a href="#practice"><span data-field-icon="robot"></span>在做什么</a>
+<a href="#skills"><span data-field-icon="code"></span>技术与实践</a>
+<a href="#journey"><span data-field-icon="route"></span>成长路线</a>
+<a href="#results"><span data-field-icon="trophy"></span>团队成绩</a>
+<a href="#contact"><span data-field-icon="mail"></span>保持联系</a>
 </nav>
 </details>
 </aside>
 <div>
 <section class="detail-section" id="practice">
-<h2>在真实项目里学习</h2>
+<h2><span class="chapter-number">01</span><i aria-hidden="true">/</i>在真实项目里学习。</h2>
 <p>从单车调试到双车联调，从视觉训练到比赛系统集成，我主要承担代码编写、系统集成和项目推进，也把现场遇到的问题与判断留在博客里。</p>
 <p>比起只展示最后的结果，我更想写清楚：为什么选这个方案，哪些尝试没有用，以及下一次可以怎样更早发现问题。</p>
 <div class="boundary">
-<h3>我与 AI 的分工</h3>
+<span data-field-icon="robot"></span><h3>我与 AI 的分工</h3>
 <p>AI 负责提高检索和修改效率，我负责定义问题、选择方案、组织实车验证、判断证据并承担最终部署结果。</p>
 </div>
 </section>
 <section class="detail-section" id="skills">
-<h2>技术，落在具体的实践里</h2>
+<h2><span class="chapter-number">02</span><i aria-hidden="true">/</i>技术，落在具体的实践里。</h2>
 <div class="skill-row">
-<h3>ROS / Linux</h3>
+<h3><span data-field-icon="box"></span>ROS / Linux</h3>
 <p>导航主流程、多车隔离、环境迁移与现场恢复。</p>
 <a href="/projects/ruikang/">睿抗项目 ↗</a>
 </div>
 <div class="skill-row">
-<h3>Python / OpenCV / YOLO</h3>
+<h3><span data-field-icon="camera"></span>Python / OpenCV / YOLO</h3>
 <p>从车载数据采集，到模型训练与视觉任务集成。</p>
 <a href="/projects/yolov5/">农业视觉 ↗</a>
 </div>
 <div class="skill-row">
-<h3>Git / Docker / 工程验证</h3>
+<h3><span data-field-icon="layers"></span>Git / Docker / 工程验证</h3>
 <p>维护可运行基线，组织分层验证并保留回退路径。</p>
 <a href="/projects/pharmacy/">智慧药房 ↗</a>
 </div>
 </section>
 <section class="detail-section" id="journey">
-<h2>我的成长路线</h2>
+<h2><span class="chapter-number">03</span><i aria-hidden="true">/</i>我的成长路线。</h2>
 <p>从专业基础到真实项目，一边动手，一边把零散经验连成体系。</p>
 <ol class="about-journey">
 <li>
@@ -95,7 +96,7 @@ description: 江南的个人介绍、技术栈、成长经历、机器人项目�
 </ol>
 </section>
 <section class="detail-section" id="results">
-<h2>团队一起取得的成绩</h2>
+<h2><span class="chapter-number">04</span><i aria-hidden="true">/</i>团队一起取得的成绩。</h2>
 <p class="muted">以下均为团队参赛结果，证书已核对。各项目中的个人职责与协作边界见项目档案。</p>
 <div id="notebook-awards">
 </div>

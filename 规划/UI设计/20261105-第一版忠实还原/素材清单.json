@@ -1,0 +1,51 @@
+[
+  {
+    "name": "hero-testground",
+    "source": "/home/jnq/.codex/generated_images/01a1a707-9947-7e92-963a-0a83a9ef0455/call_JnmK6jYSmUsDbsw6bG8uRBlI.png",
+    "asset": "source/img/fieldnotes/hero-testground-4bfaf6cf83.webp",
+    "width": 1685,
+    "height": 933,
+    "bytes": 370640,
+    "alpha_zero": 737755,
+    "sha256": "4bfaf6cf83d0e2efa1202196053e9dddf23b6661632c4ee8533eeb5992a70b92"
+  },
+  {
+    "name": "about-notebook",
+    "source": "/home/jnq/.codex/generated_images/01a1a707-9947-7e92-963a-0a83a9ef0455/call_6QsFQO5pqLeES8GHwuPlqqPu.png",
+    "asset": "source/img/fieldnotes/about-notebook-ce22731fe9.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 403376,
+    "alpha_zero": 565046,
+    "sha256": "ce22731fe990e95ec8691631d69e017390464b3db7b013b4837fae920003176c"
+  },
+  {
+    "name": "project-banner",
+    "source": "/home/jnq/.codex/generated_images/01a1a707-9947-7e92-963a-0a83a9ef0455/call_omEUw8sCkcCWhhpltapttRAU.png",
+    "asset": "source/img/fieldnotes/project-banner-ac71989ce5.webp",
+    "width": 2172,
+    "height": 724,
+    "bytes": 440536,
+    "sha256": "ac71989ce54d0d7a3495a9864d5e0658f9320b6b501ced8f5b788fb36543c7f2"
+  },
+  {
+    "name": "music-notebook",
+    "source": "/home/jnq/.codex/generated_images/01a1a707-9947-7e92-963a-0a83a9ef0455/call_fH2oKbc3fUHPqG8cfBzhUnaW.png",
+    "asset": "source/img/fieldnotes/music-notebook-4cdbbe9341.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 281384,
+    "alpha_zero": 914716,
+    "sha256": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521"
+  },
+  {
+    "name": "detour-notebook",
+    "source": "/home/jnq/.codex/generated_images/01a1a707-9947-7e92-963a-0a83a9ef0455/call_4iXo0XQWkv9isiUKllAM4bbI.png",
+    "asset": "source/img/fieldnotes/detour-notebook-13bcf3e306.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 334000,
+    "alpha_zero": 910551,
+    "sha256": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25"
+  }
+]

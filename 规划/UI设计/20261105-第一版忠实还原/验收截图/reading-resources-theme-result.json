@@ -1,0 +1,2156 @@
+{
+  "started": "2026-11-05T17:38:38.771Z",
+  "base": "http://127.0.0.1:4176",
+  "scope": "Only reading/resources/theme fixes. Pet overlap intentionally deferred until approved flow slot lands; no other pages rerun. No site writes or build.",
+  "initialHashes": {
+    "css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "index.html": "ef799667b49c630dd46271a2d9e0d3cfeacba26254b8f503769239461643e826",
+    "downloads/index.html": "5560df05ebd8b7a74e5d1baf27b845f53cfaea4d0e915108f20dccafd736e8fa",
+    "2026/08/21/睿抗赛94分复盘/index.html": "2ec714ec9b09be1dead17ba3352f04fa931eaecb2ffd45da26892a35be6d94a9"
+  },
+  "groups": [
+    {
+      "name": "desktop reading layout / artwork / table hint / TOC",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "reducedMotion": "reduce",
+      "evidence": {
+        "url": "http://127.0.0.1:4176/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/",
+        "boxes": {
+          ".article-heading": {
+            "x": 40,
+            "y": 129,
+            "width": 1360,
+            "height": 398.5625,
+            "display": "grid",
+            "maxWidth": "none",
+            "grid": "691.422px 628.578px",
+            "gap": "40px",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          },
+          ".article-heading-copy": {
+            "x": 40,
+            "y": 165.875,
+            "width": 691.421875,
+            "height": 319.8125,
+            "display": "block",
+            "maxWidth": "none",
+            "grid": "none",
+            "gap": "normal",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          },
+          ".article-cover": {
+            "x": 771.421875,
+            "y": 149,
+            "width": 628.578125,
+            "height": 353.5625,
+            "display": "block",
+            "maxWidth": "100%",
+            "grid": "none",
+            "gap": "normal",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "decoded": true
+          },
+          ".reading-layout": {
+            "x": 160,
+            "y": 551.5625,
+            "width": 1120,
+            "height": 10709.4375,
+            "display": "grid",
+            "maxWidth": "none",
+            "grid": "840px 240px",
+            "gap": "40px",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          },
+          ".prose": {
+            "x": 160,
+            "y": 551.5625,
+            "width": 840,
+            "height": 10709.4375,
+            "display": "block",
+            "maxWidth": "none",
+            "grid": "none",
+            "gap": "normal",
+            "fontSize": "20px",
+            "lineHeight": "39px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          },
+          ".toc": {
+            "x": 1040,
+            "y": 551.5625,
+            "width": 240,
+            "height": 859.6875,
+            "display": "block",
+            "maxWidth": "none",
+            "grid": "none",
+            "gap": "normal",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "sticky",
+            "top": "104px",
+            "src": null
+          }
+        },
+        "hanWidth": 19.999984741210938,
+        "hanPerLine": 42.000032043481475,
+        "table": {
+          "width": 840,
+          "scrollWidth": 840,
+          "scrollLeft": 0,
+          "hint": "↔ 可左右滑动，查看表格其余列",
+          "hintVisible": false,
+          "box": {
+            "x": 160,
+            "y": 435.625,
+            "width": 840,
+            "height": 564.0625
+          },
+          "header": {
+            "y": 436.125,
+            "height": 50.890625
+          }
+        },
+        "overflow": {
+          "viewport": 1440,
+          "html": 1440,
+          "body": 1440
+        },
+        "screenshots": [
+          "/tmp/innerpage-visual-20261105/recheck-three/desktop-reading-header.png",
+          "/tmp/innerpage-visual-20261105/recheck-three/desktop-reading-prose.png"
+        ],
+        "pet": "Not modified or hidden; overlap judgment deferred"
+      },
+      "passed": true
+    },
+    {
+      "name": "desktop resources: actual five-row table / real links / contained horizontal scroll",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "reducedMotion": "reduce",
+      "evidence": {
+        "url": "http://127.0.0.1:4176/downloads/",
+        "headers": [
+          "#",
+          "资源文件 / 项目",
+          "来源文章",
+          "文件路径 / 地址",
+          "用途",
+          "获取"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "01",
+              "train.pyPYTHON",
+              "智能车日记：YOLOv5 模型训练",
+              "/downloads/train.py",
+              "YOLOv5 模型训练脚本",
+              "下载文件 ↓"
+            ],
+            "links": [
+              {
+                "href": "/2026/01/29/YOLOv5模型训练/",
+                "download": false
+              },
+              {
+                "href": "/downloads/train.py",
+                "download": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              "02",
+              "val.pyPYTHON",
+              "智能车日记：YOLOv5 模型训练",
+              "/downloads/val.py",
+              "YOLOv5 模型验证脚本",
+              "下载文件 ↓"
+            ],
+            "links": [
+              {
+                "href": "/2026/01/29/YOLOv5模型训练/",
+                "download": false
+              },
+              {
+                "href": "/downloads/val.py",
+                "download": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              "03",
+              "mydata.yamlYAML",
+              "智能车日记：YOLOv5 模型训练",
+              "/downloads/mydata.yaml",
+              "自定义数据集配置示例",
+              "下载文件 ↓"
+            ],
+            "links": [
+              {
+                "href": "/2026/01/29/YOLOv5模型训练/",
+                "download": false
+              },
+              {
+                "href": "/downloads/mydata.yaml",
+                "download": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              "04",
+              "mydata_yolov5s.yamlYAML",
+              "智能车日记：YOLOv5 模型训练",
+              "/downloads/mydata_yolov5s.yaml",
+              "YOLOv5s 数据集配置示例",
+              "下载文件 ↓"
+            ],
+            "links": [
+              {
+                "href": "/2026/01/29/YOLOv5模型训练/",
+                "download": false
+              },
+              {
+                "href": "/downloads/mydata_yolov5s.yaml",
+                "download": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              "05",
+              "roscar-work-loopGITHUB",
+              "国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流",
+              "https://github.com/jiangnanqing188/roscar-work-loop",
+              "面向 ROS 实车与多机器人联调的 Agent Skill",
+              "打开仓库 ↗"
+            ],
+            "links": [
+              {
+                "href": "/2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/",
+                "download": false
+              },
+              {
+                "href": "https://github.com/jiangnanqing188/roscar-work-loop",
+                "download": false
+              }
+            ]
+          }
+        ],
+        "width": 1360,
+        "downloaded": [
+          {
+            "href": "/downloads/train.py",
+            "status": 200,
+            "bytes": 47541
+          },
+          {
+            "href": "/downloads/val.py",
+            "status": 200,
+            "bytes": 30417
+          },
+          {
+            "href": "/downloads/mydata.yaml",
+            "status": 200,
+            "bytes": 460
+          },
+          {
+            "href": "/downloads/mydata_yolov5s.yaml",
+            "status": 200,
+            "bytes": 1445
+          }
+        ],
+        "scroll": {
+          "clientWidth": 1360,
+          "scrollWidth": 1360,
+          "hint": "↔ 左右滑动表格，查看完整路径、用途和下载入口。",
+          "hintVisible": false
+        },
+        "overflow": {
+          "viewport": 1440,
+          "html": 1440,
+          "body": 1440
+        },
+        "screenshots": [
+          "/tmp/innerpage-visual-20261105/recheck-three/desktop-resources-full.png"
+        ],
+        "pet": "Not modified or hidden; overlap judgment deferred"
+      },
+      "passed": true
+    },
+    {
+      "name": "mobile reading layout / artwork / table hint / TOC",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": "reduce",
+      "evidence": {
+        "url": "http://127.0.0.1:4176/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/",
+        "boxes": {
+          ".article-heading": {
+            "x": 16,
+            "y": 116,
+            "width": 358,
+            "height": 352.78125,
+            "display": "grid",
+            "maxWidth": "none",
+            "grid": "358px",
+            "gap": "0px",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          },
+          ".article-heading-copy": {
+            "x": 16,
+            "y": 128,
+            "width": 358,
+            "height": 323.78125,
+            "display": "block",
+            "maxWidth": "none",
+            "grid": "none",
+            "gap": "normal",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          },
+          ".article-cover": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "display": "none",
+            "maxWidth": "100%",
+            "grid": "none",
+            "gap": "normal",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "decoded": true
+          },
+          ".reading-layout": {
+            "x": 16,
+            "y": 484.78125,
+            "width": 358,
+            "height": 13903.546875,
+            "display": "grid",
+            "maxWidth": "none",
+            "grid": "358px",
+            "gap": "24px",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          },
+          ".prose": {
+            "x": 16,
+            "y": 570.78125,
+            "width": 358,
+            "height": 13817.546875,
+            "display": "block",
+            "maxWidth": "none",
+            "grid": "none",
+            "gap": "normal",
+            "fontSize": "17px",
+            "lineHeight": "33.15px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          },
+          ".toc": {
+            "x": 16,
+            "y": 484.78125,
+            "width": 358,
+            "height": 62,
+            "display": "block",
+            "maxWidth": "none",
+            "grid": "none",
+            "gap": "normal",
+            "fontSize": "16px",
+            "lineHeight": "29.6px",
+            "position": "static",
+            "top": "auto",
+            "src": null
+          }
+        },
+        "hanWidth": 16.999954223632812,
+        "hanPerLine": 21.058880235237307,
+        "table": {
+          "width": 358,
+          "scrollWidth": 580,
+          "scrollLeft": 0,
+          "hint": "↔ 可左右滑动，查看表格其余列",
+          "hintVisible": true,
+          "box": {
+            "x": 16,
+            "y": 169.25,
+            "width": 358,
+            "height": 680.671875
+          },
+          "header": {
+            "y": 199.34375,
+            "height": 45.046875
+          }
+        },
+        "overflow": {
+          "viewport": 390,
+          "html": 390,
+          "body": 390
+        },
+        "screenshots": [
+          "/tmp/innerpage-visual-20261105/recheck-three/mobile-reading-header.png",
+          "/tmp/innerpage-visual-20261105/recheck-three/mobile-reading-table-start.png",
+          "/tmp/innerpage-visual-20261105/recheck-three/mobile-reading-table-end.png"
+        ],
+        "pet": "Not modified or hidden; overlap judgment deferred"
+      },
+      "passed": true
+    },
+    {
+      "name": "mobile resources: actual five-row table / real links / contained horizontal scroll",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": "reduce",
+      "evidence": {
+        "url": "http://127.0.0.1:4176/downloads/",
+        "headers": [
+          "#",
+          "资源文件 / 项目",
+          "来源文章",
+          "文件路径 / 地址",
+          "用途",
+          "获取"
+        ],
+        "rows": [
+          {
+            "cells": [
+              "01",
+              "train.pyPYTHON",
+              "智能车日记：YOLOv5 模型训练",
+              "/downloads/train.py",
+              "YOLOv5 模型训练脚本",
+              "下载文件 ↓"
+            ],
+            "links": [
+              {
+                "href": "/2026/01/29/YOLOv5模型训练/",
+                "download": false
+              },
+              {
+                "href": "/downloads/train.py",
+                "download": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              "02",
+              "val.pyPYTHON",
+              "智能车日记：YOLOv5 模型训练",
+              "/downloads/val.py",
+              "YOLOv5 模型验证脚本",
+              "下载文件 ↓"
+            ],
+            "links": [
+              {
+                "href": "/2026/01/29/YOLOv5模型训练/",
+                "download": false
+              },
+              {
+                "href": "/downloads/val.py",
+                "download": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              "03",
+              "mydata.yamlYAML",
+              "智能车日记：YOLOv5 模型训练",
+              "/downloads/mydata.yaml",
+              "自定义数据集配置示例",
+              "下载文件 ↓"
+            ],
+            "links": [
+              {
+                "href": "/2026/01/29/YOLOv5模型训练/",
+                "download": false
+              },
+              {
+                "href": "/downloads/mydata.yaml",
+                "download": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              "04",
+              "mydata_yolov5s.yamlYAML",
+              "智能车日记：YOLOv5 模型训练",
+              "/downloads/mydata_yolov5s.yaml",
+              "YOLOv5s 数据集配置示例",
+              "下载文件 ↓"
+            ],
+            "links": [
+              {
+                "href": "/2026/01/29/YOLOv5模型训练/",
+                "download": false
+              },
+              {
+                "href": "/downloads/mydata_yolov5s.yaml",
+                "download": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              "05",
+              "roscar-work-loopGITHUB",
+              "国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流",
+              "https://github.com/jiangnanqing188/roscar-work-loop",
+              "面向 ROS 实车与多机器人联调的 Agent Skill",
+              "打开仓库 ↗"
+            ],
+            "links": [
+              {
+                "href": "/2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/",
+                "download": false
+              },
+              {
+                "href": "https://github.com/jiangnanqing188/roscar-work-loop",
+                "download": false
+              }
+            ]
+          }
+        ],
+        "width": 880,
+        "downloaded": [
+          {
+            "href": "/downloads/train.py",
+            "status": 200,
+            "bytes": 47541
+          },
+          {
+            "href": "/downloads/val.py",
+            "status": 200,
+            "bytes": 30417
+          },
+          {
+            "href": "/downloads/mydata.yaml",
+            "status": 200,
+            "bytes": 460
+          },
+          {
+            "href": "/downloads/mydata_yolov5s.yaml",
+            "status": 200,
+            "bytes": 1445
+          }
+        ],
+        "scroll": {
+          "clientWidth": 358,
+          "scrollWidth": 880,
+          "hint": "↔ 左右滑动表格，查看完整路径、用途和下载入口。",
+          "hintVisible": true,
+          "after": 522
+        },
+        "overflow": {
+          "viewport": 390,
+          "html": 390,
+          "body": 390
+        },
+        "screenshots": [
+          "/tmp/innerpage-visual-20261105/recheck-three/mobile-resources-full.png",
+          "/tmp/innerpage-visual-20261105/recheck-three/mobile-resources-table-end.png"
+        ],
+        "pet": "Not modified or hidden; overlap judgment deferred"
+      },
+      "passed": true
+    },
+    {
+      "name": "desktop-reduce theme: immediate actual colors / two-frame stable / reverse switch",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "reducedMotion": "reduce",
+      "evidence": {
+        "url": "http://127.0.0.1:4176/",
+        "light": {
+          "variables": {
+            "paper": "#f7f2e8",
+            "ink": "#20231d",
+            "blue": "#174735"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(23, 71, 53)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(23, 71, 53)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "immediate": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "stable": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "reload": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "reverse": {
+          "variables": {
+            "paper": "#f7f2e8",
+            "ink": "#20231d",
+            "blue": "#174735"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(23, 71, 53)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(23, 71, 53)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "screenshots": [
+          "/tmp/innerpage-visual-20261105/recheck-three/desktop-reduce-theme-dark-immediate.png",
+          "/tmp/innerpage-visual-20261105/recheck-three/desktop-reduce-theme-dark-reload.png"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "desktop-normal theme: immediate actual colors / two-frame stable / reverse switch",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "reducedMotion": "no-preference",
+      "evidence": {
+        "url": "http://127.0.0.1:4176/",
+        "light": {
+          "variables": {
+            "paper": "#f7f2e8",
+            "ink": "#20231d",
+            "blue": "#174735"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(23, 71, 53)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(23, 71, 53)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "immediate": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "stable": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "reload": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "reverse": {
+          "variables": {
+            "paper": "#f7f2e8",
+            "ink": "#20231d",
+            "blue": "#174735"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(23, 71, 53)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(23, 71, 53)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "all",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "screenshots": [
+          "/tmp/innerpage-visual-20261105/recheck-three/desktop-normal-theme-dark-immediate.png",
+          "/tmp/innerpage-visual-20261105/recheck-three/desktop-normal-theme-dark-reload.png"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "mobile-reduce theme: immediate actual colors / two-frame stable / reverse switch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": "reduce",
+      "evidence": {
+        "url": "http://127.0.0.1:4176/",
+        "light": {
+          "variables": {
+            "paper": "#f7f2e8",
+            "ink": "#20231d",
+            "blue": "#174735"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(23, 71, 53)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(23, 71, 53)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "immediate": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "stable": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "reload": {
+          "dataset": "dark",
+          "variables": {
+            "paper": "#161e1a",
+            "ink": "#eee9dc",
+            "blue": "#b3c6b3"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(179, 198, 179)",
+              "bg": "rgb(22, 30, 26)",
+              "fill": "rgb(179, 198, 179)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(238, 233, 220)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(238, 233, 220)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "reverse": {
+          "variables": {
+            "paper": "#f7f2e8",
+            "ink": "#20231d",
+            "blue": "#174735"
+          },
+          "elements": [
+            {
+              "selector": "body",
+              "text": "跳到正文\n  \n    jn.江南的碎碎念ROBOTICS FIELD NOTES\n    首页项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".brand",
+              "text": "jn.江南的碎碎念ROBOTICS FIELD NOTES",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".site-header nav a[href=\"/projects/\"]",
+              "text": "项目",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip",
+              "text": "团队参赛成果 ／\n  RAICOM 2026 · 全国一等奖\n  正式赛 94 分\n  4 个项目档",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "RAICOM 2026 · 全国一等奖",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "正式赛 94 分",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "4 个项目档案",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".result-strip a",
+              "text": "9 篇技术手记",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".tuning-player>summary",
+              "text": "看一段调车日常收起短片，返回试验场01:15",
+              "color": "rgb(23, 71, 53)",
+              "bg": "rgb(247, 242, 232)",
+              "fill": "rgb(23, 71, 53)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            },
+            {
+              "selector": ".selected-project-lead h3 a",
+              "text": "睿抗智能侦察车",
+              "color": "rgb(32, 35, 29)",
+              "bg": "rgba(0, 0, 0, 0)",
+              "fill": "rgb(32, 35, 29)",
+              "transition": "none",
+              "transitionDuration": "0s"
+            }
+          ]
+        },
+        "screenshots": [
+          "/tmp/innerpage-visual-20261105/recheck-three/mobile-reduce-theme-dark-immediate.png",
+          "/tmp/innerpage-visual-20261105/recheck-three/mobile-reduce-theme-dark-reload.png"
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "finalHashes": {
+    "css/notebook.css": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+    "js/notebook.js": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+    "index.html": "ef799667b49c630dd46271a2d9e0d3cfeacba26254b8f503769239461643e826",
+    "downloads/index.html": "5560df05ebd8b7a74e5d1baf27b845f53cfaea4d0e915108f20dccafd736e8fa",
+    "2026/08/21/睿抗赛94分复盘/index.html": "2ec714ec9b09be1dead17ba3352f04fa931eaecb2ffd45da26892a35be6d94a9"
+  },
+  "sameTargetBytes": true,
+  "finished": "2026-11-05T17:38:43.958Z"
+}
