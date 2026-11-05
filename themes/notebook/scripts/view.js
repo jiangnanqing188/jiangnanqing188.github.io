@@ -70,12 +70,12 @@ function postCard(p, base = '', filter = false) {
     <div class="hero-actions"><a class="button" href="/projects/">翻开项目档案 ↗</a><a class="secondary-button" href="/archives/">读一篇手记 →</a></div>
   </div>
   <figure class="hero-visual">
-    <video controls playsinline preload="none" poster="/img/workshop/tuning-poster.webp" width="1280" height="720" aria-label="播放《小胖子调车》概念动画" aria-describedby="tuning-video-caption">
+    <video controls playsinline preload="none" poster="/img/workshop/tuning-film-poster.webp" width="1280" height="720" aria-label="播放机器人调试日常短片" aria-describedby="tuning-video-caption">
       <source src="/media/tuning-workshop.mp4" type="video/mp4">
-      <track kind="captions" src="/media/tuning-workshop.zh-CN.vtt" srclang="zh-CN" label="中文字幕">
-      您的浏览器不支持视频播放，可<a href="/media/tuning-workshop.mp4" download>下载《小胖子调车》MP4</a>观看。
+      <track kind="captions" src="/media/tuning-workshop.zh-CN.vtt" srclang="zh-CN" label="声音说明">
+      您的浏览器不支持视频播放，可<a href="/media/tuning-workshop.mp4" download>下载短片 MP4</a>观看。
     </video>
-    <figcaption id="tuning-video-caption"><strong>小胖子调车</strong><small>75秒概念动画 · 非比赛实录</small></figcaption>
+    <figcaption id="tuning-video-caption"><strong>工位日常</strong><small>75秒无对白概念短片 · 非比赛实录</small></figcaption>
   </figure>
 </section>
 <section class="result-strip" aria-label="团队结果与站内记录">

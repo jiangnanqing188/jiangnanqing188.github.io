@@ -1,6 +1,11 @@
 {
   "date": "2026-11-04",
+  "revision": "wordless-laptop",
   "concept_only": true,
+  "historical_version": {
+    "commit": "29071d2",
+    "note": "第一版台式机、大标题和叙事字幕仅可从Git历史恢复；当前清单与截图均为无对白笔记本修订版。"
+  },
   "video": {
     "file": "source/media/tuning-workshop.mp4",
     "duration_seconds": 75.0,
@@ -13,30 +18,61 @@
     "audio": "aac 44100Hz stereo",
     "faststart": true
   },
+  "poster": {
+    "file": "source/img/workshop/tuning-film-poster.webp",
+    "source_video_time_seconds": 7,
+    "width": 1280,
+    "height": 720,
+    "method": "从最终MP4解码一帧并编码为WebP，未重画图像"
+  },
   "verification": {
     "sol_high_unified_checks": "passed",
     "pages": 63,
-    "local_references": 2707,
+    "local_references": 2455,
     "ui_contract_groups": 9,
-    "vtt_cues": 14,
+    "vtt_cues": 7,
     "full_decode": "passed",
+    "renderer_motion_regression": "passed; 240Hz world motion, all 1800 render calls, four-view silhouette/contact registration, exact laptop asset pixels",
+    "renderer_sha256": "1f4cfdd0ef4dcadbbd968f1f73048fb1e4738eafb3c1fd60ab2b57c1d21cd4e4",
     "sampled_frames_reviewed_seconds": [
       0,
       7,
       14,
       22,
+      25,
       29,
-      32,
+      31,
       38,
+      40.95,
+      41.125,
+      41.83,
       48,
-      59,
+      50.125,
+      50.25,
+      51.125,
+      58.875,
+      59.125,
+      60.125,
+      64,
+      65.95,
+      66.125,
       68,
       74
-    ]
+    ],
+    "review_preview": {
+      "source": "/tmp/tuning-motion-review.mp4",
+      "original_time_range_seconds": [
+        36,
+        44
+      ],
+      "sampled_frames": 11
+    },
+    "human_reviewed_all_1800_frames": false,
+    "visual_limit": "按关键镜头和转向前后抽帧审核，不将程序注册检查当作真实3D转向或实车贴地证据。"
   },
   "audio_signal": {
-    "decoded_peak": 0.120516,
-    "decoded_rms": 0.01546,
+    "decoded_peak": 0.08921259641647339,
+    "decoded_rms": 0.01526976972617255,
     "clipping_samples": 0,
     "last_sample": 0,
     "human_listening_review": false
@@ -51,69 +87,113 @@
       390,
       844
     ],
+    "desktop": {
+      "initial": {
+        "paused": true,
+        "readyState": 0,
+        "time": 0
+      },
+      "played": {
+        "paused": false,
+        "readyState": 4,
+        "duration": 75,
+        "width": 1280,
+        "height": 720,
+        "time": 0.105801,
+        "error": null
+      },
+      "paused": {
+        "paused": true,
+        "time": 60.322365
+      },
+      "overflow": false
+    },
+    "mobile": {
+      "playing": {
+        "duration": 75,
+        "error": null,
+        "height": 720,
+        "paused": false,
+        "readyState": 4,
+        "time": 0.018763,
+        "width": 1280
+      },
+      "advanced": {
+        "paused": false,
+        "time": 0.060587
+      },
+      "paused": {
+        "overflow": false,
+        "paused": true,
+        "time": 0.081132
+      }
+    },
+    "laya": {
+      "used": true,
+      "target": "header-6",
+      "model": "ichenney/laya-browser-v32b",
+      "confidence": 1,
+      "http_roundtrip_ms": 93.06
+    },
     "physical_mobile": false,
-    "initial": {
-      "paused": true,
-      "readyState": 0,
-      "currentTime": 0
-    },
-    "played": {
-      "paused": false,
-      "readyState": 4,
-      "duration": 75,
-      "width": 1280,
-      "height": 720,
-      "observed_currentTime": 69.01673
-    },
-    "ended": {
-      "paused": true,
-      "ended": true,
-      "currentTime": 75
-    },
-    "mobile_play_pause": true,
-    "horizontal_overflow": false,
-    "laya_used": false
+    "theme_checks": "desktop/mobile light and dark screenshots; temporary viewport reset and light mode restored",
+    "native_controls": "实际点击原生播放/暂停，未以脚本直接设置播放状态"
   },
   "files": [
     {
       "path": "source/media/tuning-workshop.mp4",
-      "bytes": 12393485,
-      "sha256": "88c840b17ae93dcf70a4d5a3f596a646f8a8460fd10b8d925d9b77c00c026bb4"
+      "bytes": 12752503,
+      "sha256": "8f6e2bfe58371a313dca08d7b0379d8a07ec8b57f5d4072a852dae5382f78fc9"
     },
     {
       "path": "source/media/tuning-workshop.zh-CN.vtt",
-      "bytes": 1191,
-      "sha256": "e2191dcb73654c80946f57a528e5a7accbde7ec7dd764bba61c1a3a57bbd63dc"
+      "bytes": 484,
+      "sha256": "8b2983fc81ff8168eb9ba8e94fa5e43edc9960e2b32c5a36e7a47e63e74f4c67"
+    },
+    {
+      "path": "source/img/workshop/tuning-film-poster.webp",
+      "bytes": 98842,
+      "sha256": "0a876f08b163899c7c384b40d803c86c877a2d02ba3077139295e43050696d09"
     },
     {
       "path": "scripts/video/create-tuning-film.cjs",
-      "bytes": 33201,
-      "sha256": "9df552b13cd67034799f89e3262d1c87cc1c72c555aa210b9b3c06ce1cc349a9"
+      "bytes": 27616,
+      "sha256": "1f4cfdd0ef4dcadbbd968f1f73048fb1e4738eafb3c1fd60ab2b57c1d21cd4e4"
+    },
+    {
+      "path": "scripts/video/check-tuning-motion.cjs",
+      "bytes": 14560,
+      "sha256": "23f3d8382136b4ce4c4d344e264bd4a507bb093018ca79aac745c6d87f2fd1bb"
     },
     {
       "path": "规划/视频/20261104-小胖子调车/验收截图/home-desktop-dark.png",
-      "bytes": 79503,
-      "sha256": "77d97c606e05483051a028ab2ddda32ef8d298fec300c27738d64bc3b03b8d8c"
+      "bytes": 87521,
+      "sha256": "c01fa08e4957426ba3b5e647259330584ad9b4f72139be497242a2f72b0e2435"
     },
     {
       "path": "规划/视频/20261104-小胖子调车/验收截图/home-desktop-loaded.png",
-      "bytes": 78504,
-      "sha256": "63b1c66f41366910bfe4d7e21eebe325da26f0b44d78a444ceefbf1687a23f05"
+      "bytes": 87371,
+      "sha256": "93f7df5fa3fd0a81b3e9f7355a2237b52cb390ba89b6fa0c95d31e2ef33967f9"
+    },
+    {
+      "path": "规划/视频/20261104-小胖子调车/验收截图/home-desktop-poster.png",
+      "bytes": 91445,
+      "sha256": "629d67b94118ae2eadef7162f8167da83f5a8e625244481b0419c3c2b1277ae4"
     },
     {
       "path": "规划/视频/20261104-小胖子调车/验收截图/home-mobile-dark.png",
-      "bytes": 39944,
-      "sha256": "49cb5cf6246b1a1c672f2eb1151fd47268cef01006533c9f0399b034b9e4c63e"
+      "bytes": 42756,
+      "sha256": "dd40b3ffc415c0e24145534721ae73bc4e86bd01bd98bb5d02e47ea2eb67e0d4"
     },
     {
       "path": "规划/视频/20261104-小胖子调车/验收截图/home-mobile-loaded.png",
-      "bytes": 39421,
-      "sha256": "8f0c23ea3f5ec18a8811d65aca77c62fea26160b23d5f33dd23d56dc95b6e5e0"
+      "bytes": 43915,
+      "sha256": "f36d720add8b51335a2c57a3998bc08dd9ea2e5bd928a86cba5a4594cc039e1c"
     },
     {
       "path": "规划/视频/20261104-小胖子调车/验收截图/home-mobile-poster.png",
-      "bytes": 41995,
-      "sha256": "98c1c4bbc4628e71e64a9ff3676154b2fb18185303eb9200bbdf2f66dbd85736"
+      "bytes": 42936,
+      "sha256": "a0680b4728f7e231b0d878c7ab21e89ed925d2a347da4c121ea3957e28a2f14d"
     }
   ]
 }

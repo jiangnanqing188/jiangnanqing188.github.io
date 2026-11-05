@@ -32,6 +32,8 @@ function checkTuningVideo() {
   const attrs = tag => Object.fromEntries([...tag.matchAll(/([\w:-]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)]
     .map(match => [match[1].toLowerCase(), match[2] ?? match[3] ?? match[4] ?? '']));
   const tags = name => [...videos[0][1].matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))].map(match => attrs(match[0]));
+  const videoAttributes = attrs(videos[0][0].match(/^<video\b[^>]*>/i)[0]);
+  assert.equal(videoAttributes.poster, '/img/workshop/tuning-film-poster.webp', 'Use the actual film-frame poster, not the desktop illustration');
   const sources = tags('source');
   const tracks = tags('track');
   assert.equal(sources.length, 1, 'Expected one native video source');
@@ -41,7 +43,8 @@ function checkTuningVideo() {
   assert.equal(tracks[0].src, subtitles);
   assert.equal(tracks[0].kind, 'captions');
   assert.equal(tracks[0].srclang, 'zh-CN');
-  assert.ok(!('default' in tracks[0]), 'Do not duplicate burned-in subtitles by default');
+  assert.equal(tracks[0].label, '声音说明', 'Optional captions describe non-dialogue sounds');
+  assert.ok(!('default' in tracks[0]), 'Keep sound descriptions off by default so they do not cover the dialogue-free picture');
 
   const probe = JSON.parse(execFileSync('ffprobe', [
     '-v', 'error', '-show_format', '-show_streams', '-of', 'json', path.join(root, 'source', media)
@@ -83,6 +86,8 @@ function checkTuningVideo() {
 
   const vtt = new TextDecoder('utf-8', {fatal: true}).decode(buffers.get(subtitles)).replace(/\r\n?/g, '\n');
   assert.ok(!vtt.includes('\0'), 'VTT must not contain NUL');
+  assert.ok(!/接头|开关|插头|插座|插电|插接|插拔|接线|接电|手按|按下|伸手|手动启动/.test(vtt), 'Autonomous-start film must not describe connector, switch, plugging-in or manual-start actions');
+  assert.ok(!/小胖子调车|一段原创黏土概念动画|先把路线想清楚|敲几行|画几笔|小车[，,]你准备好了吗|怎么一点动静都没有|先别急着重写|挨个检查|先看电|再看代码|插头还在这儿呢|改一点[，,]跑一圈|不是只盯屏幕|也要看看车怎么走|路锥挡在前面|把路线让开一点|绕过去|记下这次改了什么|慢慢转回来|回到熟悉的起点|平平安安回来啦|调车没有魔法|只有一轮又一轮|供电小插曲|原创借梗|不是比赛故障复现/.test(vtt), 'VTT must not retain the old title, dialogue or explanatory narrative');
   const blocks = vtt.trimEnd().split(/\n(?:[\t ]*\n)+/);
   assert.match(blocks.shift(), /^WEBVTT(?:[\t ][^\n]*)?$/, 'Expected WEBVTT header and a blank line');
   const timestamp = '(?:\\d{2,}:)?[0-5]\\d:[0-5]\\d\\.\\d{3}';
@@ -97,12 +102,14 @@ function checkTuningVideo() {
     assert.ok(match, `Invalid VTT cue timing in block: ${block.slice(0, 100)}`);
     const start = seconds(match[1]), end = seconds(match[2]);
     assert.ok(start >= previousStart && end > start && end <= duration + 0.25, `Invalid or out-of-range VTT interval: ${match[0]}`);
-    assert.ok(lines.join('\n').trim() && !lines.some(line => line.includes('-->')), 'VTT cue must contain valid nonempty text');
+    const description = lines.join('\n').trim();
+    assert.ok(description && !lines.some(line => line.includes('-->')), 'VTT cue must contain valid nonempty text');
+    assert.ok(/音乐|乐声|琴声|鼓点|拨弦|敲击|敲键|键盘|电机|马达|履带|轮胎|轮子|脚步|咔哒|咔嗒|咔嚓|提示音|提示声|电流|嗡鸣|嗡声|嗡嗡|蜂鸣|转动声|滚动声|摩擦声|机械声|环境音|环境声|底噪|叮|嘀|滴|啪|碰撞声|轻响|沙沙声/.test(description), `VTT must describe an actual non-dialogue sound, not story narration: ${description}`);
     previousStart = start;
     cues++;
   }
-  assert.ok(cues > 0, 'VTT must contain actual caption cues');
-  console.log(`Tuning video contract passed: ${duration.toFixed(2)}s, 1280×720 / 24fps H.264 yuv420p + AAC, ${(mp4.length / 1_000_000).toFixed(2)} MB, faststart, ${cues} VTT cues, exact generated assets and native source/track.`);
+  assert.ok(cues >= 5 && cues <= 8, `Expected 5–8 optional sound-description cues, got ${cues}`);
+  console.log(`Tuning video contract passed: ${duration.toFixed(2)}s, 1280×720 / 24fps H.264 yuv420p + AAC, ${(mp4.length / 1_000_000).toFixed(2)} MB, faststart, ${cues} optional non-dialogue sound cues, exact generated assets and native source/track.`);
 }
 
 if (require.main === module) checkTuningVideo();

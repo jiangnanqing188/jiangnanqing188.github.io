@@ -112,7 +112,7 @@ function checkUiRedesign() {
   });
 
   check('native click-to-play hero video and project-only concept art, no pretend controls', () => {
-    const poster = '/img/workshop/tuning-poster.webp';
+    const poster = '/img/workshop/tuning-film-poster.webp';
     const blueprint = '/img/workshop/ruikang-blueprint.webp';
     const body = main(home);
     const videos = elements(home, 'video');
@@ -120,14 +120,16 @@ function checkUiRedesign() {
     const hero = elements(body, 'figure').find(item => hasClass(item.attrs, 'hero-visual'));
     assert.ok(hero && elements(hero.inner, 'video').length === 1, 'Video must stay inside the homepage hero');
     const video = videos[0];
-    assert.equal(video.attrs.poster, poster, 'Retain the original poster');
+    assert.equal(video.attrs.poster, poster, 'Use the actual laptop-film frame poster, not the old desktop illustration');
     for (const name of ['controls', 'playsinline']) assert.ok(name in video.attrs, `Native video requires ${name}`);
     for (const name of ['autoplay', 'loop']) assert.ok(!(name in video.attrs), `Video must not ${name}`);
     assert.equal(video.attrs.preload, 'none', 'Do not download video before user interaction');
-    assert.ok(video.attrs['aria-label'], 'Video needs an accessible label');
+    assert.equal(video.attrs['aria-label'], '播放机器人调试日常短片', 'Video needs the neutral accessible label');
     const caption = elements(hero.inner, 'figcaption').find(item => item.attrs.id && (video.attrs['aria-describedby'] || '').split(/\s+/).includes(item.attrs.id));
     assert.ok(caption, 'Video must reference its figcaption');
-    contains(caption.inner, '75秒概念动画 · 非比赛实录', 'Video disclosure');
+    assert.equal(text(elements(caption.inner, 'strong')[0]?.inner || '').trim(), '工位日常', 'Use the neutral hero caption');
+    contains(caption.inner, '75秒无对白概念短片 · 非比赛实录', 'Dialogue-free concept film disclosure');
+    assert.ok(!/小胖子调车/.test(text(hero.inner) + video.attrs['aria-label']), 'Do not retain the old literal film title');
     assert.ok(!/筹备中/.test(text(hero.inner)), 'Completed animation must not be marked in preparation');
     assert.ok(!('src' in video.attrs), 'Use the single typed local MP4 source');
     const sources = tags(video.inner, 'source');
@@ -139,8 +141,10 @@ function checkUiRedesign() {
     assert.equal(tracks[0].src, '/media/tuning-workshop.zh-CN.vtt');
     assert.equal(tracks[0].kind, 'captions');
     assert.equal(tracks[0].srclang, 'zh-CN');
-    assert.ok(tracks[0].label && !('default' in tracks[0]), 'Caption track needs a label and must not default on over burned-in subtitles');
+    assert.equal(tracks[0].label, '声音说明', 'Optional captions describe non-dialogue sounds');
+    assert.ok(!('default' in tracks[0]), 'Sound descriptions must stay off by default to leave the dialogue-free picture unobstructed');
     assert.ok(tags(video.inner, 'a').some(a => a.href === sources[0].src && 'download' in a && !a.target), 'Native fallback must offer a local MP4 download, not a new window');
+    contains(video.inner, '下载短片 MP4', 'Neutral download fallback');
     fileFor(poster); fileFor(blueprint); fileFor(sources[0].src); fileFor(tracks[0].src);
     assert.ok(!/<(?:audio|iframe|object|embed|progress)\b|role\s*=\s*["'](?:progressbar|slider)["']/i.test(body), 'No external player or fake progress/slider on homepage');
     assert.ok(!tags(body, '(?:button|a|input)').some(a => /播放|暂停|音量|全屏|\bplay\b|\bpause\b|\bvolume\b|\bfullscreen\b|\brange\b/i.test(`${a['aria-label'] || ''} ${a.title || ''} ${a.class || ''} ${a.type || ''}`)), 'No empty player controls');

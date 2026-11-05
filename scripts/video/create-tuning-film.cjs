@@ -1,66 +1,49 @@
 'use strict';
 
-// Offline, deterministic animation. No site code, network, external music or voice.
+// Offline film renderer. Hexo can require this file without Canvas or side effects.
 // NODE_PATH=/home/jnq/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules \
-//   node scripts/video/create-tuning-film.cjs --preview-dir /tmp/tuning-film-preview
-// Repeat without --preview-dir to encode the complete film; --output changes its destination.
+//   node scripts/video/create-tuning-film.cjs --preview-dir /tmp/tuning-film-wordless-preview
+//   node scripts/video/create-tuning-film.cjs --motion-preview /tmp/tuning-motion-review.mp4
 const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
 const { spawn, spawnSync } = require('node:child_process');
 const { once } = require('node:events');
-// Hexo may require this file while building; Canvas is a CLI-only dependency.
 let createCanvas, loadImage, GlobalFonts;
-
 const ROOT = path.resolve(__dirname, '../..');
 const ASSETS = path.join(ROOT, '规划/视频/20261104-小胖子调车/assets');
 const FONT = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc';
 const WIDTH = 1280, HEIGHT = 720, FPS = 24, DURATION = 75;
-const PREVIEW_TIMES = [0, 7, 14, 22, 29, 38, 48, 59, 68, 74];
-const C = { paper: '#f5f0e6', ink: '#214b3b', orange: '#d98a45', muted: '#6e7763', pale: '#dfdccb' };
-const CAPTIONS = [
-  [0, 6, '小胖子调车', '一段原创黏土概念动画'],
-  [6, 11, '先把路线想清楚，再把它写进电脑。'],
-  [11, 16, '敲几行，画几笔。小车，你准备好了吗？'],
-  [16, 20.5, '咦？怎么一点动静都没有……'],
-  [20.5, 25, '先别急着重写，挨个检查。'],
-  [25, 29, '先看电，再看代码。', '供电小插曲为原创借梗，不是比赛故障复现'],
-  [29, 34, '啊，插头还在这儿呢。', '供电小插曲为原创借梗，不是比赛故障复现'],
-  [34, 40, '改一点，跑一圈。'],
-  [40, 47, '不是只盯屏幕，也要看看车怎么走。'],
-  [47, 53, '路锥挡在前面？把路线让开一点。'],
-  [53, 60, '绕过去，再记下这次改了什么。'],
-  [60, 65, '慢慢转回来，回到熟悉的起点。'],
-  [65, 70, '这一次，平平安安回来啦。'],
-  [70, 75, '调车没有魔法，只有一轮又一轮。', '江南的机器人手记'],
-];
-// Ground coordinates are in the 1280 × 720 background projection. The loop stays
-// below the rear obstacles and above the foreground pipe, with a cone in its hole.
-const ROUTE = [[505, 389], [606, 425], [803, 444], [929, 420], [956, 392],
-  [901, 365], [775, 359], [631, 363], [544, 373], [505, 389]];
-const CONE = { x: 817, y: 402 };
+const PREVIEW_TIMES = [0, 7, 14, 22, 25, 29, 31, 38, 41, 48, 50, 59, 64, 68, 74];
+const C = { paper: '#f5f0e6', ink: '#214b3b', orange: '#d98a45' };
+// Inspected engineer-laptop.png (1263x1246): first-cell interior coordinates.
+// The other poses share this screen/desk registration; only the body above it changes.
+const LAPTOP_LANDMARKS = {
+  screen: [[431,221],[537,194],[503,309],[395,336]],
+  keys: { x: 284, y: 319, w: 87, h: 33 },
+  feet: [[112,562],[258,604],[574,529],[461,487],[211,557],[345,569],[409,552]],
+};
+// Optional sound descriptions, never burned into the picture.
+const CAPTIONS = [[0, 8, '[轻音乐，键盘敲击声]'], [8, 15, '[电机短响，履带转动后停下]'],
+  [15, 24, '[轻音乐继续，电机安静下来]'], [24, 32, '[柔和启动提示音，电机低鸣]'],
+  [32, 58, '[履带与电机转动声，间歇停顿]'], [58, 66, '[履带缓转后停下]'],
+  [66, 75, '[轻快提示音，音乐渐弱]']];
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const lerp = (a, b, p) => a + (b - a) * p;
 const ease = p => { p = clamp(p); return p * p * (3 - 2 * p); };
-const windowAt = (t, a, b, fade = .4) => ease((t - a) / fade) * ease((b - t) / fade);
-
-function rounded(ctx, x, y, w, h, r, fill, stroke) {
-  ctx.beginPath(); ctx.roundRect(x, y, w, h, r);
-  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
-  if (stroke) { ctx.strokeStyle = stroke; ctx.stroke(); }
-}
-function line(ctx, points, color, width = 3) {
+const smoother = p => { p = clamp(p); return p * p * p * (10 + p * (-15 + 6 * p)); };
+const ROUTE = [[610, 394], [690, 416], [845, 415], [963, 391],
+  [935, 355], [815, 341], [675, 345], [611, 374], [610, 394]];
+const CONE = { x: 820, y: 380 };
+// Stops are intentional match-cut opportunities, not invisible shell dissolves.
+const RUNS = [[8, 14.2, 0, .13, 0], [30.8, 40, .13, .36, 0],
+  [41.8, 49, .36, .48, 2], [51, 58, .48, .78, 3], [60, 66, .78, 1, 1]];
+const perspectiveAt = y => 1 + (y - 390) * .0018;
+const reviewTimeAt = t => t + 36;
+function line(ctx, points, color, width = 2) {
   ctx.beginPath(); ctx.moveTo(...points[0]);
   for (const p of points.slice(1)) ctx.lineTo(...p);
   ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke();
-}
-function text(ctx, s, x, y, size = 28, color = C.ink, align = 'left') {
-  ctx.font = `${size}px FilmCJK`; ctx.fillStyle = color; ctx.textAlign = align;
-  ctx.textBaseline = 'middle'; ctx.fillText(s, x, y);
-}
-function shadow(ctx, x, y, rx, ry, alpha = .12) {
-  ctx.save(); ctx.fillStyle = `rgba(55,48,31,${alpha})`;
-  ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
 }
 function catmull(points, u) {
   const q = clamp(u) * (points.length - 1), i = Math.min(points.length - 2, Math.floor(q)), f = q - i;
@@ -82,324 +65,227 @@ function routeAt(p) {
     angle: Math.atan2(ROUTE_SAMPLES[i][1] - ROUTE_SAMPLES[i - 1][1], ROUTE_SAMPLES[i][0] - ROUTE_SAMPLES[i - 1][0]) };
 }
 function progressAt(t) {
-  if (t < 34) return 0;
-  if (t < 47) return .47 * ease((t - 34) / 13);
-  if (t < 50) return .47;
-  return .47 + .53 * ease((t - 50) / 17.8);
+  for (const [a, b, from, to] of RUNS) {
+    if (t < a) return from;
+    if (t <= b) return lerp(from, to, smoother((t - a) / (b - a)));
+  }
+  return 1;
 }
-function movingAt(t) { return (t > 34.2 && t < 46.8) || (t > 50.2 && t < 67.6); }
-function viewAt(t) {
-  const { angle } = routeAt(progressAt(t));
-  return Math.cos(angle) >= 0 ? (Math.sin(angle) >= 0 ? 0 : 2) : (Math.sin(angle) >= 0 ? 1 : 3);
+function viewAt(t) { return t < 41.1 ? 0 : t < 50.2 ? 2 : t < 59 ? 3 : 1; }
+function speedAt(t) {
+  const dt = .002;
+  return Math.max(0, (progressAt(t + dt) - progressAt(t - dt)) * DISTANCE.at(-1) / (2 * dt));
 }
-function poseAt(t) {
-  if (t >= 16 && t < 31.5) return 2;
-  if (t >= 65) return 3;
-  const typing = (t >= 6 && t < 16) || (t >= 35 && t < 37) || (t >= 48 && t < 50) || (t >= 53 && t < 59);
-  return typing ? Math.floor(t / .58) % 2 : 0;
-}
-
-// Read alpha extents without creating cropped files. Keep a common registration
-// across all four source rectangles so the desk does not jump between poses.
+function poseAt(t) { return t >= 14.5 && t < 23.7 ? 2 : t >= 66 ? 3 : 0; }
+// Independent near/far tread intervals, in normalized source-cell x. Their
+// actual lower alpha silhouette is sampled at load time, rather than using
+// either the four-cell union or the frontmost wheel as the ground origin.
+const CONTACTS = [[ [105,320],[480,553] ], [ [307,522],[74,147] ],
+  [ [290,535],[89,180] ], [ [92,337],[447,538] ]];
 function spriteSheet(image) {
   const w = image.width / 2, h = image.height / 2;
   const probe = createCanvas(image.width, image.height), ctx = probe.getContext('2d');
   ctx.drawImage(image, 0, 0); const pixels = ctx.getImageData(0, 0, image.width, image.height).data;
   const boxes = Array.from({ length: 4 }, (_, cell) => {
-    const ox = (cell % 2) * w, oy = Math.floor(cell / 2) * h;
+    const ox = cell % 2 * w, oy = Math.floor(cell / 2) * h;
     let x0 = w, y0 = h, x1 = 0, y1 = 0, count = 0;
-    for (let y = Math.ceil(oy); y < Math.floor(oy + h); y++) {
-      for (let x = Math.ceil(ox); x < Math.floor(ox + w); x++) {
-        if (pixels[(y * image.width + x) * 4 + 3] < 64) continue;
-        x0 = Math.min(x0, x - ox); y0 = Math.min(y0, y - oy);
-        x1 = Math.max(x1, x - ox + 1); y1 = Math.max(y1, y - oy + 1); count++;
-      }
+    for (let y = Math.ceil(oy); y < Math.floor(oy + h); y++) for (let x = Math.ceil(ox); x < Math.floor(ox + w); x++) {
+      if (pixels[(y * image.width + x) * 4 + 3] < 96) continue;
+      x0 = Math.min(x0, x - ox); y0 = Math.min(y0, y - oy);
+      x1 = Math.max(x1, x - ox + 1); y1 = Math.max(y1, y - oy + 1); count++;
     }
-    if (count < 1000) throw new Error(`精灵格 ${cell} 缺少有效透明主体，请检查素材。`);
-    return { x: Math.max(0, x0 - 2), y: Math.max(0, y0 - 2),
-      w: Math.min(w, x1 + 2) - Math.max(0, x0 - 2), h: Math.min(h, y1 + 2) - Math.max(0, y0 - 2) };
+    if (count < 1000) throw new Error(`精灵格 ${cell} 缺少有效透明主体。`);
+    return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
   });
-  const union = { x: Math.min(...boxes.map(b => b.x)), y: Math.min(...boxes.map(b => b.y)) };
-  union.w = Math.max(...boxes.map(b => b.x + b.w)) - union.x;
-  union.h = Math.max(...boxes.map(b => b.y + b.h)) - union.y;
-  return { image, w, h, boxes, union };
+  const contactStrips = CONTACTS.map((intervals, cell) => intervals.map(([from,to]) => {
+    const points=[];
+    const ox=cell%2*w, oy=Math.floor(cell/2)*h;
+    for(let px=from;px<=to;px+=5){
+      const x=Math.round(ox+px/627*w);let bottom=-1;
+      for(let y=Math.ceil(oy+h*.60);y<Math.floor(oy+h);y++)
+        if(pixels[(y*image.width+x)*4+3]>190) bottom=y-oy;
+      if(bottom>=0)points.push([x-ox,bottom]);
+    }
+    if(points.length<5)throw new Error(`精灵格 ${cell} 无法标定履带轮底。`);
+    return points;
+  }));
+  return { image, w, h, boxes, contactStrips };
 }
-function sprite(ctx, sheet, cell, x, y, width, height) {
-  const b = sheet.boxes[cell], u = sheet.union, scale = Math.min(width / u.w, height / u.h);
-  const left = x - u.w * scale / 2, top = y - u.h * scale;
+function sourceCell(ctx, sheet, cell, x, y, scale) {
+  const b = sheet.boxes[cell];
   ctx.drawImage(sheet.image, cell % 2 * sheet.w + b.x, Math.floor(cell / 2) * sheet.h + b.y, b.w, b.h,
-    left + (b.x - u.x) * scale, top + (b.y - u.y) * scale, b.w * scale, b.h * scale);
+    x + b.x * scale, y + b.y * scale, b.w * scale, b.h * scale);
 }
 async function loadAssets() {
   ({ createCanvas, loadImage, GlobalFonts } = require('@napi-rs/canvas'));
-  const names = ['field.png', 'engineer.png', 'rover.png'];
+  const names = ['field.png', 'engineer-laptop.png', 'rover.png'];
   const missing = names.filter(n => !fs.existsSync(path.join(ASSETS, n)));
   if (missing.length) throw new Error(`缺少主线程素材：\n${missing.map(n => path.join(ASSETS, n)).join('\n')}\n未生成预览或成片。`);
-  if (!fs.existsSync(FONT)) throw new Error(`缺少中文字体：${FONT}`);
-  if (!GlobalFonts.registerFromPath(FONT, 'FilmCJK')) throw new Error(`无法注册中文字体：${FONT}`);
+  if (!fs.existsSync(FONT) || !GlobalFonts.registerFromPath(FONT, 'FilmCJK')) throw new Error(`无法注册字体：${FONT}`);
   const [field, engineer, rover] = await Promise.all(names.map(n => loadImage(path.join(ASSETS, n))));
-  if (Math.abs(field.width / field.height - 16 / 9) > .02) throw new Error('field.png 必须是约16:9空场地。');
   return { field, engineer: spriteSheet(engineer), rover: spriteSheet(rover) };
 }
-
-function drawRoute(ctx, t) {
-  if (t < 7 || t >= 70) return;
-  ctx.save(); ctx.globalAlpha = ease((t - 7) / 2) * .8;
-  const adjusted = ease((t - 47.5) / 2);
-  const turn = routeAt(.47);
-  const planned = ROUTE_SAMPLES.map((point, i) => {
-    if (i / 800 <= .47) return point;
-    const old = catmull([[turn.x, turn.y], [CONE.x, CONE.y], [631, 363], ROUTE[0]], (i / 800 - .47) / .53);
-    return [lerp(old[0], point[0], adjusted), lerp(old[1], point[1], adjusted)];
-  });
-  ctx.setLineDash([3, 11]); line(ctx, planned, '#9f9f82', 2); ctx.setLineDash([]);
-  const p = progressAt(t), n = Math.max(2, Math.round(p * 800));
-  if (p > 0) { ctx.globalAlpha = .9; line(ctx, ROUTE_SAMPLES.slice(0, n), C.orange, 4); }
-  for (let i = 0; i < 19; i++) {
-    const point = routeAt(i / 18), lit = i / 18 <= p && t > 34;
-    ctx.fillStyle = lit ? C.orange : '#d5cbb4'; ctx.beginPath();
-    ctx.ellipse(point.x, point.y, lit ? 4 : 2.5, lit ? 2.6 : 1.6, 0, 0, Math.PI * 2); ctx.fill();
-  }
-  ctx.globalAlpha = .9;
-  ctx.strokeStyle = C.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(505, 390, 48, 20, -.04, 0, Math.PI * 2); ctx.stroke();
-  text(ctx, '起点', 507, 419, 16, C.ink, 'center'); ctx.restore();
+function floorShadow(ctx, points, alpha, blur, offsetX = 0, offsetY = 0) {
+  ctx.save(); ctx.shadowColor = `rgba(69,53,30,${alpha})`; ctx.shadowBlur = blur;
+  ctx.fillStyle = `rgba(69,53,30,${alpha})`; ctx.filter = `blur(${blur * .4}px)`; ctx.translate(offsetX, offsetY);
+  ctx.beginPath(); ctx.moveTo(...points[0]); for (const p of points.slice(1)) ctx.lineTo(...p); ctx.closePath(); ctx.fill(); ctx.restore();
 }
-function drawCone(ctx, t) {
-  const { x, y } = CONE;
-  ctx.save(); shadow(ctx, x, y + 3, 25, 7, .12);
-  ctx.fillStyle = '#bb713c'; ctx.beginPath(); ctx.ellipse(x, y, 24, 7, 0, 0, Math.PI * 2); ctx.fill();
-  const g = ctx.createLinearGradient(x - 15, 0, x + 15, 0); g.addColorStop(0, '#dd8a3c'); g.addColorStop(.5, '#f1a657'); g.addColorStop(1, '#c67a32');
-  ctx.beginPath(); ctx.moveTo(x - 17, y - 3); ctx.lineTo(x - 6, y - 47); ctx.quadraticCurveTo(x, y - 51, x + 6, y - 47);
-  ctx.lineTo(x + 17, y - 3); ctx.quadraticCurveTo(x, y + 6, x - 17, y - 3); ctx.fillStyle = g; ctx.fill();
-  line(ctx, [[x - 11, y - 24], [x + 11, y - 24]], '#f8edcf', 8);
-  if (t >= 47 && t < 60) {
-    ctx.globalAlpha = windowAt(t, 47, 60); ctx.setLineDash([4, 6]);
-    ctx.strokeStyle = C.orange; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(x, y, 59, 31, 0, 0, Math.PI * 2); ctx.stroke();
+function roverRegistration(sheet, cell, r) {
+  const contacts = sheet.contactStrips[cell];
+  const centers=contacts.map(points=>[points.reduce((s,p)=>s+p[0],0)/points.length,
+    points.reduce((s,p)=>s+p[1],0)/points.length]);
+  const anchor=[(centers[0][0]+centers[1][0])/2,(centers[0][1]+centers[1][1])/2];
+  const scale = 163 * perspectiveAt(r.y) / sheet.boxes[cell].w;
+  const x = r.x - anchor[0] * scale, y = r.y - anchor[1] * scale;
+  const point = p => [x + p[0] / 627 * sheet.w * scale, y + p[1] / 627 * sheet.h * scale];
+  return { x, y, scale, anchor, contacts, centers, point };
+}
+function drawRover(ctx, assets, t, override) {
+  const r = override?.ground || routeAt(progressAt(t)), cell = override?.cell ?? viewAt(t), reg = roverRegistration(assets.rover, cell, r);
+  const { x, y, scale, contacts } = reg;
+  const strips = contacts.map(strip => strip.map(p => [x + p[0] * scale, y + p[1] * scale]));
+  // Diffuse light falls from the upper left, like the field. The dark contact
+  // strips overlap the actual tyre bottoms; no detached oval underneath.
+  const footprint=[strips[0][0],strips[0].at(-1),strips[1].at(-1),strips[1][0]];
+  // One soft, downward-right cast shadow plus two narrow silhouette-following
+  // contact shadows. The visible tyre edge overlaps each dark core by ~1px.
+  floorShadow(ctx, footprint, .055, 7, 3.5, 2.5);
+  ctx.save();ctx.shadowColor='#493d2e60';ctx.shadowBlur=3;
+  for(const strip of strips)line(ctx,strip,'#493d2e65',4.2*perspectiveAt(r.y));
+  ctx.shadowBlur=0;
+  for(const strip of strips)line(ctx,strip,'#3a302852',1.8*perspectiveAt(r.y));ctx.restore();
+  sourceCell(ctx, assets.rover, cell, x, y, scale);
+  // Cover the asset's pale matte fringe at the actual tread/floor interface.
+  // Device-sized AO: 1px into the tyre and <2px below it even in close shots.
+  const transform=ctx.getTransform(),zoom=Math.hypot(transform.a,transform.b);
+  for(const strip of strips)line(ctx,strip.map(([px,py])=>[px,py+.4/zoom]),'#302b24b8',2.8/zoom);
+  const moving = speedAt(t), phase = progressAt(t) * DISTANCE.at(-1) * .22;
+  const wheels = [ [[112,420],[199,476],[286,506]], [[341,506],[428,476],[515,420]],
+    [[333,505],[414,465],[494,421]], [[132,421],[213,465],[294,505]] ][cell];
+  if (moving > .1) for (const p of wheels) {
+    const [wx,wy] = reg.point(p), a = phase;
+    line(ctx, [[wx+Math.cos(a)*2.8, wy+Math.sin(a)*4], [wx-Math.cos(a)*2.8, wy-Math.sin(a)*4]], '#e5d3ab90', 1.1);
   }
+  const radar = [[354,156],[273,156],[346,118],[281,118]][cell], [rx,ry] = reg.point(radar);
+  if (t > 29.3 || t < 15) {
+    ctx.save(); ctx.translate(rx,ry); ctx.scale(1,.42); ctx.rotate(t*1.9);
+    line(ctx, [[0,0],[8,0]], '#fff2b3c0', 1.5); ctx.restore();
+  }
+  if(t>=25){
+    const light=reg.point([[511,351],[116,351],[171,325],[456,325]][cell]);
+    const intensity=ease((t-25)/4.2);
+    ctx.save();ctx.globalAlpha=intensity;ctx.shadowColor='#d4e0a8';ctx.shadowBlur=5;
+    ctx.fillStyle='#c2d99c';ctx.beginPath();ctx.arc(...light,2.1,0,Math.PI*2);ctx.fill();ctx.restore();
+  }
+  return { r, reg };
+}
+function drawCone(ctx) {
+  const {x,y}=CONE;
+  floorShadow(ctx, [[x-16,y-4],[x+13,y-6],[x+23,y+2],[x-6,y+8]], .09, 4, 3, 2);
+  ctx.fillStyle='#bb713c';ctx.beginPath();ctx.ellipse(x,y,19,6,0,0,Math.PI*2);ctx.fill();
+  const g=ctx.createLinearGradient(x-13,0,x+13,0);g.addColorStop(0,'#cd7f38');g.addColorStop(.45,'#e8a158');g.addColorStop(1,'#c0803c');
+  ctx.beginPath();ctx.moveTo(x-13,y-3);ctx.lineTo(x-5,y-40);ctx.quadraticCurveTo(x,y-44,x+5,y-40);ctx.lineTo(x+13,y-3);ctx.quadraticCurveTo(x,y+3,x-13,y-3);ctx.fillStyle=g;ctx.fill();
+  line(ctx,[[x-9,y-21],[x+9,y-21]],'#f6ead0',6);
+}
+function drawFloorMarks(ctx,t) {
+  // Thin chalk on the existing ground, not a diagram over the footage.
+  ctx.save();ctx.globalAlpha=.2;ctx.setLineDash([2,16]);line(ctx,ROUTE_SAMPLES,'#8f9177',1.2);ctx.setLineDash([]);
+  if(t>32){ctx.globalAlpha=.34;line(ctx,ROUTE_SAMPLES.slice(0,Math.max(2,Math.round(progressAt(t)*800))),C.orange,1.8);}
   ctx.restore();
 }
-const WHEELS = [
-  [[.105,.70],[.255,.82],[.40,.89]], [[.60,.89],[.75,.82],[.895,.70]],
-  [[.55,.88],[.70,.79],[.85,.70]], [[.15,.70],[.30,.79],[.45,.88]],
-];
-function rover(ctx, assets, t, x, y, size, options = {}) {
-  const moving = options.moving ?? movingAt(t), v = options.view ?? viewAt(t);
-  const active = t >= 31.3;
-  ctx.save(); ctx.translate(x, y);
-  if (options.scale) ctx.scale(options.scale, options.scale);
-  shadow(ctx, 0, -4, size * .37, size * .095, .16);
-  // A ground-level light fan, not a gun or fake telemetry.
-  if (active) {
-    const a = routeAt(progressAt(t)).angle + .16 * Math.sin(t * 1.5), r = size * 1.2;
-    ctx.save(); ctx.globalAlpha = .12;
-    const g = ctx.createRadialGradient(0, -12, 8, Math.cos(a) * r, Math.sin(a) * r * .35 - 12, r);
-    g.addColorStop(0, '#f3b951'); g.addColorStop(1, '#f3b95100'); ctx.fillStyle = g;
-    ctx.beginPath(); ctx.moveTo(0, -12); ctx.lineTo(Math.cos(a - .35) * r, Math.sin(a - .35) * r * .35 - 12);
-    ctx.quadraticCurveTo(Math.cos(a) * r * 1.2, Math.sin(a) * r * .35 - 12, Math.cos(a + .35) * r, Math.sin(a + .35) * r * .35 - 12); ctx.closePath(); ctx.fill(); ctx.restore();
+function drawEngineer(ctx, sheet, t) {
+  const ground={x:340,y:471}, scale=.485*perspectiveAt(ground.y);
+  const x=ground.x-328*scale,y=ground.y-592*scale;
+  // Four desk/chair contact points share the same scene projection as the rover.
+  for(const p of LAPTOP_LANDMARKS.feet) {
+    const q=[x+p[0]*scale,y+p[1]*scale];ctx.save();ctx.shadowColor='#55473035';ctx.shadowBlur=2;
+    ctx.fillStyle='#55473038';ctx.beginPath();ctx.ellipse(q[0]+.5,q[1]+.15,4.1,1,0,0,Math.PI*2);ctx.fill();ctx.restore();
   }
-  // A 120 ms source-frame dissolve at direction boundaries; position never resets.
-  const previous = options.view === undefined ? viewAt(Math.max(0, t - .12)) : v;
-  if (previous !== v) {
-    let lo = t - .12, hi = t;
-    for (let i = 0; i < 9; i++) { const mid = (lo + hi) / 2; if (viewAt(mid) === previous) lo = mid; else hi = mid; }
-    const blend = clamp((t - hi) / .12);
-    ctx.globalAlpha = 1 - blend; sprite(ctx, assets.rover, previous, 0, 0, size, size); ctx.globalAlpha = blend;
-  }
-  sprite(ctx, assets.rover, v, 0, 0, size, size); ctx.globalAlpha = 1;
-  const u = assets.rover.union, scale = Math.min(size / u.w, size / u.h), w = u.w * scale, h = u.h * scale;
-  if (moving) {
-    ctx.strokeStyle = 'rgba(243,224,183,.65)'; ctx.lineWidth = 1.5;
-    for (const [nx, ny] of WHEELS[v]) {
-      const wx = (nx - .5) * w, wy = (ny - 1) * h, a = t * 15;
-      ctx.beginPath(); ctx.moveTo(wx + Math.cos(a) * 8, wy + Math.sin(a) * 10);
-      ctx.lineTo(wx - Math.cos(a) * 8, wy - Math.sin(a) * 10); ctx.stroke();
-    }
-  }
-  if (active) {
-    const rx = (v === 0 ? .55 : v === 1 ? .45 : .50) * w - w / 2, ry = -.79 * h;
-    ctx.save(); ctx.translate(rx, ry); ctx.scale(1, .42); ctx.rotate(t * 2.7);
-    line(ctx, [[0, 0], [size * .09, 0]], '#fff0b2', 3);
-    ctx.fillStyle = '#fff5d0'; ctx.beginPath(); ctx.arc(size * .09, 0, 2, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-    if (t % 2 < .7) { ctx.fillStyle = '#bbd59d'; ctx.beginPath(); ctx.arc(w * .11, -h * .42, 2.4, 0, Math.PI * 2); ctx.fill(); }
-  }
+  const split=y+344*scale;
+  ctx.save();ctx.beginPath();ctx.rect(x-3,y-5,sheet.w*scale+6,split-y+5);ctx.clip();
+  // Reaction poses change only on motivated camera cuts. Never alpha-blend
+  // two faces, shoulders or hands in the same shot.
+  sourceCell(ctx,sheet,poseAt(t),x,y,scale);
   ctx.restore();
-}
-function speech(ctx, s, x, y, t, alpha = 1) {
-  ctx.save(); ctx.globalAlpha = alpha; ctx.lineWidth = 2;
-  rounded(ctx, x - 36, y - 38, 72, 63, 23, '#fff9ec', '#d8c5a7');
-  ctx.fillStyle = '#fff9ec'; ctx.beginPath(); ctx.moveTo(x - 9, y + 24); ctx.lineTo(x - 19, y + 36); ctx.lineTo(x + 4, y + 24); ctx.fill();
-  text(ctx, s, x, y - 5 + 2 * Math.sin(t * 3), 38, C.ink, 'center'); ctx.restore();
-}
-function screenRoute(ctx, sheet, t, x, bottom, w, h) {
-  const u = sheet.union, scale = Math.min(w / u.w, h / u.h);
-  const left = x - u.w * scale / 2 - u.x * scale;
-  const top = bottom - u.h * scale - u.y * scale;
-  // Inside the actual monitor bezel, in a single 2x2 sheet cell's coordinates.
-  const corners = [[420, 170], [560, 143], [541, 296], [405, 322]];
-  const at = (a, b) => {
-    const tx = lerp(corners[0][0], corners[1][0], a), ty = lerp(corners[0][1], corners[1][1], a);
-    const bx = lerp(corners[3][0], corners[2][0], a), by = lerp(corners[3][1], corners[2][1], a);
-    return [left + lerp(tx, bx, b) * scale, top + lerp(ty, by, b) * scale];
-  };
-  ctx.save(); ctx.beginPath(); ctx.moveTo(...at(0, 0));
-  for (const p of [[1, 0], [1, 1], [0, 1]]) ctx.lineTo(...at(...p));
-  ctx.closePath(); ctx.clip();
-  ctx.globalAlpha = .30;
-  line(ctx, [at(.16,.70), at(.30,.43), at(.56,.59), at(.78,.27)], C.ink, 1.3);
-  const progress = t < 16 ? clamp((t - 6) / 9) : progressAt(t);
-  const points = [[.16,.70],[.30,.43],[.56,.59],[.78,.27]];
-  const count = Math.max(2, Math.floor(progress * 60));
-  const drawn = Array.from({length: count}, (_, i) => at(...catmull(points, Math.min(progress, i / 59))));
-  ctx.globalAlpha = .72; line(ctx, drawn, C.orange, 1.7);
-  const tip = drawn.at(-1); ctx.globalAlpha = .5 + .2 * Math.sin(t * 3);
-  ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(...tip, 2.2, 0, Math.PI * 2); ctx.fill();
-  ctx.restore();
-}
-function engineer(ctx, assets, t) {
-  const large = windowAt(t, 6, 16, .65) + windowAt(t, 16.2, 25, .65) + windowAt(t, 65, 70, .6);
-  const w = lerp(288, 350, clamp(large)), h = w * 1.05;
-  const x = 207, bottom = lerp(460, 493, clamp(large));
-  ctx.save(); ctx.shadowColor = '#6a4f3420'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 6;
-  rounded(ctx, 28, 114, 358, 408, 34, '#f5f0e6ed'); ctx.restore();
-  // Fix desk, keyboard, chair base and legs to cell 0. Only change the upper
-  // pose, without drawing a second opaque desk over the first one.
-  const sheet = assets.engineer, u = sheet.union, scale = Math.min(w / u.w, h / u.h);
-  const split = bottom - u.h * scale + (341 - u.y) * scale;
-  ctx.save(); ctx.beginPath(); ctx.rect(20, 110, 375, split - 110); ctx.clip();
-  sprite(ctx, sheet, poseAt(t), x, bottom, w, h); ctx.restore();
-  ctx.save(); ctx.beginPath(); ctx.rect(20, split, 375, 530 - split); ctx.clip();
-  sprite(ctx, sheet, 0, x, bottom, w, h); ctx.restore();
-  screenRoute(ctx, sheet, t, x, bottom, w, h);
-  if (t >= 16 && t < 25) speech(ctx, '?', 331, 207, t, windowAt(t, 16, 25));
-  if (t >= 65 && t < 70) {
-    for (let i = 0; i < 5; i++) { const a = i * 1.25 + t * .15;
-      const x1 = 204 + Math.cos(a) * 105, y1 = 242 + Math.sin(a) * 65;
-      ctx.save(); ctx.globalAlpha = windowAt(t, 65, 70) * .7; line(ctx, [[x1 - 4, y1], [x1 + 4, y1]], C.orange, 2);
-      line(ctx, [[x1, y1 - 4], [x1, y1 + 4]], C.orange, 2); ctx.restore(); }
+  ctx.save();ctx.beginPath();ctx.rect(x-3,split,sheet.w*scale+6,sheet.h*scale);ctx.clip();sourceCell(ctx,sheet,0,x,y,scale);ctx.restore();
+  const typing=poseAt(t)===0&&(t<7.5||(t>=31.2&&t<35));
+  if(typing){
+    // One opaque patch from the SAME pose. A small press and release, not a
+    // translucent second hand. Maximum displacement is <1.3 output px here.
+    const press=Math.pow(Math.max(0,Math.sin(t*12)),2);
+    const {x:sx,y:sy,w:sw,h:sh}=LAPTOP_LANDMARKS.keys;
+    ctx.save();ctx.beginPath();ctx.rect(x+(sx-2)*scale,y+(sy-2)*scale,(sw+4)*scale,(sh+4)*scale);ctx.clip();
+    ctx.drawImage(sheet.image,sx,sy,sw,sh,x+sx*scale,y+sy*scale+press*.52,sw*scale,sh*scale);
+    ctx.restore();
   }
+  const corners=LAPTOP_LANDMARKS.screen;
+  const at=(a,b)=>[x+lerp(lerp(corners[0][0],corners[1][0],a),lerp(corners[3][0],corners[2][0],a),b)*scale,
+    y+lerp(lerp(corners[0][1],corners[1][1],a),lerp(corners[3][1],corners[2][1],a),b)*scale];
+  ctx.save();ctx.globalAlpha=.44;line(ctx,[at(.14,.7),at(.32,.42),at(.57,.58),at(.81,.25)],C.ink,1);
+  const p=t<8?clamp(t/7):progressAt(t),q=catmull([[.14,.7],[.32,.42],[.57,.58],[.81,.25]],p);
+  const dot=at(...q);ctx.fillStyle=C.orange;ctx.beginPath();ctx.arc(...dot,1.5,0,Math.PI*2);ctx.fill();ctx.restore();
 }
-function routeNotebook(ctx, t) {
-  const alpha = windowAt(t, 6.5, 16) + windowAt(t, 53, 60);
-  if (!alpha) return;
-  ctx.save(); ctx.globalAlpha = alpha; ctx.translate(535, 135); ctx.rotate(-.065);
-  ctx.shadowColor = '#55412425'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 7;
-  rounded(ctx, -115, -89, 230, 178, 8, '#fcf5df'); ctx.shadowColor = 'transparent';
-  for (let y = -50; y < 70; y += 24) line(ctx, [[-90, y], [92, y]], '#d9d9bf', 1);
-  text(ctx, t < 16 ? '先画一条路线' : '记下这次修改', -89, -64, 19);
-  const p = clamp((t < 16 ? t - 7 : t - 53) / 4), points = [[-72, 30], [-35, -8], [30, 20], [74, -28]];
-  const count = Math.max(2, Math.ceil(p * 80));
-  const traced = Array.from({ length: count }, (_, i) => catmull(points, Math.min(p, i / 79)));
-  line(ctx, traced, C.orange, 3);
-  const tip = traced.at(-1); ctx.save(); ctx.translate(tip[0] + 12, tip[1] - 12); ctx.rotate(.5);
-  rounded(ctx, -4, -55, 8, 65, 2, '#335f49'); ctx.fillStyle = '#c69b66'; ctx.beginPath(); ctx.moveTo(-4, 10); ctx.lineTo(0, 19); ctx.lineTo(4, 10); ctx.fill(); ctx.restore();
-  ctx.restore();
-}
-function batteryCloseup(ctx, assets, t) {
-  const alpha = windowAt(t, 25, 34, .45); if (!alpha) return;
-  const plugged = ease((t - 29.6) / 1.6);
-  ctx.save(); ctx.globalAlpha = alpha; ctx.shadowColor = '#614b3624'; ctx.shadowBlur = 22;
-  rounded(ctx, 440, 165, 790, 372, 35, '#f8f0df'); ctx.shadowColor = 'transparent';
-  text(ctx, '先看电，再看代码', 480, 205, 33);
-  rover(ctx, assets, t, 1008, 493, 236, { moving: false, view: 1 });
-  shadow(ctx, 630, 458, 92, 12);
-  const bg = ctx.createLinearGradient(540, 320, 725, 440); bg.addColorStop(0, '#59775a'); bg.addColorStop(1, '#314f3c');
-  rounded(ctx, 535, 324, 190, 120, 18, bg, '#2b4c36');
-  rounded(ctx, 562, 307, 22, 22, 5, '#d4bb80'); rounded(ctx, 676, 307, 22, 22, 5, '#d4bb80');
-  text(ctx, '电池', 630, 385, 32, '#f5efd8', 'center');
-  const plugX = lerp(770, 871, plugged), plugY = lerp(467, 407, plugged);
-  ctx.beginPath(); ctx.moveTo(719, 386); ctx.bezierCurveTo(760, 386, 720, 489, plugX - 12, plugY);
-  ctx.strokeStyle = '#8c5e3c'; ctx.lineWidth = 8; ctx.lineCap = 'round'; ctx.stroke();
-  rounded(ctx, plugX - 13, plugY - 12, 30, 24, 5, C.orange);
-  if (plugged < .96) { line(ctx, [[plugX + 17, plugY - 5], [plugX + 26, plugY - 5]], '#b6ab8f', 4);
-    line(ctx, [[plugX + 17, plugY + 5], [plugX + 26, plugY + 5]], '#b6ab8f', 4); }
-  if (t > 31.2) { ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(755, 345, 7, 0, Math.PI * 2); ctx.fill();
-    text(ctx, '接上了！', 790, 345, 24); }
-  else text(ctx, '……原来在这儿', 752, 288, 25);
-  ctx.restore();
-}
-function magnifier(ctx, assets, t) {
-  const alpha = windowAt(t, 37, 45) + windowAt(t, 55, 59.7); if (!alpha) return;
-  ctx.save(); ctx.globalAlpha = alpha;
-  rounded(ctx, 1000, 112, 240, 220, 28, '#f6f0e5ee');
-  text(ctx, t < 47 ? '履带转起来了' : '看一眼，再记录', 1120, 140, 18, C.muted, 'center');
-  ctx.beginPath(); ctx.roundRect(1009, 160, 222, 161, 22); ctx.clip();
-  rover(ctx, assets, t, 1116, 355, 230, { moving: true, view: t < 47 ? 0 : 3 }); ctx.restore();
-}
-function headings(ctx, t) {
-  let heading = '', sub = '';
-  if (t >= 6 && t < 16) { heading = '把想法写下来'; sub = '一张草图，几行代码'; }
-  if (t >= 16 && t < 25) { heading = '等等，车呢？'; sub = '先检查，再下结论'; }
-  if (t >= 25 && t < 34) { heading = '原来还有这一步'; sub = '一个小小的供电插曲'; }
-  if (t >= 34 && t < 47) { heading = '改一点，跑一圈'; sub = '让小车自己告诉你'; }
-  if (t >= 47 && t < 60) { heading = '给路锥留点空间'; sub = '调整路线，也留下记录'; }
-  if (t >= 60 && t < 70) { heading = '回到起点'; sub = '稳稳回来，就是开心'; }
-  if (heading) {
-    const veil = ctx.createLinearGradient(0, 0, 455, 0);
-    veil.addColorStop(0, '#f5f0e6fa'); veil.addColorStop(.77, '#f5f0e6ec'); veil.addColorStop(1, '#f5f0e600');
-    ctx.fillStyle = veil; ctx.fillRect(0, 15, 455, 98);
-    text(ctx, heading, 43, 58, 37); text(ctx, sub, 45, 94, 18, C.muted);
-  }
-}
-function caption(ctx, t) {
-  const cue = CAPTIONS.find(([a, b]) => t >= a && t < b); if (!cue) return;
-  ctx.save(); ctx.fillStyle = C.paper; ctx.fillRect(0, 614, WIDTH, 106);
-  line(ctx, [[45, 615], [1235, 615]], '#d9ccaf', 1);
-  const size = cue[2].length > 25 ? 29 : 32;
-  text(ctx, cue[2], 640, cue[3] ? 651 : 664, size, C.ink, 'center');
-  if (cue[3]) text(ctx, cue[3], 640, 691, 18, C.muted, 'center');
-  ctx.restore();
-}
-function titleCard(ctx, assets, t) {
-  const opening = t < 6, local = opening ? t : t - 70;
-  const alpha = opening ? 1 - ease((t - 5.35) / .65) : ease(local / .6);
-  ctx.save(); ctx.globalAlpha = alpha;
-  const g = ctx.createLinearGradient(0, 0, 990, 0); g.addColorStop(0, '#f5f0e6fa'); g.addColorStop(.64, '#f5f0e6e8'); g.addColorStop(1, '#f5f0e600');
-  ctx.fillStyle = g; ctx.fillRect(0, 0, WIDTH, 614);
-  text(ctx, '江南的机器人手记', 81, 126, 22, C.muted);
-  if (opening) {
-    text(ctx, '小胖子', 76, 232, 82); text(ctx, '调车', 76, 326, 82);
-    line(ctx, [[82, 392], [185 + 165 * ease(local / 2), 392]], C.orange, 7);
-    text(ctx, '一段有点笨拙、但一直向前的小故事', 81, 439, 25);
-    sprite(ctx, assets.engineer, Math.floor(t / .5) % 2, 869, 552, 420, 430);
-    rover(ctx, assets, 31.4 + t, 1170, 560, 168, { moving: false, view: 1 });
-  } else {
-    text(ctx, '调车没有魔法，', 78, 242, 49);
-    text(ctx, '只有一轮又一轮。', 78, 318, 49);
-    line(ctx, [[82, 385], [386, 385]], C.orange, 5);
-    text(ctx, '江南的机器人手记', 81, 435, 27);
-    sprite(ctx, assets.engineer, 3, 959, 557, 379, 390);
-    rover(ctx, assets, t, 1164, 566, 145, { moving: false, view: 1 });
-  }
-  ctx.restore();
+function cameraAt(t) {
+  const r=routeAt(progressAt(t));let z,fx,fy;
+  if(t<7.5){z=lerp(2.02,1.87,ease(t/7.5));fx=405;fy=330;}
+  else if(t<14.5){z=lerp(1.55,1.82,ease((t-7.5)/7));fx=r.x-15;fy=r.y-40;}
+  else if(t<23.7){z=1.94;fx=402;fy=329;}
+  else if(t<26.5){z=1.3;fx=600;fy=365;}
+  else if(t<31.2){z=lerp(2.7,3.35,ease((t-26.5)/4.7));fx=r.x+10;fy=r.y-103;}
+  else if(t<40){z=lerp(1.7,1.42,ease((t-31.2)/8.8));fx=r.x;fy=r.y-45;}
+  else if(t<41.1){z=2.8;fx=r.x;fy=r.y-46;}
+  else if(t<41.8){z=4;fx=r.x+4;fy=r.y-109;}
+  else if(t<49){z=1.78;fx=r.x;fy=r.y-46;}
+  else if(t<50.2){z=2.8;fx=r.x;fy=r.y-46;}
+  else if(t<51){z=4;fx=r.x;fy=r.y-110;}
+  else if(t<58){z=lerp(1.65,1.36,ease((t-51)/7));fx=r.x;fy=r.y-42;}
+  else if(t<59){z=2.8;fx=r.x;fy=r.y-46;}
+  else if(t<60){z=3.9;fx=r.x;fy=r.y-110;}
+  else if(t<66){z=lerp(1.52,1.25,ease((t-60)/6));fx=lerp(r.x,620,ease((t-62)/4));fy=365;}
+  else if(t<69){z=lerp(1.9,1.82,ease((t-66)/3));fx=405;fy=328;}
+  else{z=lerp(1.25,1.08,ease((t-69)/3));fx=620;fy=365;}
+  return {z,dx:clamp(640-z*fx,WIDTH*(1-z),0),dy:clamp(360-z*fy,HEIGHT*(1-z),0)};
 }
 function createRenderer(assets) {
-  const canvas = createCanvas(WIDTH, HEIGHT), ctx = canvas.getContext('2d');
-  return { canvas, render(t) {
-    ctx.resetTransform(); ctx.globalAlpha = 1; ctx.fillStyle = C.paper; ctx.fillRect(0, 0, WIDTH, HEIGHT);
-    // Push in on the moving rover, hold through the cone inspection, then
-    // return to the wide field. Captions and disclosure are outside this camera.
-    const push = ease((t - 34) / 7) * (1 - ease((t - 56) / 7));
-    const focus = routeAt(progressAt(t)), z = 1.012 + .208 * push;
-    const fx = lerp(640, focus.x, push * .7), fy = lerp(365, focus.y - 37, push * .7);
-    const dx = clamp(640 - z * fx, WIDTH * (1 - z), 0);
-    const dy = clamp(365 - z * fy, HEIGHT * (1 - z), 0);
-    ctx.save(); ctx.translate(dx, dy); ctx.scale(z, z);
-    ctx.drawImage(assets.field, 0, 0, WIDTH, HEIGHT);
-    drawRoute(ctx, t); if (t >= 6 && t < 70) drawCone(ctx, t);
-    const r = routeAt(progressAt(t));
-    if (t >= 6 && t < 70) rover(ctx, assets, t, r.x, r.y, 155 + (r.y - 360) * .18);
-    if (t >= 16 && t < 25) speech(ctx, '?', r.x + 69, r.y - 151, t, windowAt(t, 16, 25));
-    if (t >= 60 && t < 70) { ctx.save(); ctx.globalAlpha = windowAt(t, 67, 70);
-      line(ctx, [[583, 307], [596, 320], [622, 290]], C.ink, 6); ctx.restore(); }
+  const canvas=createCanvas(WIDTH,HEIGHT),ctx=canvas.getContext('2d');
+  return {canvas,render(t){
+    ctx.resetTransform();ctx.globalAlpha=1;ctx.fillStyle=C.paper;ctx.fillRect(0,0,WIDTH,HEIGHT);
+    const camera=cameraAt(t);ctx.save();ctx.translate(camera.dx,camera.dy);ctx.scale(camera.z,camera.z);
+    ctx.drawImage(assets.field,0,0,WIDTH,HEIGHT);drawFloorMarks(ctx,t);
+    drawEngineer(ctx,assets.engineer,t);
+    const r=routeAt(progressAt(t));
+    if(r.y<CONE.y){drawRover(ctx,assets,t);drawCone(ctx);}else{drawCone(ctx);drawRover(ctx,assets,t);}
     ctx.restore();
-    if (t >= 6 && t < 70) { engineer(ctx, assets, t); routeNotebook(ctx, t); headings(ctx, t);
-      magnifier(ctx, assets, t); batteryCloseup(ctx, assets, t); }
-    if (t < 6 || t >= 70) titleCard(ctx, assets, t);
-    rounded(ctx, 935, 20, 315, 38, 18, '#f5f0e6e8');
-    text(ctx, '概念动画 · 非比赛实录', 1093, 39, 20, C.ink, 'center');
-    caption(ctx, t);
+    // The only typography in the picture: a quiet sign-off after 72 seconds.
+    if(t>=72.5){ctx.save();ctx.globalAlpha=ease((t-72.5)/1.1);ctx.font='19px FilmCJK';ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillStyle=C.ink;ctx.fillText('江南的机器人手记',1230,682);ctx.restore();}
     return canvas;
-  } };
+  }};
+}
+
+function contactDebug(assets,directory) {
+  if(!path.relative(ROOT,directory).startsWith('..'))throw new Error('接地debug必须在项目之外。');
+  fs.mkdirSync(directory,{recursive:true});
+  for(let cell=0;cell<4;cell++){
+    const c=createCanvas(960,620),ctx=c.getContext('2d'),ground={x:480,y:448};
+    ctx.fillStyle=C.paper;ctx.fillRect(0,0,960,620);
+    ctx.save();ctx.translate(480,410);ctx.scale(2.3,2.3);ctx.translate(-ground.x,-ground.y);
+    ctx.drawImage(assets.field,0,0,1280,720);
+    const {reg}=drawRover(ctx,assets,35,{cell,ground});
+    for(let k=0;k<2;k++){
+      const strip=reg.contacts[k].map(p=>[reg.x+p[0]*reg.scale,reg.y+p[1]*reg.scale]);
+      line(ctx,strip,k?'#e68132':'#38709c',1.2);
+      const center=[reg.x+reg.centers[k][0]*reg.scale,reg.y+reg.centers[k][1]*reg.scale];
+      line(ctx,[center,[ground.x,ground.y]],'#3a8e8a',.55);
+      ctx.fillStyle='#e68132';ctx.beginPath();ctx.arc(...center,1.4,0,Math.PI*2);ctx.fill();
+    }
+    line(ctx,[[ground.x-4,ground.y],[ground.x+4,ground.y]],'#d74744',1);
+    line(ctx,[[ground.x,ground.y-4],[ground.x,ground.y+4]],'#d74744',1);ctx.restore();
+    ctx.fillStyle=C.ink;ctx.font='20px FilmCJK';ctx.fillText(`DEBUG ONLY · source cell ${cell}`,30,35);
+    ctx.font='17px FilmCJK';ctx.fillText('蓝/橙：近/远履带实际轮底；红十字：两条接地印迹中心的中点',30,572);
+    ctx.fillText(`anchor: (${reg.anchor.map(v=>v.toFixed(2)).join(', ')}) · world: (480, 448)`,30,600);
+    fs.writeFileSync(path.join(directory,`contact-${cell}.png`),c.toBuffer('image/png'));
+  }
+  console.log(`接地debug：${directory}`);
 }
 
 function vttTime(t) {
@@ -409,7 +295,7 @@ function subtitles() { return 'WEBVTT\n\n' + CAPTIONS.map(([a, b, s, sub], i) =>
 
 // Original pentatonic score and synthesized Foley, mixed before PCM encoding.
 // No samples, recordings, copyrighted tracks, fake speech or network requests.
-function writeAudio(filename) {
+function writeAudio(filename, review = false) {
   const rate = 44100, n = rate * DURATION, samples = new Float32Array(n);
   function note(start, duration, freq, gain, bass = false) {
     const begin = Math.floor(start * rate), end = Math.min(n, Math.floor((start + duration) * rate));
@@ -422,7 +308,7 @@ function writeAudio(filename) {
   const scale = [261.6256, 293.6648, 329.6276, 391.9954, 440];
   const melody = [0, 2, 3, 2, 1, -1, 0, 4, 3, -1, 2, 1, 0, -1, 1, -1];
   for (let beat = 0; beat * .625 < DURATION - 1; beat++) {
-    const start = beat * .625 + .5, quiet = start >= 16 && start < 31 ? .65 : 1;
+    const start = beat * .625 + .5, quiet = start >= 15 && start < 29 ? .65 : 1;
     const key = melody[beat % melody.length];
     if (key >= 0) note(start, 1.55, scale[key], .055 * quiet);
     if (beat % 4 === 0) note(start, 2, [130.8128, 110, 98, 130.8128][Math.floor(beat / 4) % 4], .055 * quiet, true);
@@ -437,31 +323,34 @@ function writeAudio(filename) {
       samples[i] += ((seed / 4294967296) * 2 - 1) * gain * Math.exp(-t * 110);
     }
   }
-  for (const [a, b] of [[6.4, 15.6], [35, 37], [48, 50], [54, 57]]) {
+  for (const [a, b] of [[.2, 7.3], [31.2, 34.8]]) {
     for (let t = a; t < b; t += .21) { tick(t); tick(t + .072, .025, .022); }
   }
-  tick(30.9, .06, .12); note(31.3, .32, 392, .055); note(31.55, .5, 523.251, .05);
-  note(18, .4, 220, .028); note(18.3, .5, 196, .025);
-  for (const [a, b] of [[34, 47], [50, 67.8]]) {
+  note(29.2, .32, 392, .045); note(29.45, .5, 523.251, .04);
+
+  for (const [a, b] of RUNS) {
     for (let i = Math.floor(a * rate); i < Math.floor(b * rate); i++) {
-      const t = i / rate, envelope = Math.min(ease((t - a) / 1), ease((b - t) / 1));
-      samples[i] += .018 * envelope * (Math.sin(t * Math.PI * 2 * 84 + .9 * Math.sin(t * 4)) + .35 * Math.sin(t * Math.PI * 2 * 168));
+      const t = i / rate, envelope = Math.sqrt(clamp(speedAt(t) / 52));
+      samples[i] += .023 * envelope * (Math.sin(t * Math.PI * 2 * 84 + .9 * Math.sin(t * 4)) + .35 * Math.sin(t * Math.PI * 2 * 168));
     }
   }
-  [523.251, 659.255, 783.991].forEach((f, i) => note(67.8 + i * .16, 1.2, f, .055));
-  const wav = Buffer.alloc(44 + n * 2); wav.write('RIFF', 0); wav.writeUInt32LE(36 + n * 2, 4);
+  [523.251, 659.255, 783.991].forEach((f, i) => note(66.2 + i * .16, 1.2, f, .055));
+  const count = rate * (review ? 8 : DURATION);
+  const wav = Buffer.alloc(44 + count * 2); wav.write('RIFF', 0); wav.writeUInt32LE(36 + count * 2, 4);
   wav.write('WAVEfmt ', 8); wav.writeUInt32LE(16, 16); wav.writeUInt16LE(1, 20); wav.writeUInt16LE(1, 22);
   wav.writeUInt32LE(rate, 24); wav.writeUInt32LE(rate * 2, 28); wav.writeUInt16LE(2, 32); wav.writeUInt16LE(16, 34);
-  wav.write('data', 36); wav.writeUInt32LE(n * 2, 40);
+  wav.write('data', 36); wav.writeUInt32LE(count * 2, 40);
   let peak = 0, sum = 0;
-  for (let i = 0; i < n; i++) {
-    const t = i / rate, fade = Math.min(ease(t / 1.2), ease((DURATION - t) / 2));
-    const sample = clamp(samples[i] * fade, -.95, .95);
+  for (let i = 0; i < count; i++) {
+    const clock = i / rate, t = review ? reviewTimeAt(clock) : clock;
+    let fade = Math.min(ease(t / 1.2), ease((DURATION - t) / 2));
+    if (review) fade *= Math.min(ease(clock / .08), ease((8-clock) / .08));
+    const sample = clamp(samples[Math.floor(t * rate)] * fade, -.95, .95);
     peak = Math.max(peak, Math.abs(sample)); sum += sample * sample;
     wav.writeInt16LE(Math.round(sample * 32767), 44 + i * 2);
   }
   fs.writeFileSync(filename, wav);
-  return { seconds: DURATION, peak: +peak.toFixed(4), rms: +Math.sqrt(sum / n).toFixed(4), rate };
+  return { seconds: count / rate, peak: +peak.toFixed(4), rms: +Math.sqrt(sum / count).toFixed(4), rate };
 }
 function preview(renderer, directory) {
   const relative = path.relative(ROOT, directory);
@@ -474,20 +363,21 @@ function parseArgs(args) {
   const options = { output: path.join(ROOT, 'source/media/tuning-workshop.mp4') };
   for (let i = 0; i < args.length; i++) {
     const flag = args[i];
-    if (!['--preview-dir', '--output'].includes(flag) || !args[i + 1] || args[i + 1].startsWith('--'))
-      throw new Error('用法：node scripts/video/create-tuning-film.cjs [--preview-dir /tmp/预览目录] [--output /path/film.mp4]');
-    options[flag === '--output' ? 'output' : 'previewDir'] = path.resolve(args[++i]);
+    if (!['--preview-dir', '--motion-preview', '--debug-contact-dir', '--output'].includes(flag) || !args[i + 1] || args[i + 1].startsWith('--'))
+      throw new Error('用法：node scripts/video/create-tuning-film.cjs [--preview-dir /tmp/预览目录] [--motion-preview /tmp/motion.mp4] [--debug-contact-dir /tmp/contacts] [--output /path/film.mp4]');
+    options[flag === '--output' ? 'output' : flag === '--preview-dir' ? 'previewDir' : flag === '--debug-contact-dir' ? 'debugContactDir' : 'motionPreview'] = path.resolve(args[++i]);
   }
   if (path.extname(options.output).toLowerCase() !== '.mp4') throw new Error('--output 必须以 .mp4 结尾。');
   return options;
 }
-async function encode(renderer, audio, destination) {
+async function encode(renderer, audio, destination, review = false) {
+  const duration = review ? 8 : DURATION;
   const child = spawn('ffmpeg', ['-hide_banner', '-loglevel', 'warning', '-y',
     '-f', 'rawvideo', '-pixel_format', 'rgba', '-video_size', `${WIDTH}x${HEIGHT}`, '-framerate', String(FPS), '-i', 'pipe:0',
     '-i', audio, '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'libx264', '-preset', 'medium',
     '-b:v', '1250k', '-maxrate', '1650k', '-bufsize', '3300k', '-pix_fmt', 'yuv420p',
     '-r', String(FPS), '-g', '48', '-c:a', 'aac', '-b:a', '112k', '-ar', '44100', '-ac', '2',
-    '-t', String(DURATION), '-movflags', '+faststart', '-metadata', 'title=小胖子调车',
+    '-t', String(duration), '-movflags', '+faststart', '-metadata', 'title=机器人调试日常',
     '-metadata', 'comment=原创概念动画，非比赛实录；原创合成音乐和音效，无真人旁白。', destination], { stdio: ['pipe', 'ignore', 'pipe'] });
   let errors = '', pipeError;
   child.stderr.on('data', b => { errors = (errors + b).slice(-8000); });
@@ -499,42 +389,45 @@ async function encode(renderer, audio, destination) {
   // Observe a rejected child immediately even while we are still producing frames.
   complete.catch(() => {});
   try {
-    for (let frame = 0; frame < FPS * DURATION; frame++) {
+    for (let frame = 0; frame < FPS * duration; frame++) {
       if (pipeError || child.exitCode !== null) throw new Error(`编码输入提前关闭：${pipeError?.message || errors}`);
-      const bytes = renderer.render(frame / FPS).data();
+      const bytes = renderer.render(review ? reviewTimeAt(frame / FPS) : frame / FPS).data();
       if (!child.stdin.write(bytes)) await once(child.stdin, 'drain');
-      if (frame % (FPS * 5) === 0) console.log(`渲染 ${frame / FPS}/${DURATION} 秒`);
+      if (frame % (FPS * 5) === 0) console.log(`渲染 ${frame / FPS}/${duration} 秒`);
     }
     child.stdin.end(); await complete;
   } catch (e) { child.stdin.destroy(); child.kill('SIGTERM'); await complete.catch(() => {}); throw e; }
 }
-function inspectMovie(filename) {
+function inspectMovie(filename, seconds = DURATION) {
   const probe = spawnSync('ffprobe', ['-v', 'error', '-show_streams', '-show_format', '-of', 'json', filename], { encoding: 'utf8' });
   if (probe.status !== 0) throw new Error(`ffprobe 失败：${probe.stderr || probe.error?.message}`);
   const result = JSON.parse(probe.stdout), v = result.streams.find(s => s.codec_type === 'video'), a = result.streams.find(s => s.codec_type === 'audio');
   if (!v || !a || v.codec_name !== 'h264' || v.width !== WIDTH || v.height !== HEIGHT || v.pix_fmt !== 'yuv420p' || v.avg_frame_rate !== '24/1' ||
-      Number(v.nb_frames) !== FPS * DURATION || a.codec_name !== 'aac' || Math.abs(Number(result.format.duration) - DURATION) > .15 || Number(result.format.size) > 20 * 1024 * 1024)
+      Number(v.nb_frames) !== FPS * seconds || a.codec_name !== 'aac' || Math.abs(Number(result.format.duration) - seconds) > .15 || Number(result.format.size) > 20 * 1024 * 1024)
     throw new Error(`成片未通过规格核验：${JSON.stringify(result)}`);
   return { duration: result.format.duration, bytes: Number(result.format.size), video: `${v.codec_name} ${v.width}x${v.height} ${v.pix_fmt} ${v.avg_frame_rate}`, frames: v.nb_frames, audio: `${a.codec_name} ${a.sample_rate}Hz ${a.channels}ch` };
 }
 async function main() {
   const options = parseArgs(process.argv.slice(2)), assets = await loadAssets(), renderer = createRenderer(assets);
   console.log('素材尺寸：', Object.fromEntries(Object.entries(assets).map(([k, v]) => [k, `${(v.image || v).width}x${(v.image || v).height}`])));
-  if (options.previewDir) { preview(renderer, options.previewDir); return; }
+  if (options.previewDir) preview(renderer, options.previewDir);
+  if (options.debugContactDir) contactDebug(assets,options.debugContactDir);
+  if ((options.previewDir || options.debugContactDir) && !options.motionPreview) return;
+  const review = Boolean(options.motionPreview), output = review ? options.motionPreview : options.output;
+  if (review && !path.relative(ROOT, output).startsWith('..')) throw new Error('动作预览必须输出到项目之外的临时目录。');
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'tuning-film-'));
   try {
-    preview(renderer, path.join(temp, 'previews'));
     const wav = path.join(temp, 'original-score.wav'), movie = path.join(temp, 'film.mp4');
-    console.log('原创音轨：', writeAudio(wav));
-    await encode(renderer, wav, movie);
-    const report = inspectMovie(movie);
-    fs.mkdirSync(path.dirname(options.output), { recursive: true });
-    // Publish complete local files only after ffprobe passes; no remote deployment.
-    const staging = `${options.output}.rendering-${process.pid}`;
-    fs.copyFileSync(movie, staging); fs.renameSync(staging, options.output);
-    const vtt = options.output.replace(/\.mp4$/i, '.zh-CN.vtt'); fs.writeFileSync(vtt, subtitles());
-    console.log(JSON.stringify({ output: options.output, subtitles: vtt, ...report }, null, 2));
+    console.log('原创音轨：', writeAudio(wav, review));
+    await encode(renderer, wav, movie, review);
+    const report = inspectMovie(movie, review ? 8 : DURATION);
+    fs.mkdirSync(path.dirname(output), { recursive: true });
+    const staging = `${output}.rendering-${process.pid}`;
+    fs.copyFileSync(movie, staging); fs.renameSync(staging, output);
+    if (!review) fs.writeFileSync(output.replace(/\.mp4$/i, '.zh-CN.vtt'), subtitles());
+    console.log(JSON.stringify({ output, review, ...report }, null, 2));
   } finally { fs.rmSync(temp, { recursive: true, force: true }); }
 }
 if (require.main === module) main().catch(e => { console.error(e.message); process.exitCode = 1; });
-module.exports = { CAPTIONS, ROUTE, PREVIEW_TIMES, progressAt, routeAt, poseAt, viewAt, writeAudio, subtitles, loadAssets, createRenderer, inspectMovie };
+module.exports = { CAPTIONS, ROUTE, RUNS, CONTACTS, PREVIEW_TIMES, progressAt, routeAt, poseAt, viewAt, speedAt, cameraAt,
+  roverRegistration, contactDebug, reviewTimeAt, writeAudio, subtitles, loadAssets, createRenderer, inspectMovie };
