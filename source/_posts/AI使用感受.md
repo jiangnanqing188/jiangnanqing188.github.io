@@ -3,7 +3,7 @@ title: 从Ctrl+V工程师到让AI自己调小车，我的AI使用体验
 date: 2026-07-24
 description: 记录我从向 AI 索要答案，到让它进入代码库，再到组织机器人闭环测试的过程，以及上下文、记录、权限和实车验证带来的方法变化。
 keywords: AI编程, Codex, Gemini, ROS, TEB
-cover: /img/covers/ai-robot-tuning.webp
+cover: /img/covers/notebook/20261105/ai-feedback-loop.webp
 log_id: "006"
 log_status: archived
 categories:

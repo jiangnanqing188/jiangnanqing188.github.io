@@ -1,0 +1,946 @@
+{
+  "date": "2026-11-05",
+  "baseline": "9d5dea6",
+  "mode": "用户指定既有CPA专用Image API，直接HTTP，不是默认内置生图工具；未修改附带imagegen CLI",
+  "model_requested": "gpt-image-2.6",
+  "quality_requested": "xhigh",
+  "actual_returned_quality": "5 medium / 3 low；不声称xhigh生效",
+  "actual_model_returned": false,
+  "model_limit": "CPA接受明确的gpt-image-2.6请求并返回图像；响应未返回底层model字段，不独立证明上游具体型号或别名路由。",
+  "user_acceptance": "用户看到首张样图与medium返回说明后说「好看就行我感觉」「这个其实就可以」，接受效果优先并保留首张。其余图仍以视觉审核决定，不冒充指定质量已生效。",
+  "endpoint": "/v1/images/generations",
+  "requests_completed": 8,
+  "automatic_retries": 0,
+  "concurrency_limit": 2,
+  "transformation": "由1672x941原始PNG近等比轻裁缩小为1536x864 WebP，quality87；不重画、不合成、不修真人照片。",
+  "protected": {
+    "article": "source/_posts/睿抗：从初赛到国一.md",
+    "photo": "source/img/covers/ruikang-national-first.jpg",
+    "sha256": "ea4ddecc8155c479504be99edb254102094d69eadb4c8abd92fc7685e48c250f",
+    "body_images": "所有文章正文图片引用保持原样",
+    "old_shared_assets": "原有共享封面不覆盖，项目档案不连带改变"
+  },
+  "files": [
+    {
+      "slug": "ai-feedback-loop",
+      "article": "AI使用感受.md",
+      "theme": "AI辅助编程与实测反馈闭环",
+      "model": "gpt-image-2.6",
+      "quality": "xhigh",
+      "n": 1,
+      "size": "1536x864",
+      "output_format": "png",
+      "background": "opaque",
+      "prompt": "Create an original editorial concept illustration for a Chinese personal robotics engineering journal, not a photograph and not evidence of real hardware. Landscape 16:9, 1536x864. A coherent premium visual family: warm ivory paper (#f4efe4), deep forest ink (#214b3b), sage ceramic, natural oak, small restrained amber-orange accents (#d98a45). Tactile matte clay miniatures with cut-paper surfaces, delicate graphite construction marks and subtle paper grain; beautifully crafted rather than glossy game art. Soft believable upper-left daylight. Physically consistent scale, perspective and occlusion; every wheel, tread, desk leg and prop has a tight contact shadow directly on the same ground plane. Do not float objects or draw a detached oval shadow under them. Quiet asymmetric editorial composition, distinct silhouette, small-card legibility, approximately 20 percent breathing space. Important objects stay within the central 76 percent so normal responsive 16:9 and modest 3:2 crops remain usable. No panel borders, page layouts, web UI, dark vignette, fake screenshots, glowing sci-fi holograms, confetti, trophies, medals, flags, logos or watermarks. Absolutely no written text, letters, code, numerals, scores or labels anywhere. Any paper notes use only a few abstract line drawings, never writing. This is concept art, not a technical schematic or a claim about test results.\n\nSubject: human-directed AI-assisted robot development, not AI replacing human responsibility. A small friendly adult engineer wearing round glasses and a muted forest hoodie sits at an OPEN LAPTOP, not a desktop monitor, on a low oak workbench near the left third. The human occupies at most 18% of the image. To the right is a complete cream/forest tracked rover with a tiny amber lidar and camera, grounded on a miniature pale paper-grid test pad. Between them, an open unlettered field notebook and two small charcoal route sketches. One fine amber trail describes a restrained open feedback loop from the sketches around the rover back toward the laptop, lying flat on the tabletop rather than a floating graphic. High three-quarter overhead camera, ample clear paper at the top, confident balance of engineering craft and a real person's curiosity. Do not reproduce the composition of a giant character next to a giant rover; this cover shows the complete work surface and the feedback relationship.",
+      "api_result": {
+        "slug": "ai-feedback-loop",
+        "requested_model": "gpt-image-2.6",
+        "requested_quality": "xhigh",
+        "endpoint": "/v1/images/generations",
+        "status": 200,
+        "elapsed_seconds": 40.23,
+        "returned_model": null,
+        "created": 1793875226,
+        "width": 1672,
+        "height": 941,
+        "bytes": 2510522,
+        "sha256": "0c97d7337eb01fd002af2c8e82b69b2a031183070447ff4771073b07035338d5",
+        "response_keys": [
+          "created",
+          "background",
+          "data",
+          "output_format",
+          "quality",
+          "safety_identifier",
+          "size",
+          "usage"
+        ],
+        "image_keys": [
+          "b64_json",
+          "generation_id"
+        ],
+        "usage": {
+          "input_tokens": 485,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 485
+          },
+          "output_tokens": 1158,
+          "output_tokens_details": {
+            "image_tokens": 1158,
+            "text_tokens": 0
+          },
+          "total_tokens": 1643
+        },
+        "revised_prompt": null,
+        "returned_quality": "medium",
+        "returned_size": "1672x941",
+        "returned_background": "opaque",
+        "generation_id": "5dad98cf-5a7d-44f2-a203-a2c3f5ca0129"
+      },
+      "original": {
+        "path": "规划/UI设计/20261105-文章封面/原始图/ai-feedback-loop.png",
+        "bytes": 2510522,
+        "sha256": "0c97d7337eb01fd002af2c8e82b69b2a031183070447ff4771073b07035338d5"
+      },
+      "web": {
+        "path": "source/img/covers/notebook/20261105/ai-feedback-loop.webp",
+        "bytes": 161748,
+        "sha256": "800cf4b07901219308946ca442db65accac1d4e82b802561e492c0f83b9b35c0",
+        "width": 1536,
+        "height": 864,
+        "format": "webp"
+      },
+      "review": {
+        "visual_review": "主线程已逐张实际查看原始PNG；内容、接地与主题通过",
+        "text": "无生成文字、指标、奖项或假截图",
+        "concept": true
+      }
+    },
+    {
+      "slug": "robot-growth",
+      "article": "智能车项目经验与比赛流程.md",
+      "theme": "机器人调试中的学习与积累",
+      "model": "gpt-image-2.6",
+      "quality": "xhigh",
+      "n": 1,
+      "size": "1536x864",
+      "output_format": "png",
+      "background": "opaque",
+      "prompt": "Create an original editorial concept illustration for a Chinese personal robotics engineering journal, not a photograph and not evidence of real hardware. Landscape 16:9, 1536x864. A coherent premium visual family: warm ivory paper (#f4efe4), deep forest ink (#214b3b), sage ceramic, natural oak, small restrained amber-orange accents (#d98a45). Tactile matte clay miniatures with cut-paper surfaces, delicate graphite construction marks and subtle paper grain; beautifully crafted rather than glossy game art. Soft believable upper-left daylight. Physically consistent scale, perspective and occlusion; every wheel, tread, desk leg and prop has a tight contact shadow directly on the same ground plane. Do not float objects or draw a detached oval shadow under them. Quiet asymmetric editorial composition, distinct silhouette, small-card legibility, approximately 20 percent breathing space. Important objects stay within the central 76 percent so normal responsive 16:9 and modest 3:2 crops remain usable. No panel borders, page layouts, web UI, dark vignette, fake screenshots, glowing sci-fi holograms, confetti, trophies, medals, flags, logos or watermarks. Absolutely no written text, letters, code, numerals, scores or labels anywhere. Any paper notes use only a few abstract line drawings, never writing. This is concept art, not a technical schematic or a claim about test results.\n\nSubject: robots are improved one small, documented step at a time. An open large cream field notebook lies diagonally across an oak/paper workbench, with three modest sequential sketches of chassis, camera mounting and a route on its unlettered pages. A single finished cream/forest compact wheeled robot rests fully grounded beside the notebook at the right foreground; small real-looking screwdriver, a spare unbranded camera, two orderly circuit pieces and a worn pencil on the left suggest practical learning, not a pristine futuristic lab. A small bespectacled adult engineer in forest clothes kneels at the near-left workbench edge looking thoughtfully at the robot, not celebrating a medal. Distinct close still-life framing, low three-quarter view, gentle morning light and layered tactile paper. A short amber trace connects the three rough sketches to the one final rover. No stair-shaped mountain, no trophy, no fake dated timeline and no duplicate finished robots.",
+      "api_result": {
+        "slug": "robot-growth",
+        "requested_model": "gpt-image-2.6",
+        "requested_quality": "xhigh",
+        "endpoint": "/v1/images/generations",
+        "status": 200,
+        "elapsed_seconds": 33.71,
+        "returned_model": null,
+        "created": 1793875821,
+        "returned_quality": "low",
+        "returned_size": "1672x941",
+        "returned_background": "opaque",
+        "generation_id": "5eded472-ed5a-41a2-b3e8-a13daef65b5d",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2759981,
+        "sha256": "bd000eaff2d68615a09aa52dae6a4423670e5a7d2a4dfdebd71cd416444a5232",
+        "usage": {
+          "input_tokens": 482,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 482
+          },
+          "output_tokens": 301,
+          "output_tokens_details": {
+            "image_tokens": 301,
+            "text_tokens": 0
+          },
+          "total_tokens": 783
+        },
+        "revised_prompt": null
+      },
+      "original": {
+        "path": "规划/UI设计/20261105-文章封面/原始图/robot-growth.png",
+        "bytes": 2759981,
+        "sha256": "bd000eaff2d68615a09aa52dae6a4423670e5a7d2a4dfdebd71cd416444a5232"
+      },
+      "web": {
+        "path": "source/img/covers/notebook/20261105/robot-growth.webp",
+        "bytes": 234066,
+        "sha256": "67b10a3eb40cd5aaecaf06874f05ac1e0d35088e740dc4f32e98a5ac809ab291",
+        "width": 1536,
+        "height": 864,
+        "format": "webp"
+      },
+      "review": {
+        "visual_review": "主线程已逐张实际查看原始PNG；内容、接地与主题通过",
+        "text": "无生成文字、指标、奖项或假截图",
+        "concept": true
+      }
+    },
+    {
+      "slug": "ruikang-route-review",
+      "article": "睿抗赛94分复盘.md",
+      "theme": "路线方案与回退取舍",
+      "model": "gpt-image-2.6",
+      "quality": "xhigh",
+      "n": 1,
+      "size": "1536x864",
+      "output_format": "png",
+      "background": "opaque",
+      "prompt": "Create an original editorial concept illustration for a Chinese personal robotics engineering journal, not a photograph and not evidence of real hardware. Landscape 16:9, 1536x864. A coherent premium visual family: warm ivory paper (#f4efe4), deep forest ink (#214b3b), sage ceramic, natural oak, small restrained amber-orange accents (#d98a45). Tactile matte clay miniatures with cut-paper surfaces, delicate graphite construction marks and subtle paper grain; beautifully crafted rather than glossy game art. Soft believable upper-left daylight. Physically consistent scale, perspective and occlusion; every wheel, tread, desk leg and prop has a tight contact shadow directly on the same ground plane. Do not float objects or draw a detached oval shadow under them. Quiet asymmetric editorial composition, distinct silhouette, small-card legibility, approximately 20 percent breathing space. Important objects stay within the central 76 percent so normal responsive 16:9 and modest 3:2 crops remain usable. No panel borders, page layouts, web UI, dark vignette, fake screenshots, glowing sci-fi holograms, confetti, trophies, medals, flags, logos or watermarks. Absolutely no written text, letters, code, numerals, scores or labels anywhere. Any paper notes use only a few abstract line drawings, never writing. This is concept art, not a technical schematic or a claim about test results.\n\nSubject: choosing a trustworthy robot route after comparing candidate paths. A generous overhead oblique view of a small paper-and-sage obstacle-course study sitting on a worktable. One complete cream and forest tracked rover with camera and amber lidar near center-right, treads firmly pressed to the grid paper. The obstacle studies are a low short barrier, a narrow passage and a small neutral block, not a reproduction of a real competition field. A crisp restrained amber path with six small circular checkpoints forms the selected route; one graphite-gray abandoned alternative meanders to a dead end and is quietly rubbed out with pencil texture. A folded route draft with two tiny route thumbnails and a wooden pencil at lower-left, no computer and no human. The chosen route must be visible as a simple single line with no impossible crossing through walls. Make the image feel like considered route review and rollback, not speed racing, victory, fabricated score or a CAD evidence diagram.",
+      "api_result": {
+        "slug": "ruikang-route-review",
+        "requested_model": "gpt-image-2.6",
+        "requested_quality": "xhigh",
+        "endpoint": "/v1/images/generations",
+        "status": 200,
+        "elapsed_seconds": 33.7,
+        "returned_model": null,
+        "created": 1793875820,
+        "returned_quality": "medium",
+        "returned_size": "1672x941",
+        "returned_background": "opaque",
+        "generation_id": "50899e3d-4dc0-40ca-b2ea-a2240031b6df",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2846884,
+        "sha256": "da5ae7763bf381bd6ebe5c1306aab9f86b1d4377b0bcb234af51010d2a6fe3c5",
+        "usage": {
+          "input_tokens": 480,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 480
+          },
+          "output_tokens": 515,
+          "output_tokens_details": {
+            "image_tokens": 515,
+            "text_tokens": 0
+          },
+          "total_tokens": 995
+        },
+        "revised_prompt": null
+      },
+      "original": {
+        "path": "规划/UI设计/20261105-文章封面/原始图/ruikang-route-review.png",
+        "bytes": 2846884,
+        "sha256": "da5ae7763bf381bd6ebe5c1306aab9f86b1d4377b0bcb234af51010d2a6fe3c5"
+      },
+      "web": {
+        "path": "source/img/covers/notebook/20261105/ruikang-route-review.webp",
+        "bytes": 217054,
+        "sha256": "db9e7d4caf9789e7ccc488a326d4996c9e839c39e5cf49ffa1812875238478a9",
+        "width": 1536,
+        "height": 864,
+        "format": "webp"
+      },
+      "review": {
+        "visual_review": "主线程已逐张实际查看原始PNG；内容、接地与主题通过",
+        "text": "无生成文字、指标、奖项或假截图",
+        "concept": true
+      }
+    },
+    {
+      "slug": "ruikang-vision-studies",
+      "article": "睿抗赛四套视觉方案.md",
+      "theme": "四类视觉候选研究",
+      "model": "gpt-image-2.6",
+      "quality": "xhigh",
+      "n": 1,
+      "size": "1536x864",
+      "output_format": "png",
+      "background": "opaque",
+      "prompt": "Create an original editorial concept illustration for a Chinese personal robotics engineering journal, not a photograph and not evidence of real hardware. Landscape 16:9, 1536x864. A coherent premium visual family: warm ivory paper (#f4efe4), deep forest ink (#214b3b), sage ceramic, natural oak, small restrained amber-orange accents (#d98a45). Tactile matte clay miniatures with cut-paper surfaces, delicate graphite construction marks and subtle paper grain; beautifully crafted rather than glossy game art. Soft believable upper-left daylight. Physically consistent scale, perspective and occlusion; every wheel, tread, desk leg and prop has a tight contact shadow directly on the same ground plane. Do not float objects or draw a detached oval shadow under them. Quiet asymmetric editorial composition, distinct silhouette, small-card legibility, approximately 20 percent breathing space. Important objects stay within the central 76 percent so normal responsive 16:9 and modest 3:2 crops remain usable. No panel borders, page layouts, web UI, dark vignette, fake screenshots, glowing sci-fi holograms, confetti, trophies, medals, flags, logos or watermarks. Absolutely no written text, letters, code, numerals, scores or labels anywhere. Any paper notes use only a few abstract line drawings, never writing. This is concept art, not a technical schematic or a claim about test results.\n\nSubject: four perception studies for a mobile robot. A coherent tactile tabletop still life, NOT a four-panel infographic and NOT screen UI. At center, a cream-and-forest tracked rover seen three-quarter front with a small binocular camera and amber lidar, complete grounded treads. Around it, exactly four small cream paper study cards arranged in a loose fan on sage graph paper: a tiny neutral human-shaped wooden target in one card; a pair of tiny orange cones in another; one low dark round practice target in another; and a single ochre-yellow boundary stripe in the fourth. Each card uses simple miniature/pencil object studies with a thin graphite bounding rectangle or scan-ray sketch, no text and no numeric detections. A separate small unbranded camera lens at the front corner provides a strong foreground accent. Soft chalky sage surroundings and a clear diagonal composition. The image says different perception candidates being compared; do not show a triumphant all-in-one vision system, fake detection screenshots, performance charts or invented data.",
+      "api_result": {
+        "slug": "ruikang-vision-studies",
+        "requested_model": "gpt-image-2.6",
+        "requested_quality": "xhigh",
+        "endpoint": "/v1/images/generations",
+        "status": 200,
+        "elapsed_seconds": 33.9,
+        "returned_model": null,
+        "created": 1793875855,
+        "returned_quality": "low",
+        "returned_size": "1672x941",
+        "returned_background": "opaque",
+        "generation_id": "d50e6188-41cc-429f-ab77-ba0f8608b77c",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2790676,
+        "sha256": "424543bb290f1bd974e321e64ad2160f69e240a92868587927ae02d98c34f533",
+        "usage": {
+          "input_tokens": 497,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 497
+          },
+          "output_tokens": 301,
+          "output_tokens_details": {
+            "image_tokens": 301,
+            "text_tokens": 0
+          },
+          "total_tokens": 798
+        },
+        "revised_prompt": null
+      },
+      "original": {
+        "path": "规划/UI设计/20261105-文章封面/原始图/ruikang-vision-studies.png",
+        "bytes": 2790676,
+        "sha256": "424543bb290f1bd974e321e64ad2160f69e240a92868587927ae02d98c34f533"
+      },
+      "web": {
+        "path": "source/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+        "bytes": 217852,
+        "sha256": "0c50fe200c41f3bcebc1dc31f69b9266cf388fe7200d46b4c60c24b586d99f34",
+        "width": 1536,
+        "height": 864,
+        "format": "webp"
+      },
+      "review": {
+        "visual_review": "主线程已逐张实际查看原始PNG；内容、接地与主题通过",
+        "text": "无生成文字、指标、奖项或假截图",
+        "concept": true
+      }
+    },
+    {
+      "slug": "pharmacy-dual-robots",
+      "article": "智慧药房机器人比赛参赛复盘.md",
+      "theme": "双车导航与识别联调",
+      "model": "gpt-image-2.6",
+      "quality": "xhigh",
+      "n": 1,
+      "size": "1536x864",
+      "output_format": "png",
+      "background": "opaque",
+      "prompt": "Create an original editorial concept illustration for a Chinese personal robotics engineering journal, not a photograph and not evidence of real hardware. Landscape 16:9, 1536x864. A coherent premium visual family: warm ivory paper (#f4efe4), deep forest ink (#214b3b), sage ceramic, natural oak, small restrained amber-orange accents (#d98a45). Tactile matte clay miniatures with cut-paper surfaces, delicate graphite construction marks and subtle paper grain; beautifully crafted rather than glossy game art. Soft believable upper-left daylight. Physically consistent scale, perspective and occlusion; every wheel, tread, desk leg and prop has a tight contact shadow directly on the same ground plane. Do not float objects or draw a detached oval shadow under them. Quiet asymmetric editorial composition, distinct silhouette, small-card legibility, approximately 20 percent breathing space. Important objects stay within the central 76 percent so normal responsive 16:9 and modest 3:2 crops remain usable. No panel borders, page layouts, web UI, dark vignette, fake screenshots, glowing sci-fi holograms, confetti, trophies, medals, flags, logos or watermarks. Absolutely no written text, letters, code, numerals, scores or labels anywhere. Any paper notes use only a few abstract line drawings, never writing. This is concept art, not a technical schematic or a claim about test results.\n\nSubject: coordinated two-robot pharmacy delivery test. Exactly two small ivory/sage WHEELED delivery robots with compact cylindrical wheel bases, simple tray tops carrying a few closed neutral sample tubes and small front cameras. Not tank treads, no medical logos or readable labels. Show them at two distinct grounded positions on one clean miniature paper-grid clinic-style delivery course: one near a simple oak pickup bay and the other paused near a sage partition turn. Two fine non-crossing floor route traces, forest-green for one and amber for the other, visibly remain isolated before a quiet handoff region. A few blank standing recognition placards and understated supply cubbies express OCR/route tasks without writing. No people, no hospital emergency equipment, no crowds. A restrained wide cinematic three-quarter composition with the two robots as equal subjects, contact shadows and realistic floor relationships; the course is an original conceptual model, not a claimed competition-floor reconstruction.",
+      "api_result": {
+        "slug": "pharmacy-dual-robots",
+        "requested_model": "gpt-image-2.6",
+        "requested_quality": "xhigh",
+        "endpoint": "/v1/images/generations",
+        "status": 200,
+        "elapsed_seconds": 28.7,
+        "returned_model": null,
+        "created": 1793875850,
+        "returned_quality": "low",
+        "returned_size": "1672x941",
+        "returned_background": "opaque",
+        "generation_id": "c7b57156-fe64-4fbb-b5a2-76bf0bc3d59e",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2348551,
+        "sha256": "c204828078ef157db01757d69f5f4de639a4658694a0f80bb5062cd1e3c93917",
+        "usage": {
+          "input_tokens": 480,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 480
+          },
+          "output_tokens": 301,
+          "output_tokens_details": {
+            "image_tokens": 301,
+            "text_tokens": 0
+          },
+          "total_tokens": 781
+        },
+        "revised_prompt": null
+      },
+      "original": {
+        "path": "规划/UI设计/20261105-文章封面/原始图/pharmacy-dual-robots.png",
+        "bytes": 2348551,
+        "sha256": "c204828078ef157db01757d69f5f4de639a4658694a0f80bb5062cd1e3c93917"
+      },
+      "web": {
+        "path": "source/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+        "bytes": 136648,
+        "sha256": "b586925b1febf6b14386832de2a4043dd65ec4eed9ce58fca2391d2e0ec3d443",
+        "width": 1536,
+        "height": 864,
+        "format": "webp"
+      },
+      "review": {
+        "visual_review": "主线程已逐张实际查看原始PNG；内容、接地与主题通过",
+        "text": "无生成文字、指标、奖项或假截图",
+        "concept": true
+      }
+    },
+    {
+      "slug": "pharmacy-workflow",
+      "article": "国三之后我把智慧药房比赛做成了一套工作流.md",
+      "theme": "验证门禁与可重复工作流",
+      "model": "gpt-image-2.6",
+      "quality": "xhigh",
+      "n": 1,
+      "size": "1536x864",
+      "output_format": "png",
+      "background": "opaque",
+      "prompt": "Create an original editorial concept illustration for a Chinese personal robotics engineering journal, not a photograph and not evidence of real hardware. Landscape 16:9, 1536x864. A coherent premium visual family: warm ivory paper (#f4efe4), deep forest ink (#214b3b), sage ceramic, natural oak, small restrained amber-orange accents (#d98a45). Tactile matte clay miniatures with cut-paper surfaces, delicate graphite construction marks and subtle paper grain; beautifully crafted rather than glossy game art. Soft believable upper-left daylight. Physically consistent scale, perspective and occlusion; every wheel, tread, desk leg and prop has a tight contact shadow directly on the same ground plane. Do not float objects or draw a detached oval shadow under them. Quiet asymmetric editorial composition, distinct silhouette, small-card legibility, approximately 20 percent breathing space. Important objects stay within the central 76 percent so normal responsive 16:9 and modest 3:2 crops remain usable. No panel borders, page layouts, web UI, dark vignette, fake screenshots, glowing sci-fi holograms, confetti, trophies, medals, flags, logos or watermarks. Absolutely no written text, letters, code, numerals, scores or labels anywhere. Any paper notes use only a few abstract line drawings, never writing. This is concept art, not a technical schematic or a claim about test results.\n\nSubject: making a repeatable engineering workflow instead of chasing top speed. An overhead editorial still life of a large OPEN engineering notebook on a warm oak desk, with a single simple graphite process route passing through four physical paper checkpoint tabs, a little amber lamp at an unfinished gate and a muted sage lamp beside a completed check symbol. All lamps are tiny tactile objects, not glowing digital UI. Each tab has only one abstract shape/sketch, absolutely no words or numbers. Two small cream-and-forest wheeled delivery robots are parked, grounded, at the far-right edge of the notebook and nearby grid pad; they are supporting context, not racing. A pencil, a small binder clip joining two revision sheets and neatly coiled cable suggest version baseline, records and deliberate checks. Warm precise desk-view composition distinct from the pharmacy course cover. No speedometer, performance plot, scoreboard, fake test log, giant checkmark badge, floating rectangles or literal dashboard.",
+      "api_result": {
+        "slug": "pharmacy-workflow",
+        "requested_model": "gpt-image-2.6",
+        "requested_quality": "xhigh",
+        "endpoint": "/v1/images/generations",
+        "status": 200,
+        "elapsed_seconds": 44.79,
+        "returned_model": null,
+        "created": 1793875894,
+        "returned_quality": "medium",
+        "returned_size": "1672x941",
+        "returned_background": "opaque",
+        "generation_id": "e171faaf-e183-49c3-acd3-301baef0a708",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2943978,
+        "sha256": "5e18e873c60f076534e8808d07e3f7edffed175a78bd97ad0201de2befaac0f6",
+        "usage": {
+          "input_tokens": 483,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 483
+          },
+          "output_tokens": 1158,
+          "output_tokens_details": {
+            "image_tokens": 1158,
+            "text_tokens": 0
+          },
+          "total_tokens": 1641
+        },
+        "revised_prompt": null
+      },
+      "original": {
+        "path": "规划/UI设计/20261105-文章封面/原始图/pharmacy-workflow.png",
+        "bytes": 2943978,
+        "sha256": "5e18e873c60f076534e8808d07e3f7edffed175a78bd97ad0201de2befaac0f6"
+      },
+      "web": {
+        "path": "source/img/covers/notebook/20261105/pharmacy-workflow.webp",
+        "bytes": 251284,
+        "sha256": "1c6446017ad50db8a548e921b74bdb43ea48e16fe04beb13009699527025722c",
+        "width": 1536,
+        "height": 864,
+        "format": "webp"
+      },
+      "review": {
+        "visual_review": "主线程已逐张实际查看原始PNG；内容、接地与主题通过",
+        "text": "无生成文字、指标、奖项或假截图",
+        "concept": true
+      }
+    },
+    {
+      "slug": "yolov5-pollination",
+      "article": "YOLOv5模型训练.md",
+      "theme": "授粉视觉的数据到部署",
+      "model": "gpt-image-2.6",
+      "quality": "xhigh",
+      "n": 1,
+      "size": "1536x864",
+      "output_format": "png",
+      "background": "opaque",
+      "prompt": "Create an original editorial concept illustration for a Chinese personal robotics engineering journal, not a photograph and not evidence of real hardware. Landscape 16:9, 1536x864. A coherent premium visual family: warm ivory paper (#f4efe4), deep forest ink (#214b3b), sage ceramic, natural oak, small restrained amber-orange accents (#d98a45). Tactile matte clay miniatures with cut-paper surfaces, delicate graphite construction marks and subtle paper grain; beautifully crafted rather than glossy game art. Soft believable upper-left daylight. Physically consistent scale, perspective and occlusion; every wheel, tread, desk leg and prop has a tight contact shadow directly on the same ground plane. Do not float objects or draw a detached oval shadow under them. Quiet asymmetric editorial composition, distinct silhouette, small-card legibility, approximately 20 percent breathing space. Important objects stay within the central 76 percent so normal responsive 16:9 and modest 3:2 crops remain usable. No panel borders, page layouts, web UI, dark vignette, fake screenshots, glowing sci-fi holograms, confetti, trophies, medals, flags, logos or watermarks. Absolutely no written text, letters, code, numerals, scores or labels anywhere. Any paper notes use only a few abstract line drawings, never writing. This is concept art, not a technical schematic or a claim about test results.\n\nSubject: computer vision training serving an agricultural pollination task. A tactile miniature green plant study with several small pale blossoms and yellow pollen centers, on a warm ivory paper table. A cream/sage compact agricultural robot with a small CAMERA facing the blossoms rests firmly on the tabletop at right, wheels fully visible and grounded. At left, exactly three gently overlapping paper image-sample cards show close botanical crops of the SAME type of blossom, with a few fine sage rectangular annotation outlines around blossoms, no text, labels, confidence scores or chart axes. One small unbranded laptop partly visible at the far-back corner, not a dominant desktop monitor. Compose a clear visual transition from sample cards to camera to real blossom, using quiet graphite links rather than arrows everywhere. The green and botanical texture should make this cover recognizably different within the same ivory/forest visual family. No humanoid robot, fake model training curves, real software screenshot, giant neural-network icon or claims about accuracy.",
+      "api_result": {
+        "slug": "yolov5-pollination",
+        "requested_model": "gpt-image-2.6",
+        "requested_quality": "xhigh",
+        "endpoint": "/v1/images/generations",
+        "status": 200,
+        "elapsed_seconds": 32.53,
+        "returned_model": null,
+        "created": 1793875888,
+        "returned_quality": "medium",
+        "returned_size": "1672x941",
+        "returned_background": "opaque",
+        "generation_id": "e485804a-9b1a-41e3-b641-c25db637bb3a",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2457202,
+        "sha256": "5b4e63350b415b32f0c5dfd9f4de6c84b693fef4a141c2acccc2429417ad7667",
+        "usage": {
+          "input_tokens": 489,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 489
+          },
+          "output_tokens": 515,
+          "output_tokens_details": {
+            "image_tokens": 515,
+            "text_tokens": 0
+          },
+          "total_tokens": 1004
+        },
+        "revised_prompt": null
+      },
+      "original": {
+        "path": "规划/UI设计/20261105-文章封面/原始图/yolov5-pollination.png",
+        "bytes": 2457202,
+        "sha256": "5b4e63350b415b32f0c5dfd9f4de6c84b693fef4a141c2acccc2429417ad7667"
+      },
+      "web": {
+        "path": "source/img/covers/notebook/20261105/yolov5-pollination.webp",
+        "bytes": 172524,
+        "sha256": "d40890c1a7c714bc4a95c9f9f1a7207b9b7b5a6f94f922249ca3ab79b564a5a6",
+        "width": 1536,
+        "height": 864,
+        "format": "webp"
+      },
+      "review": {
+        "visual_review": "主线程已逐张实际查看原始PNG；内容、接地与主题通过",
+        "text": "无生成文字、指标、奖项或假截图",
+        "concept": true
+      }
+    },
+    {
+      "slug": "iscc-secure-factory",
+      "article": "ISCC微型工厂模拟赛道经验分享.md",
+      "theme": "微型工厂通信与控制按钮",
+      "model": "gpt-image-2.6",
+      "quality": "xhigh",
+      "n": 1,
+      "size": "1536x864",
+      "output_format": "png",
+      "background": "opaque",
+      "prompt": "Create an original editorial concept illustration for a Chinese personal robotics engineering journal, not a photograph and not evidence of real hardware. Landscape 16:9, 1536x864. A coherent premium visual family: warm ivory paper (#f4efe4), deep forest ink (#214b3b), sage ceramic, natural oak, small restrained amber-orange accents (#d98a45). Tactile matte clay miniatures with cut-paper surfaces, delicate graphite construction marks and subtle paper grain; beautifully crafted rather than glossy game art. Soft believable upper-left daylight. Physically consistent scale, perspective and occlusion; every wheel, tread, desk leg and prop has a tight contact shadow directly on the same ground plane. Do not float objects or draw a detached oval shadow under them. Quiet asymmetric editorial composition, distinct silhouette, small-card legibility, approximately 20 percent breathing space. Important objects stay within the central 76 percent so normal responsive 16:9 and modest 3:2 crops remain usable. No panel borders, page layouts, web UI, dark vignette, fake screenshots, glowing sci-fi holograms, confetti, trophies, medals, flags, logos or watermarks. Absolutely no written text, letters, code, numerals, scores or labels anywhere. Any paper notes use only a few abstract line drawings, never writing. This is concept art, not a technical schematic or a claim about test results.\n\nSubject: miniature factory integration with communication security and HMI start/stop buttons. A small tactile four-station conveyor arrangement on a cream grid-paper base, with restrained sage machine blocks, natural oak pallets and a few amber workpieces; not a giant industrial plant. At the front-left, a modest unbranded PLC-style gray-green terminal cabinet with only tiny blank ports, and a very simple HMI panel with exactly two physical round controls, one muted green and one terracotta, no touchscreen text. In the foreground two small neutral inline network gateways connected by tidy paired cables form the secured communication link; a small closed metal clasp joining the two cables provides a subtle security metaphor, not a giant lock or shield. All components are resting on one tabletop with tight consistent contact shadows. High three-quarter editorial still life, rich but orderly composition, no people or robot mascot. No wiring diagram claims, readable IP addresses, company logos, fake software UI or invented PLC ladder code.",
+      "api_result": {
+        "slug": "iscc-secure-factory",
+        "requested_model": "gpt-image-2.6",
+        "requested_quality": "xhigh",
+        "endpoint": "/v1/images/generations",
+        "status": 200,
+        "elapsed_seconds": 36.33,
+        "returned_model": null,
+        "created": 1793875924,
+        "returned_quality": "medium",
+        "returned_size": "1672x941",
+        "returned_background": "opaque",
+        "generation_id": "1513d555-d7e0-4bee-a65c-84fbd1342da7",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2694731,
+        "sha256": "38cf174f17537c956b275669f317f0c62bd892a42fd18068fd2073ce839a3d33",
+        "usage": {
+          "input_tokens": 488,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 488
+          },
+          "output_tokens": 515,
+          "output_tokens_details": {
+            "image_tokens": 515,
+            "text_tokens": 0
+          },
+          "total_tokens": 1003
+        },
+        "revised_prompt": null
+      },
+      "original": {
+        "path": "规划/UI设计/20261105-文章封面/原始图/iscc-secure-factory.png",
+        "bytes": 2694731,
+        "sha256": "38cf174f17537c956b275669f317f0c62bd892a42fd18068fd2073ce839a3d33"
+      },
+      "web": {
+        "path": "source/img/covers/notebook/20261105/iscc-secure-factory.webp",
+        "bytes": 194926,
+        "sha256": "4a73c0bf5c75ab8719c6ee73713e36721ab335177e16e07983e9c2b1f936eb9a",
+        "width": 1536,
+        "height": 864,
+        "format": "webp"
+      },
+      "review": {
+        "visual_review": "主线程已逐张实际查看原始PNG；内容、接地与主题通过",
+        "text": "无生成文字、指标、奖项或假截图",
+        "concept": true
+      }
+    }
+  ],
+  "verification": {
+    "clean_build": "npm run clean && TZ=Asia/Shanghai npm run build: passed; 113 files",
+    "check_site": {
+      "result": "passed",
+      "pages": 63,
+      "local_references": 2455
+    },
+    "check_reading": "passed",
+    "check_ui_redesign": {
+      "result": "passed",
+      "groups": 9
+    },
+    "check_article_covers": "passed; 8 exact 1536x864 WebP files; only specified cover lines differ from 9d5dea6; body/other frontmatter and protected photo/article unchanged",
+    "check_tuning_video": "passed; existing media unchanged, 75s/720p24/H264/AAC/faststart/7 sound cues",
+    "motion_1800_frames": "not rerun; renderer and video unchanged",
+    "visual_scope": "主线程逐张查看8个原始PNG，查看排版总览和代表性实际页面截图；9篇桌面页面均读取真实DOM核对封面/分享元数据。",
+    "browser": {
+      "articles": [
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 213.59375
+          },
+          "credit": "封面为 AI 概念插画，用于主题表达",
+          "image": "/img/covers/notebook/20261105/robot-growth.webp",
+          "loaded": true,
+          "natural": [
+            1536,
+            864
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/robot-growth.webp",
+          "overflow": false,
+          "title": "机器人是一点一点调出来的",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 200.6484375
+          },
+          "credit": "封面为 AI 概念插画，用于主题表达",
+          "image": "/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+          "loaded": true,
+          "natural": [
+            1536,
+            864
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+          "overflow": false,
+          "title": "睿抗赛里，我给机器人做了四套视觉方案",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 213.59375
+          },
+          "credit": "封面为 AI 概念插画，用于主题表达",
+          "image": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+          "loaded": true,
+          "natural": [
+            1536,
+            864
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+          "overflow": false,
+          "title": "从单车调试到双车联调，智慧药房机器人比赛复盘",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 200.6484375
+          },
+          "credit": "封面为 AI 概念插画，用于主题表达",
+          "image": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+          "loaded": true,
+          "natural": [
+            1536,
+            864
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/yolov5-pollination.webp",
+          "overflow": false,
+          "title": "智能车日记：YOLOv5 模型训练",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 230.40625
+          },
+          "credit": "封面为 AI 概念插画，用于主题表达",
+          "image": "/img/covers/notebook/20261105/ai-feedback-loop.webp",
+          "loaded": true,
+          "natural": [
+            1536,
+            864
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/ai-feedback-loop.webp",
+          "overflow": false,
+          "title": "从Ctrl+V工程师到让AI自己调小车，我的AI使用体验",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 230.40625
+          },
+          "credit": "封面为 AI 概念插画，用于主题表达",
+          "image": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+          "loaded": true,
+          "natural": [
+            1536,
+            864
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/ruikang-route-review.webp",
+          "overflow": false,
+          "title": "睿抗赛94分复盘：从点5绕行79秒，到赛前测试的那次求助",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 243.3515625
+          },
+          "credit": "封面为 AI 概念插画，用于主题表达",
+          "image": "/img/covers/notebook/20261105/pharmacy-workflow.webp",
+          "loaded": true,
+          "natural": [
+            1536,
+            864
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/pharmacy-workflow.webp",
+          "overflow": false,
+          "title": "国三之后，我没有继续调速度，而是把智慧药房比赛做成了一套工作流",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 200.6484375
+          },
+          "credit": "封面为 AI 概念插画，用于主题表达",
+          "image": "/img/covers/notebook/20261105/iscc-secure-factory.webp",
+          "loaded": true,
+          "natural": [
+            1536,
+            864
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/iscc-secure-factory.webp",
+          "overflow": false,
+          "title": "ISCC 竞赛：模拟微型工厂赛道经验分享",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "desktop-light",
+          "bounds": {
+            "height": 146.25,
+            "width": 260,
+            "x": 957,
+            "y": 184.4765625
+          },
+          "credit": null,
+          "image": "/img/covers/ruikang-national-first.jpg",
+          "loaded": true,
+          "natural": [
+            1706,
+            1279
+          ],
+          "og": "https://jiangnanqing188.github.io/img/covers/ruikang-national-first.jpg",
+          "overflow": false,
+          "title": "睿抗：从初赛到国一",
+          "viewport": [
+            1280,
+            900
+          ]
+        },
+        {
+          "mode": "mobile-light",
+          "display": "none",
+          "image": "/img/covers/notebook/20261105/ai-feedback-loop.webp",
+          "loaded": true,
+          "overflow": false,
+          "title": "从Ctrl+V工程师到让AI自己调小车，我的AI使用体验",
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        {
+          "mode": "mobile-light",
+          "display": "none",
+          "image": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+          "loaded": true,
+          "overflow": false,
+          "title": "智能车日记：YOLOv5 模型训练",
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        {
+          "mode": "mobile-light",
+          "display": "none",
+          "image": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+          "loaded": true,
+          "overflow": false,
+          "title": "从单车调试到双车联调，智慧药房机器人比赛复盘",
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        {
+          "mode": "mobile-light",
+          "display": "none",
+          "image": "/img/covers/ruikang-national-first.jpg",
+          "loaded": true,
+          "overflow": false,
+          "title": "睿抗：从初赛到国一",
+          "viewport": [
+            390,
+            844
+          ]
+        }
+      ],
+      "archiveMobile": {
+        "overflow": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "visibleCovers": [
+          {
+            "display": "block",
+            "height": 864,
+            "loaded": true,
+            "src": "/img/covers/notebook/20261105/robot-growth.webp",
+            "width": 1536
+          },
+          {
+            "display": "block",
+            "height": 1279,
+            "loaded": true,
+            "src": "/img/covers/ruikang-national-first.jpg",
+            "width": 1706
+          },
+          {
+            "display": "block",
+            "height": 864,
+            "loaded": true,
+            "src": "/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+            "width": 1536
+          },
+          {
+            "display": "block",
+            "height": 864,
+            "loaded": true,
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536
+          },
+          {
+            "display": "block",
+            "height": 864,
+            "loaded": true,
+            "src": "/img/covers/notebook/20261105/pharmacy-workflow.webp",
+            "width": 1536
+          },
+          {
+            "display": "block",
+            "height": 864,
+            "loaded": true,
+            "src": "/img/covers/notebook/20261105/ai-feedback-loop.webp",
+            "width": 1536
+          },
+          {
+            "display": "block",
+            "height": 864,
+            "loaded": true,
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536
+          },
+          {
+            "display": "block",
+            "height": 864,
+            "loaded": true,
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536
+          },
+          {
+            "display": "block",
+            "height": 864,
+            "loaded": true,
+            "src": "/img/covers/notebook/20261105/iscc-secure-factory.webp",
+            "width": 1536
+          }
+        ]
+      },
+      "notes": "手机文章页沿用基线既有规则：隐藏标题旁封面，列表缩略图正常显示；非本轮回归，未擅自重做布局。",
+      "physicalMobile": false,
+      "laya": {
+        "used": true,
+        "handle": "header-6",
+        "confidence": 1,
+        "model": "ichenney/laya-browser-v32b"
+      }
+    },
+    "physical_mobile": false,
+    "publishing": "not pushed or deployed"
+  },
+  "qa_files": [
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/archives-desktop.png",
+      "bytes": 319558,
+      "sha256": "db534a71df35d5b152b4cac877c493d20c3d947b664ea52a33d94fe15a8607d8"
+    },
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/archives-mobile-dark.png",
+      "bytes": 34173,
+      "sha256": "220b5d5300a7fd226cc16ebb1258e0496544b2f4dee3e8c5d0e8d9db9336d97b"
+    },
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/archives-mobile.png",
+      "bytes": 202645,
+      "sha256": "edc8cf6c54c409ce23f365036c3f82a03f7ffb191c76130c0dda7a7d0b1b9296"
+    },
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/pharmacy-dual-robots-desktop.png",
+      "bytes": 91598,
+      "sha256": "70d3dfd9461131d6532d391955fe408a6f52285711190a50a7c31a3fe8ca5b22"
+    },
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/robot-growth-desktop.png",
+      "bytes": 103935,
+      "sha256": "4a0b3b23e68b947e000fd4dfa23a7a66ac99a219d7084f4ed164a8690d4fba92"
+    },
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/ruikang-national-first-desktop.png",
+      "bytes": 85778,
+      "sha256": "4f6457f946b2b18f23862d4a7b129f49568826953c4f3234f1ae91a508388aa1"
+    },
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/vision-desktop-dark.png",
+      "bytes": 86587,
+      "sha256": "1378a15364efd761b0de3bf782983f80cddc2f31b4409335bc99afc3976d9e9e"
+    },
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/vision-mobile-dark.png",
+      "bytes": 39661,
+      "sha256": "83aab7e23d8596c47ccd88d3d47682d679673feecd48cd738b4bdd2c74308dd7"
+    },
+    {
+      "path": "规划/UI设计/20261105-文章封面/验收截图/yolov5-mobile.png",
+      "bytes": 37679,
+      "sha256": "54cb5f5068afc057ef18d1c06ab54d86a9193adaf197b451c5634b2bfa22daba"
+    }
+  ],
+  "overview": {
+    "path": "规划/UI设计/20261105-文章封面/封面总览.jpg",
+    "bytes": 480333,
+    "sha256": "d42d831579f9e03d4021c1a84b6cfdca4fd19110b8613c4353a3894712b5d632",
+    "method": "非破坏性排列已生成封面并加中文主题标题，仅供审查，未重画源图"
+  }
+}

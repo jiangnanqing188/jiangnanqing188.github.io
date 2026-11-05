@@ -3,7 +3,7 @@ title: 智能车日记：YOLOv5 模型训练
 date: 2026-01-29 10:00:00
 description: 作为智慧农业智能车项目的视觉部分，记录 YOLOv5 从实车数据采集与清洗、数据标注到模型训练和部署的问题与经验。
 keywords: YOLOv5, 计算机视觉, 智慧农业, 智能车, 数据采集, 数据清洗, 模型训练
-cover: /img/covers/yolov5-vision.webp
+cover: /img/covers/notebook/20261105/yolov5-pollination.webp
 log_id: "003"
 log_status: pending
 log_system: Anaconda / PyTorch / YOLOv5

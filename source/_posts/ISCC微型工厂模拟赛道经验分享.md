@@ -3,7 +3,7 @@ title: ISCC 竞赛：模拟微型工厂赛道经验分享
 date: 2026-01-28 14:04:02
 description: 复盘 ISCC 模拟微型工厂赛道中 3 人团队的限时协作，以及我负责的通信加密和 HMI 按钮制作。
 keywords: ISCC, PLC, HMI, 工业控制, 比赛复盘
-cover: /img/covers/iscc-plc.png
+cover: /img/covers/notebook/20261105/iscc-secure-factory.webp
 log_id: "002"
 log_status: completed
 log_system: TIA Portal V16 / PLC / HMI
