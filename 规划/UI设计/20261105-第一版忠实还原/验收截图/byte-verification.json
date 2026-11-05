@@ -1,0 +1,1106 @@
+{
+  "started": "2026-11-05T20:28:56.305992+00:00",
+  "base": "https://jiangnanqing188.github.io/",
+  "release": "7ee653692bf4abebec41274abe111fe1a2c6f30c",
+  "files": [
+    {
+      "path": "2026/01/28/ISCC微型工厂模拟赛道经验分享/index.html",
+      "status": 200,
+      "bytes": 27706,
+      "sha256": "dc0c3c28a1542b4d0ea20309bbcf5d3df6511e831565c6565ae7b02d3f470280",
+      "expected": "dc0c3c28a1542b4d0ea20309bbcf5d3df6511e831565c6565ae7b02d3f470280",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/01/28/ISCC%E5%BE%AE%E5%9E%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%81%93%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/index.html"
+    },
+    {
+      "path": "2026/01/29/YOLOv5模型训练/index.html",
+      "status": 200,
+      "bytes": 33448,
+      "sha256": "0d2062e273dec26178acabaaf5d5a824323f5019c94b2c44280f10fd20017d14",
+      "expected": "0d2062e273dec26178acabaaf5d5a824323f5019c94b2c44280f10fd20017d14",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/01/29/YOLOv5%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/index.html"
+    },
+    {
+      "path": "2026/07/23/智慧药房机器人比赛参赛复盘/index.html",
+      "status": 200,
+      "bytes": 42079,
+      "sha256": "d35608590c6012191451596b4e875aa47bd06744f36580e555092be03e006173",
+      "expected": "d35608590c6012191451596b4e875aa47bd06744f36580e555092be03e006173",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/index.html"
+    },
+    {
+      "path": "2026/07/24/AI使用感受/index.html",
+      "status": 200,
+      "bytes": 22742,
+      "sha256": "f4c6f7d6314c7d33e3566b9b883101d6cd74378850aa7ecc8e9c328666152187",
+      "expected": "f4c6f7d6314c7d33e3566b9b883101d6cd74378850aa7ecc8e9c328666152187",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/index.html"
+    },
+    {
+      "path": "2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/index.html",
+      "status": 200,
+      "bytes": 34062,
+      "sha256": "7f1df833930eeb17680645f1229014ac1564bbf0ee10330f3c31f443dc8f840f",
+      "expected": "7f1df833930eeb17680645f1229014ac1564bbf0ee10330f3c31f443dc8f840f",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/07/30/%E5%9B%BD%E4%B8%89%E4%B9%8B%E5%90%8E%E6%88%91%E6%8A%8A%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%AF%94%E8%B5%9B%E5%81%9A%E6%88%90%E4%BA%86%E4%B8%80%E5%A5%97%E5%B7%A5%E4%BD%9C%E6%B5%81/index.html"
+    },
+    {
+      "path": "2026/08/21/睿抗赛94分复盘/index.html",
+      "status": 200,
+      "bytes": 36543,
+      "sha256": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+      "expected": "73f97240ebf6d26edae8550c46d148bcc7e0035b2a4499b2a9c212ff23d90982",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/08/21/%E7%9D%BF%E6%8A%97%E8%B5%9B94%E5%88%86%E5%A4%8D%E7%9B%98/index.html"
+    },
+    {
+      "path": "2026/08/25/睿抗赛四套视觉方案/index.html",
+      "status": 200,
+      "bytes": 29754,
+      "sha256": "71eec40cf036672199512c2e77e824d6a17db236f4b80e24aebb34f2fa22bef0",
+      "expected": "71eec40cf036672199512c2e77e824d6a17db236f4b80e24aebb34f2fa22bef0",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/index.html"
+    },
+    {
+      "path": "2026/08/27/睿抗：从初赛到国一/index.html",
+      "status": 200,
+      "bytes": 35032,
+      "sha256": "31653890ff080eab84f0551aabc60ada54ba22461bbf0c8a854ecce346d97e59",
+      "expected": "31653890ff080eab84f0551aabc60ada54ba22461bbf0c8a854ecce346d97e59",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/08/27/%E7%9D%BF%E6%8A%97%EF%BC%9A%E4%BB%8E%E5%88%9D%E8%B5%9B%E5%88%B0%E5%9B%BD%E4%B8%80/index.html"
+    },
+    {
+      "path": "2026/10/12/智能车项目经验与比赛流程/index.html",
+      "status": 200,
+      "bytes": 25271,
+      "sha256": "0ccf9924b6174bf1e351e410dba342b87b35a70fa46044e1efaacd559640d1fa",
+      "expected": "0ccf9924b6174bf1e351e410dba342b87b35a70fa46044e1efaacd559640d1fa",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/2026/10/12/%E6%99%BA%E8%83%BD%E8%BD%A6%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C%E4%B8%8E%E6%AF%94%E8%B5%9B%E6%B5%81%E7%A8%8B/index.html"
+    },
+    {
+      "path": "404.html",
+      "status": 200,
+      "bytes": 7409,
+      "sha256": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+      "expected": "b5716068f7b9cd34fcf11bbc989c189756a604db37ead3d807af5d3bd2595b3f",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/404.html"
+    },
+    {
+      "path": "about/index.html",
+      "status": 200,
+      "bytes": 16552,
+      "sha256": "28bd2450dbddd8914ae136e49cf96edb65793705e476de2ab4c4035a8fee88d1",
+      "expected": "28bd2450dbddd8914ae136e49cf96edb65793705e476de2ab4c4035a8fee88d1",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/about/index.html"
+    },
+    {
+      "path": "archives/2026/01/index.html",
+      "status": 200,
+      "bytes": 12181,
+      "sha256": "dcaf9559e165eac8d0d296f1ad05f8b1d90e9cc53977c1546010aa2817055bcc",
+      "expected": "dcaf9559e165eac8d0d296f1ad05f8b1d90e9cc53977c1546010aa2817055bcc",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/archives/2026/01/index.html"
+    },
+    {
+      "path": "archives/2026/07/index.html",
+      "status": 200,
+      "bytes": 14318,
+      "sha256": "1cda5730a5904c0ce2cd91628e85eb9a61b5ed6d5f1f35039498283cacae875a",
+      "expected": "1cda5730a5904c0ce2cd91628e85eb9a61b5ed6d5f1f35039498283cacae875a",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/archives/2026/07/index.html"
+    },
+    {
+      "path": "archives/2026/08/index.html",
+      "status": 200,
+      "bytes": 13678,
+      "sha256": "0296c1c1b855546490b1fae8f55dcf04a0135663cf435a777aad7bd74954a1ac",
+      "expected": "0296c1c1b855546490b1fae8f55dcf04a0135663cf435a777aad7bd74954a1ac",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/archives/2026/08/index.html"
+    },
+    {
+      "path": "archives/2026/10/index.html",
+      "status": 200,
+      "bytes": 11042,
+      "sha256": "441a551fa15924aa31f409d8a3fedf5eab6fe30beede8a859309b02cd2d1b590",
+      "expected": "441a551fa15924aa31f409d8a3fedf5eab6fe30beede8a859309b02cd2d1b590",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/archives/2026/10/index.html"
+    },
+    {
+      "path": "archives/2026/index.html",
+      "status": 200,
+      "bytes": 22015,
+      "sha256": "943fd769990dff978f8d79f6d38025c931b9004356cd28bc98c28a2e334d1902",
+      "expected": "943fd769990dff978f8d79f6d38025c931b9004356cd28bc98c28a2e334d1902",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/archives/2026/index.html"
+    },
+    {
+      "path": "archives/index.html",
+      "status": 200,
+      "bytes": 22078,
+      "sha256": "5a77a1ba6bf3a369365169366c3d4f3e6fd46eed23ac769f2f60da441436cebb",
+      "expected": "5a77a1ba6bf3a369365169366c3d4f3e6fd46eed23ac769f2f60da441436cebb",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/archives/index.html"
+    },
+    {
+      "path": "categories/index.html",
+      "status": 200,
+      "bytes": 7952,
+      "sha256": "042febf4ede4976d3709f0f0586ff3ed49a1a62bb98c8c6ad7ee3749927a137a",
+      "expected": "042febf4ede4976d3709f0f0586ff3ed49a1a62bb98c8c6ad7ee3749927a137a",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/categories/index.html"
+    },
+    {
+      "path": "categories/工程复盘/index.html",
+      "status": 200,
+      "bytes": 11572,
+      "sha256": "6b92465032f041f82f9fb72318d90b63228ed39cf9cc00f01c90f3983a5d8c21",
+      "expected": "6b92465032f041f82f9fb72318d90b63228ed39cf9cc00f01c90f3983a5d8c21",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%A4%8D%E7%9B%98/index.html"
+    },
+    {
+      "path": "categories/工程实践/index.html",
+      "status": 200,
+      "bytes": 12384,
+      "sha256": "76fb08a7494061979759e1f06f321d45f67f6adec9148b1bdc3194b58bddc9b4",
+      "expected": "76fb08a7494061979759e1f06f321d45f67f6adec9148b1bdc3194b58bddc9b4",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html"
+    },
+    {
+      "path": "categories/成长记录/index.html",
+      "status": 200,
+      "bytes": 13665,
+      "sha256": "3266f799858a3712283b002dcb6aac2e34799c46837ef270cf5c49911e9dae21",
+      "expected": "3266f799858a3712283b002dcb6aac2e34799c46837ef270cf5c49911e9dae21",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/categories/%E6%88%90%E9%95%BF%E8%AE%B0%E5%BD%95/index.html"
+    },
+    {
+      "path": "categories/比赛/index.html",
+      "status": 200,
+      "bytes": 371,
+      "sha256": "46f8c5a61f38b2d2c35b0c406602245873ee29a49e891f840ac4e1e19404e749",
+      "expected": "46f8c5a61f38b2d2c35b0c406602245873ee29a49e891f840ac4e1e19404e749",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/categories/%E6%AF%94%E8%B5%9B/index.html"
+    },
+    {
+      "path": "categories/比赛复盘/index.html",
+      "status": 200,
+      "bytes": 13977,
+      "sha256": "034acae744943eb88af70076cd72ef58142f37b291bfac0e9b441a16c10efc44",
+      "expected": "034acae744943eb88af70076cd72ef58142f37b291bfac0e9b441a16c10efc44",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%9B%98/index.html"
+    },
+    {
+      "path": "css/notebook.css",
+      "status": 200,
+      "bytes": 71829,
+      "sha256": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+      "expected": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/css/notebook.css"
+    },
+    {
+      "path": "css/pet.css",
+      "status": 200,
+      "bytes": 8049,
+      "sha256": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+      "expected": "ed2d3b5234da3d1f208c025d847f97416bc71af27078b7aac40b940e4038cd09",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/css/pet.css"
+    },
+    {
+      "path": "downloads/index.html",
+      "status": 200,
+      "bytes": 10207,
+      "sha256": "2d68f3619cac4d2f6c225f26301a5f969fade8d61f65aa177f246ca078653b14",
+      "expected": "2d68f3619cac4d2f6c225f26301a5f969fade8d61f65aa177f246ca078653b14",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/downloads/index.html"
+    },
+    {
+      "path": "downloads/mydata.yaml",
+      "status": 200,
+      "bytes": 460,
+      "sha256": "9a15b0f2c71cef4f188bb1a87c94dd3fe15d40924425fec76c1e91e5e8df03bb",
+      "expected": "9a15b0f2c71cef4f188bb1a87c94dd3fe15d40924425fec76c1e91e5e8df03bb",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/downloads/mydata.yaml"
+    },
+    {
+      "path": "downloads/mydata_yolov5s.yaml",
+      "status": 200,
+      "bytes": 1445,
+      "sha256": "570cbe500556772add07886f2f370156391a9172478062a2e95977dadab8354a",
+      "expected": "570cbe500556772add07886f2f370156391a9172478062a2e95977dadab8354a",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/downloads/mydata_yolov5s.yaml"
+    },
+    {
+      "path": "downloads/train.py",
+      "status": 200,
+      "bytes": 47541,
+      "sha256": "1f1cd2447d60c711c7615686df446c8f5ec24b88c528a0fdd448ca5d953e61f5",
+      "expected": "1f1cd2447d60c711c7615686df446c8f5ec24b88c528a0fdd448ca5d953e61f5",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/downloads/train.py"
+    },
+    {
+      "path": "downloads/val.py",
+      "status": 200,
+      "bytes": 30417,
+      "sha256": "55fd8d2ff56ba961e2a9b5670446c65426298fc6a1b573f463c7925ad91f85ec",
+      "expected": "55fd8d2ff56ba961e2a9b5670446c65426298fc6a1b573f463c7925ad91f85ec",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/downloads/val.py"
+    },
+    {
+      "path": "fonts/fieldnotes-song/OFL.txt",
+      "status": 200,
+      "bytes": 4607,
+      "sha256": "687ab9c08fe27d25451054c06a4b8fb6802b320e4ba0b250e90760474b6a17cd",
+      "expected": "687ab9c08fe27d25451054c06a4b8fb6802b320e4ba0b250e90760474b6a17cd",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/fonts/fieldnotes-song/OFL.txt"
+    },
+    {
+      "path": "fonts/fieldnotes-song/fieldnotes-song-bold-ff70fba80e.woff",
+      "status": 200,
+      "bytes": 717720,
+      "sha256": "ff70fba80ea2b4d08715d14e57bbd29712cbd236f4a784792855c1b532eff78e",
+      "expected": "ff70fba80ea2b4d08715d14e57bbd29712cbd236f4a784792855c1b532eff78e",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/fonts/fieldnotes-song/fieldnotes-song-bold-ff70fba80e.woff"
+    },
+    {
+      "path": "fonts/fieldnotes-song/fieldnotes-text-regular-a9766c263e.woff",
+      "status": 200,
+      "bytes": 696460,
+      "sha256": "a9766c263e9878a24f8e495e1a9ba88a51bb3ef409fb5796d84cbe4c1d80fd26",
+      "expected": "a9766c263e9878a24f8e495e1a9ba88a51bb3ef409fb5796d84cbe4c1d80fd26",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/fonts/fieldnotes-song/fieldnotes-text-regular-a9766c263e.woff"
+    },
+    {
+      "path": "img/avatar.jpg",
+      "status": 200,
+      "bytes": 13425,
+      "sha256": "cce1028c360213d836a9f8ab2c7cdded0d8d97ded6ba71a69ce3386ed54394d8",
+      "expected": "cce1028c360213d836a9f8ab2c7cdded0d8d97ded6ba71a69ce3386ed54394d8",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/avatar.jpg"
+    },
+    {
+      "path": "img/covers/ai-robot-tuning.webp",
+      "status": 200,
+      "bytes": 57406,
+      "sha256": "05cea40671f4dc9d40f7b44b081cc594d7fc998be17247d568519001154fa87d",
+      "expected": "05cea40671f4dc9d40f7b44b081cc594d7fc998be17247d568519001154fa87d",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/ai-robot-tuning.webp"
+    },
+    {
+      "path": "img/covers/algorithms.webp",
+      "status": 200,
+      "bytes": 71238,
+      "sha256": "a51bab409ef81f38943db0d86e9bf744ec5867bfedc8211d6dfc5a40b433d11a",
+      "expected": "a51bab409ef81f38943db0d86e9bf744ec5867bfedc8211d6dfc5a40b433d11a",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/algorithms.webp"
+    },
+    {
+      "path": "img/covers/iscc-plc.png",
+      "status": 200,
+      "bytes": 297743,
+      "sha256": "30ae0f7dc1ee979aca30224252f7b849188127d633c636ba501bfd1d2bf2ca9f",
+      "expected": "30ae0f7dc1ee979aca30224252f7b849188127d633c636ba501bfd1d2bf2ca9f",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/iscc-plc.png"
+    },
+    {
+      "path": "img/covers/notebook/20261105/ai-feedback-loop.webp",
+      "status": 200,
+      "bytes": 161748,
+      "sha256": "800cf4b07901219308946ca442db65accac1d4e82b802561e492c0f83b9b35c0",
+      "expected": "800cf4b07901219308946ca442db65accac1d4e82b802561e492c0f83b9b35c0",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/ai-feedback-loop.webp"
+    },
+    {
+      "path": "img/covers/notebook/20261105/iscc-secure-factory.webp",
+      "status": 200,
+      "bytes": 194926,
+      "sha256": "4a73c0bf5c75ab8719c6ee73713e36721ab335177e16e07983e9c2b1f936eb9a",
+      "expected": "4a73c0bf5c75ab8719c6ee73713e36721ab335177e16e07983e9c2b1f936eb9a",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/iscc-secure-factory.webp"
+    },
+    {
+      "path": "img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+      "status": 200,
+      "bytes": 136648,
+      "sha256": "b586925b1febf6b14386832de2a4043dd65ec4eed9ce58fca2391d2e0ec3d443",
+      "expected": "b586925b1febf6b14386832de2a4043dd65ec4eed9ce58fca2391d2e0ec3d443",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/pharmacy-dual-robots.webp"
+    },
+    {
+      "path": "img/covers/notebook/20261105/pharmacy-workflow.webp",
+      "status": 200,
+      "bytes": 251284,
+      "sha256": "1c6446017ad50db8a548e921b74bdb43ea48e16fe04beb13009699527025722c",
+      "expected": "1c6446017ad50db8a548e921b74bdb43ea48e16fe04beb13009699527025722c",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/pharmacy-workflow.webp"
+    },
+    {
+      "path": "img/covers/notebook/20261105/robot-growth.webp",
+      "status": 200,
+      "bytes": 234066,
+      "sha256": "67b10a3eb40cd5aaecaf06874f05ac1e0d35088e740dc4f32e98a5ac809ab291",
+      "expected": "67b10a3eb40cd5aaecaf06874f05ac1e0d35088e740dc4f32e98a5ac809ab291",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/robot-growth.webp"
+    },
+    {
+      "path": "img/covers/notebook/20261105/ruikang-route-review.webp",
+      "status": 200,
+      "bytes": 217054,
+      "sha256": "db9e7d4caf9789e7ccc488a326d4996c9e839c39e5cf49ffa1812875238478a9",
+      "expected": "db9e7d4caf9789e7ccc488a326d4996c9e839c39e5cf49ffa1812875238478a9",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/ruikang-route-review.webp"
+    },
+    {
+      "path": "img/covers/notebook/20261105/ruikang-vision-studies.webp",
+      "status": 200,
+      "bytes": 217852,
+      "sha256": "0c50fe200c41f3bcebc1dc31f69b9266cf388fe7200d46b4c60c24b586d99f34",
+      "expected": "0c50fe200c41f3bcebc1dc31f69b9266cf388fe7200d46b4c60c24b586d99f34",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/ruikang-vision-studies.webp"
+    },
+    {
+      "path": "img/covers/notebook/20261105/yolov5-pollination.webp",
+      "status": 200,
+      "bytes": 172524,
+      "sha256": "d40890c1a7c714bc4a95c9f9f1a7207b9b7b5a6f94f922249ca3ab79b564a5a6",
+      "expected": "d40890c1a7c714bc4a95c9f9f1a7207b9b7b5a6f94f922249ca3ab79b564a5a6",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/20261105/yolov5-pollination.webp"
+    },
+    {
+      "path": "img/covers/notebook/ai-robot-tuning.webp",
+      "status": 200,
+      "bytes": 188216,
+      "sha256": "769315aa1f9415dd070d7768c903529d4478eece0c0cc3ce372fc7cbcc987951",
+      "expected": "769315aa1f9415dd070d7768c903529d4478eece0c0cc3ce372fc7cbcc987951",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/ai-robot-tuning.webp"
+    },
+    {
+      "path": "img/covers/notebook/iscc-plc.webp",
+      "status": 200,
+      "bytes": 219614,
+      "sha256": "feea0bec997c0d5cb49a97ff956f7dcdc89cf2e0445ce6fb3b75cd3730298c7b",
+      "expected": "feea0bec997c0d5cb49a97ff956f7dcdc89cf2e0445ce6fb3b75cd3730298c7b",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/iscc-plc.webp"
+    },
+    {
+      "path": "img/covers/notebook/pharmacy-robots.webp",
+      "status": 200,
+      "bytes": 200554,
+      "sha256": "993e16a5f4fcc75deafb568a415f3f54b6834e6fe3233f1e36b5b1945aa07be9",
+      "expected": "993e16a5f4fcc75deafb568a415f3f54b6834e6fe3233f1e36b5b1945aa07be9",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/pharmacy-robots.webp"
+    },
+    {
+      "path": "img/covers/notebook/ruikang-competition.webp",
+      "status": 200,
+      "bytes": 217406,
+      "sha256": "201ec16eda4f5852d2068b873a751ca2a2a94b59996753e87d6702b00fdff64f",
+      "expected": "201ec16eda4f5852d2068b873a751ca2a2a94b59996753e87d6702b00fdff64f",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/ruikang-competition.webp"
+    },
+    {
+      "path": "img/covers/notebook/yolov5-vision.webp",
+      "status": 200,
+      "bytes": 253824,
+      "sha256": "77417f2a6151e936bb1ebc9522cf6769a565032023c063f1fdcdb5b67326ebd6",
+      "expected": "77417f2a6151e936bb1ebc9522cf6769a565032023c063f1fdcdb5b67326ebd6",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/notebook/yolov5-vision.webp"
+    },
+    {
+      "path": "img/covers/pharmacy-robots.webp",
+      "status": 200,
+      "bytes": 64112,
+      "sha256": "7d5c574f61d940c065d498ab5702d911fae2de1e57e9ea05bf74352dcc6ae451",
+      "expected": "7d5c574f61d940c065d498ab5702d911fae2de1e57e9ea05bf74352dcc6ae451",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/pharmacy-robots.webp"
+    },
+    {
+      "path": "img/covers/python-basics.webp",
+      "status": 200,
+      "bytes": 66774,
+      "sha256": "f01553316d73ef7e6504ecac12af69f5db16f82c1070a89a227261ac542941f5",
+      "expected": "f01553316d73ef7e6504ecac12af69f5db16f82c1070a89a227261ac542941f5",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/python-basics.webp"
+    },
+    {
+      "path": "img/covers/ruikang-competition.webp",
+      "status": 200,
+      "bytes": 73270,
+      "sha256": "fde40021761dc22d4b0400500bc3c44c9d1c2612971eb4a0df4799760a113c71",
+      "expected": "fde40021761dc22d4b0400500bc3c44c9d1c2612971eb4a0df4799760a113c71",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/ruikang-competition.webp"
+    },
+    {
+      "path": "img/covers/ruikang-national-first.jpg",
+      "status": 200,
+      "bytes": 226711,
+      "sha256": "ea4ddecc8155c479504be99edb254102094d69eadb4c8abd92fc7685e48c250f",
+      "expected": "ea4ddecc8155c479504be99edb254102094d69eadb4c8abd92fc7685e48c250f",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/ruikang-national-first.jpg"
+    },
+    {
+      "path": "img/covers/yolov5-vision.webp",
+      "status": 200,
+      "bytes": 65118,
+      "sha256": "1049369fa046a3d46d47ad8ae5b23606ef5b2f004362c24fc08f73bc55398f51",
+      "expected": "1049369fa046a3d46d47ad8ae5b23606ef5b2f004362c24fc08f73bc55398f51",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/covers/yolov5-vision.webp"
+    },
+    {
+      "path": "img/fieldnotes/about-notebook-ce22731fe9.webp",
+      "status": 200,
+      "bytes": 403376,
+      "sha256": "ce22731fe990e95ec8691631d69e017390464b3db7b013b4837fae920003176c",
+      "expected": "ce22731fe990e95ec8691631d69e017390464b3db7b013b4837fae920003176c",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/fieldnotes/about-notebook-ce22731fe9.webp"
+    },
+    {
+      "path": "img/fieldnotes/detour-notebook-13bcf3e306.webp",
+      "status": 200,
+      "bytes": 334000,
+      "sha256": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+      "expected": "13bcf3e30628bcd396a8835835824951c9b94272dc3d5f1646b061ca2059fc25",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/fieldnotes/detour-notebook-13bcf3e306.webp"
+    },
+    {
+      "path": "img/fieldnotes/hero-testground-4bfaf6cf83.webp",
+      "status": 200,
+      "bytes": 370640,
+      "sha256": "4bfaf6cf83d0e2efa1202196053e9dddf23b6661632c4ee8533eeb5992a70b92",
+      "expected": "4bfaf6cf83d0e2efa1202196053e9dddf23b6661632c4ee8533eeb5992a70b92",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/fieldnotes/hero-testground-4bfaf6cf83.webp"
+    },
+    {
+      "path": "img/fieldnotes/music-notebook-4cdbbe9341.webp",
+      "status": 200,
+      "bytes": 281384,
+      "sha256": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+      "expected": "4cdbbe934118d88b5dc1463d37477614ab15c03c669ae1ebbc43080075cb7521",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/fieldnotes/music-notebook-4cdbbe9341.webp"
+    },
+    {
+      "path": "img/fieldnotes/project-banner-ac71989ce5.webp",
+      "status": 200,
+      "bytes": 440536,
+      "sha256": "ac71989ce54d0d7a3495a9864d5e0658f9320b6b501ced8f5b788fb36543c7f2",
+      "expected": "ac71989ce54d0d7a3495a9864d5e0658f9320b6b501ced8f5b788fb36543c7f2",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/fieldnotes/project-banner-ac71989ce5.webp"
+    },
+    {
+      "path": "img/home/hero-growth.webp",
+      "status": 200,
+      "bytes": 40310,
+      "sha256": "5f3608690abecb36779f91d133a618dc7cefcdf8976dee968a6e1b8033eeb261",
+      "expected": "5f3608690abecb36779f91d133a618dc7cefcdf8976dee968a6e1b8033eeb261",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/home/hero-growth.webp"
+    },
+    {
+      "path": "img/pet/catgirl-drowsy.webp",
+      "status": 200,
+      "bytes": 33230,
+      "sha256": "386a9e468e57b60459055a07eae4f97159af0f9a30dcb9c016a3d7d302fbdc8b",
+      "expected": "386a9e468e57b60459055a07eae4f97159af0f9a30dcb9c016a3d7d302fbdc8b",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/pet/catgirl-drowsy.webp"
+    },
+    {
+      "path": "img/pet/catgirl-lift.webp",
+      "status": 200,
+      "bytes": 31160,
+      "sha256": "aefddaf51cc23380621920e5fd49ea3c1971ed7d0778cb8d2111f0b271393a18",
+      "expected": "aefddaf51cc23380621920e5fd49ea3c1971ed7d0778cb8d2111f0b271393a18",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/pet/catgirl-lift.webp"
+    },
+    {
+      "path": "img/pet/catgirl-sit.webp",
+      "status": 200,
+      "bytes": 28064,
+      "sha256": "f4e2367ee4ae2154aa6290a26430ada853876e4e9d0123de9d36e142693edc5b",
+      "expected": "f4e2367ee4ae2154aa6290a26430ada853876e4e9d0123de9d36e142693edc5b",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/pet/catgirl-sit.webp"
+    },
+    {
+      "path": "img/pet/catgirl-sleep.webp",
+      "status": 200,
+      "bytes": 28226,
+      "sha256": "1644d666fa77060d66ac2436acd1ae375e07809988cee815ad37ec2f2d9736a8",
+      "expected": "1644d666fa77060d66ac2436acd1ae375e07809988cee815ad37ec2f2d9736a8",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/pet/catgirl-sleep.webp"
+    },
+    {
+      "path": "img/pet/catgirl.webp",
+      "status": 200,
+      "bytes": 36506,
+      "sha256": "28419ee9a335d8e85dcf18c292c682b6c77f63536127a3048f909e5dc6e34769",
+      "expected": "28419ee9a335d8e85dcf18c292c682b6c77f63536127a3048f909e5dc6e34769",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/pet/catgirl.webp"
+    },
+    {
+      "path": "img/pet/field-notes/actions.webp",
+      "status": 200,
+      "bytes": 563268,
+      "sha256": "5a6f8cc23c5ef1de03c6fe464e444f547be46de06e28511de8c16680d926b3cb",
+      "expected": "5a6f8cc23c5ef1de03c6fe464e444f547be46de06e28511de8c16680d926b3cb",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/pet/field-notes/actions.webp"
+    },
+    {
+      "path": "img/pet/field-notes/idle.webp",
+      "status": 200,
+      "bytes": 28648,
+      "sha256": "ec8b54488809323179370f5d73a805e99c2abee8b4c5ea3f136607c9f5a8f2fa",
+      "expected": "ec8b54488809323179370f5d73a805e99c2abee8b4c5ea3f136607c9f5a8f2fa",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/pet/field-notes/idle.webp"
+    },
+    {
+      "path": "img/workshop/ruikang-blueprint.webp",
+      "status": 200,
+      "bytes": 359060,
+      "sha256": "e433b71d628cb9f3f48e75a841a956b1c079f2d8a65313be46bd1cd387f60b55",
+      "expected": "e433b71d628cb9f3f48e75a841a956b1c079f2d8a65313be46bd1cd387f60b55",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/workshop/ruikang-blueprint.webp"
+    },
+    {
+      "path": "img/workshop/tuning-film-poster.webp",
+      "status": 200,
+      "bytes": 98842,
+      "sha256": "0a876f08b163899c7c384b40d803c86c877a2d02ba3077139295e43050696d09",
+      "expected": "0a876f08b163899c7c384b40d803c86c877a2d02ba3077139295e43050696d09",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/workshop/tuning-film-poster.webp"
+    },
+    {
+      "path": "img/workshop/tuning-poster.webp",
+      "status": 200,
+      "bytes": 165318,
+      "sha256": "459b86ff3b091c29a54ddf32f9f7f821330930ffc9b0008c81197f2c5c812169",
+      "expected": "459b86ff3b091c29a54ddf32f9f7f821330930ffc9b0008c81197f2c5c812169",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/img/workshop/tuning-poster.webp"
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "bytes": 23112,
+      "sha256": "9e4abd1b81f17dcf064c42a43244cf9445ccc687cd90ee0ba3040dc11cf149d0",
+      "expected": "9e4abd1b81f17dcf064c42a43244cf9445ccc687cd90ee0ba3040dc11cf149d0",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/index.html"
+    },
+    {
+      "path": "js/giscus-manager.js",
+      "status": 200,
+      "bytes": 1737,
+      "sha256": "73ace3df0d13a25d6d9464ae0e5afbee733bbaf9296b91d75aeeef3ff43f47c4",
+      "expected": "73ace3df0d13a25d6d9464ae0e5afbee733bbaf9296b91d75aeeef3ff43f47c4",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/js/giscus-manager.js"
+    },
+    {
+      "path": "js/lab-accessibility.js",
+      "status": 200,
+      "bytes": 4483,
+      "sha256": "c03dc9356af5d2370beb04dd67c0088b22bd25ffcd58122d9e93024785ad7613",
+      "expected": "c03dc9356af5d2370beb04dd67c0088b22bd25ffcd58122d9e93024785ad7613",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/js/lab-accessibility.js"
+    },
+    {
+      "path": "js/notebook.js",
+      "status": 200,
+      "bytes": 9441,
+      "sha256": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+      "expected": "de0e0a954d0ef0f9a89a442363e5242c308751fe5adc0e0f450ad47945f4fac0",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/js/notebook.js"
+    },
+    {
+      "path": "js/pet.js",
+      "status": 200,
+      "bytes": 35631,
+      "sha256": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+      "expected": "fcb81b96cc08c005a8ebbc161f8bfc3235b3b9ca458becd29042ecbac8e884c0",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/js/pet.js"
+    },
+    {
+      "path": "media/tuning-workshop.mp4",
+      "status": 200,
+      "bytes": 12752503,
+      "sha256": "8f6e2bfe58371a313dca08d7b0379d8a07ec8b57f5d4072a852dae5382f78fc9",
+      "expected": "8f6e2bfe58371a313dca08d7b0379d8a07ec8b57f5d4072a852dae5382f78fc9",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/media/tuning-workshop.mp4"
+    },
+    {
+      "path": "media/tuning-workshop.zh-CN.vtt",
+      "status": 200,
+      "bytes": 484,
+      "sha256": "8b2983fc81ff8168eb9ba8e94fa5e43edc9960e2b32c5a36e7a47e63e74f4c67",
+      "expected": "8b2983fc81ff8168eb9ba8e94fa5e43edc9960e2b32c5a36e7a47e63e74f4c67",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/media/tuning-workshop.zh-CN.vtt"
+    },
+    {
+      "path": "music/index.html",
+      "status": 200,
+      "bytes": 7382,
+      "sha256": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+      "expected": "a5fc946ae2d2bbcb03313810912ae3af570507c3e9b7b26844c938af1cf33741",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/music/index.html"
+    },
+    {
+      "path": "projects/index.html",
+      "status": 200,
+      "bytes": 14286,
+      "sha256": "64f5fb76b7ada1d9d60678c968f82299d54965fded3fa76a98d9fe85bec167a7",
+      "expected": "64f5fb76b7ada1d9d60678c968f82299d54965fded3fa76a98d9fe85bec167a7",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/projects/index.html"
+    },
+    {
+      "path": "projects/iscc/index.html",
+      "status": 200,
+      "bytes": 11334,
+      "sha256": "e5c3aa0d8b3681e153e25293d10fe736a2b3c7b4b2a685c83d3aa9522a05889e",
+      "expected": "e5c3aa0d8b3681e153e25293d10fe736a2b3c7b4b2a685c83d3aa9522a05889e",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/projects/iscc/index.html"
+    },
+    {
+      "path": "projects/pharmacy/index.html",
+      "status": 200,
+      "bytes": 12787,
+      "sha256": "fa764c3ec941a65e662337cf1cd657c0a8aed852053b18197190420dee71d1ea",
+      "expected": "fa764c3ec941a65e662337cf1cd657c0a8aed852053b18197190420dee71d1ea",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/projects/pharmacy/index.html"
+    },
+    {
+      "path": "projects/ruikang/index.html",
+      "status": 200,
+      "bytes": 12746,
+      "sha256": "d6f730c62f3d4708bb5283ffe8cd65a8af84e33d758c09a355b53c0972da33bc",
+      "expected": "d6f730c62f3d4708bb5283ffe8cd65a8af84e33d758c09a355b53c0972da33bc",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/projects/ruikang/index.html"
+    },
+    {
+      "path": "projects/yolov5/index.html",
+      "status": 200,
+      "bytes": 11779,
+      "sha256": "1906ff6579e0b8ce1671280e35d585222e50ee84bb837747785a389204dc5170",
+      "expected": "1906ff6579e0b8ce1671280e35d585222e50ee84bb837747785a389204dc5170",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/projects/yolov5/index.html"
+    },
+    {
+      "path": "robots.txt",
+      "status": 200,
+      "bytes": 79,
+      "sha256": "b272cd8ecca7f77b25b45c383cbfd6a63fd0dea946262a34bca311d6aab88960",
+      "expected": "b272cd8ecca7f77b25b45c383cbfd6a63fd0dea946262a34bca311d6aab88960",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/robots.txt"
+    },
+    {
+      "path": "search.xml",
+      "status": 200,
+      "bytes": 171112,
+      "sha256": "b94a71dbfd40b35cbde4cb1458eb8d7ad3c277136f6250a74deb52b86b9e386e",
+      "expected": "b94a71dbfd40b35cbde4cb1458eb8d7ad3c277136f6250a74deb52b86b9e386e",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/search.xml"
+    },
+    {
+      "path": "sitemap.xml",
+      "status": 200,
+      "bytes": 4017,
+      "sha256": "20553512ec58334ef2d77534976b96da06f1ede13bd0cd2352aaa3e0ec591270",
+      "expected": "20553512ec58334ef2d77534976b96da06f1ede13bd0cd2352aaa3e0ec591270",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/sitemap.xml"
+    },
+    {
+      "path": "tags/AI编程/index.html",
+      "status": 200,
+      "bytes": 15355,
+      "sha256": "e9dbd2a9e0197cd8e4551a632e71d5555c4756aaae6b8121bfd1db38f88ec9ce",
+      "expected": "e9dbd2a9e0197cd8e4551a632e71d5555c4756aaae6b8121bfd1db38f88ec9ce",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/AI%E7%BC%96%E7%A8%8B/index.html"
+    },
+    {
+      "path": "tags/Agent-Skills/index.html",
+      "status": 200,
+      "bytes": 11512,
+      "sha256": "ab4fa4ee2de0b4420ce3440c9a843940207ad316ec1c4c19b8ec3a2a21d0ee09",
+      "expected": "ab4fa4ee2de0b4420ce3440c9a843940207ad316ec1c4c19b8ec3a2a21d0ee09",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/Agent-Skills/index.html"
+    },
+    {
+      "path": "tags/Claude-Code/index.html",
+      "status": 200,
+      "bytes": 11507,
+      "sha256": "d30f1fc7e8d2e0c2228b47614eb918ed6ff2bd50e4d880bf4f9c17e46deb7330",
+      "expected": "d30f1fc7e8d2e0c2228b47614eb918ed6ff2bd50e4d880bf4f9c17e46deb7330",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/Claude-Code/index.html"
+    },
+    {
+      "path": "tags/Codex/index.html",
+      "status": 200,
+      "bytes": 12788,
+      "sha256": "5ee75648960a0bbd85437c88e7d37cde6c8806f1e1c7691efe3b3858a6ef5b0d",
+      "expected": "5ee75648960a0bbd85437c88e7d37cde6c8806f1e1c7691efe3b3858a6ef5b0d",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/Codex/index.html"
+    },
+    {
+      "path": "tags/DWA/index.html",
+      "status": 200,
+      "bytes": 11121,
+      "sha256": "36dfaa96b4bc1426fdcaa565fb50276b952f6cd3e02167d2767504814ab698e6",
+      "expected": "36dfaa96b4bc1426fdcaa565fb50276b952f6cd3e02167d2767504814ab698e6",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/DWA/index.html"
+    },
+    {
+      "path": "tags/Gazebo/index.html",
+      "status": 200,
+      "bytes": 10954,
+      "sha256": "185845d11a1b4bb9c3b80d548218e55301c872856141af85515845e7e6eb64de",
+      "expected": "185845d11a1b4bb9c3b80d548218e55301c872856141af85515845e7e6eb64de",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/Gazebo/index.html"
+    },
+    {
+      "path": "tags/HMI/index.html",
+      "status": 200,
+      "bytes": 10942,
+      "sha256": "1ab9af39a899107da5d7a01821fdfeea369b19427ddb60156f6d20082d5e073b",
+      "expected": "1ab9af39a899107da5d7a01821fdfeea369b19427ddb60156f6d20082d5e073b",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/HMI/index.html"
+    },
+    {
+      "path": "tags/ISCC/index.html",
+      "status": 200,
+      "bytes": 10947,
+      "sha256": "b5200afb727b54d5386095a1a7f2565618fb1044cd219ffe3a36c285c37ee4c0",
+      "expected": "b5200afb727b54d5386095a1a7f2565618fb1044cd219ffe3a36c285c37ee4c0",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/ISCC/index.html"
+    },
+    {
+      "path": "tags/OCR/index.html",
+      "status": 200,
+      "bytes": 11251,
+      "sha256": "5853c314790516a8f2a2a6cc663ebacc2b352904f2ded03bf33fb304b5dc7204",
+      "expected": "5853c314790516a8f2a2a6cc663ebacc2b352904f2ded03bf33fb304b5dc7204",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/OCR/index.html"
+    },
+    {
+      "path": "tags/OpenCV/index.html",
+      "status": 200,
+      "bytes": 11065,
+      "sha256": "a20180cd88546b8d78e4f5974bd95910723bf29f44263f95f48bee39d0b49789",
+      "expected": "a20180cd88546b8d78e4f5974bd95910723bf29f44263f95f48bee39d0b49789",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/OpenCV/index.html"
+    },
+    {
+      "path": "tags/PLC/index.html",
+      "status": 200,
+      "bytes": 10942,
+      "sha256": "e598914a5b7b1a4ae89ecf3c7589fac026f37587124fe9b878ff9fa3292bac49",
+      "expected": "e598914a5b7b1a4ae89ecf3c7589fac026f37587124fe9b878ff9fa3292bac49",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/PLC/index.html"
+    },
+    {
+      "path": "tags/Python/index.html",
+      "status": 200,
+      "bytes": 10965,
+      "sha256": "02100c98d2cc1256aa77e63af9a16262c5eb8e1c1862e879d0870c5398a50ba1",
+      "expected": "02100c98d2cc1256aa77e63af9a16262c5eb8e1c1862e879d0870c5398a50ba1",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/Python/index.html"
+    },
+    {
+      "path": "tags/RGB-D/index.html",
+      "status": 200,
+      "bytes": 11060,
+      "sha256": "2795bff3fa89a078591bd003dfdb3f8760424ba5f1c30359577c6b3922bfa1a7",
+      "expected": "2795bff3fa89a078591bd003dfdb3f8760424ba5f1c30359577c6b3922bfa1a7",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/RGB-D/index.html"
+    },
+    {
+      "path": "tags/ROS/index.html",
+      "status": 200,
+      "bytes": 19565,
+      "sha256": "b7568cc0445fe82cc71f3c66edfccd32768fce52f38438e5a28680b39edd3464",
+      "expected": "b7568cc0445fe82cc71f3c66edfccd32768fce52f38438e5a28680b39edd3464",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/ROS/index.html"
+    },
+    {
+      "path": "tags/TEB/index.html",
+      "status": 200,
+      "bytes": 11032,
+      "sha256": "668d8023e1f05f1ebbff50f00a47dd734b6d58de19409d010cf3d88810e5a708",
+      "expected": "668d8023e1f05f1ebbff50f00a47dd734b6d58de19409d010cf3d88810e5a708",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/TEB/index.html"
+    },
+    {
+      "path": "tags/YOLO/index.html",
+      "status": 200,
+      "bytes": 12273,
+      "sha256": "13ba096bab7bc27b48294401aef4fd7586be8891f1bc3e53b38a280e6ef348a7",
+      "expected": "13ba096bab7bc27b48294401aef4fd7586be8891f1bc3e53b38a280e6ef348a7",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/YOLO/index.html"
+    },
+    {
+      "path": "tags/YOLOv5/index.html",
+      "status": 200,
+      "bytes": 12275,
+      "sha256": "f2052d8f08b19925895d260637aff0c57051190307a451bfab447f5a2c3d3786",
+      "expected": "f2052d8f08b19925895d260637aff0c57051190307a451bfab447f5a2c3d3786",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/YOLOv5/index.html"
+    },
+    {
+      "path": "tags/index.html",
+      "status": 200,
+      "bytes": 13710,
+      "sha256": "6f734759d0e830d966f35fb16ab61b0c8259556d0e6a5004357fa959a4230124",
+      "expected": "6f734759d0e830d966f35fb16ab61b0c8259556d0e6a5004357fa959a4230124",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/index.html"
+    },
+    {
+      "path": "tags/python/index.html",
+      "status": 200,
+      "bytes": 323,
+      "sha256": "c181e1ad53604cc731cec123ba03db39e973d730788621daadbaf9e0587a3fc2",
+      "expected": "c181e1ad53604cc731cec123ba03db39e973d730788621daadbaf9e0587a3fc2",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/python/index.html"
+    },
+    {
+      "path": "tags/中国机器人及人工智能大赛/index.html",
+      "status": 200,
+      "bytes": 11560,
+      "sha256": "fdf324c1dd52c82c2d645ea06459c825b150bb60cee66ec7f1b34c9bdaf27c9c",
+      "expected": "fdf324c1dd52c82c2d645ea06459c825b150bb60cee66ec7f1b34c9bdaf27c9c",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E4%B8%AD%E5%9B%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8F%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%A7%E8%B5%9B/index.html"
+    },
+    {
+      "path": "tags/多车协同/index.html",
+      "status": 200,
+      "bytes": 11344,
+      "sha256": "aa79ded1799166a72c0bfa801b3c097391a0bdee200f798048b6df81b176baf0",
+      "expected": "aa79ded1799166a72c0bfa801b3c097391a0bdee200f798048b6df81b176baf0",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E5%A4%9A%E8%BD%A6%E5%8D%8F%E5%90%8C/index.html"
+    },
+    {
+      "path": "tags/工业网络/index.html",
+      "status": 200,
+      "bytes": 11035,
+      "sha256": "60c061c4e0ec0fbbfcfbf1dfea43f6b158593b332f8488699909c0007aaee899",
+      "expected": "60c061c4e0ec0fbbfcfbf1dfea43f6b158593b332f8488699909c0007aaee899",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E5%B7%A5%E4%B8%9A%E7%BD%91%E7%BB%9C/index.html"
+    },
+    {
+      "path": "tags/数据标注/index.html",
+      "status": 200,
+      "bytes": 11043,
+      "sha256": "020261edd044c1ad0631df02f4fa4ba6699838328bd674fe6f02d665c8bb2518",
+      "expected": "020261edd044c1ad0631df02f4fa4ba6699838328bd674fe6f02d665c8bb2518",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E6%95%B0%E6%8D%AE%E6%A0%87%E6%B3%A8/index.html"
+    },
+    {
+      "path": "tags/数据清洗/index.html",
+      "status": 200,
+      "bytes": 11043,
+      "sha256": "3f3ed52584d1cc633924ee4fb50d05f95245d712129d31501d663339ec3f1321",
+      "expected": "3f3ed52584d1cc633924ee4fb50d05f95245d712129d31501d663339ec3f1321",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97/index.html"
+    },
+    {
+      "path": "tags/智慧农业/index.html",
+      "status": 200,
+      "bytes": 11043,
+      "sha256": "4ff92cfab5060c3f6a3a946f62b5d3d320ada9643b7da2166c43b806d39ddbde",
+      "expected": "4ff92cfab5060c3f6a3a946f62b5d3d320ada9643b7da2166c43b806d39ddbde",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E6%99%BA%E6%85%A7%E5%86%9C%E4%B8%9A/index.html"
+    },
+    {
+      "path": "tags/智慧药房/index.html",
+      "status": 200,
+      "bytes": 13090,
+      "sha256": "08d2bfe2fe9282ab1562a6374835daccad59c39b6e0379aa5b2322d8612477c0",
+      "expected": "08d2bfe2fe9282ab1562a6374835daccad59c39b6e0379aa5b2322d8612477c0",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF/index.html"
+    },
+    {
+      "path": "tags/智能侦察车/index.html",
+      "status": 200,
+      "bytes": 13788,
+      "sha256": "e4389d542ffb21427cfaf02b28c3fc6af85ed364d0c03def525f27e118c5ee9f",
+      "expected": "e4389d542ffb21427cfaf02b28c3fc6af85ed364d0c03def525f27e118c5ee9f",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E6%99%BA%E8%83%BD%E4%BE%A6%E5%AF%9F%E8%BD%A6/index.html"
+    },
+    {
+      "path": "tags/智能车/index.html",
+      "status": 200,
+      "bytes": 11097,
+      "sha256": "1f2c7408223e3b5302765c3500aa95e51d5fa849145782f492e0f07b21cb71fa",
+      "expected": "1f2c7408223e3b5302765c3500aa95e51d5fa849145782f492e0f07b21cb71fa",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E6%99%BA%E8%83%BD%E8%BD%A6/index.html"
+    },
+    {
+      "path": "tags/机器人比赛/index.html",
+      "status": 200,
+      "bytes": 14115,
+      "sha256": "ad2c71e7019918a58cd53687ea57a04c53fbe82b574b39031d5c0ebd142a619d",
+      "expected": "ad2c71e7019918a58cd53687ea57a04c53fbe82b574b39031d5c0ebd142a619d",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B/index.html"
+    },
+    {
+      "path": "tags/模型训练/index.html",
+      "status": 200,
+      "bytes": 11043,
+      "sha256": "818953231e38738bed5e37f763ab2ab295c89cc9700ed2ed5bb9a0cec986d2b2",
+      "expected": "818953231e38738bed5e37f763ab2ab295c89cc9700ed2ed5bb9a0cec986d2b2",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/index.html"
+    },
+    {
+      "path": "tags/睿抗机器人开发者大赛/index.html",
+      "status": 200,
+      "bytes": 13923,
+      "sha256": "598da3ed3ccf328911b228e7e21d5ebd1b53a1e02fa09e38469b7d87dc1c7f83",
+      "expected": "598da3ed3ccf328911b228e7e21d5ebd1b53a1e02fa09e38469b7d87dc1c7f83",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E7%9D%BF%E6%8A%97%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E5%A4%A7%E8%B5%9B/index.html"
+    },
+    {
+      "path": "tags/移动机器人/index.html",
+      "status": 200,
+      "bytes": 12771,
+      "sha256": "daa4247817fbe8f333f4cafc2ea41ecff1d810246d7d97f7798cfccb9bf5d199",
+      "expected": "daa4247817fbe8f333f4cafc2ea41ecff1d810246d7d97f7798cfccb9bf5d199",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E7%A7%BB%E5%8A%A8%E6%9C%BA%E5%99%A8%E4%BA%BA/index.html"
+    },
+    {
+      "path": "tags/视觉定位/index.html",
+      "status": 200,
+      "bytes": 11344,
+      "sha256": "0859e541c412a734da2b932ba830e3696113fa705dcbcd06bb058824ca858fee",
+      "expected": "0859e541c412a734da2b932ba830e3696113fa705dcbcd06bb058824ca858fee",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E8%A7%86%E8%A7%89%E5%AE%9A%E4%BD%8D/index.html"
+    },
+    {
+      "path": "tags/计算机视觉/index.html",
+      "status": 200,
+      "bytes": 15329,
+      "sha256": "f9eb98173191bc452edf98d9c3384822f7a51e8c9ec7b204d7092854db7ce6f3",
+      "expected": "f9eb98173191bc452edf98d9c3384822f7a51e8c9ec7b204d7092854db7ce6f3",
+      "match": true,
+      "url": "https://jiangnanqing188.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/index.html"
+    }
+  ],
+  "file_count": 121,
+  "matched": 121,
+  "bytes": 22374715,
+  "range": {
+    "status": 206,
+    "content_range": "bytes 0-1023/12752503",
+    "bytes": 1024,
+    "match": true
+  },
+  "finished": "2026-11-05T20:29:23.504080+00:00"
+}

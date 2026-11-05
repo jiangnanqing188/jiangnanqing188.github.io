@@ -1,0 +1,26 @@
+{
+  "source_commit": "37737b77c7da93ff536e65a298afb85e805de179",
+  "release_commit": "7ee653692bf4abebec41274abe111fe1a2c6f30c",
+  "previous_release": "113046589358935920bc1c4094b7c4d85c430039",
+  "pages": {
+    "status": "built",
+    "commit": "7ee653692bf4abebec41274abe111fe1a2c6f30c",
+    "created_at": "2026-11-05T20:21:01Z",
+    "updated_at": "2026-11-05T20:21:43Z",
+    "error": null
+  },
+  "workflow": {
+    "id": 42102552149,
+    "name": "pages build and deployment",
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "7ee653692bf4abebec41274abe111fe1a2c6f30c"
+  },
+  "source_branch": "master",
+  "pages_source": {
+    "branch": "main",
+    "path": "/"
+  },
+  "url": "https://jiangnanqing188.github.io/",
+  "push": "ordinary fast-forward, no force push"
+}

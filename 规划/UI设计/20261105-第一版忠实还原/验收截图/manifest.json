@@ -1,5 +1,15 @@
 [
   {
+    "file": "browser-verification.json",
+    "bytes": 6577,
+    "sha256": "f8dcf89a02388dd6b44b812870eceb6e1f3204274ea44ed13dc1bf8253f735e5"
+  },
+  {
+    "file": "byte-verification.json",
+    "bytes": 47033,
+    "sha256": "a2f3f92d1de979bebb372e4aba8fa474570ee1bb740b87529c12ea72d706dfbd"
+  },
+  {
     "file": "dark-layout-result.json",
     "bytes": 6974,
     "sha256": "8946183b1bf878b5c68a6a27a6bd0ca5916f1827ddb3e6f6a90309edd02506d5"
@@ -23,6 +33,11 @@
     "file": "desktop-about-full.png",
     "bytes": 1416529,
     "sha256": "246b01cde7ac178a7912c3e5adf6173afc4323ab83ac2c18261cc6295ce01f09"
+  },
+  {
+    "file": "desktop-about-online.png",
+    "bytes": 1088836,
+    "sha256": "78c147e01afe6899c4ce35cad7b15c0593e3d96c742f738af0aef5d2959e6e01"
   },
   {
     "file": "desktop-about-top.png",
@@ -58,6 +73,11 @@
     "file": "desktop-home-dark.png",
     "bytes": 1102041,
     "sha256": "d8b3da5dcd2ff8f7d8da8f3a64c38c185b7a19aaf13e940834f359f1dc98040f"
+  },
+  {
+    "file": "desktop-home-online.png",
+    "bytes": 1196776,
+    "sha256": "d4223f18f89c736d1136732ef39006d4a5a74a47bbb2632c68860cb8f752fecf"
   },
   {
     "file": "desktop-home-top.png",
@@ -200,6 +220,11 @@
     "sha256": "a5614a34123e0f26200ccb61f2deb2fc13a54331e58ccee9039e4e9c55f23b1a"
   },
   {
+    "file": "mobile-about-online.png",
+    "bytes": 306888,
+    "sha256": "8bb29c64988f85745af30621f27fa3a760be7cc8463ecf0f9e300c392ffa4dfc"
+  },
+  {
     "file": "mobile-about-top.png",
     "bytes": 306888,
     "sha256": "8bb29c64988f85745af30621f27fa3a760be7cc8463ecf0f9e300c392ffa4dfc"
@@ -228,6 +253,11 @@
     "file": "mobile-home-dark.png",
     "bytes": 270442,
     "sha256": "d2823d00aff2b70001bf35417a7c9247619079f8f2bf0f0c66f269987da2a1e3"
+  },
+  {
+    "file": "mobile-home-online.png",
+    "bytes": 315620,
+    "sha256": "7f121d45ec7288e3914c0cd773a2c742e3f25ba0ba657b03031018ebf6fc6f98"
   },
   {
     "file": "mobile-home-top.png",
@@ -378,5 +408,10 @@
     "file": "reading-resources-theme-result.json",
     "bytes": 74895,
     "sha256": "4864b826afc04c4c78d694b8931e701524e99aff8c6f875a2f5fed2f37b1abac"
+  },
+  {
+    "file": "release-verification.json",
+    "bytes": 787,
+    "sha256": "a5ade3e6274020afb5b143e75cdc16d18a1deaf5286b9c28d3d07bc6a7bdf327"
   }
 ]

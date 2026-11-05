@@ -1,0 +1,240 @@
+{
+  "started": "2026-11-05T20:45:26.696Z",
+  "base": "https://jiangnanqing188.github.io",
+  "release": "7ee653692bf4abebec41274abe111fe1a2c6f30c",
+  "pages": [
+    {
+      "id": "home",
+      "url": "https://jiangnanqing188.github.io/",
+      "device": "desktop",
+      "metrics": {
+        "viewport": 1536,
+        "scrollWidth": 1536,
+        "h1": "把机器人调通，也把过程写清楚。",
+        "css": [
+          "/css/notebook.css?v=a79887d7b271",
+          "/css/pet.css?v=ed2d3b5234da"
+        ],
+        "scripts": [
+          "/js/notebook.js?v=de0e0a954d0e",
+          "/js/pet.js?v=fcb81b96cc08",
+          "/js/giscus-manager.js"
+        ],
+        "images": [
+          {
+            "src": "/img/fieldnotes/hero-testground-4bfaf6cf83.webp",
+            "width": 1685
+          },
+          {
+            "src": "/img/fieldnotes/project-banner-ac71989ce5.webp",
+            "width": 2172
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/notebook/20261105/robot-growth.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/ruikang-national-first.jpg",
+            "width": 1706
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-workflow.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320
+          }
+        ],
+        "fonts": [
+          {
+            "family": "Fieldnotes Text",
+            "status": "loaded"
+          },
+          {
+            "family": "Fieldnotes Song",
+            "status": "loaded"
+          }
+        ]
+      },
+      "file": "/tmp/blog-live-20261105/desktop-home-online.png"
+    },
+    {
+      "id": "about",
+      "url": "https://jiangnanqing188.github.io/about/",
+      "device": "desktop",
+      "metrics": {
+        "viewport": 1536,
+        "scrollWidth": 1536,
+        "h1": "你好，我是江南。",
+        "css": [
+          "/css/notebook.css?v=a79887d7b271",
+          "/css/pet.css?v=ed2d3b5234da"
+        ],
+        "scripts": [
+          "/js/notebook.js?v=de0e0a954d0e",
+          "/js/pet.js?v=fcb81b96cc08",
+          "/js/giscus-manager.js"
+        ],
+        "images": [
+          {
+            "src": "/img/fieldnotes/about-notebook-ce22731fe9.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/avatar.jpg",
+            "width": 640
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320
+          }
+        ],
+        "fonts": [
+          {
+            "family": "Fieldnotes Text",
+            "status": "loaded"
+          },
+          {
+            "family": "Fieldnotes Song",
+            "status": "loaded"
+          }
+        ]
+      },
+      "file": "/tmp/blog-live-20261105/desktop-about-online.png"
+    },
+    {
+      "id": "home",
+      "url": "https://jiangnanqing188.github.io/",
+      "device": "mobile",
+      "metrics": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "h1": "把机器人调通，也把过程写清楚。",
+        "css": [
+          "/css/notebook.css?v=a79887d7b271",
+          "/css/pet.css?v=ed2d3b5234da"
+        ],
+        "scripts": [
+          "/js/notebook.js?v=de0e0a954d0e",
+          "/js/pet.js?v=fcb81b96cc08",
+          "/js/giscus-manager.js"
+        ],
+        "images": [
+          {
+            "src": "/img/fieldnotes/hero-testground-4bfaf6cf83.webp",
+            "width": 1685
+          },
+          {
+            "src": "/img/fieldnotes/project-banner-ac71989ce5.webp",
+            "width": 2172
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-route-review.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/notebook/20261105/robot-growth.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/ruikang-national-first.jpg",
+            "width": 1706
+          },
+          {
+            "src": "/img/covers/notebook/20261105/ruikang-vision-studies.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/covers/notebook/20261105/pharmacy-workflow.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320
+          }
+        ],
+        "fonts": [
+          {
+            "family": "Fieldnotes Text",
+            "status": "loaded"
+          },
+          {
+            "family": "Fieldnotes Song",
+            "status": "loaded"
+          }
+        ]
+      },
+      "file": "/tmp/blog-live-20261105/mobile-home-online.png"
+    },
+    {
+      "id": "about",
+      "url": "https://jiangnanqing188.github.io/about/",
+      "device": "mobile",
+      "metrics": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "h1": "你好，我是江南。",
+        "css": [
+          "/css/notebook.css?v=a79887d7b271",
+          "/css/pet.css?v=ed2d3b5234da"
+        ],
+        "scripts": [
+          "/js/notebook.js?v=de0e0a954d0e",
+          "/js/pet.js?v=fcb81b96cc08",
+          "/js/giscus-manager.js"
+        ],
+        "images": [
+          {
+            "src": "/img/fieldnotes/about-notebook-ce22731fe9.webp",
+            "width": 1536
+          },
+          {
+            "src": "/img/avatar.jpg",
+            "width": 640
+          },
+          {
+            "src": "/img/pet/field-notes/idle.webp",
+            "width": 320
+          }
+        ],
+        "fonts": [
+          {
+            "family": "Fieldnotes Text",
+            "status": "loaded"
+          },
+          {
+            "family": "Fieldnotes Song",
+            "status": "loaded"
+          }
+        ]
+      },
+      "file": "/tmp/blog-live-20261105/mobile-about-online.png"
+    }
+  ],
+  "finished": "2026-11-05T20:45:35.912Z"
+}
