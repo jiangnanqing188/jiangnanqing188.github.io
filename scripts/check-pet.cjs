@@ -47,6 +47,17 @@ async function main() {
     const box = await page.locator('.pet-avatar').boundingBox();
     return {x: box.x + box.width * .48, y: box.y + box.width * .5};
   };
+  const trace = async (page, start, duration) => {
+    await page.evaluate(() => {
+      const pet = document.querySelector('#blog-pet');
+      window.poseTrace = [Number(pet.dataset.pose)];
+      window.poseObserver = new MutationObserver(() => window.poseTrace.push(Number(pet.dataset.pose)));
+      window.poseObserver.observe(pet, {attributes: true, attributeFilter: ['data-pose']});
+    });
+    await start();
+    await page.clock.runFor(duration);
+    return page.evaluate(() => { window.poseObserver.disconnect(); return window.poseTrace; });
+  };
   const key = 'jiangnan-blog-pet-v1';
   async function open({width = 1440, height = 1000, reducedMotion = 'no-preference', phone = false, url = '/__pet_fixture__/', saved, noAtlas = false, js = true, clock = true, random} = {}) {
     const context = await browser.newContext({viewport: {width, height}, reducedMotion, isMobile: phone, hasTouch: phone, javaScriptEnabled: js});
@@ -58,7 +69,7 @@ async function main() {
     page.on('pageerror', error => errors.push(error.message));
     await page.route('**/*', route => {
       const url = route.request().url();
-      if (!url.startsWith(base) || noAtlas && url.endsWith('/actions.webp')) return route.abort();
+      if (!url.startsWith(base) || noAtlas && url.endsWith(`/${noAtlas === true ? 'actions' : noAtlas}.webp`)) return route.abort();
       return route.continue();
     });
     if (js && clock) await page.clock.install({time: new Date('2026-11-04T12:00:00Z')});
@@ -76,28 +87,26 @@ async function main() {
   try {
     browser = await chromium.launch({headless: true, executablePath: process.env.CHROME_PATH || '/opt/google/chrome/chrome', args: ['--no-sandbox']});
     await test('atlas / alpha / payload', {}, async page => {
-      assert.ok(fs.statSync(path.join(root, 'img/pet/field-notes/actions.webp')).size < 650000);
-      assert.deepEqual(await page.evaluate(async () => {
-        const img = new Image(); img.src = '/img/pet/field-notes/actions.webp'; await img.decode();
-        const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height;
-        const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0);
-        return [img.width, img.height, ctx.getImageData(0, 0, 1, 1).data[3]];
-      }), [1280, 1600, 0]);
+      for (const [name, height, limit] of [['actions', 1600, 650000], ['transitions', 1280, 500000]]) {
+        assert.ok(fs.statSync(path.join(root, `img/pet/field-notes/${name}.webp`)).size < limit);
+        assert.deepEqual(await page.evaluate(async name => {
+          const img = new Image(); img.src = `/img/pet/field-notes/${name}.webp`; await img.decode();
+          const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height;
+          const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0);
+          return [img.width, img.height, ctx.getImageData(0, 0, 1, 1).data[3]];
+        }, name), [1280, height, 0]);
+      }
     });
-    await test('real menu + greeting frame cycle', {saved: placed}, async page => {
-      await page.locator('.pet-avatar').focus(); await page.keyboard.press('Enter');
-      assert.equal((await state(page)).motion, 'wave');
-      const seen = new Set();
-      for (let i = 0; i < 13; i++) { seen.add((await state(page)).pose); await page.clock.runFor(100); }
-      assert.deepEqual([...seen].sort(), [0, 1, 2, 3]);
+    await test('greeting raises and lowers the hand to a true neutral', {saved: placed}, async page => {
+      const poses = await trace(page, async () => { await page.locator('.pet-avatar').focus(); await page.keyboard.press('Enter'); }, 1500);
+      assert.deepEqual(poses, [20,21,22,0,1,2,1,3,1,0,22,21,20]);
       assert.equal((await state(page)).motion, 'idle');
       await page.locator('.pet-menu-toggle').click(); await page.locator('[data-pet-action="read"]').click();
-      await page.clock.runFor(450); assert.equal((await state(page)).pose, 5);
+      await page.clock.runFor(470); assert.equal((await state(page)).pose, 5);
     });
-    await test('reading pages / recovery', {}, async page => {
-      await action(page, 'read'); const seen = new Set();
-      for (let i = 0; i < 31; i++) { seen.add((await state(page)).pose); await page.clock.runFor(100); }
-      assert.deepEqual([...seen].sort(), [0, 4, 5, 6, 7]);
+    await test('reading has opening and closing inbetweens', {}, async page => {
+      const poses = await trace(page, () => action(page, 'read'), 3000);
+      assert.deepEqual(poses, [20,23,4,24,5,6,5,7,5,24,4,23,20]);
       assert.equal((await state(page)).motion, 'idle');
     });
     await test('stretch + interrupted gesture has no stale timer', {}, async page => {
@@ -115,9 +124,9 @@ async function main() {
       await page.clock.runFor(300); assert.equal((await state(page)).motion, 'idle');
     });
     await test('sleep sequence / no automatic walking while asleep', {}, async page => {
-      await action(page, 'nap'); assert.equal((await state(page)).pose, 8);
+      await action(page, 'nap'); assert.equal((await state(page)).pose, 25);
       await page.clock.runFor(400); assert.equal((await state(page)).pose, 16);
-      await page.clock.runFor(500); assert.equal((await state(page)).pose, 17);
+      await page.clock.runFor(500); assert.equal((await state(page)).pose, 30);
       await page.clock.runFor(1000); assert.equal((await state(page)).motion, 'sleeping');
       await page.clock.runFor(30000); assert.equal((await state(page)).pose, 18);
     });
@@ -134,12 +143,12 @@ async function main() {
       await page.clock.runFor(450); assert.equal((await state(page)).motion, 'wave');
       await page.clock.runFor(2500); assert.equal((await state(page)).motion, 'idle');
     });
-    await test('walking start / 4-frame gait / stop / persistent position', {saved: placed}, async page => {
-      const before = await state(page); await action(page, 'stroll');
-      assert.equal((await state(page)).motion, 'walk-start'); await page.clock.runFor(190);
-      const seen = new Set(); for (let i = 0; i < 8; i++) { seen.add((await state(page)).pose); await page.clock.runFor(100); }
-      assert.deepEqual([...seen].sort(), [12, 13, 14, 15]);
-      await page.clock.runFor(5000); const after = await state(page);
+    await test('8-phase distance-synchronised gait and planted stop', {saved: placed, random: .4}, async page => {
+      const before = await state(page);
+      const poses = await trace(page, () => action(page, 'stroll'), 6000);
+      for (const frame of [12,32,13,33,14,34,15,35]) assert.ok(poses.includes(frame), `Missing gait phase ${frame}`);
+      assert.deepEqual(poses.slice(-3), [12,23,20]);
+      const after = await state(page);
       assert.equal(after.motion, 'idle'); assert.ok(Math.abs(after.x - before.x) >= 12);
       const saved = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), key);
       assert.equal(saved.auto, false); assert.equal(saved.x, after.x);
@@ -147,8 +156,22 @@ async function main() {
     await test('greeting stops walking, with no surviving movement frame', {saved: placed}, async page => {
       await action(page, 'stroll'); await page.clock.runFor(500);
       await page.locator('.pet-avatar').dispatchEvent('click', {detail: 0});
-      const x = (await state(page)).x; assert.equal((await state(page)).motion, 'wave');
+      const x = (await state(page)).x; assert.equal((await state(page)).motion, 'recovering');
+      await page.clock.runFor(350); assert.equal((await state(page)).motion, 'wave');
       await page.clock.runFor(5500); assert.equal((await state(page)).x, x); assert.equal((await state(page)).motion, 'idle');
+    });
+    await test('interrupted walking plants a foot without flashing neutral first', {saved: placed, random: .4}, async page => {
+      await action(page, 'stroll'); await page.clock.runFor(500);
+      const before = (await state(page)).pose;
+      const plant = [12,32,13,33].includes(before) ? 12 : 14;
+      const poses = await trace(page, () => page.locator('.pet-avatar').dispatchEvent('click', {detail: 0}), 200);
+      assert.deepEqual(poses, before === plant ? [before,23,20] : [before,plant,23,20]);
+    });
+    await test('interrupted walk preparation keeps both feet down', {saved: placed, random: .4}, async page => {
+      await action(page, 'stroll'); await page.clock.runFor(100);
+      const poses = await trace(page, () => action(page, 'read'), 150);
+      assert.deepEqual(poses, [23,20]);
+      await page.clock.runFor(100); assert.equal((await state(page)).motion, 'read');
     });
     await test('idle does not repeat the last gesture / automatic nap', {random: .4}, async page => {
       const observed = await page.evaluate(() => {
@@ -170,13 +193,13 @@ async function main() {
       await action(page, 'jump'); await page.clock.runFor(300); await action(page, 'quiet');
       assert.equal((await state(page)).motion, 'idle');
       await action(page, 'nap'); assert.equal((await state(page)).pose, 18);
-      await page.locator('.pet-avatar').dispatchEvent('click', {detail: 0}); assert.equal((await state(page)).pose, 0);
+      await page.locator('.pet-avatar').dispatchEvent('click', {detail: 0}); assert.equal((await state(page)).pose, 20);
       await page.clock.runFor(30000); assert.equal((await state(page)).motion, 'idle');
     });
     await test('reduced motion / live preference change', {reducedMotion: 'reduce'}, async page => {
       await action(page, 'stretch'); assert.equal((await state(page)).motion, 'idle');
       await action(page, 'nap'); assert.equal((await state(page)).pose, 18);
-      await action(page, 'read'); assert.equal((await state(page)).pose, 0);
+      await action(page, 'read'); assert.equal((await state(page)).pose, 20);
       await page.emulateMedia({reducedMotion: 'no-preference'}); await action(page, 'jump'); await page.clock.runFor(200);
       await page.emulateMedia({reducedMotion: 'reduce'}); await page.waitForTimeout(80);
       assert.equal((await state(page)).motion, 'idle');
@@ -223,6 +246,40 @@ async function main() {
       await page.evaluate(() => { Object.defineProperty(document, 'hidden', {configurable: true, value: false}); document.dispatchEvent(new Event('visibilitychange')); });
       await action(page, 'read'); assert.equal((await state(page)).motion, 'read');
     });
+    await test('sleep and wake both traverse the crouch frames', {}, async page => {
+      const asleep = await trace(page, () => action(page, 'nap'), 1800);
+      assert.deepEqual(asleep, [20,25,8,16,23,28,29,30,17,18]);
+      const awake = await trace(page, () => action(page, 'read'), 1000);
+      assert.deepEqual(awake.slice(0, 7), [18,17,30,29,28,23,20]);
+      assert.equal((await state(page)).motion, 'read');
+    });
+    await test('new requests wait for the current hand/book to recover', {}, async page => {
+      await action(page, 'read'); await page.clock.runFor(600);
+      await action(page, 'stretch'); assert.equal((await state(page)).motion, 'recovering');
+      await page.clock.runFor(100); await action(page, 'cheer');
+      await page.clock.runFor(150); assert.equal((await state(page)).motion, 'cheer');
+      await page.clock.runFor(1600); assert.equal((await state(page)).pose, 20);
+      assert.equal((await state(page)).motion, 'idle');
+    });
+    await test('crossfade keeps an opaque base instead of fading both layers', {}, async page => {
+      await action(page, 'read'); await page.clock.runFor(100);
+      assert.equal(await page.locator('.pet-sprite:not(.pet-previous)').evaluate(el => getComputedStyle(el).opacity), '1');
+      assert.equal(await page.locator('.pet-previous').evaluate(el => el.getAnimations().length), 1);
+      await action(page, 'quiet');
+      assert.equal(await page.locator('.pet-previous').evaluate(el => el.hidden), true);
+    });
+    await test('crouch transitions stay solid without overlapping silhouettes', {}, async page => {
+      await action(page, 'nap'); await page.clock.runFor(900);
+      assert.equal((await state(page)).pose, 30);
+      assert.ok(await page.locator('.pet-previous').evaluate(el => el.hidden));
+      await page.clock.runFor(900); await action(page, 'read'); await page.clock.runFor(170);
+      assert.equal((await state(page)).pose, 30);
+      assert.ok(await page.locator('.pet-previous').evaluate(el => el.hidden));
+    });
+    await test('missing transition atlas retains the same-style static fallback', {noAtlas: 'transitions'}, async page => {
+      assert.equal(await page.locator('#blog-pet').evaluate(el => el.classList.contains('has-motions')), false);
+      assert.equal(await page.locator('.pet-art').evaluate(el => el.complete && el.naturalWidth > 0 && getComputedStyle(el).opacity === '1'), true);
+    });
     await test('atlas failure leaves a usable same-style static pet', {noAtlas: true}, async page => {
       assert.equal(await page.locator('.pet-art').evaluate(img => img.complete && img.naturalWidth > 0), true);
       await action(page, 'read'); await page.clock.runFor(3200); assert.equal((await state(page)).motion, 'idle');
@@ -246,6 +303,10 @@ async function main() {
           } else assert.ok(box.x >= 0 && box.y >= 0 && box.x + box.width <= width + 1 && box.y + box.height <= height + 1);
           assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
           await page.screenshot({path: path.join(qa, `${label}-${route === '/' ? 'home' : route.includes('projects') ? 'projects' : 'article'}.png`)});
+          if (flowing) {
+            await page.locator('#blog-pet').scrollIntoViewIfNeeded();
+            await page.screenshot({path: path.join(qa, `${label}-${route === '/' ? 'home' : route.includes('projects') ? 'projects' : 'article'}-companion.png`)});
+          }
         }
       });
     }

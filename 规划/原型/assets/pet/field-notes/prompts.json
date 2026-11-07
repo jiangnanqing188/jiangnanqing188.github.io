@@ -54,5 +54,29 @@
       "source/img/pet/field-notes/idle.webp",
       "source/img/pet/field-notes/actions.webp"
     ]
+  },
+  "continuity_generation": {
+    "date": "2026-11-07",
+    "tool": "image_gen.imagegen",
+    "model": "not reported by tool",
+    "quality": "not reported by tool",
+    "reference": {
+      "path": "source/img/pet/field-notes/idle.webp",
+      "revision": "eacc1b42be75601873a8d1d7f3a9a3d761616097"
+    },
+    "source": "call_ZcE1qgOxbQDNawi3KvolyboI.png",
+    "saved_as": "transitions-source.png",
+    "source_sha256": "07518ae860b9d53f99c35b088d63e60b352f41103a819e32db17d7cf3bfb8b84",
+    "transparent_background": true,
+    "grid": "4x4",
+    "frame_range": "20–35",
+    "brief_summary": "Preserve the approved warm field-notes character identity, outfit, view, scale and transparent background. Add a true arm-down neutral, two hand raising/lowering intermediates, both hands holding the closed notebook, a half-open notebook, hand approaching mouth, half-raised and half-lowered stretches, shallow/half/low crouches, a neutral blink, and four intermediate walking poses. This is a recorded brief summary, not a verbatim copy of the submitted image prompt.",
+    "processing": "scripts/build-pet-atlas.cjs: fixed-grid extraction; resize each complete cell to 320x320 (no per-character scaling/repainting); retain actions.webp as 4x5 and add transitions.webp as 4x4, WebP quality 90 / alpha-quality 100; idle.webp is frame 20.",
+    "runtime_outputs": [
+      "source/img/pet/field-notes/idle.webp",
+      "source/img/pet/field-notes/actions.webp",
+      "source/img/pet/field-notes/transitions.webp"
+    ],
+    "status": "36 poses integrated and locally browser-tested; source-branch push and Pages deployment are separate operations; see the 2026-11-07 worklog."
   }
 }

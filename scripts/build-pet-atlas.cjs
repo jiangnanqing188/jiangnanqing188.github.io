@@ -14,7 +14,7 @@ if (require.main === module) {
   const cell = 320;
   const frames = [];
   try {
-    for (const [file, columns, rows] of [['motions-source.png', 4, 4], ['states-source.png', 2, 2]]) {
+    for (const [file, columns, rows] of [['motions-source.png', 4, 4], ['states-source.png', 2, 2], ['transitions-source.png', 4, 4]]) {
       const source = path.join(input, file);
       const [width, height] = exec('magick', ['identify', '-format', '%w %h', source], {encoding: 'utf8'}).split(' ').map(Number);
       for (let row = 0; row < rows; row++) for (let col = 0; col < columns; col++) {
@@ -27,9 +27,10 @@ if (require.main === module) {
       }
     }
     fs.mkdirSync(output, {recursive: true});
-    exec('magick', ['montage', ...frames, '-tile', '4x5', '-geometry', `${cell}x${cell}+0+0`, '-background', 'none', '-quality', '90', '-define', 'webp:alpha-quality=100', '-define', 'webp:method=6', path.join(output, 'actions.webp')]);
-    exec('magick', [frames[0], '-quality', '90', '-define', 'webp:alpha-quality=100', '-define', 'webp:method=6', path.join(output, 'idle.webp')]);
-    console.log(`Pet atlas: 20 frames, ${cell}px cells, 4 × 5, quality 90 / alpha 100.`);
+    exec('magick', ['montage', ...frames.slice(0, 20), '-tile', '4x5', '-geometry', `${cell}x${cell}+0+0`, '-background', 'none', '-quality', '90', '-define', 'webp:alpha-quality=100', '-define', 'webp:method=6', path.join(output, 'actions.webp')]);
+    exec('magick', ['montage', ...frames.slice(20), '-tile', '4x4', '-geometry', `${cell}x${cell}+0+0`, '-background', 'none', '-quality', '90', '-define', 'webp:alpha-quality=100', '-define', 'webp:method=6', path.join(output, 'transitions.webp')]);
+    exec('magick', [frames[20], '-quality', '90', '-define', 'webp:alpha-quality=100', '-define', 'webp:method=6', path.join(output, 'idle.webp')]);
+    console.log(`Pet atlas: 36 frames, ${cell}px cells, 4 × 5 + 4 × 4, quality 90 / alpha 100.`);
   } finally {
     fs.rmSync(temp, {recursive: true, force: true});
   }
