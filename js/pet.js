@@ -245,30 +245,35 @@
   const visual = pet.querySelector('.pet-visual');
   const sprite = pet.querySelector('.pet-sprite');
   const previousSprite = pet.querySelector('.pet-previous');
-  let motion = 'idle', pose = 0, motionToken = 0, motionTimer, bodyAnimation;
+  const REST_POSE = 20;
+  let motion = 'idle', pose = REST_POSE, motionToken = 0, motionTimer, bodyAnimation;
   let blendTimer, blends = [], pendingAction = null, atlasReady = false;
   const animated = () => !quiet && !reducedMotion.matches;
-  const posePosition = frame => `${frame % 4 * 100 / 3}% ${Math.floor(frame / 4) * 25}%`;
+  const paintPose = (layer, frame) => {
+    const bridge = frame >= 20, index = bridge ? frame - 20 : frame;
+    layer.style.backgroundImage = `url('/img/pet/field-notes/${bridge ? 'transitions' : 'actions'}.webp')`;
+    layer.style.backgroundSize = bridge ? '400% 400%' : '400% 500%';
+    layer.style.backgroundPosition = `${index % 4 * 100 / 3}% ${Math.floor(index / 4) * (bridge ? 100 / 3 : 25)}%`;
+  };
   const clearBlend = () => {
     clearTimeout(blendTimer);
     blends.forEach(animation => animation.cancel());
     blends = [];
     previousSprite.hidden = true;
   };
-  const setPose = (frame, blend = false) => {
+  const setPose = (frame, blend = 32) => {
     if (frame === pose) return;
     clearBlend();
     if (blend && atlasReady && animated() && !document.hidden) {
-      previousSprite.style.backgroundPosition = posePosition(pose);
+      paintPose(previousSprite, pose);
       previousSprite.hidden = false;
-      blends = [
-        previousSprite.animate([{opacity: 1}, {opacity: 0}], {duration: 100, fill: 'both'}),
-        sprite.animate([{opacity: 0}, {opacity: 1}], {duration: 100, fill: 'both'})
-      ];
-      blendTimer = setTimeout(clearBlend, 110);
+      // Current stays opaque underneath. Fading BOTH layers made identical
+      // pixels translucent at mid-blend, causing a visible light pulse.
+      blends = [previousSprite.animate([{opacity: 1}, {opacity: 0}], {duration: blend, fill: 'both'})];
+      blendTimer = setTimeout(clearBlend, blend + 16);
     }
     pose = frame;
-    sprite.style.backgroundPosition = posePosition(frame);
+    paintPose(sprite, frame);
     pet.dataset.pose = String(frame);
   };
   const setMotion = name => {
@@ -285,6 +290,7 @@
     clearTimeout(motionTimer);
     bodyAnimation?.cancel();
     bodyAnimation = null;
+    visual.style.removeProperty('transform');
     clearBlend();
     return transform;
   };
@@ -293,11 +299,11 @@
     pendingAction = null;
     setMotion('idle');
     pet.dataset.phase = 'rest';
-    setPose(0, true);
+    setPose(REST_POSE, 40);
   };
-  // Each step is [pose, milliseconds, phase]. Short overlaps are only used at
-  // posture boundaries; gait/hand frames stay crisp rather than dissolving.
-  const run = (name, steps, {loop = false, end = 'idle', keys, done} = {}) => {
+  // Each step is [pose, milliseconds, phase]. Brief hand-frame overlaps soften
+  // small changes; large crouches and gait stay solid rather than dissolving.
+  const run = (name, steps, {end = 'idle', keys, done} = {}) => {
     const from = cancelMotion();
     const token = motionToken;
     setMotion(name);
@@ -307,73 +313,96 @@
     }
     if (keys && animated()) {
       bodyAnimation = visual.animate([{transform: from}, ...keys, {transform: 'none'}], {
-        duration, iterations: loop ? Infinity : 1, easing: 'ease-in-out', fill: 'both'
+        duration, easing: 'ease-in-out', fill: 'both'
       });
     }
-    let index = 0;
+    let index = 0, deadline = performance.now();
     const step = () => {
       if (token !== motionToken) return;
       if (index === steps.length) {
-        if (loop) index = 0;
-        else {
-          bodyAnimation?.cancel();
-          bodyAnimation = null;
-          setMotion(end);
-          pet.dataset.phase = 'rest';
-          setPose(end === 'sleeping' ? 18 : 0, true);
-          done?.();
-          return;
-        }
+        bodyAnimation?.cancel();
+        bodyAnimation = null;
+        setMotion(end);
+        pet.dataset.phase = 'rest';
+        setPose(end === 'sleeping' ? 18 : REST_POSE, 40);
+        done?.();
+        return;
       }
       const [frame, ms, phase = 'perform'] = steps[index++];
       pet.dataset.phase = phase;
-      setPose(frame, ['napping', 'waking'].includes(name));
-      motionTimer = setTimeout(step, ms);
+      // Large crouch/stand silhouette changes must not expose two heads or
+      // four legs. Authored inbetweens carry those transitions, not a dissolve.
+      setPose(frame, ['napping', 'waking'].includes(name) ? 0 : 32);
+      deadline += ms;
+      motionTimer = setTimeout(step, Math.max(0, deadline - performance.now()));
     };
     step();
   };
-  // The first neutral frame is shared with idle.webp: no style/scale jump when
-  // the atlas finishes decoding. A failed atlas leaves the static pet usable.
-  const atlas = new Image();
-  atlas.fetchPriority = 'low';
-  atlas.decoding = 'async';
-  atlas.onload = async () => {
-    try { await atlas.decode(); } catch { return; }
-    atlasReady = true;
-    sprite.hidden = false;
-    pet.classList.add('has-motions');
-  };
-  atlas.src = '/img/pet/field-notes/actions.webp';
+  // Both atlases must decode before replacing the neutral fallback. The rest
+  // image is exactly the first cell of the transition sheet.
+  let decodedAtlases = 0;
+  for (const name of ['actions', 'transitions']) {
+    const atlas = new Image();
+    atlas.fetchPriority = 'low';
+    atlas.decoding = 'async';
+    atlas.onload = async () => {
+      try { await atlas.decode(); } catch { return; }
+      if (++decodedAtlases !== 2) return;
+      atlasReady = true;
+      paintPose(sprite, pose);
+      sprite.hidden = false;
+      pet.classList.add('has-motions');
+    };
+    atlas.src = `/img/pet/field-notes/${name}.webp`;
+  }
 
   const ACTIONS = {
-    wave: {steps: [[0, 100, 'prepare'], [1, 180], [2, 160], [1, 180], [3, 220], [1, 160], [0, 160, 'recover']]},
-    read: {steps: [[0, 120, 'prepare'], [4, 240], [5, 650], [6, 300], [5, 600], [7, 350], [4, 200], [0, 180, 'recover']]},
-    stretch: {steps: [[0, 120, 'prepare'], [8, 360], [9, 350], [10, 650], [11, 350], [0, 220, 'recover']],
+    wave: {steps: [[20, 70, 'prepare'], [21, 90, 'prepare'], [22, 90], [0, 80], [1, 120], [2, 120], [1, 120], [3, 140], [1, 100], [0, 80, 'recover'], [22, 90, 'recover'], [21, 90, 'recover'], [20, 120, 'recover']]},
+    read: {steps: [[20, 80, 'prepare'], [23, 110], [4, 100], [24, 150], [5, 520], [6, 230], [5, 420], [7, 250], [5, 100, 'recover'], [24, 130, 'recover'], [4, 100, 'recover'], [23, 100, 'recover'], [20, 120, 'recover']]},
+    stretch: {steps: [[20, 80, 'prepare'], [25, 100], [8, 220], [9, 220], [26, 160], [10, 400], [26, 130, 'recover'], [27, 130, 'recover'], [11, 100, 'recover'], [21, 100, 'recover'], [20, 140, 'recover']],
       keys: [{transform: 'translateY(-2px) scale(.99, 1.02)'}, {transform: 'translateY(-3px) scale(.99, 1.025)'}]},
-    yawn: {steps: [[0, 120, 'prepare'], [8, 500], [9, 450], [8, 220], [0, 200, 'recover']]},
-    nod: {steps: [[0, 900]], keys: [{transform: 'translateY(3px) rotate(1deg)'}, {transform: 'translateY(1px)'}]},
-    peer: {steps: [[4, 250, 'prepare'], [7, 700], [4, 200], [0, 180, 'recover']],
+    yawn: {steps: [[20, 80, 'prepare'], [25, 120], [8, 400], [9, 250], [8, 150], [25, 120, 'recover'], [21, 100, 'recover'], [20, 120, 'recover']]},
+    nod: {steps: [[20, 900]], keys: [{transform: 'translateY(3px) rotate(1deg)'}, {transform: 'translateY(1px)'}]},
+    peer: {steps: [[20, 100, 'prepare'], [23, 130], [24, 150], [7, 550], [24, 130], [23, 100], [20, 120, 'recover']],
       keys: [{transform: 'translateX(-2px) rotate(-2deg)'}, {transform: 'translateX(-2px) rotate(-2deg)'}]},
-    'look-around': {steps: [[0, 1800]], keys: [{transform: 'rotate(-2deg)'}, {transform: 'rotate(2deg)'}]},
-    shrug: {steps: [[11, 280], [0, 220], [11, 250], [0, 180, 'recover']],
+    'look-around': {steps: [[20, 450], [31, 90], [20, 720], [31, 90], [20, 450]], keys: [{transform: 'rotate(-2deg)'}, {transform: 'rotate(2deg)'}]},
+    shrug: {steps: [[21, 130], [22, 200], [21, 180], [20, 180, 'recover']],
       keys: [{transform: 'rotate(2deg)'}, {transform: 'rotate(-2deg)'}]},
-    perk: {steps: [[0, 700]], keys: [{transform: 'translateY(-4px)'}, {transform: 'translateY(-1px)'}]},
-    cheer: {steps: [[0, 100, 'prepare'], [3, 600], [1, 180], [0, 200, 'recover']],
+    perk: {steps: [[20, 700]], keys: [{transform: 'translateY(-4px)'}, {transform: 'translateY(-1px)'}]},
+    cheer: {steps: [[21, 100, 'prepare'], [0, 100], [3, 450], [1, 100], [22, 100], [21, 90], [20, 140, 'recover']],
       keys: [{transform: 'translateY(-4px)'}, {transform: 'translateY(-1px)'}]},
-    settle: {steps: [[0, 480, 'recover']],
+    settle: {steps: [[28, 110, 'land'], [23, 130, 'recover'], [20, 220, 'recover']],
       keys: [{transform: 'translateY(2px) scale(1.025, .97)'}, {transform: 'translateY(-1px)'}]},
-    jump: {steps: [[0, 160, 'prepare'], [3, 360, 'airborne'], [0, 180, 'land'], [0, 260, 'recover']],
-      keys: [{transform: 'translateY(3px) scale(1.04, .94)', offset: .15},
+    jump: {steps: [[28, 160, 'prepare'], [3, 360, 'airborne'], [28, 180, 'land'], [23, 100, 'recover'], [20, 160, 'recover']],
+      keys: [{transform: 'translateY(3px) scale(1.025, .97)', offset: .15},
         {transform: 'translateY(-24px) rotate(-3deg)', offset: .38},
         {transform: 'translateY(0)', offset: .58},
-        {transform: 'translateY(3px) scale(1.04, .95)', offset: .68},
-        {transform: 'translateY(-2px)', offset: .82}]}
+        {transform: 'translateY(1px)', offset: .68}, {transform: 'translateY(-1px)', offset: .82}]}
+  };
+  // Mid-action replies first put the book/hand away instead of teleporting from
+  // an open-book or raised-arm pose. A second request replaces, not extends, it.
+  const recoverySteps = () => {
+    if (['walk-start', 'walking', 'walk-stop'].includes(motion)) {
+      if (![12, 13, 14, 15, 32, 33, 34, 35].includes(pose)) return [[23, 100, 'recover'], [20, 100, 'recover']];
+      const plant = [12, 32, 13, 33].includes(pose) ? 12 : 14;
+      return [[plant, 70, 'plant'], [23, 100, 'recover'], [20, 100, 'recover']];
+    }
+    if ([4, 5, 6, 7, 24].includes(pose)) return [[24, 80, 'recover'], [23, 80, 'recover'], [20, 70, 'recover']];
+    if ([8, 9, 10, 11, 25, 26, 27].includes(pose)) return [[27, 90, 'recover'], [21, 80, 'recover'], [20, 70, 'recover']];
+    if (motion === 'jump') return [[28, 90, 'land'], [23, 80, 'recover'], [20, 70, 'recover']];
+    if ([0, 1, 2, 3, 22].includes(pose)) return [[22, 80, 'recover'], [21, 70, 'recover'], [20, 70, 'recover']];
+    return [];
+  };
+  const finishPending = () => {
+    const next = pendingAction;
+    pendingAction = null;
+    if (next) play(next);
   };
   let flight = null, wanderTimer, walkRaf;
-  const stopWalk = () => {
+  const stopWalk = (reset = true) => {
     cancelAnimationFrame(walkRaf);
     walkRaf = null;
-    if (['walk-start', 'walking', 'walk-stop'].includes(motion)) rest();
+    if (reset && ['walk-start', 'walking', 'walk-stop'].includes(motion)) rest();
   };
   const stopFlight = () => {
     if (flight) cancelAnimationFrame(flight.raf);
@@ -387,9 +416,16 @@
       wake();
       return;
     }
-    stopWalk();
+    if (motion === 'recovering') { pendingAction = name; return; }
+    const recovery = animated() && name !== 'jump' && name !== 'settle' ? recoverySteps() : [];
+    stopWalk(false); // Preserve the visible gait pose for its planted recovery.
     stopFlight();
     if (!animated()) { rest(); return; }
+    if (recovery.length) {
+      pendingAction = name;
+      run('recovering', recovery, {done: finishPending});
+      return;
+    }
     if (name === 'stroll') { rest(); wander(); return; }
     const action = ACTIONS[name];
     run(name, action.steps, {keys: action.keys});
@@ -408,22 +444,34 @@
     targetX = Math.max(lane.min, Math.min(targetX, lane.max));
     if (Math.abs(targetX - box.x) < 12) { play('look-around'); return; }
     pet.classList.toggle('face-right', targetX > box.x);
-    run('walk-start', [[0, 180, 'prepare']], {done: () => {
+    run('walk-start', [[20, 80, 'prepare'], [23, 140, 'prepare']], {done: () => {
       const began = performance.now();
       const duration = Math.abs(targetX - box.x) / .055;
-      run('walking', [[12, 180], [13, 180], [14, 180], [15, 180]], {loop: true,
-        keys: [{transform: 'translateY(-1px)'}, {transform: 'none'}]});
+      const stride = box.width * .24;
+      const gait = [12, 32, 13, 33, 14, 34, 15, 35];
+      cancelMotion();
+      const token = motionToken;
+      setMotion('walking');
+      setPose(gait[0], 0); // No one-frame neutral flash before the first RAF.
+      pet.dataset.phase = 'perform';
       const step = now => {
+        if (token !== motionToken) return;
         const t = Math.min(1, (now - began) / duration);
-        const eased = t * t * (3 - 2 * t); // Both departure and arrival have zero velocity.
+        const eased = t * t * (3 - 2 * t);
+        const distance = Math.abs(targetX - box.x) * eased;
+        const phase = distance / stride;
+        setPose(gait[Math.floor(phase * 8) % 8], 0);
+        visual.style.transform = `translateY(${-(Math.sin(phase * Math.PI * 2) ** 2) * box.width * .007}px)`;
         position(box.x + (targetX - box.x) * eased, box.y);
         if (t < 1) { walkRaf = requestAnimationFrame(step); return; }
         walkRaf = null;
-        run('walk-stop', [[0, 260, 'recover']], {done: save});
+        const plant = [12, 32, 13, 33].includes(pose) ? 12 : 14;
+        run('walk-stop', [[plant, 90, 'plant'], [23, 140, 'recover'], [20, 140, 'recover']], {done: save});
       };
       walkRaf = requestAnimationFrame(step);
     }});
   };
+
   const nap = () => {
     clearTimeout(idleTimer);
     clearTimeout(bubbleTimer);
@@ -438,7 +486,7 @@
       setPose(18);
       return;
     }
-    run('napping', [[8, 380, 'drowsy'], [16, 500, 'drowsy'], [17, 550, 'sit'], [18, 400, 'doze']], {end: 'sleeping'});
+    run('napping', [[25, 100, 'drowsy'], [8, 160, 'drowsy'], [16, 220, 'drowsy'], [23, 100, 'crouch'], [28, 120, 'crouch'], [29, 140, 'crouch'], [30, 160, 'sit'], [17, 230, 'sit'], [18, 300, 'doze']], {end: 'sleeping'});
   };
   const wake = () => {
     clearTimeout(idleTimer);
@@ -450,14 +498,14 @@
     if (!['sleeping', 'napping', 'waking'].includes(motion)) return;
     if (hidden || !animated() || document.hidden) { rest(); return; }
     if (motion === 'waking') return; // Repeated pointer/keyboard activity must not restart waking.
-    const steps = pose >= 17 ? [[17, 300, 'sit'], [16, 340, 'stand'], [0, 220, 'recover']]
-      : [[pose, 160, 'stand'], [0, 220, 'recover']];
-    run('waking', steps, {done: () => {
-      const next = pendingAction;
-      pendingAction = null;
-      if (next) play(next);
-    }});
+    const steps = [17, 18, 30].includes(pose)
+      ? [[17, 150, 'sit'], [30, 130, 'stand'], [29, 130, 'stand'], [28, 110, 'stand'], [23, 100, 'stand'], [20, 180, 'recover']]
+      : pose === 29 ? [[29, 100, 'stand'], [28, 110, 'stand'], [23, 100], [20, 150, 'recover']]
+      : pose === 28 ? [[28, 100, 'stand'], [23, 100], [20, 150, 'recover']]
+      : [[pose, 80, 'stand'], [25, 100], [21, 100], [20, 140, 'recover']];
+    run('waking', steps, {done: finishPending});
   };
+
   const fling = (velocityX, velocityY) => {
     stopFlight();
     stopWalk();
@@ -771,7 +819,7 @@
       cancelMotion();
       pendingAction = null;
       setMotion('dragging');
-      setPose(19, true);
+      setPose(19, 60);
       bubble.hidden = true;
       drag.moved = true;
     }

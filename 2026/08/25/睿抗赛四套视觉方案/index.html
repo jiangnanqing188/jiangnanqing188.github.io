@@ -10,9 +10,9 @@
   <title>睿抗赛里，我给机器人做了四套视觉方案 · 江南的碎碎念</title><meta name="description" content="从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。"><meta name="keywords" content="ROS, 计算机视觉, 睿抗机器人开发者大赛, 智能侦察车, YOLO, RGB-D, OpenCV"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/"><meta property="og:type" content="article"><meta property="og:title" content="睿抗赛里，我给机器人做了四套视觉方案"><meta property="og:description" content="从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。"><meta property="og:url" content="https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/covers/notebook/20261105/ruikang-vision-studies.webp"><meta name="twitter:card" content="summary_large_image"><meta property="article:published_time" content="2026-08-25T13:00:00.000Z"><meta property="article:modified_time" content="2026-08-25T13:00:00.000Z">
   <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
   <link rel="stylesheet" href="/css/notebook.css?v=a79887d7b271">
-  <link rel="stylesheet" href="/css/pet.css?v=ed2d3b5234da">
+  <link rel="stylesheet" href="/css/pet.css?v=4103d0de3aea">
   <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
-  <script src="/js/pet.js?v=fcb81b96cc08" defer></script>
+  <script src="/js/pet.js?v=923ab59467ff" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"睿抗赛里，我给机器人做了四套视觉方案","description":"从YOLO人员识别、RGB锥筒计数，到反坦克雷三维定位和黄线软约束，复盘睿抗智能侦察车四套视觉方案的真实演进。","image":"https://jiangnanqing188.github.io/img/covers/notebook/20261105/ruikang-vision-studies.webp","url":"https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/","mainEntityOfPage":"https://jiangnanqing188.github.io/2026/08/25/%E7%9D%BF%E6%8A%97%E8%B5%9B%E5%9B%9B%E5%A5%97%E8%A7%86%E8%A7%89%E6%96%B9%E6%A1%88/","datePublished":"2026-08-25T13:00:00.000Z","dateModified":"2026-08-25T13:00:00.000Z","author":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"publisher":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"keywords":"睿抗机器人开发者大赛, 智能侦察车, YOLO, RGB-D, OpenCV, ROS, 计算机视觉","articleSection":"工程实践","about":{"@type":"Thing","name":"睿抗智能侦察车","url":"https://jiangnanqing188.github.io/projects/#project-ruikang"}}</script></head>
 <body>
@@ -186,7 +186,7 @@
 </main>
   <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
   <div class="pet-workstation container" aria-label="小江的纸边工位"><div class="pet-station-copy"><span>COMPANION / 纸边工位</span><p>读到这里，歇一会儿。</p><small>小江在这里陪你。点开小菜单，或把她拖到喜欢的位置。</small></div>
-<aside id="blog-pet" class="blog-pet is-flow" data-motion="idle" data-pose="0" aria-label="博客小伙伴：小江">
+<aside id="blog-pet" class="blog-pet is-flow" data-motion="idle" data-pose="20" aria-label="博客小伙伴：小江">
   <div class="pet-stage">
     <p id="pet-message" class="pet-bubble" role="status" hidden></p>
     <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">

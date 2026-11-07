@@ -1,4 +1,4 @@
-/* Original field-notes companion. Poses share one atlas and one motion owner. */
+/* Original field-notes companion. Poses share two atlases and one motion owner. */
 .blog-pet { --pet-signal: var(--lab-blue, #1f4d3d); position: fixed; right: 22px; bottom: 18px; z-index: 9; width: min(170px, calc((100dvh - 80px) * 2 / 3)); pointer-events: none; }
 /* Without JavaScript the companion already owns normal document space. */
 .pet-workstation { display: flex; align-items: end; justify-content: space-between; gap: 24px; min-height: 228px; padding: 24px 16px; margin: 24px auto; border-top: 1px solid var(--lab-rule); }
@@ -17,14 +17,14 @@
 .pet-visual { display: block; position: relative; pointer-events: none; transform-origin: 48% 95%; }
 .pet-art { display: block; width: 100%; height: auto; pointer-events: none; }
 .has-motions .pet-art { opacity: 0; }
-.pet-sprite { position: absolute; inset: 0; pointer-events: none; background: url('/img/pet/field-notes/actions.webp') 0 0 / 400% 500% no-repeat; }
+.pet-sprite { position: absolute; inset: 0; pointer-events: none; background: url('/img/pet/field-notes/transitions.webp') 0 0 / 400% 400% no-repeat; }
 .pet-previous { z-index: 1; }
 .blog-pet[data-motion="idle"] .pet-visual { animation: pet-idle 5.5s ease-in-out infinite; }
 .blog-pet.is-sleeping .pet-visual { animation: pet-breathe 4s ease-in-out infinite; }
 .blog-pet.is-dragging .pet-visual { transform: rotate(var(--pet-lift-angle, 0deg)); transform-origin: 48% 46%; transition: transform 90ms ease-out; }
 .blog-pet.face-right .pet-visual { scale: -1 1; }
 .pet-hit { position: absolute; inset: 0; pointer-events: auto; cursor: grab; z-index: 2; clip-path: polygon(30% 3%, 61% 3%, 75% 17%, 76% 34%, 67% 46%, 70% 60%, 79% 51%, 86% 55%, 86% 73%, 70% 80%, 61% 95%, 38% 95%, 38% 74%, 30% 62%, 26% 48%, 20% 39%, 22% 17%); }
-.blog-pet:is([data-pose="17"], [data-pose="18"]) .pet-hit { clip-path: polygon(30% 22%, 65% 22%, 75% 42%, 72% 60%, 72% 78%, 82% 73%, 89% 81%, 84% 95%, 29% 95%, 29% 72%, 24% 58%, 22% 39%); }
+.blog-pet:is([data-pose="17"], [data-pose="18"], [data-pose="30"]) .pet-hit { clip-path: polygon(30% 22%, 65% 22%, 75% 42%, 72% 60%, 72% 78%, 82% 73%, 89% 81%, 84% 95%, 29% 95%, 29% 72%, 24% 58%, 22% 39%); }
 .blog-pet[data-pose="19"] .pet-hit { clip-path: polygon(30% 3%, 62% 3%, 77% 21%, 75% 38%, 65% 48%, 68% 65%, 83% 65%, 87% 84%, 76% 92%, 50% 96%, 35% 93%, 32% 74%, 24% 64%, 25% 48%, 21% 30%); }
 .blog-pet.face-right .pet-hit { transform: scaleX(-1); }
 .blog-pet.is-dragging .pet-hit, .blog-pet.is-dragging .pet-avatar { cursor: grabbing; }
