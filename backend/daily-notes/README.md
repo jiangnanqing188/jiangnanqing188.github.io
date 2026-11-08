@@ -207,3 +207,40 @@ node --test --experimental-test-isolation=none --test-reporter=spec backend/dail
 ```
 
 最终为 **121 tests / 121 pass / 0 fail**（原 Worker 92 + 新跨层 29），不是正式浏览器或 GitHub OAuth 验收。popup 宽限期的真实跨窗口消息调度仍须由主线程浏览器回归复核；Node DOM 模拟证明的是指定竞态及权限路径，不保证所有浏览器调度。**本次修改 helper 与前端源码后需要主线程重建再截图。**本子任务未并发 build、未修改生成物，也未暂存、提交、推送或部署。
+
+
+## 一次性本机 Manifest 开通辅助（不自动创建或安装）
+
+> 当前状态（2026-11-08）：仅本机模拟测试通过，真实开通尚未完成。本次浏览器提交后 GitHub 返回 `Invalid GitHub App configuration: "url" wasn't supplied`，未得到成功创建或凭据兑换的证据；下次应先核实表单传输/登录状态，或使用 GitHub 正常创建表单，不能将该辅助视为已验证的真实开通流程。此前临时入口已过期，请勿复用。
+
+`setup-app.mjs` 只监听 `127.0.0.1`，提供一个 15 分钟有效的随机设置入口；打开后还需要在 GitHub 页面核对账号、名称和权限，再由操作者确认创建。它不自行点击创建、安装、写配置或部署。只允许固定账号 `jiangnanqing188`（数字 ID `192717492`）、固定 App 名称和 Contents write / Metadata read；创建完成后仍须只安装到博客仓库。Manifest 的 Worker 回调固定为 `https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/auth/callback`，部署前核对最终域名。
+
+从仓库根目录运行（目录必须是**尚不存在**的仓库外绝对路径；如已存在则换新名字，不复用）：
+
+```bash
+node backend/daily-notes/setup-app.mjs --private-dir /tmp/blog-daily-setup-private-20261108-01
+```
+
+可在末尾加 `--port 8765`；省略时使用系统分配端口。控制台给出本机入口 URL，回调仅在服务端兑换授权码；不会记录 query、请求头、响应正文或异常详情，也不会把密钥显示在页面、URL或控制台。GitHub 返回的 state 会严格核验；错误、过期、重复或并发回调不会重复兑换。服务退出或 15 分钟到期即关闭。Manifest 握手方式依据 GitHub 官方的 [App manifest 文档](https://docs.github.com/en/apps/sharing-github-apps/registering-a-github-app-from-a-manifest)。
+
+成功后在新建的 `0700` 目录内生成两个 `0600` 文件：
+
+- `worker-secrets.json`：仅 `GITHUB_CLIENT_SECRET` 与新生成的 32 字节 hex `SESSION_SECRET`，供已授权的 Wrangler 进程一次性读取。
+- `app-metadata.json`：非敏感 Client ID、App URL、slug 及一次性清理说明。PEM 和 webhook secret 不写盘、不使用。
+
+配置本地 Client ID、确认 Cloudflare 账号及 Worker 目标后，主线程可通过 stdin 输入 secrets（以下是命令示例，辅助工具不会自动执行）：
+
+```bash
+wrangler secret bulk --config backend/daily-notes/wrangler.toml < /tmp/blog-daily-setup-private-20261108-01/worker-secrets.json
+```
+
+不要 `cat`、截图或粘贴秘密文件；上传确认成功后仅删除这次新建的私有目录。若失败，页面只显示安全状态，私有目录可能保留部分文件，应先检查文件是否存在而不显示内容，不能盲目重新创建 App。不要把这个目录放进仓库、共享目录或有符号链接的父路径。
+
+辅助工具独立测试（全部兑换为 mock，不访问 GitHub、不创建 App）：
+
+```bash
+node --check backend/daily-notes/setup-app.mjs
+node --test --experimental-test-isolation=none --test-reporter=spec backend/daily-notes/test/setup-app.test.mjs
+```
+
+这些测试需要本机回环监听权限；不等于真实 GitHub manifest、安装或 Cloudflare Secret 上传验收。
