@@ -98,23 +98,23 @@ async function main() {
       }
     });
     await test('greeting raises and lowers the hand to a true neutral', {saved: placed}, async page => {
-      const poses = await trace(page, async () => { await page.locator('.pet-avatar').focus(); await page.keyboard.press('Enter'); }, 1500);
+      const poses = await trace(page, async () => { await page.locator('.pet-avatar').focus(); await page.keyboard.press('Enter'); }, 3100);
       assert.deepEqual(poses, [20,21,22,0,1,2,1,3,1,0,22,21,20]);
       assert.equal((await state(page)).motion, 'idle');
       await page.locator('.pet-menu-toggle').click(); await page.locator('[data-pet-action="read"]').click();
-      await page.clock.runFor(470); assert.equal((await state(page)).pose, 5);
+      await page.clock.runFor(850); assert.equal((await state(page)).pose, 5);
     });
     await test('reading has opening and closing inbetweens', {}, async page => {
-      const poses = await trace(page, () => action(page, 'read'), 3000);
+      const poses = await trace(page, () => action(page, 'read'), 4600);
       assert.deepEqual(poses, [20,23,4,24,5,6,5,7,5,24,4,23,20]);
       assert.equal((await state(page)).motion, 'idle');
     });
     await test('stretch + interrupted gesture has no stale timer', {}, async page => {
-      await action(page, 'stretch'); await page.clock.runFor(900); assert.equal((await state(page)).pose, 10);
+      await action(page, 'stretch'); await page.clock.runFor(1600); assert.equal((await state(page)).pose, 10);
       await action(page, 'jump'); await page.clock.runFor(180); assert.equal((await state(page)).motion, 'jump');
       await action(page, 'read'); await page.clock.runFor(1500); assert.equal((await state(page)).motion, 'read');
-      await page.clock.runFor(2000); assert.equal((await state(page)).motion, 'idle');
-      assert.equal(await page.locator('.pet-previous').evaluate(el => el.hidden), true);
+      await page.clock.runFor(3300); assert.equal((await state(page)).motion, 'idle');
+      assert.equal(await page.locator('.pet-previous').count(), 0);
     });
     await test('jump preparation / airborne / landing / recovery', {}, async page => {
       await action(page, 'jump'); assert.equal((await state(page)).phase, 'prepare');
@@ -125,53 +125,67 @@ async function main() {
     });
     await test('sleep sequence / no automatic walking while asleep', {}, async page => {
       await action(page, 'nap'); assert.equal((await state(page)).pose, 25);
-      await page.clock.runFor(400); assert.equal((await state(page)).pose, 16);
-      await page.clock.runFor(500); assert.equal((await state(page)).pose, 30);
-      await page.clock.runFor(1000); assert.equal((await state(page)).motion, 'sleeping');
+      await page.clock.runFor(600); assert.equal((await state(page)).pose, 16);
+      await page.clock.runFor(1050); assert.equal((await state(page)).pose, 30);
+      await page.clock.runFor(1200); assert.equal((await state(page)).motion, 'sleeping');
       await page.clock.runFor(30000); assert.equal((await state(page)).pose, 18);
     });
     await test('wake before replying / latest intent wins', {}, async page => {
-      await action(page, 'nap'); await page.clock.runFor(1900);
+      await action(page, 'nap'); await page.clock.runFor(3000);
       await action(page, 'read'); await page.clock.runFor(150); assert.equal((await state(page)).motion, 'waking');
-      await action(page, 'stretch'); await page.clock.runFor(720); assert.equal((await state(page)).motion, 'stretch');
-      await page.clock.runFor(2300); assert.equal((await state(page)).motion, 'idle');
+      await action(page, 'stretch'); await page.clock.runFor(1300); assert.equal((await state(page)).motion, 'stretch');
+      await page.clock.runFor(3300); assert.equal((await state(page)).motion, 'idle');
     });
     await test('interrupt falling asleep / no old sleep callback', {}, async page => {
       await action(page, 'nap'); await page.clock.runFor(500);
       await page.locator('.pet-avatar').dispatchEvent('click', {detail: 0});
       assert.equal((await state(page)).motion, 'waking');
-      await page.clock.runFor(450); assert.equal((await state(page)).motion, 'wave');
-      await page.clock.runFor(2500); assert.equal((await state(page)).motion, 'idle');
+      await page.clock.runFor(700); assert.equal((await state(page)).motion, 'wave');
+      await page.clock.runFor(3000); assert.equal((await state(page)).motion, 'idle');
     });
     await test('8-phase distance-synchronised gait and planted stop', {saved: placed, random: .4}, async page => {
       const before = await state(page);
       const poses = await trace(page, () => action(page, 'stroll'), 6000);
       for (const frame of [12,32,13,33,14,34,15,35]) assert.ok(poses.includes(frame), `Missing gait phase ${frame}`);
-      assert.deepEqual(poses.slice(-3), [12,23,20]);
+      assert.deepEqual(poses.slice(-3), [14,23,20]);
       const after = await state(page);
       assert.equal(after.motion, 'idle'); assert.ok(Math.abs(after.x - before.x) >= 12);
       const saved = await page.evaluate(key => JSON.parse(localStorage.getItem(key)), key);
       assert.equal(saved.auto, false); assert.equal(saved.x, after.x);
     });
+    await test('small mobile pet keeps the same unhurried footfall cadence', {width: 390, height: 844, phone: true, saved: {...placed, x: 150, w: 106}, random: .4}, async page => {
+      await page.evaluate(() => {
+        window.gaitTimes = [];
+        new MutationObserver(() => {
+          const pet = document.querySelector('#blog-pet');
+          if (pet.dataset.motion === 'walking') window.gaitTimes.push(performance.now());
+        }).observe(document.querySelector('#blog-pet'), {attributes: true, attributeFilter: ['data-pose']});
+      });
+      await action(page, 'stroll'); await page.clock.runFor(7000);
+      const times = await page.evaluate(() => window.gaitTimes);
+      assert.ok(times.length >= 8, 'Actually exercise a complete small-screen gait');
+      for (let i = 1; i < times.length; i++) assert.ok(times[i] - times[i - 1] >= 144, 'Small-screen feet must not rush through frames');
+      assert.equal((await state(page)).motion, 'idle');
+    });
     await test('greeting stops walking, with no surviving movement frame', {saved: placed}, async page => {
       await action(page, 'stroll'); await page.clock.runFor(500);
       await page.locator('.pet-avatar').dispatchEvent('click', {detail: 0});
       const x = (await state(page)).x; assert.equal((await state(page)).motion, 'recovering');
-      await page.clock.runFor(350); assert.equal((await state(page)).motion, 'wave');
+      await page.clock.runFor(520); assert.equal((await state(page)).motion, 'wave');
       await page.clock.runFor(5500); assert.equal((await state(page)).x, x); assert.equal((await state(page)).motion, 'idle');
     });
     await test('interrupted walking plants a foot without flashing neutral first', {saved: placed, random: .4}, async page => {
       await action(page, 'stroll'); await page.clock.runFor(500);
       const before = (await state(page)).pose;
       const plant = [12,32,13,33].includes(before) ? 12 : 14;
-      const poses = await trace(page, () => page.locator('.pet-avatar').dispatchEvent('click', {detail: 0}), 200);
+      const poses = await trace(page, () => page.locator('.pet-avatar').dispatchEvent('click', {detail: 0}), 350);
       assert.deepEqual(poses, before === plant ? [before,23,20] : [before,plant,23,20]);
     });
     await test('interrupted walk preparation keeps both feet down', {saved: placed, random: .4}, async page => {
-      await action(page, 'stroll'); await page.clock.runFor(100);
-      const poses = await trace(page, () => action(page, 'read'), 150);
+      await action(page, 'stroll'); await page.clock.runFor(280);
+      const poses = await trace(page, () => action(page, 'read'), 200);
       assert.deepEqual(poses, [23,20]);
-      await page.clock.runFor(100); assert.equal((await state(page)).motion, 'read');
+      await page.clock.runFor(200); assert.equal((await state(page)).motion, 'read');
     });
     await test('idle does not repeat the last gesture / automatic nap', {random: .4}, async page => {
       const observed = await page.evaluate(() => {
@@ -185,8 +199,8 @@ async function main() {
       assert.ok(history.length >= 2); assert.ok(history.every((name, i) => i === 0 || name !== history[i - 1]));
     });
     await test('wake before walking, not an instantaneous standing swap', {saved: placed}, async page => {
-      await action(page, 'nap'); await page.clock.runFor(1900); await action(page, 'stroll');
-      assert.equal((await state(page)).motion, 'waking'); await page.clock.runFor(870);
+      await action(page, 'nap'); await page.clock.runFor(3000); await action(page, 'stroll');
+      assert.equal((await state(page)).motion, 'waking'); await page.clock.runFor(1450);
       assert.equal((await state(page)).motion, 'walk-start');
     });
     await test('quiet mode cancels motion / static sleeping and waking', {}, async page => {
@@ -206,7 +220,7 @@ async function main() {
       assert.equal(await page.locator('.pet-visual').evaluate(el => el.getAnimations().length), 0);
     });
     await test('lift / paused release / cancel / placement persistence', {saved: placed}, async page => {
-      await action(page, 'nap'); await page.clock.runFor(1900); const p = await point(page);
+      await action(page, 'nap'); await page.clock.runFor(3000); const p = await point(page);
       await page.mouse.move(p.x, p.y + 25); await page.mouse.down(); await page.mouse.move(p.x + 90, p.y - 120, {steps: 4});
       assert.equal((await state(page)).motion, 'dragging'); assert.equal((await state(page)).pose, 19);
       await page.clock.runFor(150); await page.mouse.up(); assert.equal((await state(page)).motion, 'settle');
@@ -247,9 +261,9 @@ async function main() {
       await action(page, 'read'); assert.equal((await state(page)).motion, 'read');
     });
     await test('sleep and wake both traverse the crouch frames', {}, async page => {
-      const asleep = await trace(page, () => action(page, 'nap'), 1800);
+      const asleep = await trace(page, () => action(page, 'nap'), 3000);
       assert.deepEqual(asleep, [20,25,8,16,23,28,29,30,17,18]);
-      const awake = await trace(page, () => action(page, 'read'), 1000);
+      const awake = await trace(page, () => action(page, 'read'), 1550);
       assert.deepEqual(awake.slice(0, 7), [18,17,30,29,28,23,20]);
       assert.equal((await state(page)).motion, 'read');
     });
@@ -257,24 +271,62 @@ async function main() {
       await action(page, 'read'); await page.clock.runFor(600);
       await action(page, 'stretch'); assert.equal((await state(page)).motion, 'recovering');
       await page.clock.runFor(100); await action(page, 'cheer');
-      await page.clock.runFor(150); assert.equal((await state(page)).motion, 'cheer');
-      await page.clock.runFor(1600); assert.equal((await state(page)).pose, 20);
+      await page.clock.runFor(350); assert.equal((await state(page)).motion, 'cheer');
+      await page.clock.runFor(2100); assert.equal((await state(page)).pose, 20);
       assert.equal((await state(page)).motion, 'idle');
     });
-    await test('crossfade keeps an opaque base instead of fading both layers', {}, async page => {
-      await action(page, 'read'); await page.clock.runFor(100);
-      assert.equal(await page.locator('.pet-sprite:not(.pet-previous)').evaluate(el => getComputedStyle(el).opacity), '1');
-      assert.equal(await page.locator('.pet-previous').evaluate(el => el.getAnimations().length), 1);
-      await action(page, 'quiet');
-      assert.equal(await page.locator('.pet-previous').evaluate(el => el.hidden), true);
+    await test('all gestures render a single opaque pose, with no afterimage layer', {}, async page => {
+      assert.equal(await page.locator('.pet-sprite').count(), 1);
+      assert.equal(await page.locator('.pet-previous').count(), 0);
+      for (const name of ['read', 'stretch', 'nap', 'cheer']) {
+        await action(page, name);
+        for (let i = 0; i < 300; i++) {
+          await page.clock.runFor(16);
+          assert.deepEqual(await page.locator('.pet-visual').evaluate(el => ({
+            layers: [...el.querySelectorAll('.pet-sprite')].filter(e => !e.hidden && getComputedStyle(e).display !== 'none').length,
+            opacity: getComputedStyle(el.querySelector('.pet-sprite')).opacity,
+            fallback: getComputedStyle(el.querySelector('.pet-art')).opacity,
+            fades: el.querySelector('.pet-sprite').getAnimations().length
+          })), {layers: 1, opacity: '1', fallback: '0', fades: 0});
+          if (['idle', 'sleeping'].includes((await state(page)).motion)) break;
+        }
+      }
     });
-    await test('crouch transitions stay solid without overlapping silhouettes', {}, async page => {
-      await action(page, 'nap'); await page.clock.runFor(900);
-      assert.equal((await state(page)).pose, 30);
-      assert.ok(await page.locator('.pet-previous').evaluate(el => el.hidden));
-      await page.clock.runFor(900); await action(page, 'read'); await page.clock.runFor(170);
-      assert.equal((await state(page)).pose, 30);
-      assert.ok(await page.locator('.pet-previous').evaluate(el => el.hidden));
+    await test('slower gesture timing holds inbetweens and keeps a readable rest', {}, async page => {
+      const durations = [];
+      for (const name of ['read', 'stretch']) {
+        await page.evaluate(() => {
+          window.poseTimes = [];
+          window.timingObserver = new MutationObserver(() => window.poseTimes.push(performance.now()));
+          window.timingObserver.observe(document.querySelector('#blog-pet'), {attributes: true, attributeFilter: ['data-pose']});
+        });
+        const began = await page.evaluate(() => performance.now());
+        await action(page, name);
+        await page.clock.runFor(2000); assert.equal((await state(page)).motion, name, 'Do not rush through the gesture');
+        await page.clock.runFor(2800); assert.equal((await state(page)).motion, 'idle');
+        const times = await page.evaluate(() => { window.timingObserver.disconnect(); return window.poseTimes; });
+        for (let i = 1; i < times.length; i++) assert.ok(times[i] - times[i - 1] >= 160, `Too-short pose hold in ${name}`);
+        durations.push(times.at(-1) - began);
+      }
+      assert.ok(durations[0] >= 3900 && durations[1] >= 2800, 'Reading and stretching keep deliberate recovery time');
+    });
+    await test('late callbacks do not compress the remaining poses into a catch-up burst', {}, async page => {
+      await page.evaluate(() => {
+        const original = window.setTimeout;
+        let delayed = false;
+        window.setTimeout = (callback, ms, ...args) => {
+          if (!delayed && ms === 160) { delayed = true; ms += 500; }
+          return original(callback, ms, ...args);
+        };
+        window.lateTimes = [];
+        new MutationObserver(() => window.lateTimes.push(performance.now()))
+          .observe(document.querySelector('#blog-pet'), {attributes: true, attributeFilter: ['data-pose']});
+      });
+      await action(page, 'read'); await page.clock.runFor(5000);
+      const times = await page.evaluate(() => window.lateTimes);
+      assert.equal(times.length, 12);
+      for (let i = 1; i < times.length; i++) assert.ok(times[i] - times[i - 1] >= 180, 'A delayed pose must not shorten the next hold');
+      assert.equal((await state(page)).motion, 'idle');
     });
     await test('missing transition atlas retains the same-style static fallback', {noAtlas: 'transitions'}, async page => {
       assert.equal(await page.locator('#blog-pet').evaluate(el => el.classList.contains('has-motions')), false);
@@ -282,7 +334,7 @@ async function main() {
     });
     await test('atlas failure leaves a usable same-style static pet', {noAtlas: true}, async page => {
       assert.equal(await page.locator('.pet-art').evaluate(img => img.complete && img.naturalWidth > 0), true);
-      await action(page, 'read'); await page.clock.runFor(3200); assert.equal((await state(page)).motion, 'idle');
+      await action(page, 'read'); await page.clock.runFor(4600); assert.equal((await state(page)).motion, 'idle');
       assert.equal(await page.locator('.pet-art').evaluate(img => getComputedStyle(img).opacity), '1');
     });
     for (const [label, width, height, phone] of [['desktop', 1440, 1000, false], ['mobile', 390, 844, true]]) {

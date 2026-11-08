@@ -1,4 +1,4 @@
-/* Original field-notes companion. Poses share two atlases and one motion owner. */
+/* Original field-notes companion. Poses share two atlases, one visible pose and one motion owner. */
 .blog-pet { --pet-signal: var(--lab-blue, #1f4d3d); position: fixed; right: 22px; bottom: 18px; z-index: 9; width: min(170px, calc((100dvh - 80px) * 2 / 3)); pointer-events: none; }
 /* Without JavaScript the companion already owns normal document space. */
 .pet-workstation { display: flex; align-items: end; justify-content: space-between; gap: 24px; min-height: 228px; padding: 24px 16px; margin: 24px auto; border-top: 1px solid var(--lab-rule); }
@@ -18,7 +18,6 @@
 .pet-art { display: block; width: 100%; height: auto; pointer-events: none; }
 .has-motions .pet-art { opacity: 0; }
 .pet-sprite { position: absolute; inset: 0; pointer-events: none; background: url('/img/pet/field-notes/transitions.webp') 0 0 / 400% 400% no-repeat; }
-.pet-previous { z-index: 1; }
 .blog-pet[data-motion="idle"] .pet-visual { animation: pet-idle 5.5s ease-in-out infinite; }
 .blog-pet.is-sleeping .pet-visual { animation: pet-breathe 4s ease-in-out infinite; }
 .blog-pet.is-dragging .pet-visual { transform: rotate(var(--pet-lift-angle, 0deg)); transform-origin: 48% 46%; transition: transform 90ms ease-out; }
