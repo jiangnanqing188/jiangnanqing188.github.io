@@ -8,3 +8,7 @@ giscus:
   strict: "1"
   emit_metadata: "1"
   lang: zh-CN
+
+# Set only after the real GitHub App / Worker integration has been verified.
+daily:
+  api_url: ""

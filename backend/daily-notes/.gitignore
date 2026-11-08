@@ -1,0 +1,7 @@
+# Local-only backend configuration, credentials and Wrangler state.
+wrangler.toml
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+.wrangler/

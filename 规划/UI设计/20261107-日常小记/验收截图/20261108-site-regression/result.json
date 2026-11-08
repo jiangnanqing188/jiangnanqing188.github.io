@@ -1,0 +1,230 @@
+{
+  "scope": "Local generated-site regression, not pixel-perfect fidelity or production deployment verification",
+  "groups": [
+    {
+      "name": "desktop: home density / three-line heading / static transparent art / real fonts and cache versions",
+      "passed": true,
+      "evidence": {
+        "heading": {
+          "text": [
+            "把机器人调通，",
+            "也把过程",
+            "写清楚。"
+          ],
+          "lines": 3,
+          "size": 60
+        },
+        "strip": {
+          "x": 40,
+          "y": 545,
+          "width": 1360,
+          "height": 54
+        },
+        "selected": {
+          "x": 52,
+          "y": 619,
+          "width": 387,
+          "height": 46.390625
+        },
+        "art": {
+          "width": 1685,
+          "height": 933,
+          "fit": "contain",
+          "clearFraction": 0.4849853515625,
+          "opaqueFraction": 0.484375
+        },
+        "assets": [
+          {
+            "url": "/css/notebook.css?v=a79887d7b271",
+            "digestPrefix": "a79887d7b271"
+          },
+          {
+            "url": "/js/notebook.js?v=de0e0a954d0e",
+            "digestPrefix": "de0e0a954d0e"
+          }
+        ],
+        "fonts": {
+          "family": "\"Fieldnotes Song\", \"Noto Serif CJK SC\", \"Source Han Serif SC\", \"Songti SC\", STSong, SimSun, Georgia, serif",
+          "loaded": [
+            "Fieldnotes Song"
+          ],
+          "resources": [
+            "http://127.0.0.1:37891/fonts/fieldnotes-song/fieldnotes-text-regular-a9766c263e.woff",
+            "http://127.0.0.1:37891/fonts/fieldnotes-song/fieldnotes-song-bold-ff70fba80e.woff"
+          ]
+        }
+      }
+    },
+    {
+      "name": "desktop: about illustration + original avatar / public contact / actual section navigation",
+      "passed": true,
+      "evidence": {
+        "art": {
+          "width": 1536,
+          "height": 1024,
+          "fit": "fill",
+          "clearFraction": 0.4122314453125,
+          "opaqueFraction": 0.5069580078125
+        },
+        "illustration": {
+          "x": 594.953125,
+          "y": 115,
+          "width": 822.984375,
+          "height": 548.65625
+        },
+        "avatar": {
+          "x": 626.7545776367188,
+          "y": 81.66082000732422,
+          "width": 228.1470947265625,
+          "height": 228.14710235595703
+        },
+        "emails": [
+          "jiangnanqingwqw@163.com"
+        ],
+        "navigationTargets": [
+          "#practice",
+          "#skills",
+          "#journey",
+          "#results",
+          "#contact"
+        ]
+      }
+    },
+    {
+      "name": "mobile: home density / three-line heading / static transparent art / real fonts and cache versions",
+      "passed": true,
+      "evidence": {
+        "heading": {
+          "text": [
+            "把机器人调通，",
+            "也把过程",
+            "写清楚。"
+          ],
+          "lines": 3,
+          "size": 40
+        },
+        "strip": {
+          "x": 16,
+          "y": 798.015625,
+          "width": 358,
+          "height": 148.5
+        },
+        "selected": {
+          "x": 16,
+          "y": 981.8125,
+          "width": 264,
+          "height": 36
+        },
+        "art": {
+          "width": 1685,
+          "height": 933,
+          "fit": "contain",
+          "clearFraction": 0.4849853515625,
+          "opaqueFraction": 0.484375
+        },
+        "assets": [
+          {
+            "url": "/css/notebook.css?v=a79887d7b271",
+            "digestPrefix": "a79887d7b271"
+          },
+          {
+            "url": "/js/notebook.js?v=de0e0a954d0e",
+            "digestPrefix": "de0e0a954d0e"
+          }
+        ],
+        "fonts": {
+          "family": "\"Fieldnotes Song\", \"Noto Serif CJK SC\", \"Source Han Serif SC\", \"Songti SC\", STSong, SimSun, Georgia, serif",
+          "loaded": [
+            "Fieldnotes Song"
+          ],
+          "resources": [
+            "http://127.0.0.1:37891/fonts/fieldnotes-song/fieldnotes-text-regular-a9766c263e.woff",
+            "http://127.0.0.1:37891/fonts/fieldnotes-song/fieldnotes-song-bold-ff70fba80e.woff"
+          ]
+        }
+      }
+    },
+    {
+      "name": "mobile: about illustration + original avatar / public contact / actual section navigation",
+      "passed": true,
+      "evidence": {
+        "art": {
+          "width": 1536,
+          "height": 1024,
+          "fit": "contain",
+          "clearFraction": 0.4122314453125,
+          "opaqueFraction": 0.5069580078125
+        },
+        "illustration": {
+          "x": 8.84375,
+          "y": 158.15625,
+          "width": 293.546875,
+          "height": 195.6875
+        },
+        "avatar": {
+          "x": 263.46868896484375,
+          "y": 169.28118896484375,
+          "width": 117.2501220703125,
+          "height": 117.2501220703125
+        },
+        "emails": [
+          "jiangnanqingwqw@163.com"
+        ],
+        "navigationTargets": [
+          "#practice",
+          "#skills",
+          "#journey",
+          "#results",
+          "#contact"
+        ]
+      }
+    },
+    {
+      "name": "Real 75-second native video: play / pause / close pauses audio / return to static scene",
+      "passed": true,
+      "evidence": {
+        "javaScript": true,
+        "duration": 75,
+        "controls": "Clicked native Chromium play/pause; timeline advanced/stopped; returned to static scene"
+      }
+    },
+    {
+      "name": "No application JavaScript: native details and real video play / pause / static return remain usable",
+      "passed": true,
+      "evidence": {
+        "javaScript": false,
+        "duration": 75,
+        "controls": "Clicked native Chromium play/pause; timeline advanced/stopped; returned to static scene"
+      }
+    },
+    {
+      "name": "Four project covers decode; three renewed images match detail Open Graph images",
+      "passed": true,
+      "evidence": {
+        "ruikang": "/img/workshop/ruikang-blueprint.webp",
+        "pharmacy": "/img/covers/notebook/20261105/pharmacy-dual-robots.webp",
+        "yolov5": "/img/covers/notebook/20261105/yolov5-pollination.webp",
+        "iscc": "/img/covers/notebook/20261105/iscc-secure-factory.webp"
+      }
+    },
+    {
+      "name": "Nine original article routes and real covers still load; protected group-photo SHA unchanged",
+      "passed": true,
+      "evidence": {
+        "routes": [
+          "/2026/07/24/AI使用感受/",
+          "/2026/01/28/ISCC微型工厂模拟赛道经验分享/",
+          "/2026/01/29/YOLOv5模型训练/",
+          "/2026/07/30/国三之后我把智慧药房比赛做成了一套工作流/",
+          "/2026/07/23/智慧药房机器人比赛参赛复盘/",
+          "/2026/10/12/智能车项目经验与比赛流程/",
+          "/2026/08/21/睿抗赛94分复盘/",
+          "/2026/08/25/睿抗赛四套视觉方案/",
+          "/2026/08/27/睿抗：从初赛到国一/"
+        ],
+        "protectedPhotoSha256": "ea4ddecc8155c479504be99edb254102094d69eadb4c8abd92fc7685e48c250f"
+      }
+    }
+  ],
+  "screenshots": "规划/UI设计/20261107-日常小记/验收截图/20261108-site-regression"
+}

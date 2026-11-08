@@ -1,0 +1,15 @@
+Use case: ui-mockup. Create a polished desktop UI design for the new “日常小记” page of this exact personal Chinese robotics blog. The attached screenshot is the current implemented homepage: preserve its visual identity, NOT the homepage content. Flat orthographic high fidelity WEBSITE screenshot, not a photograph or laptop mockup. 1536x1024.
+
+Visual DNA MUST match reference: warm ivory fibrous paper (#f7f2e8), nearly black ink (#20231d), forest green (#174735), rusty pencil-orange (#b4541c), muted sage marker strokes, fine olive-gray rules, elegant bold Chinese Song/serif headings and refined readable Chinese text, tiny widely spaced monospace English metadata. Editorial engineer's field notebook, quiet and witty, NOT a social network dashboard. Thin rules rather than rounded cards. No gradients, no floating glass panels, no futuristic blue. The theme is “把不够一篇文章的日子，也留下来”.
+
+Top: exact compact identity green square “jn.”, title “江南的碎碎念”, tiny “ROBOTICS FIELD NOTES”, thin bottom rule, nav 首页 / 项目 / 文章 / 小记 / 关于, with 小记 underlined green; search and moon icons at right.
+
+Page content with generous margins around 100px: small eyebrow “OFF THE RECORD / 日常页”; huge expressive Song title “日常小记” with rough sage highlight behind the final two characters, orange handwritten annotation “不必每句都有结论。” and a tiny curved pencil arrow; subtitle “调车之外，生活之内。偶尔吐槽，也认真开心。” Large quiet white space. At upper right a small delicate hand-drawn still-life of an open pocket notebook, forest green fountain pen, orange coffee ring and a tiny grounded robot doodle, integrated with page paper (NOT a large rectangular image).
+
+Below a full-width thin-rule utility line with left “随手翻翻” / subtle note count “03 则示意”, right a small outlined button “作者登录 ↗” and tiny lock caption “访客可读 · 仅作者可写”. Real-feeling public view with owner actions hidden. Main content a timeline about 70% width at left, narrow 25% sidebar at right. No like/comment buttons.
+
+Timeline has small date rail e.g. “11.07 / SAT / 21:36” and an orange dot connected by thin vertical rule. First paper entry uses tiny category label “吐槽一下” and large 2-3 line sample body “有时候调的不是车，是自己的心态。\n先睡了，明天再和它讲道理。” plus tiny subdued “设计示例 · 非真实发布”. Below another entry “11.05 / THU / 18:12”, sage label “小确幸”, text “今天的小车，终于自己跑完了一圈。” and the same design sample disclaimer. Third entry partly visible, quiet separated by ruled lines.
+
+Sidebar is an understated slightly rotated notebook scrap with torn lower edge and thin pencil rule, tiny heading “这页写什么？” and text “不写完整攻略。\n留一点没想明白的，\n也留一点值得高兴的。” Small outlined bookmark drawing. Below a thin-divider metadata “短一点，真一点。 / A SMALL NOTE IS ENOUGH.” The interface should feel like an intentional sibling of the current reference, with broad calm spacing and humane details. Bottom fine-rule footer.
+
+All Chinese clean and legible, no invented brand, no new personal identifying info, no avatar or real faces. It is a design mockup; example notes are explicitly labeled as examples. Focus on elegant layout faithfully matching the reference.

@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-07",
+  "reference": "规划/UI设计/20261105-第一版忠实还原/验收截图/desktop-home-online.png",
+  "assets": [
+    {
+      "path": "规划/UI设计/20261107-日常小记/01-日常小记桌面.png",
+      "sha256": "8973ec907c539886570c8d40435bfcf71941b42fc2f1f7807d00694ba491b7fa",
+      "requested_model": "gpt-image-2.6",
+      "requested_quality": "high",
+      "provider_route": "existing CPA direct (no credentials retained)"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/02-手机与作者态.png",
+      "sha256": "13f52dd23e9953556975818c29e2b8a7abeb21b4b66097531347ed4aa6e6ee1b",
+      "requested_model": "gpt-image-2.6",
+      "requested_quality": "high",
+      "provider_route": "existing CPA direct (no credentials retained)"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/03-独立笔记本插画.png",
+      "sha256": "30f25de52837fb02822719af3246f80afa0de3a6df473d96f1dab232976fd5d1",
+      "requested_model": "gpt-image-2.6",
+      "requested_quality": "high",
+      "provider_route": "existing CPA direct (no credentials retained)"
+    },
+    {
+      "path": "source/img/daily/notebook-still-life.webp",
+      "sha256": "49bc4d85ed33731f21e150a877b563b1c3081c2937caed999c316e91433c7411",
+      "source": "04-透明笔记本插画.png",
+      "operation": "WebP encoding only; verified alpha preserved; no content alterations",
+      "integrated_date": "2026-11-08"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/04-透明笔记本插画.png",
+      "sha256": "0fde4a97a3a28c317a991ef24e96c04e261426661c0e942351db49dc3cee3522",
+      "requested_model": "gpt-image-2.6",
+      "requested_quality": "high",
+      "requested_background": "transparent",
+      "alpha_verified": "2026-11-08: alpha_min=0, alpha_max=254/255, corner RGBA=0,0,0,0; visual inspected",
+      "provider_route": "existing CPA direct (no credentials retained)"
+    }
+  ]
+}

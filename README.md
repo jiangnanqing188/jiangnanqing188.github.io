@@ -16,6 +16,28 @@ Hexo 源码位于 `master`，当前主题为本仓库内的 `notebook`。2026-10
 - 本机时区为America/Los_Angeles时，清缓存后应显式按站点时区构建：`npm run clean && TZ=Asia/Shanghai npm run build`，避免无时分文章日期向前偏一天。不要为本机环境更改文章日期或站点永久链接。
 - 当前仅本地改造；线上仍以既有发布记录为准，未推送或部署新版。
 
+## 日常小记（本地实现，尚未开通在线发布）
+
+新增入口 `/daily/`，延续当前纸色工程手记风格。所有访客可阅读；只有本人 GitHub 数字账号核验通过后才可写入。首版支持纯文字、三种心情、预览、本机草稿、最多1000字符；初始没有伪造小记。
+
+- 页面与交互：`source/daily/index.md`、`themes/notebook/lib/daily.js`、主题 `daily.css` / `daily.js`。
+- 唯一源档案：`source/_data/daily.json`。网页发布目标为本仓库 `master`，不是直接修改生成分支 `main`。
+- 登录/发布接口：`backend/daily-notes/`，GitHub App + Cloudflare Worker；不让浏览器持有明文 GitHub token，不申请全部公开仓库权限。
+- 一次性开通步骤与权限契约：[后端设置说明](backend/daily-notes/README.md)。**GitHub App、Worker和Secret仍未配置，主题的 `daily.api_url` 故意为空；目前不能正式网页发布。**不要把测试用的模拟登录当成真实授权。
+- 设计与验收：`规划/UI设计/20261107-日常小记/`；接续状态见 `工作记录/20261108-1-日常小记收尾工作记录.md`。
+
+本地重建与定向验证（不推送、不部署、不写真实小记）：
+
+```bash
+TZ=Asia/Shanghai npm run build
+npm run check:site
+node --test --experimental-test-isolation=none --test-reporter=spec backend/daily-notes/test/worker.test.mjs backend/daily-notes/test/cross-layer.test.mjs
+# 复用本机已存在的Playwright和Chrome；在提供该依赖的环境执行：
+node scripts/check-daily.cjs
+```
+
+如果上次缓存由其他时区生成，先 `npm run clean` 再按上海时区构建。GitHub App和Worker开通后，每次小记由Worker写入源档案，访客动态读取；无需每发一则重建整站。其他地区缓存可能延迟约120秒，作者当前页直接显示确认后的记录。
+
 ## 当前入口与事实来源
 
 | 文件 / 目录 | 用途 |
@@ -38,7 +60,7 @@ Hexo 源码位于 `master`，当前主题为本仓库内的 `notebook`。2026-10
 | `规划/UI设计/20261104-机器人工位/` | 本轮整站图片设计、移动与深色图板、复刻规范及素材说明，不参与正式构建 |
 | `规划/小江桌宠技术文档.md` | 小江的实现原理、状态机、命中区域、甩抛物理、无障碍与已知边界；改动宠物前先读 |
 
-正式入口为 `/`、`/projects/`、`/archives/`、`/about/`。四份项目详情为 `/projects/ruikang/`、`pharmacy/`、`yolov5/`、`iscc/`。原文章、分类、标签、资源、音乐及旧跳转地址继续可用。
+正式主题入口为 `/`、`/projects/`、`/archives/`、`/daily/`、`/about/`；其中新增小记页尚待本轮发布，不能据此断言线上已可访问。四份项目详情为 `/projects/ruikang/`、`pharmacy/`、`yolov5/`、`iscc/`。原文章、分类、标签、资源、音乐及旧跳转地址继续可用。
 
 ## 本地生成与检查
 

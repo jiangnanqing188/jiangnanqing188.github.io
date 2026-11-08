@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-08",
+  "scope": "Local final UI/logic evidence only; OAuth/GitHub/Cloudflare outer boundaries are mocked; no deployment",
+  "sources": [
+    {
+      "path": "source/daily/index.md",
+      "bytes": 282,
+      "sha256": "32d184b5e53ee4998fd5263ef441ea2f895785e900b870c274bfed132f7012b1"
+    },
+    {
+      "path": "source/_data/daily.json",
+      "bytes": 27,
+      "sha256": "e5a76fe3d134f87e636debc55cc15ac01dbd2bbf0ed1edac80c0f3b35a228eb3"
+    },
+    {
+      "path": "source/img/daily/notebook-still-life.webp",
+      "bytes": 205324,
+      "sha256": "49bc4d85ed33731f21e150a877b563b1c3081c2937caed999c316e91433c7411"
+    },
+    {
+      "path": "themes/notebook/_config.yml",
+      "bytes": 371,
+      "sha256": "5bc439ba756c68bcaf17ba94fcefe1b176f5e426bafcbf61c4b34e7fe1e9e15e"
+    },
+    {
+      "path": "themes/notebook/layout/layout.ejs",
+      "bytes": 4199,
+      "sha256": "71ec59f6e9c30fbc002492d19a3caa37ed8b9a6b8063ed704860b82401aa3f8f"
+    },
+    {
+      "path": "themes/notebook/scripts/view.js",
+      "bytes": 30844,
+      "sha256": "be8313970b77ee0ec1dae26126600f47d213dac760a0c063909eb4d9e1bed043"
+    },
+    {
+      "path": "themes/notebook/lib/daily.js",
+      "bytes": 7088,
+      "sha256": "f09579936de568c5b840c8c2c99f1412c1ddaef6b11b30e09ba4114ba7fd5827"
+    },
+    {
+      "path": "themes/notebook/source/css/daily.css",
+      "bytes": 13211,
+      "sha256": "24cca90b3be3a5ae7b43b01bf71709d4ae7e7bdffb7cccffe9095948e2dfe27d"
+    },
+    {
+      "path": "themes/notebook/source/js/daily.js",
+      "bytes": 20514,
+      "sha256": "2fbdeac6177a860694a5bb98de44167bafba94b0b62036592bdcf96f0de127c9"
+    },
+    {
+      "path": "backend/daily-notes/worker.mjs",
+      "bytes": 19979,
+      "sha256": "814cd33680323af84ef797cde2242131a0fb4364a557aaa42fe541b42e382c8d"
+    },
+    {
+      "path": "backend/daily-notes/test/worker.test.mjs",
+      "bytes": 30510,
+      "sha256": "46d8b4a0babca179bf2812f53294650fbbea5b91acfbfb5ce71ff1e72980c040"
+    },
+    {
+      "path": "backend/daily-notes/test/cross-layer.test.mjs",
+      "bytes": 18714,
+      "sha256": "672f00262fce726434dfa99ec8dbf91b83d8e259e0e350ed0549ab18b902fe79"
+    },
+    {
+      "path": "scripts/check-daily.cjs",
+      "bytes": 21969,
+      "sha256": "1a9bcc91cdb776263cf3468c727dcaba6dcfaddf26df88f82b9afc38a0b2a9f6"
+    }
+  ],
+  "generated": [
+    {
+      "path": "public/daily/index.html",
+      "bytes": 12351,
+      "sha256": "45e001d6c6009c39b152684461772b5e4701b67da1c910932797e3054d6bb673"
+    },
+    {
+      "path": "public/css/daily.css",
+      "bytes": 13211,
+      "sha256": "24cca90b3be3a5ae7b43b01bf71709d4ae7e7bdffb7cccffe9095948e2dfe27d"
+    },
+    {
+      "path": "public/js/daily.js",
+      "bytes": 20514,
+      "sha256": "2fbdeac6177a860694a5bb98de44167bafba94b0b62036592bdcf96f0de127c9"
+    },
+    {
+      "path": "public/img/daily/notebook-still-life.webp",
+      "bytes": 205324,
+      "sha256": "49bc4d85ed33731f21e150a877b563b1c3081c2937caed999c316e91433c7411"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-1024-light-unconfigured.png",
+      "bytes": 499238,
+      "sha256": "81dd91658a46b8cce5cc2d43c50677b8106d69eb85a4ab8441665b6688030983"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-1440-dark-unconfigured.png",
+      "bytes": 472655,
+      "sha256": "47fb46dbb47391f91a90bb9322e7cfe4a20c7287ebb2c477477126d5495e5782"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-1440-light-unconfigured.png",
+      "bytes": 525259,
+      "sha256": "e7532843c4740986ca9ad4f0083e5dc89bee1032d06244b335df9edfdf480692"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-320-light-unconfigured.png",
+      "bytes": 321629,
+      "sha256": "5232d2bf16228107eef57ddcc88e2130bbeaa1ebf24fa780d251294872eebcd9"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-390-dark-unconfigured.png",
+      "bytes": 292620,
+      "sha256": "477d6995c12f6a2e56ef8877e725055a404e97e8b18b79e4dba96e19f6ea83b6"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-390-light-unconfigured.png",
+      "bytes": 339417,
+      "sha256": "57f400e8db136d956a19788b377d2ffd8eeca390c50330c722989ebd7dc724c7"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-760-light-unconfigured.png",
+      "bytes": 365189,
+      "sha256": "33880447b1a1582b62584c07353260881e7b11e4f8df0a062da668e94add4bd2"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-761-light-unconfigured.png",
+      "bytes": 448915,
+      "sha256": "5bcaa435eb9f457afd3014d2b2fc1051bb172a48a0faea7f18d1c421a315bc8a"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-800-light-unconfigured.png",
+      "bytes": 457942,
+      "sha256": "25121d91a86caaf57d45a4d9099b58fa720a1e4eadd3d01cd0caaabf0744d01f"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-desktop-owner-mock.png",
+      "bytes": 551562,
+      "sha256": "2e65b7f8fee361fcc9adee427e73e0cb01cef767bf9c60534de942e233f6d657"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-desktop-public-mock.png",
+      "bytes": 603831,
+      "sha256": "a54a573a3914ec0de1403fe293539446f9047556c82ea27a43e4dda838a550cf"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-mobile-owner-mock.png",
+      "bytes": 401390,
+      "sha256": "41e8fa2b0de3e061f2085fc6cd59a8b856de03f62531b0c603a861d17cf468b2"
+    },
+    {
+      "path": "规划/UI设计/20261107-日常小记/验收截图/20261108-final/daily-mobile-public-mock.png",
+      "bytes": 425459,
+      "sha256": "1a855a7e72749ed61d1f4d5027c0677badf323b23a8f195a143fc26ca0c911e7"
+    }
+  ]
+}

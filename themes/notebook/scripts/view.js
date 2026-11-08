@@ -1,6 +1,7 @@
 "use strict";
 
 const fs = require('node:fs');
+const renderDaily = require('../lib/daily');
 const path = require('node:path');
 const {createHash} = require('node:crypto');
 // Content versions change only when the shipped bytes change.
@@ -47,7 +48,7 @@ const projectUrl = project => `/projects/${project.id}/`;
 // Home alone uses a dedicated wide blueprint for its compact leading-project row.
 const projectCover = project => project.id === 'ruikang' ? '/img/workshop/ruikang-blueprint.webp' : asset(project.cover);
 const projectAlt = project => `${project.title}封面${project.id === 'ruikang' || concept(project.cover) ? '，AI 概念插画，非比赛现场照片' : ''}`;
-const active = page => page.__post || page.archive || page.category || page.tag || String(page.path).startsWith('archives/') ? '文章' : String(page.path).startsWith('projects/') ? '项目' : String(page.path).startsWith('about/') ? '关于' : page.path === 'index.html' ? '首页' : '';
+const active = page => page.__post || page.archive || page.category || page.tag || String(page.path).startsWith('archives/') ? '文章' : String(page.path).startsWith('projects/') ? '项目' : String(page.path).startsWith('daily/') ? '小记' : String(page.path).startsWith('about/') ? '关于' : page.path === 'index.html' ? '首页' : '';
 const normalize = post => ({source: post, title: post.title, description: post.description || String(post.content || '').replace(/<[^>]*>/g,'').slice(0,130), cover: asset(post.cover), project_id: post.project_id, id: post.log_id || '', url: '/' + post.path.replace(/index\.html$/, ''), content: post.content || '', date: post.date.format('YYYY-MM-DD'), tags: names(post.tags), category: names(post.categories)[0] || '记录'});
 
 hexo.extend.filter.register('before_post_render', data => {
@@ -68,6 +69,7 @@ hexo.extend.generator.register('notebook-projects', locals => array(locals.data.
 hexo.extend.generator.register('notebook-404', () => ({path:'404.html',layout:'404',data:{title:'页面未找到',notebook_404:true}}));
 
 hexo.extend.helper.register('notebook_view', function(page) {
+  if (String(page.path).startsWith('daily/')) return renderDaily(this.site.data.daily, this.theme.daily);
   const projects = array(this.site.data.projects);
   const home = this.site.data.home || {};
   const identity = array(home.identity);

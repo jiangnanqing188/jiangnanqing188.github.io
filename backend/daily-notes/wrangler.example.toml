@@ -1,0 +1,19 @@
+# Example only. Copy to wrangler.toml in THIS directory after real setup is authorized.
+name = "jiangnan-daily-notes"
+main = "worker.mjs"
+compatibility_date = "2026-11-07"
+workers_dev = true
+
+[vars]
+# These are assertions, not knobs: different values fail closed with 503.
+ALLOWED_ORIGIN = "https://jiangnanqing188.github.io"
+OWNER_ID = "192717492"
+# Add the real GitHub App CLIENT ID here after registration (not the App ID).
+# GITHUB_CLIENT_ID = "Iv1.REPLACE_WITH_REAL_CLIENT_ID"
+
+# Store GITHUB_CLIENT_SECRET and SESSION_SECRET using Cloudflare secrets,
+# never put their actual values in this file, Git, HTML or logs.
+# No KV, D1, Durable Object, GitHub App private key or scheduled job is required.
+
+[observability]
+enabled = false
