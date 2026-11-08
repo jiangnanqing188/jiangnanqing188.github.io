@@ -10,9 +10,9 @@
   <title>从单车调试到双车联调，智慧药房机器人比赛复盘 · 江南的碎碎念</title><meta name="description" content="第二十八届中国机器人及人工智能大赛智慧药房赛项参赛复盘，按时间记录单车调试、OCR、导航、双车隔离和赛前联调中的问题、解决办法与经验。"><meta name="keywords" content="ROS, 计算机视觉, 智慧药房, 中国机器人及人工智能大赛, 移动机器人, 多车协同, OCR, 视觉定位"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/"><meta property="og:type" content="article"><meta property="og:title" content="从单车调试到双车联调，智慧药房机器人比赛复盘"><meta property="og:description" content="第二十八届中国机器人及人工智能大赛智慧药房赛项参赛复盘，按时间记录单车调试、OCR、导航、双车隔离和赛前联调中的问题、解决办法与经验。"><meta property="og:url" content="https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/covers/notebook/20261105/pharmacy-dual-robots.webp"><meta name="twitter:card" content="summary_large_image"><meta property="article:published_time" content="2026-07-23T12:00:00.000Z"><meta property="article:modified_time" content="2026-07-23T12:00:00.000Z">
   <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
   <link rel="stylesheet" href="/css/notebook.css?v=a79887d7b271">
-  <link rel="stylesheet" href="/css/pet.css?v=4103d0de3aea">
+  <link rel="stylesheet" href="/css/pet.css?v=e519f71dcf92">
   <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
-  <script src="/js/pet.js?v=923ab59467ff" defer></script>
+  <script src="/js/pet.js?v=5624704179fc" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从单车调试到双车联调，智慧药房机器人比赛复盘","description":"第二十八届中国机器人及人工智能大赛智慧药房赛项参赛复盘，按时间记录单车调试、OCR、导航、双车隔离和赛前联调中的问题、解决办法与经验。","image":"https://jiangnanqing188.github.io/img/covers/notebook/20261105/pharmacy-dual-robots.webp","url":"https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/","mainEntityOfPage":"https://jiangnanqing188.github.io/2026/07/23/%E6%99%BA%E6%85%A7%E8%8D%AF%E6%88%BF%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%AF%94%E8%B5%9B%E5%8F%82%E8%B5%9B%E5%A4%8D%E7%9B%98/","datePublished":"2026-07-23T12:00:00.000Z","dateModified":"2026-07-23T12:00:00.000Z","author":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"publisher":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"keywords":"ROS, 计算机视觉, 智慧药房, 中国机器人及人工智能大赛, 移动机器人, 多车协同, OCR, 视觉定位","articleSection":"比赛复盘","about":{"@type":"Thing","name":"智慧药房双车系统","url":"https://jiangnanqing188.github.io/projects/#project-pharmacy"}}</script></head>
 <body>
@@ -237,7 +237,6 @@
       <span class="pet-visual" aria-hidden="true">
         <img class="pet-art" src="/img/pet/field-notes/idle.webp" width="320" height="320" alt="" draggable="false" decoding="async">
         <span class="pet-sprite" hidden></span>
-        <span class="pet-sprite pet-previous" hidden></span>
       </span>
       <span class="pet-heart" aria-hidden="true">♡</span>
       <span class="pet-sleep" aria-hidden="true">z Z z</span>
