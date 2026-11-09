@@ -1,0 +1,80 @@
+{
+  "base": "https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev",
+  "checked_at": "2026-11-09T15:13:43.838Z",
+  "configured": false,
+  "real_write_attempted": false,
+  "results": [
+    {
+      "name": "public-notes",
+      "status": 503,
+      "expected": 200,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"GitHub 暂时不可用，请稍后重试\"}",
+      "pass": false
+    },
+    {
+      "name": "allowed-origin-notes",
+      "status": 503,
+      "expected": 200,
+      "acao": "https://jiangnanqing188.github.io",
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"GitHub 暂时不可用，请稍后重试\"}",
+      "pass": false
+    },
+    {
+      "name": "health-unconfigured",
+      "status": 503,
+      "expected": 503,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"后端认证尚未配置\"}",
+      "pass": true
+    },
+    {
+      "name": "session-unconfigured",
+      "status": 503,
+      "expected": 503,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"后端认证尚未配置\"}",
+      "pass": true
+    },
+    {
+      "name": "invalid-input-rejected",
+      "status": 400,
+      "expected": 400,
+      "acao": "https://jiangnanqing188.github.io",
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"需要 UUID、1–1000 字符非空纯文本和有效心情；不接受额外字段\"}",
+      "pass": true
+    },
+    {
+      "name": "foreign-origin-rejected",
+      "status": 403,
+      "expected": 403,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"来源不允许\"}",
+      "pass": true
+    },
+    {
+      "name": "allowed-preflight",
+      "status": 204,
+      "expected": 204,
+      "acao": "https://jiangnanqing188.github.io",
+      "cacheControl": "no-store",
+      "body": "",
+      "pass": true
+    },
+    {
+      "name": "foreign-preflight-rejected",
+      "status": 403,
+      "expected": 403,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"来源不允许\"}",
+      "pass": true
+    }
+  ]
+}

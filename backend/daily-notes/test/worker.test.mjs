@@ -38,6 +38,10 @@ function harness(options = {}) {
   const fetcher = async (url, init = {}) => {
     url = String(url);
     calls.push({ url, ...init });
+    if (options.workersRedirects && init.redirect === 'error') {
+      throw new TypeError('Workers only supports redirect modes follow and manual');
+    }
+    assert.equal(init.redirect, 'manual');
     if (options.intercept) {
       const result = await options.intercept(url, init);
       if (result) return result;
@@ -54,7 +58,7 @@ function harness(options = {}) {
     }
     if (url === 'https://api.github.com/user') {
       assert.equal(init.headers.Authorization, 'Bearer ghu_test_only');
-      assert.equal(init.redirect, 'error');
+      assert.equal(init.redirect, 'manual');
       return response(user);
     }
     if (url === `${CONTENTS}?ref=master`) {
@@ -125,6 +129,65 @@ test('public GET reads only fixed master Contents API and caches canonical JSON 
   assert.equal(second.headers.get('Access-Control-Allow-Origin'), null);
   assert.deepEqual(await second.json(), EMPTY());
   assert.equal(h.calls.length, 1);
+});
+
+test('Workers-compatible fetch permits public API reading without redirect:error', async () => {
+  const h = harness({ workersRedirects: true });
+  const result = await h.request('/notes');
+  assert.equal(result.status, 200);
+  assert.deepEqual(await result.json(), EMPTY());
+  assert.equal(h.calls.length, 1);
+  assert.equal(h.calls[0].redirect, 'manual');
+});
+
+test('Workers-compatible fetch permits OAuth token exchange and authenticated API calls', async () => {
+  const h = harness({ workersRedirects: true });
+  const auth = await h.callback(await h.start());
+  assert.equal(auth.message.status, 'owner');
+  assert.ok(auth.message.session);
+  assert.deepEqual(h.calls.map(call => [call.url, call.redirect]), [
+    ['https://github.com/login/oauth/access_token', 'manual'],
+    ['https://api.github.com/user', 'manual'],
+  ]);
+  assert.equal((await h.post(auth.message.session)).status, 201);
+  assert.ok(h.calls.every(call => call.redirect === 'manual'));
+});
+
+test('GitHub 3xx fail closed without following, credential forwarding, caching or persisted writes', async t => {
+  const token = await encryptedFixture(CLAIMS);
+  for (const stage of ['public-read', 'token-exchange', 'owner', 'authenticated-read', 'write']) {
+    for (const status of [300, 301, 302, 303, 304, 305, 306, 307, 308, 399]) {
+      await t.test(`${stage} ${status}`, async () => {
+        const upstreamOrigin = stage === 'token-exchange' ? 'https://github.com' : 'https://api.github.com';
+        for (const location of [`${upstreamOrigin}/redirect-target`, 'https://evil.example/redirect-target']) {
+          const h = harness({ workersRedirects: true, intercept: (url, init) => {
+            const targeted = stage === 'token-exchange' ? url.endsWith('/access_token')
+              : stage === 'owner' ? url.endsWith('/user')
+              : stage === 'write' ? init.method === 'PUT' : url === `${CONTENTS}?ref=master`;
+            if (targeted) return new Response(null, { status, headers: { Location: location } });
+          } });
+          if (stage === 'token-exchange') {
+            const { message, html } = await h.callback(await h.start());
+            assert.equal(message.status, 'error');
+            assert.equal(message.session, undefined);
+            assert.doesNotMatch(html, /fixture-only-secret|ghu_test_only|evil\.example/);
+          } else {
+            const result = stage === 'public-read' ? await h.request('/notes') : await h.post(token);
+            assert.equal(result.status, 503);
+            assert.doesNotMatch(await result.text(), /entries|fixture-only-secret|ghu_test_only|evil\.example/);
+          }
+          const expectedCalls = stage === 'write' ? 3 : stage === 'authenticated-read' ? 2 : 1;
+          assert.equal(h.calls.length, expectedCalls);
+          assert.equal(h.calls.filter(call => call.method === 'PUT').length, stage === 'write' ? 1 : 0);
+          assert.ok(h.calls.every(call => call.redirect === 'manual'));
+          assert.equal(h.calls.some(call => call.url === location), false);
+          assert.deepEqual(h.document(), EMPTY());
+          assert.equal(h.values.size, 0);
+          assert.equal(h.cacheEvents.some(([event]) => event !== 'match'), false);
+        }
+      });
+    }
+  }
 });
 
 test('initial 404 is empty; network, forbidden/rate-limit and server failures are 503, never fake empty', async t => {

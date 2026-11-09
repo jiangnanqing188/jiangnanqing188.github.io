@@ -2,7 +2,9 @@
 
 ## 当前交付状态与范围
 
-仅包含本目录的 Cloudflare module Worker、Node 定向测试和配置示例，无第三方运行依赖。使用 ES2022、标准 `fetch` / Streams / WebCrypto AES-GCM；测试运行于 Node 22。**截至 2026-11-09，已通过官方 Wrangler 完成 Cloudflare 登录；真实部署请求被权限检查拒绝，尚未成功部署。GitHub App 注册/安装、真实 Secret、正式 OAuth / 真实 GitHub 写入 / Cloudflare 缓存实测均未完成。**测试中的用户、授权码、token、记录和提交 SHA 都是隔离 mock 夹具，不会发往 GitHub，不是公开小记。
+仅包含本目录的 Cloudflare module Worker、Node 定向测试和配置示例，无第三方运行依赖。使用 ES2022、标准 `fetch` / Streams / WebCrypto AES-GCM；测试运行于 Node 22。**截至 2026-11-09，Worker 已真实部署至 https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev ，初版 version 为 `02585f18-2d73-4ff2-8fb4-4ffbc6a1615a`（主线程确认）。初版匿名 `GET /notes` 实测返回 503，后续运行时修复已由主线程真实部署为 `c8702cf5-2122-4460-857c-50f4c0c3ff01`。修复后首次读取有一次上游非成功，随后一次有界复查中匿名/正式 Origin 均 200，CORS、预检、非法请求拒绝和未配置认证门禁也符合预期；完整失败与成功证据保留在设计包的 `20261109-live-backend/`。GitHub App / Secrets 仍未配置，正式 OAuth / 真实 GitHub 写入 / Cloudflare 缓存实测均未完成，尚未正式可发布。**测试中的用户、授权码、token、记录和提交 SHA 都是隔离 mock 夹具，不会发往 GitHub，不是公开小记。
+
+运行时修复：GitHub API 与 OAuth token exchange 改用 Workers 支持的 `redirect: manual`，所有 3xx 失败关闭，不跟随或转发用户 token / client secret；固定身份、仓库、路径、权限和会话规则不变。新增 Workers 拒绝 `redirect: error` 的失败复现，以及同源/跨源 3xx 的无转发、无持久化写入回归测试。本次定向验证为 **174 tests / 174 pass**（原 121 + 新增 53），连同既有 App 设置工具测试共 **203/203 通过**；复用既有 Wrangler 的 Miniflare/workerd，实测旧代码复现 503/认证错误、修复代码读取/认证/夹具写入成功及 100 个同源/跨源 3xx 拒绝场景。运行时上游全部由本地夹具接管，未访问真实 GitHub 或使用真实 Secrets，原生运行时验证本身不代表线上状态；真实部署证据见上段。
 
 后端不修改 Hexo 主题、前端、全局 package、文章数据、`public/`、`main` 或 Pages 配置，不引入 GitHub Actions，也不会在本地生成初始数据文件。前端与初始文件由主线程在其授权范围内接入。
 

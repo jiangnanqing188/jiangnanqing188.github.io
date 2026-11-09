@@ -1,0 +1,5 @@
+PASS native workerd rejects redirect:error: Invalid redirect value, must be one of "follow" or "manual" ("error" won't be implemented since it does not make sense at the edge; use "manual" and check the response status code).
+PASS original code reproduces /notes 503 and OAuth error before any outbound call
+PASS fixed code reads /notes, exchanges OAuth token, checks identity and accepts one mock write
+PASS 100 workerd 3xx cases: same/cross-origin; no forwarding or additional persisted writes
+All outbound HTTP was handled by local stubs; no real GitHub or secrets used.

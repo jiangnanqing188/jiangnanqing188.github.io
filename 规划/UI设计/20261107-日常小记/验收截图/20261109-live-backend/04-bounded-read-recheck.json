@@ -1,0 +1,82 @@
+{
+  "base": "https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev",
+  "version_id": "c8702cf5-2122-4460-857c-50f4c0c3ff01",
+  "checked_at": "2026-11-09T15:34:12.376Z",
+  "configured": false,
+  "real_write_attempted": false,
+  "results": [
+    {
+      "name": "health-unconfigured",
+      "status": 503,
+      "expected": 503,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"后端认证尚未配置\"}",
+      "pass": true
+    },
+    {
+      "name": "session-unconfigured",
+      "status": 503,
+      "expected": 503,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"后端认证尚未配置\"}",
+      "pass": true
+    },
+    {
+      "name": "invalid-input-rejected",
+      "status": 400,
+      "expected": 400,
+      "acao": "https://jiangnanqing188.github.io",
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"需要 UUID、1–1000 字符非空纯文本和有效心情；不接受额外字段\"}",
+      "pass": true
+    },
+    {
+      "name": "foreign-origin-rejected",
+      "status": 403,
+      "expected": 403,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"来源不允许\"}",
+      "pass": true
+    },
+    {
+      "name": "allowed-preflight",
+      "status": 204,
+      "expected": 204,
+      "acao": "https://jiangnanqing188.github.io",
+      "cacheControl": "no-store",
+      "body": "",
+      "pass": true
+    },
+    {
+      "name": "foreign-preflight-rejected",
+      "status": 403,
+      "expected": 403,
+      "acao": null,
+      "cacheControl": "no-store",
+      "body": "{\"error\":\"来源不允许\"}",
+      "pass": true
+    },
+    {
+      "name": "public-notes",
+      "status": 200,
+      "expected": 200,
+      "acao": null,
+      "cacheControl": "public, max-age=0, s-maxage=120",
+      "body": "{\"version\":1,\"entries\":[]}",
+      "pass": true
+    },
+    {
+      "name": "allowed-origin-notes",
+      "status": 200,
+      "expected": 200,
+      "acao": "https://jiangnanqing188.github.io",
+      "cacheControl": "public, max-age=0, s-maxage=120",
+      "body": "{\"version\":1,\"entries\":[]}",
+      "pass": true
+    }
+  ],
+  "note": "One explicit read-only recheck after the first upstream non-success; preserves initial failure evidence in 03. Non-read checks are the unchanged same-version results from 03."
+}

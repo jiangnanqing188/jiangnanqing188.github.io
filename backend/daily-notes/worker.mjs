@@ -142,7 +142,10 @@ export function createWorker({ fetch: fetcher = (...args) => globalThis.fetch(..
       'X-GitHub-Api-Version': '2022-11-28', ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.body ? { 'Content-Type': 'application/json' } : {}) };
     try {
-      return await fetcher(url, { ...options, headers, redirect: 'error', signal: AbortSignal.timeout(15000) });
+      // Workers supports manual, not error; never forward credentials through redirects.
+      const response = await fetcher(url, { ...options, headers, redirect: 'manual', signal: AbortSignal.timeout(15000) });
+      if (response.status >= 300 && response.status < 400) fail(503, 'GitHub 暂时不可用，请稍后重试');
+      return response;
     } catch { fail(503, 'GitHub 暂时不可用，请稍后重试'); }
   }
   async function owner(token) {
@@ -275,7 +278,7 @@ export function createWorker({ fetch: fetcher = (...args) => globalThis.fetch(..
       let response;
       try {
         response = await fetcher('https://github.com/login/oauth/access_token', {
-          method: 'POST', redirect: 'error', signal: AbortSignal.timeout(15000),
+          method: 'POST', redirect: 'manual', signal: AbortSignal.timeout(15000),
           headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify({ client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET,
             code, code_verifier: flow.verifier, redirect_uri: `${url.origin}/auth/callback` }),
