@@ -46,18 +46,34 @@ function raw(url, headers) {
   });
 }
 
-test('manifest is fixed, private, no webhook or unwanted permissions', async t => {
+test('manifest is fixed, private, webhook disabled and no unwanted permissions', async t => {
   const s = await setup(t);
   assert.equal(s.manifest.name, 'jiangnanqing188-daily-notes');
   assert.equal(s.manifest.url, 'https://jiangnanqing188.github.io/daily/');
   assert.deepEqual(s.manifest.default_permissions, { contents: 'write', metadata: 'read' });
   assert.deepEqual(s.manifest.callback_urls, ['https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/auth/callback']);
-  assert.deepEqual(s.manifest.hook_attributes, { active: false });
+  assert.equal(s.manifest.hook_attributes.active, false);
   assert.deepEqual(s.manifest.default_events, []);
   assert.equal(s.manifest.public, false);
   assert.equal(new URL(s.url).hostname, '127.0.0.1');
   assert.ok(new URL(s.manifest.redirect_url).pathname.endsWith(s.state));
   assert.ok(!s.html.includes(SECRET));
+});
+
+// GitHub's manifest contract requires hook_attributes.url; active controls delivery separately.
+test('manifest supplies required HTTPS webhook URL even when delivery is disabled', async t => {
+  const s = await setup(t);
+  assert.equal(s.manifest.hook_attributes.url,
+    'https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/github/webhook');
+  const webhook = new URL(s.manifest.hook_attributes.url);
+  assert.equal(webhook.protocol, 'https:');
+  assert.equal(webhook.origin, new URL(s.manifest.callback_urls[0]).origin);
+  assert.notEqual(webhook.pathname, new URL(s.manifest.callback_urls[0]).pathname);
+  assert.deepEqual(s.manifest.hook_attributes, { url: webhook.href, active: false });
+  assert.deepEqual(s.manifest.default_events, []);
+  assert.deepEqual(s.manifest.default_permissions, { contents: 'write', metadata: 'read' });
+  assert.equal(s.calls, 0);
+  assert.equal(s.received, undefined);
 });
 
 test('success exchanges only server-side, strips unused secrets, and rejects replay', async t => {

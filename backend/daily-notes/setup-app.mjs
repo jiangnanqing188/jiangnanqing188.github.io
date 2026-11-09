@@ -103,7 +103,8 @@ export async function createSetupServer({ onCredentials, fetchImpl = fetch, now 
         url: `https://${OWNER}.github.io/daily/`,
         redirect_url: `${origin}${callbackPath}`,
         callback_urls: [CALLBACK],
-        hook_attributes: { active: false },
+        // Manifest requires a webhook URL even though delivery stays disabled.
+        hook_attributes: { url: new URL('/github/webhook', CALLBACK).href, active: false },
         public: false,
         default_permissions: { contents: 'write', metadata: 'read' },
         default_events: []

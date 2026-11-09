@@ -2,7 +2,7 @@
 
 ## 当前交付状态与范围
 
-仅包含本目录的 Cloudflare module Worker、Node 定向测试和配置示例，无第三方运行依赖。使用 ES2022、标准 `fetch` / Streams / WebCrypto AES-GCM；测试运行于 Node 22。**尚未注册或安装 GitHub App、未设置真实 Secret、未登录 Cloudflare、未部署，也未进行正式 OAuth / 真实 GitHub 写入 / Cloudflare 缓存实测。**测试中的用户、授权码、token、记录和提交 SHA 都是隔离 mock 夹具，不会发往 GitHub，不是公开小记。
+仅包含本目录的 Cloudflare module Worker、Node 定向测试和配置示例，无第三方运行依赖。使用 ES2022、标准 `fetch` / Streams / WebCrypto AES-GCM；测试运行于 Node 22。**截至 2026-11-09，已通过官方 Wrangler 完成 Cloudflare 登录；真实部署请求被权限检查拒绝，尚未成功部署。GitHub App 注册/安装、真实 Secret、正式 OAuth / 真实 GitHub 写入 / Cloudflare 缓存实测均未完成。**测试中的用户、授权码、token、记录和提交 SHA 都是隔离 mock 夹具，不会发往 GitHub，不是公开小记。
 
 后端不修改 Hexo 主题、前端、全局 package、文章数据、`public/`、`main` 或 Pages 配置，不引入 GitHub Actions，也不会在本地生成初始数据文件。前端与初始文件由主线程在其授权范围内接入。
 
@@ -211,9 +211,11 @@ node --test --experimental-test-isolation=none --test-reporter=spec backend/dail
 
 ## 一次性本机 Manifest 开通辅助（不自动创建或安装）
 
-> 当前状态（2026-11-08）：仅本机模拟测试通过，真实开通尚未完成。本次浏览器提交后 GitHub 返回 `Invalid GitHub App configuration: "url" wasn't supplied`，未得到成功创建或凭据兑换的证据；下次应先核实表单传输/登录状态，或使用 GitHub 正常创建表单，不能将该辅助视为已验证的真实开通流程。此前临时入口已过期，请勿复用。
+> 当前状态（2026-11-09）：真实开通尚未完成。此前浏览器提交后 GitHub 返回 `Invalid GitHub App configuration: "url" wasn't supplied`，未得到成功创建或凭据兑换的证据。本次核对官方 Manifest 字段表及其文档源码，确认 `hook_attributes.url` 标为必需，`active` 单独控制投递，文档未列出 `active: false` 时可省略 URL 的例外；已补齐本地 manifest 的这一契约缺口，但未重新提交 GitHub，不能认定它是此前报错的唯一原因，也不能将本地测试视为真实开通成功。此前临时入口已过期，请勿复用。
 
 `setup-app.mjs` 只监听 `127.0.0.1`，提供一个 15 分钟有效的随机设置入口；打开后还需要在 GitHub 页面核对账号、名称和权限，再由操作者确认创建。它不自行点击创建、安装、写配置或部署。只允许固定账号 `jiangnanqing188`（数字 ID `192717492`）、固定 App 名称和 Contents write / Metadata read；创建完成后仍须只安装到博客仓库。Manifest 的 Worker 回调固定为 `https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/auth/callback`，部署前核对最终域名。
+
+`hook_attributes.url` 固定为预期 Worker 域名下的 `https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/github/webhook`，与 OAuth 的 `/auth/callback` 分开；仅补齐配置字段，始终显式保留 `active: false`、`default_events: []` 和原有权限。本次没有新增 Worker webhook 处理路由，该地址不是已实现或已验证的接收服务，不要启用 webhook，也不要为它增加事件或权限。下次真实创建时仍须核对 webhook 未启用、最终域名、账号和权限，并验证 GitHub 接受 manifest、回调兑换和仅博客仓库安装；Cloudflare Secret 上传、部署及 OAuth/发布链路验收也仍未完成。
 
 从仓库根目录运行（目录必须是**尚不存在**的仓库外绝对路径；如已存在则换新名字，不复用）：
 
@@ -242,5 +244,7 @@ wrangler secret bulk --config backend/daily-notes/wrangler.toml < /tmp/blog-dail
 node --check backend/daily-notes/setup-app.mjs
 node --test --experimental-test-isolation=none --test-reporter=spec backend/daily-notes/test/setup-app.test.mjs
 ```
+
+2026-11-09 回归：先新增用例，从真实本机表单解析 manifest；修复前 `hook_attributes.url` 为 `undefined`，HTTPS webhook URL 断言失败。补齐字段后，该针对性用例 **1/1 通过**，整批 helper 测试 **29/29 通过**（原 28 项 + 本次 1 项）；同时锁定 `active: false`、空事件、原权限及不触发兑换。脚本与测试的 `node --check` 通过。以上全部为本机 mock 结果，没有真实创建 App、兑换凭据或上传 Secret。
 
 这些测试需要本机回环监听权限；不等于真实 GitHub manifest、安装或 Cloudflare Secret 上传验收。
