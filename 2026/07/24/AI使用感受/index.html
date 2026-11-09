@@ -14,12 +14,26 @@
   <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
   <script src="/js/pet.js?v=5624704179fc" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
+  
+  
+  <style>
+    @media (max-width:760px) {
+      .site-header .header-inner { display:grid; grid-template-columns:minmax(0,1fr) 36px 36px; gap:0 4px; padding-top:10px; }
+      .site-header .brand { gap:10px; margin-right:0; font-size:16px; }
+      .site-header .brand>span:last-child { display:block; padding-left:10px; }
+      .site-header .brand small { font-size:7px; letter-spacing:.06em; }
+      .site-header nav { grid-column:1/-1; grid-row:2; display:flex; width:100%; justify-content:space-between; gap:0; margin:4px 0 0; }
+      .site-header nav a { min-height:44px; min-width:44px; padding-inline:10px; font-size:15px; }
+      .site-header .search-link,.site-header .theme-toggle { width:36px; }
+    }
+    @media (max-width:360px) { .site-header .brand { font-size:14px; gap:8px; } .site-header .brand>span:last-child { padding-left:8px; } }
+  </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从Ctrl+V工程师到让AI自己调小车，我的AI使用体验","description":"记录我从向 AI 索要答案，到让它进入代码库，再到组织机器人闭环测试的过程，以及上下文、记录、权限和实车验证带来的方法变化。","image":"https://jiangnanqing188.github.io/img/covers/notebook/20261105/ai-feedback-loop.webp","url":"https://jiangnanqing188.github.io/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/","mainEntityOfPage":"https://jiangnanqing188.github.io/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/","datePublished":"2026-07-23T16:00:00.000Z","dateModified":"2026-07-23T16:00:00.000Z","author":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"publisher":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"keywords":"AI编程, Codex, Gemini, ROS, TEB","articleSection":"成长记录"}</script></head>
 <body>
   <a class="skip" href="#main">跳到正文</a>
   <header class="site-header"><div class="header-inner">
     <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">jn.</span><span>江南的碎碎念<small>ROBOTICS FIELD NOTES</small></span></a>
-    <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" >项目</a><a href="/archives/" aria-current="page">文章</a><a href="/about/" >关于</a></nav>
+    <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" >项目</a><a href="/archives/" aria-current="page">文章</a><a href="/daily/" >小记</a><a href="/about/" >关于</a></nav>
     <a class="search-link" href="/archives/#search" aria-label="搜索文章"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></a>
     <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式" title="切换到深色模式"><svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg><svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M2.6 12H5M19 12h2.4M5.4 5.4l1.7 1.7M16.9 16.9l1.7 1.7M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7"/></svg></button>
   </div></header>

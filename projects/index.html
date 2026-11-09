@@ -14,12 +14,26 @@
   <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
   <script src="/js/pet.js?v=5624704179fc" defer></script>
   <script src="/js/giscus-manager.js" defer></script>
+  
+  
+  <style>
+    @media (max-width:760px) {
+      .site-header .header-inner { display:grid; grid-template-columns:minmax(0,1fr) 36px 36px; gap:0 4px; padding-top:10px; }
+      .site-header .brand { gap:10px; margin-right:0; font-size:16px; }
+      .site-header .brand>span:last-child { display:block; padding-left:10px; }
+      .site-header .brand small { font-size:7px; letter-spacing:.06em; }
+      .site-header nav { grid-column:1/-1; grid-row:2; display:flex; width:100%; justify-content:space-between; gap:0; margin:4px 0 0; }
+      .site-header nav a { min-height:44px; min-width:44px; padding-inline:10px; font-size:15px; }
+      .site-header .search-link,.site-header .theme-toggle { width:36px; }
+    }
+    @media (max-width:360px) { .site-header .brand { font-size:14px; gap:8px; } .site-header .brand>span:last-child { padding-left:8px; } }
+  </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","url":"https://jiangnanqing188.github.io/projects/","name":"项目档案","description":"按项目查看江南在机器人比赛、计算机视觉和工业控制实践中负责的问题、系统边界、验证结果与工程记录。","mainEntity":{"@type":"ItemList","numberOfItems":4,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://jiangnanqing188.github.io/projects/#project-ruikang","name":"睿抗智能侦察车","description":"从定位、航点与视觉候选一路调到正式赛场，保留失败方案、回退判断和最后采用的纯点位路线。"},{"@type":"ListItem","position":2,"url":"https://jiangnanqing188.github.io/projects/#project-pharmacy","name":"智慧药房双车系统","description":"将导航、OCR、双车隔离、视觉联调和现场恢复串成一条可重复检查的机器人比赛工作流。"},{"@type":"ListItem","position":3,"url":"https://jiangnanqing188.github.io/projects/#project-yolov5","name":"智慧农业 · YOLOv5 视觉训练","description":"前期完成智慧农业智能车主代码和硬编码路径，并独立完成授粉 YOLO 模型的数据、训练与部署；后期主要处理摄像头问题。"},{"@type":"ListItem","position":4,"url":"https://jiangnanqing188.github.io/projects/#project-iscc","name":"ISCC 微型工厂","description":"围绕 PLC 控制、工厂仿真、HMI 按钮与通信加密，复盘比赛链路和最容易踩坑的配置点。"}]}}</script></head>
 <body>
   <a class="skip" href="#main">跳到正文</a>
   <header class="site-header"><div class="header-inner">
     <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">jn.</span><span>江南的碎碎念<small>ROBOTICS FIELD NOTES</small></span></a>
-    <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" aria-current="page">项目</a><a href="/archives/" >文章</a><a href="/about/" >关于</a></nav>
+    <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" aria-current="page">项目</a><a href="/archives/" >文章</a><a href="/daily/" >小记</a><a href="/about/" >关于</a></nav>
     <a class="search-link" href="/archives/#search" aria-label="搜索文章"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></a>
     <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式" title="切换到深色模式"><svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg><svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M2.6 12H5M19 12h2.4M5.4 5.4l1.7 1.7M16.9 16.9l1.7 1.7M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7"/></svg></button>
   </div></header>
