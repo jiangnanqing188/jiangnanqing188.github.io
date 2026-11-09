@@ -14,7 +14,8 @@ const {randomUUID} = require('node:crypto');
 const {chromium} = require('playwright');
 const root = path.resolve(__dirname, '../public');
 const qa = process.env.DAILY_QA_DIR || fs.mkdtempSync('/tmp/daily-qa-');
-const report = {scope: 'Local generated HTML and Chromium; simulated Worker/OAuth responses, NOT production identity or GitHub/Cloudflare validation.', groups: []};
+const productionApi = 'https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev';
+const report = {scope: 'Local generated HTML and Chromium; simulated Worker/OAuth responses, NOT production identity or GitHub/Cloudflare validation.', productionApiRequests: 0, realOAuthRequests: 0, groups: []};
 const draftKey = 'fieldnotes-daily-draft-v1';
 const opaque = 'v1.TEST-ONLY-NOT-A-CREDENTIAL.opaque';
 const fixture = [
@@ -41,10 +42,10 @@ const staticServer = http.createServer((req, res) => {
   // Test-only injection in served bytes. Never changes public/ or production configuration.
   if (file === path.join(root, 'daily/index.html')) {
     let html = fs.readFileSync(file, 'utf8');
-    if (apiOn) {
-      assert.ok(html.includes('data-api-url=""'), 'Production config must remain disabled until real setup');
-      html = html.replace('data-api-url=""', `data-api-url="${api}"`);
-    }
+    const attributes = [...html.matchAll(/\bdata-api-url="([^"]*)"/g)];
+    assert.equal(attributes.length, 1, 'Daily HTML must have exactly one API URL attribute');
+    assert.ok(['', productionApi].includes(attributes[0][1]), 'Daily API source must be empty or the approved production URL');
+    html = html.replace(attributes[0][0], `data-api-url="${apiOn ? api : ''}"`);
     res.end(html); return;
   }
   fs.createReadStream(file).on('error', () => res.destroy()).pipe(res);
@@ -94,14 +95,24 @@ async function group(name, run) {
   catch (error) { report.groups.push({name, passed: false, error: error.stack}); console.error(`FAIL ${name}: ${error.message}`); }
 }
 async function contextPage(width, run, {dark = false, js = true, storageFails = false} = {}) {
-  const context = await browser.newContext({viewport: {width, height: width > 760 ? 1000 : 844}, reducedMotion: 'reduce', javaScriptEnabled: js});
-  await context.route('**/*', route => [base, api].includes(new URL(route.request().url()).origin) ? route.continue() : route.abort());
+  const context = await browser.newContext({viewport: {width, height: width > 760 ? 1000 : 844}, reducedMotion: 'reduce', javaScriptEnabled: js, serviceWorkers: 'block'});
+  await context.route('**/*', route => {
+    const url = new URL(route.request().url());
+    if (url.origin === productionApi) report.productionApiRequests++;
+    if (url.origin === 'https://github.com' && url.pathname.startsWith('/login/oauth/')) report.realOAuthRequests++;
+    return [base, api].includes(url.origin) ? route.continue() : route.abort();
+  });
   if (dark) await context.addInitScript(() => localStorage.setItem('lab-theme', 'dark'));
   if (storageFails) await context.addInitScript(() => { Storage.prototype.setItem = () => { throw new Error('Test denied storage'); }; });
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  try { await run(page, context); assert.deepEqual(errors, [], 'No browser script errors'); }
+  try {
+    await run(page, context);
+    assert.deepEqual(errors, [], 'No browser script errors');
+    assert.equal(report.productionApiRequests, 0, 'No production API requests, even intercepted');
+    assert.equal(report.realOAuthRequests, 0, 'No real OAuth requests, even intercepted');
+  }
   catch (error) { await page.screenshot({path: path.join(qa, `failure-${report.groups.length + 1}.png`), fullPage: true}).catch(() => {}); throw error; }
   finally { await context.close(); }
 }
@@ -140,7 +151,7 @@ await (async () => {
   await listen(apiServer); api = `http://localhost:${apiServer.address().port}`;
   try {
     browser = await chromium.launch({executablePath: process.env.CHROME_BIN || '/opt/google/chrome/chrome', headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage']});
-    await group('未配置/真实空数据/桌面与320、390手机/深色/导航与焦点', async () => {
+    await group('注入未配置/静态空数据/桌面与320、390手机/深色/导航与焦点', async () => {
       apiOn = false;
       for (const [width, dark] of [[1440, false], [1024, false], [800, false], [761, false], [760, false], [390, false], [320, false], [390, true], [1440, true]]) {
         await contextPage(width, async page => {

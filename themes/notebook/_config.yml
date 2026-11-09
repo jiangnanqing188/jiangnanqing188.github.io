@@ -11,4 +11,4 @@ giscus:
 
 # Set only after the real GitHub App / Worker integration has been verified.
 daily:
-  api_url: ""
+  api_url: "https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev"

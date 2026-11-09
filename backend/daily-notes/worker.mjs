@@ -106,8 +106,11 @@ export function createWorker({ fetch: fetcher = (...args) => globalThis.fetch(..
   function config(env, auth = false) {
     if ((env.ALLOWED_ORIGIN !== undefined && env.ALLOWED_ORIGIN !== origin)
       || (env.OWNER_ID !== undefined && String(env.OWNER_ID) !== String(OWNER_ID))) fail(503, '后端配置无效');
-    if (auth && (!/^[0-9a-fA-F]{64}$/.test(env.SESSION_SECRET || '')
-      || !env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET)) fail(503, '后端认证尚未配置');
+    if (auth) {
+      if (!/^[0-9a-fA-F]{64}$/.test(env.SESSION_SECRET || '')) fail(503, '后端认证配置缺失或无效：SESSION_SECRET');
+      if (!env.GITHUB_CLIENT_ID) fail(503, '后端认证配置缺失：GITHUB_CLIENT_ID');
+      if (!env.GITHUB_CLIENT_SECRET) fail(503, '后端认证配置缺失：GITHUB_CLIENT_SECRET');
+    }
   }
   async function key(env) {
     const bytes = Uint8Array.from(env.SESSION_SECRET.match(/../g), pair => parseInt(pair, 16));

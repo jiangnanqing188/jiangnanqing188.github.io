@@ -1,0 +1,76 @@
+{
+  "base": "https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev",
+  "version_id": "f07da369-0563-44ed-a9c0-bdcd5231612a",
+  "checked_at": "2026-11-09T16:19:29.125Z",
+  "github_app_installed": true,
+  "real_write_attempted": false,
+  "results": [
+    {
+      "name": "health",
+      "status": 200,
+      "expected": 200,
+      "acao": null,
+      "body": "{\"ok\":true}",
+      "pass": true
+    },
+    {
+      "name": "public",
+      "status": 200,
+      "expected": 200,
+      "acao": null,
+      "body": "{\"version\":1,\"entries\":[]}",
+      "pass": true
+    },
+    {
+      "name": "session-anonymous",
+      "status": 401,
+      "expected": 401,
+      "acao": null,
+      "body": "{\"error\":\"请先登录\"}",
+      "pass": true
+    },
+    {
+      "name": "session-forged",
+      "status": 401,
+      "expected": 401,
+      "acao": null,
+      "body": "{\"error\":\"认证无效或已过期，请重新登录\"}",
+      "pass": true
+    },
+    {
+      "name": "foreign-origin",
+      "status": 403,
+      "expected": 403,
+      "acao": null,
+      "body": "{\"error\":\"来源不允许\"}",
+      "pass": true
+    },
+    {
+      "name": "invalid-body",
+      "status": 400,
+      "expected": 400,
+      "acao": "https://jiangnanqing188.github.io",
+      "body": "{\"error\":\"需要 UUID、1–1000 字符非空纯文本和有效心情；不接受额外字段\"}",
+      "pass": true
+    },
+    {
+      "name": "preflight",
+      "status": 204,
+      "expected": 204,
+      "acao": "https://jiangnanqing188.github.io",
+      "body": "",
+      "pass": true
+    },
+    {
+      "name": "oauth-start",
+      "status": 302,
+      "expected": 302,
+      "host": "github.com",
+      "path": "/login/oauth/authorize",
+      "callback": "https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/auth/callback",
+      "pkce": "S256",
+      "secureCookie": true,
+      "pass": true
+    }
+  ]
+}

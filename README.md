@@ -16,15 +16,15 @@ Hexo 源码位于 `master`，当前主题为本仓库内的 `notebook`。2026-10
 - 本机时区为America/Los_Angeles时，清缓存后应显式按站点时区构建：`npm run clean && TZ=Asia/Shanghai npm run build`，避免无时分文章日期向前偏一天。不要为本机环境更改文章日期或站点永久链接。
 - 当前仅本地改造；线上仍以既有发布记录为准，未推送或部署新版。
 
-## 日常小记（本地实现，尚未开通在线发布）
+## 日常小记（真实服务已配置，前端待本轮发布）
 
 新增入口 `/daily/`，延续当前纸色工程手记风格。所有访客可阅读；只有本人 GitHub 数字账号核验通过后才可写入。首版支持纯文字、三种心情、预览、本机草稿、最多1000字符；初始没有伪造小记。
 
 - 页面与交互：`source/daily/index.md`、`themes/notebook/lib/daily.js`、主题 `daily.css` / `daily.js`。
 - 唯一源档案：`source/_data/daily.json`。网页发布目标为本仓库 `master`，不是直接修改生成分支 `main`。
 - 登录/发布接口：`backend/daily-notes/`，GitHub App + Cloudflare Worker；不让浏览器持有明文 GitHub token，不申请全部公开仓库权限。
-- 一次性开通步骤与权限契约：[后端设置说明](backend/daily-notes/README.md)。**GitHub App、Worker和Secret仍未配置，主题的 `daily.api_url` 故意为空；目前不能正式网页发布。**不要把测试用的模拟登录当成真实授权。
-- 设计与验收：`规划/UI设计/20261107-日常小记/`；接续状态见 `工作记录/20261108-1-日常小记收尾工作记录.md`。
+- 一次性开通步骤与权限契约：[后端设置说明](backend/daily-notes/README.md)。**GitHub App 已创建且只安装到本博客仓库，Worker 与两个 Secret 已配置，主题 API 已填写固定真实服务地址。真实 HTTP 8 项门禁通过；GitHub 授权已回调，正式页面 popup→作者态仍待前端发布后验收，未发送真实小记。**不要把模拟登录或统一回调文案当成真实作者核验通过。
+- 设计与验收：`规划/UI设计/20261107-日常小记/`；当前真实开通状态见 `工作记录/20261109-1-日常小记真实开通工作记录.md`；11月8日收尾记录保留本地验收过程。
 
 本地重建与定向验证（不推送、不部署、不写真实小记）：
 

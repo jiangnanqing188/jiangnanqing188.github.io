@@ -1,0 +1,43 @@
+{
+  "scope": "Local generated HTML and Chromium; simulated Worker/OAuth responses, NOT production identity or GitHub/Cloudflare validation.",
+  "productionApiRequests": 0,
+  "realOAuthRequests": 0,
+  "groups": [
+    {
+      "name": "注入未配置/静态空数据/桌面与320、390手机/深色/导航与焦点",
+      "passed": true
+    },
+    {
+      "name": "访客公开读取/时间线筛选/纯文本XSS与长正文",
+      "passed": true
+    },
+    {
+      "name": "读取503显式失败/重试恢复而非假空",
+      "passed": true
+    },
+    {
+      "name": "其他账号只读/伪造消息的来源与窗口拒绝",
+      "passed": true
+    },
+    {
+      "name": "作者登录/Unicode计数/纯文本预览/确认提交后才清草稿",
+      "passed": true
+    },
+    {
+      "name": "网络保存不确定后同ID幂等重试/不制造提交链接",
+      "passed": true
+    },
+    {
+      "name": "SHA冲突先重读再同ID重试/新发布不被旧缓存覆盖",
+      "passed": true
+    },
+    {
+      "name": "未确认保存不得显示成功/本机存储失败仍可写/过期收起表单",
+      "passed": true
+    },
+    {
+      "name": "登录后端拒绝仍不可写/没有凭据持久化或URL泄漏",
+      "passed": true
+    }
+  ]
+}

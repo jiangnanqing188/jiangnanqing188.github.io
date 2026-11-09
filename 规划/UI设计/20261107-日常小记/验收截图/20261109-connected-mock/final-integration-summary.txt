@@ -1,0 +1,8 @@
+2026-11-09 final source integration
+Node 22: 214 tests, 214 pass, 0 fail, 0 skip.
+Command: node --test --experimental-test-isolation=none --test-reporter=spec backend/daily-notes/test/worker.test.mjs backend/daily-notes/test/cross-layer.test.mjs backend/daily-notes/test/setup-app.test.mjs
+Scope: local mock GitHub only. No production write/OAuth request.
+Static site: 64 pages / 2551 local references passed.
+Reading regression: passed. UI contract: 9 groups passed.
+Article covers: 8 covers and protected group photo passed.
+Chromium: report.json 9/9 groups; production API requests 0; real OAuth requests 0.

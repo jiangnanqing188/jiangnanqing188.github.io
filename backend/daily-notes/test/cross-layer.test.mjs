@@ -360,13 +360,35 @@ test('DOM client integrates with real Worker encryption, user checks, source CAS
   const html = await callback.text();
   const auth = JSON.parse(html.match(/postMessage\((\{.*?\}),"/)[1]);
   assert.equal(auth.status, 'owner');
-  const h = setup(t, { fetch: (url, options) => worker.fetch(new Request(url, {
-    ...options, headers: { ...options.headers, Origin: BLOG },
-  }), env) });
+  // A pending Worker request must outlive settle() without being mistaken for a completed publish.
+  const postGate = deferred();
+  const h = setup(t, { fetch: async (url, options) => {
+    if (options.method === 'POST') await postGate.promise;
+    return worker.fetch(new Request(url, {
+      ...options, headers: { ...options.headers, Origin: BLOG },
+    }), env);
+  } });
+  const waitForUI = predicate => new Promise((resolve, reject) => {
+    const observer = new h.window.MutationObserver(check);
+    const timeout = setTimeout(() => { observer.disconnect(); reject(new Error('DOM transition did not finish')); }, 5000);
+    function check() {
+      if (!predicate()) return;
+      observer.disconnect();
+      clearTimeout(timeout);
+      resolve();
+    }
+    observer.observe(h.window.document, { subtree: true, childList: true, attributes: true, characterData: true });
+    check();
+  });
   await h.login(auth.session);
+  await waitForUI(() => !h.$('[data-composer]').hidden || h.$('[data-auth-status]').dataset.error === 'true');
   assert.equal(h.$('[data-composer]').hidden, false);
   h.input('真实组件连接的本地夹具 😀 <script>plain text</script>');
   await h.submit();
+  assert.equal(puts, 0);
+  assert.equal(h.$('[data-publish]').textContent, '正在写入 GitHub…');
+  postGate.resolve();
+  await waitForUI(() => h.$('[data-publish]').textContent === '发布小记 ↗');
   assert.equal(h.$('[data-note-count]').textContent, '1 则小记');
   assert.equal(h.$('[data-notes] p').textContent, canonical.entries[0].body);
   assert.equal(puts, 1);

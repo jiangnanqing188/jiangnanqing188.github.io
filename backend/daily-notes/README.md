@@ -2,9 +2,17 @@
 
 ## 当前交付状态与范围
 
-仅包含本目录的 Cloudflare module Worker、Node 定向测试和配置示例，无第三方运行依赖。使用 ES2022、标准 `fetch` / Streams / WebCrypto AES-GCM；测试运行于 Node 22。**截至 2026-11-09，Worker 已真实部署至 https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev ，初版 version 为 `02585f18-2d73-4ff2-8fb4-4ffbc6a1615a`（主线程确认）。初版匿名 `GET /notes` 实测返回 503，后续运行时修复已由主线程真实部署为 `c8702cf5-2122-4460-857c-50f4c0c3ff01`。修复后首次读取有一次上游非成功，随后一次有界复查中匿名/正式 Origin 均 200，CORS、预检、非法请求拒绝和未配置认证门禁也符合预期；完整失败与成功证据保留在设计包的 `20261109-live-backend/`。GitHub App / Secrets 仍未配置，正式 OAuth / 真实 GitHub 写入 / Cloudflare 缓存实测均未完成，尚未正式可发布。**测试中的用户、授权码、token、记录和提交 SHA 都是隔离 mock 夹具，不会发往 GitHub，不是公开小记。
+仅包含本目录的 Cloudflare module Worker、Node 定向测试和配置示例，无第三方运行依赖。使用 ES2022、标准 `fetch` / Streams / WebCrypto AES-GCM；测试运行于 Node 22。
+
+**截至 2026-11-09，真实 Worker 为 `https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev`，当前部署版本 `f07da369-0563-44ed-a9c0-bdcd5231612a`。私有 GitHub App `jiangnanqing188-daily-notes` 已创建，并且仅安装到博客单仓库（Contents write / Metadata read，webhook 停用、事件为空）。Client ID 和两个 Secret 已配置，真实 health、公开读取、匿名/伪造会话拒绝、Origin、非法输入、CORS 预检与 OAuth 起始共 8 项门禁通过。**
+
+用户已明确确认 GitHub 登录授权，浏览器已从 GitHub 回调到 Worker；回调页使用统一结束文案，因此该页面本身不证明作者会话成功。正式站点弹窗→作者编辑器仍由主线程在前端发布后验收，真实写入暂未执行，也不代发测试正文。Cloudflare 全网缓存传播及真实其他账号测试未执行。测试中的用户、授权码、token、记录和提交 SHA 都是隔离 mock 夹具，不会发往 GitHub，不是公开小记。
+
+初版 `02585f18-2d73-4ff2-8fb4-4ffbc6a1615a` 公开读取曾 503；运行时修复 `c8702cf5-2122-4460-857c-50f4c0c3ff01` 后公开读取通过。随后曾出现绑定元数据存在但认证门禁仍失败；安全区分 3 项配置错误并部署当前版本后门禁通过，没有证据将此前问题归因于单一 Secret 错误或传播延迟。完整过程及失败/成功证据保留在当天工作记录和设计包的 `20261109-live-backend/`。
 
 运行时修复：GitHub API 与 OAuth token exchange 改用 Workers 支持的 `redirect: manual`，所有 3xx 失败关闭，不跟随或转发用户 token / client secret；固定身份、仓库、路径、权限和会话规则不变。新增 Workers 拒绝 `redirect: error` 的失败复现，以及同源/跨源 3xx 的无转发、无持久化写入回归测试。本次定向验证为 **174 tests / 174 pass**（原 121 + 新增 53），连同既有 App 设置工具测试共 **203/203 通过**；复用既有 Wrangler 的 Miniflare/workerd，实测旧代码复现 503/认证错误、修复代码读取/认证/夹具写入成功及 100 个同源/跨源 3xx 拒绝场景。运行时上游全部由本地夹具接管，未访问真实 GitHub 或使用真实 Secrets，原生运行时验证本身不代表线上状态；真实部署证据见上段。
+
+2026-11-09 配置门禁区分新增测试后共 **214/214**。最终复跑曾暴露跨层测试固定 tick 的时序缺口；现改为有超时的 DOM 状态等待并用可控 POST 闸门覆盖慢请求，未修改产品行为。主线程最终独立复跑 214/214、0 fail/skip；子代理另做定向20轮及全量5轮验证。真实 OAuth/写入边界仍以顶部为准。
 
 后端不修改 Hexo 主题、前端、全局 package、文章数据、`public/`、`main` 或 Pages 配置，不引入 GitHub Actions，也不会在本地生成初始数据文件。前端与初始文件由主线程在其授权范围内接入。
 
@@ -213,11 +221,11 @@ node --test --experimental-test-isolation=none --test-reporter=spec backend/dail
 
 ## 一次性本机 Manifest 开通辅助（不自动创建或安装）
 
-> 当前状态（2026-11-09）：真实开通尚未完成。此前浏览器提交后 GitHub 返回 `Invalid GitHub App configuration: "url" wasn't supplied`，未得到成功创建或凭据兑换的证据。本次核对官方 Manifest 字段表及其文档源码，确认 `hook_attributes.url` 标为必需，`active` 单独控制投递，文档未列出 `active: false` 时可省略 URL 的例外；已补齐本地 manifest 的这一契约缺口，但未重新提交 GitHub，不能认定它是此前报错的唯一原因，也不能将本地测试视为真实开通成功。此前临时入口已过期，请勿复用。
+> 历史开通过程（2026-11-09，以下为当时状态，当前结果见本文件顶部）：真实开通尚未完成。此前浏览器提交后 GitHub 返回 `Invalid GitHub App configuration: "url" wasn't supplied`，未得到成功创建或凭据兑换的证据。本次核对官方 Manifest 字段表及其文档源码，确认 `hook_attributes.url` 标为必需，`active` 单独控制投递，文档未列出 `active: false` 时可省略 URL 的例外；已补齐本地 manifest 的这一契约缺口，但未重新提交 GitHub，不能认定它是此前报错的唯一原因，也不能将本地测试视为真实开通成功。此前临时入口已过期，请勿复用。
 
 `setup-app.mjs` 只监听 `127.0.0.1`，提供一个 15 分钟有效的随机设置入口；打开后还需要在 GitHub 页面核对账号、名称和权限，再由操作者确认创建。它不自行点击创建、安装、写配置或部署。只允许固定账号 `jiangnanqing188`（数字 ID `192717492`）、固定 App 名称和 Contents write / Metadata read；创建完成后仍须只安装到博客仓库。Manifest 的 Worker 回调固定为 `https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/auth/callback`，部署前核对最终域名。
 
-`hook_attributes.url` 固定为预期 Worker 域名下的 `https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/github/webhook`，与 OAuth 的 `/auth/callback` 分开；仅补齐配置字段，始终显式保留 `active: false`、`default_events: []` 和原有权限。本次没有新增 Worker webhook 处理路由，该地址不是已实现或已验证的接收服务，不要启用 webhook，也不要为它增加事件或权限。下次真实创建时仍须核对 webhook 未启用、最终域名、账号和权限，并验证 GitHub 接受 manifest、回调兑换和仅博客仓库安装；Cloudflare Secret 上传、部署及 OAuth/发布链路验收也仍未完成。
+`hook_attributes.url` 固定为预期 Worker 域名下的 `https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev/github/webhook`，与 OAuth 的 `/auth/callback` 分开；仅补齐配置字段，始终显式保留 `active: false`、`default_events: []` 和原有权限。本次没有新增 Worker webhook 处理路由，该地址不是已实现或已验证的接收服务，不要启用 webhook，也不要为它增加事件或权限。开通时必须核对 webhook 未启用、最终域名、账号和权限，并验证 GitHub 接受 manifest、回调兑换和仅博客仓库安装；这些步骤现已完成。OAuth/真实发布链路的最新验收边界见顶部，不由辅助工具测试代替。
 
 从仓库根目录运行（目录必须是**尚不存在**的仓库外绝对路径；如已存在则换新名字，不复用）：
 

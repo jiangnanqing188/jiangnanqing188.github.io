@@ -506,6 +506,49 @@ test('missing/bad auth configuration fails closed, public reading needs no secre
   }
 });
 
+test('auth configuration errors identify only the failing name without leaking fixture values', async t => {
+  const sessionError = '后端认证配置缺失或无效：SESSION_SECRET';
+  const clientIDError = '后端认证配置缺失：GITHUB_CLIENT_ID';
+  const clientSecretError = '后端认证配置缺失：GITHUB_CLIENT_SECRET';
+  const cases = [
+    ['all missing', {}, sessionError],
+    ['session missing', { ...ENV, SESSION_SECRET: undefined }, sessionError],
+    ['session empty', { ...ENV, SESSION_SECRET: '' }, sessionError],
+    ['session invalid', { ...ENV, SESSION_SECRET: 'fixture-invalid-session-secret' }, sessionError],
+    ['session trailing newline', { ...ENV, SESSION_SECRET: `${SECRET}\n` }, sessionError],
+    ['client ID missing', { ...ENV, GITHUB_CLIENT_ID: undefined }, clientIDError],
+    ['client ID empty', { ...ENV, GITHUB_CLIENT_ID: '' }, clientIDError],
+    ['client secret missing', { ...ENV, GITHUB_CLIENT_SECRET: undefined }, clientSecretError],
+    ['client secret empty', { ...ENV, GITHUB_CLIENT_SECRET: '' }, clientSecretError],
+  ];
+  for (const [name, env, error] of cases) await t.test(name, async () => {
+    const h = harness();
+    for (const path of ['/health', '/session', '/auth/start']) {
+      const result = await h.request(path, {}, env);
+      assert.equal(result.status, 503);
+      assert.equal(result.headers.get('Cache-Control'), 'no-store');
+      const body = await result.json();
+      assert.deepEqual(body, { error });
+      const output = JSON.stringify({ body, headers: [...result.headers] });
+      for (const value of [SECRET, ENV.GITHUB_CLIENT_ID, ENV.GITHUB_CLIENT_SECRET, 'fixture-invalid-session-secret']) {
+        assert.equal(output.includes(value), false);
+      }
+    }
+    assert.equal(h.calls.length, 0);
+  });
+});
+
+test('valid auth configuration preserves health, anonymous session and OAuth start behavior', async () => {
+  const h = harness();
+  assert.deepEqual(await (await h.request('/health')).json(), { ok: true });
+  assert.equal((await h.request('/health', {}, { ...ENV, SESSION_SECRET: 'AB'.repeat(32) })).status, 200);
+  const session = await h.request('/session');
+  assert.equal(session.status, 401);
+  assert.deepEqual(await session.json(), { error: '请先登录' });
+  assert.equal((await h.request('/auth/start')).status, 302);
+  assert.equal(h.calls.length, 0);
+});
+
 test('120s cache expiry requires a new canonical read; no stale fallback on GitHub outage', async () => {
   let offline = false;
   const h = harness({ intercept: () => offline ? response({ message: 'limit' }, 429) : undefined });
