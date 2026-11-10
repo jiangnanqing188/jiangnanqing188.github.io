@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-09",
+  "scope": "Live GitHub Pages and real GitHub App OAuth popup; no real note submitted.",
+  "source_commit": "80966c6604e491d33dc9bf1754983282960b3264",
+  "pages_commit": "f39fc2943a73a6cbb5ecce4f4898a2716e61242b",
+  "pages_build": {
+    "status": "built",
+    "created_at": "2026-11-09T23:55:08Z",
+    "updated_at": "2026-11-09T23:55:59Z"
+  },
+  "workflow_run": {
+    "id": 42724269110,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "observed_ui": {
+    "live_public_empty_state": true,
+    "author_popup_completed": true,
+    "author_status_text": "✓ 已以作者身份登录",
+    "owner_composer_visible": true,
+    "owner_body_codepoints": 0,
+    "anonymous_separate_tab_composer_hidden": true,
+    "mobile_illustration_loaded": true,
+    "mobile_horizontal_overflow": false,
+    "viewport_reset_called": true
+  },
+  "real_note_writes": 0,
+  "entries": 0,
+  "not_executed": [
+    "Real OAuth with another GitHub account",
+    "Real POST note write (no user-approved public text)",
+    "Global 120s cache invalidation/propagation",
+    "Physical mobile, Safari or Firefox tests"
+  ],
+  "credentials_or_session_values_recorded": false
+}

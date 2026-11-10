@@ -1,0 +1,81 @@
+{
+  "checked_at": "2026-11-09T23:58:27.416719+00:00",
+  "pages_commit": "f39fc2943a73a6cbb5ecce4f4898a2716e61242b",
+  "source_commit": "80966c6",
+  "scope": "Public HTTP reads only. No OAuth/session extraction or real note write.",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 23948,
+      "sha256": "178ee98bec52d624264a102edb24707c8d290529288d319c459e05dbf68e4b4a",
+      "expected_sha256": "178ee98bec52d624264a102edb24707c8d290529288d319c459e05dbf68e4b4a",
+      "matches_candidate": true
+    },
+    {
+      "path": "/daily/",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 12407,
+      "sha256": "0f315330b28f4ebc4587a30f76d1ebf4fcfe31dff3e2aa2bd849d3e129bfada8",
+      "expected_sha256": "0f315330b28f4ebc4587a30f76d1ebf4fcfe31dff3e2aa2bd849d3e129bfada8",
+      "matches_candidate": true
+    },
+    {
+      "path": "/css/daily.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8",
+      "bytes": 13211,
+      "sha256": "24cca90b3be3a5ae7b43b01bf71709d4ae7e7bdffb7cccffe9095948e2dfe27d",
+      "expected_sha256": "24cca90b3be3a5ae7b43b01bf71709d4ae7e7bdffb7cccffe9095948e2dfe27d",
+      "matches_candidate": true
+    },
+    {
+      "path": "/js/daily.js",
+      "status": 200,
+      "content_type": "application/javascript; charset=utf-8",
+      "bytes": 20514,
+      "sha256": "2fbdeac6177a860694a5bb98de44167bafba94b0b62036592bdcf96f0de127c9",
+      "expected_sha256": "2fbdeac6177a860694a5bb98de44167bafba94b0b62036592bdcf96f0de127c9",
+      "matches_candidate": true
+    },
+    {
+      "path": "/img/daily/notebook-still-life.webp",
+      "status": 200,
+      "content_type": "image/webp",
+      "bytes": 205324,
+      "sha256": "49bc4d85ed33731f21e150a877b563b1c3081c2937caed999c316e91433c7411",
+      "expected_sha256": "49bc4d85ed33731f21e150a877b563b1c3081c2937caed999c316e91433c7411",
+      "matches_candidate": true
+    },
+    {
+      "path": "/js/pet.js",
+      "status": 200,
+      "content_type": "application/javascript; charset=utf-8",
+      "bytes": 38379,
+      "sha256": "5624704179fc8e10d33a40c3688cd1c00457f61dc6a423da69eefe536fa89f77",
+      "expected_sha256": "5624704179fc8e10d33a40c3688cd1c00457f61dc6a423da69eefe536fa89f77",
+      "matches_candidate": true
+    },
+    {
+      "path": "/css/pet.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8",
+      "bytes": 8061,
+      "sha256": "e519f71dcf92849fc8d140b4b3d060afc1c5a1ba115fa6b28b6d8dc84cf268c5",
+      "expected_sha256": "e519f71dcf92849fc8d140b4b3d060afc1c5a1ba115fa6b28b6d8dc84cf268c5",
+      "matches_candidate": true
+    },
+    {
+      "path": "/css/notebook.css",
+      "status": 200,
+      "content_type": "text/css; charset=utf-8",
+      "bytes": 71829,
+      "sha256": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+      "expected_sha256": "a79887d7b2712007a9f0ed3ebecdbf91271d06aa5a2d798935c9ee5e53df024d",
+      "matches_candidate": true
+    }
+  ],
+  "passed": true
+}

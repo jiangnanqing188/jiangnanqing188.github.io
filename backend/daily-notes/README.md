@@ -6,7 +6,7 @@
 
 **截至 2026-11-09，真实 Worker 为 `https://jiangnan-daily-notes.jiangnanqingwqw.workers.dev`，当前部署版本 `f07da369-0563-44ed-a9c0-bdcd5231612a`。私有 GitHub App `jiangnanqing188-daily-notes` 已创建，并且仅安装到博客单仓库（Contents write / Metadata read，webhook 停用、事件为空）。Client ID 和两个 Secret 已配置，真实 health、公开读取、匿名/伪造会话拒绝、Origin、非法输入、CORS 预检与 OAuth 起始共 8 项门禁通过。**
 
-用户已明确确认 GitHub 登录授权，浏览器已从 GitHub 回调到 Worker；回调页使用统一结束文案，因此该页面本身不证明作者会话成功。正式站点弹窗→作者编辑器仍由主线程在前端发布后验收，真实写入暂未执行，也不代发测试正文。Cloudflare 全网缓存传播及真实其他账号测试未执行。测试中的用户、授权码、token、记录和提交 SHA 都是隔离 mock 夹具，不会发往 GitHub，不是公开小记。
+用户已明确确认 GitHub 登录授权，主线程已在正式 `/daily/` 实测真实弹窗登录，前端通过 `/session` 后显示“已以作者身份登录”与空白编辑器；另开访客页时编辑器隐藏。回调页本身仍使用统一结束文案，不能单独证明作者会话成功。真实正文写入未执行，也不代发测试内容。Cloudflare 全网缓存传播及真实其他账号测试未执行。测试中的用户、授权码、token、记录和提交 SHA 都是隔离 mock 夹具，不会发往 GitHub，不是公开小记。
 
 初版 `02585f18-2d73-4ff2-8fb4-4ffbc6a1615a` 公开读取曾 503；运行时修复 `c8702cf5-2122-4460-857c-50f4c0c3ff01` 后公开读取通过。随后曾出现绑定元数据存在但认证门禁仍失败；安全区分 3 项配置错误并部署当前版本后门禁通过，没有证据将此前问题归因于单一 Secret 错误或传播延迟。完整过程及失败/成功证据保留在当天工作记录和设计包的 `20261109-live-backend/`。
 
