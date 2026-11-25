@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jiangnanqing188.github.io/2026/11/25/ai-use-experience-2026/</loc>
+    
+    <lastmod>2026-11-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangnanqing188.github.io/daily/index.html</loc>
     
     <lastmod>2026-11-07</lastmod>
@@ -148,7 +157,7 @@
 
   <url>
     <loc>https://jiangnanqing188.github.io/</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

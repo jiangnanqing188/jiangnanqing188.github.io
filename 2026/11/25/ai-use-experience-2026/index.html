@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f2e8">
+  <meta name="color-scheme" content="light dark">
+  
+  <script>try{if(localStorage.getItem('lab-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+  <title>关于这几个月来的ai使用体验和感想 · 江南的碎碎念</title><meta name="description" content="这几个月来的 AI 使用体验：我用过的模型和工具、几种工作方式，还有用下来的一些感想。"><meta name="keywords" content="AI编程, Codex, DeepSeek"><meta name="author" content="江南"><meta name="generator" content="Hexo 7.3.0"><link rel="canonical" href="https://jiangnanqing188.github.io/2026/11/25/ai-use-experience-2026/"><meta property="og:type" content="article"><meta property="og:title" content="关于这几个月来的ai使用体验和感想"><meta property="og:description" content="这几个月来的 AI 使用体验：我用过的模型和工具、几种工作方式，还有用下来的一些感想。"><meta property="og:url" content="https://jiangnanqing188.github.io/2026/11/25/ai-use-experience-2026/"><meta property="og:site_name" content="江南的碎碎念"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jiangnanqing188.github.io/img/posts/ai-use-experience-2026/cover-warm-desk.webp"><meta name="twitter:card" content="summary_large_image"><meta property="article:published_time" content="2026-11-24T16:00:00.000Z"><meta property="article:modified_time" content="2026-11-24T16:00:00.000Z">
+  <link rel="icon" href="/img/avatar.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="/css/notebook.css?v=a79887d7b271">
+  <link rel="stylesheet" href="/css/pet.css?v=e519f71dcf92">
+  <script src="/js/notebook.js?v=de0e0a954d0e" defer></script>
+  <script src="/js/pet.js?v=5624704179fc" defer></script>
+  <script src="/js/giscus-manager.js" defer></script>
+  
+  
+  <style>
+    @media (max-width:760px) {
+      .site-header .header-inner { display:grid; grid-template-columns:minmax(0,1fr) 36px 36px; gap:0 4px; padding-top:10px; }
+      .site-header .brand { gap:10px; margin-right:0; font-size:16px; }
+      .site-header .brand>span:last-child { display:block; padding-left:10px; }
+      .site-header .brand small { font-size:7px; letter-spacing:.06em; }
+      .site-header nav { grid-column:1/-1; grid-row:2; display:flex; width:100%; justify-content:space-between; gap:0; margin:4px 0 0; }
+      .site-header nav a { min-height:44px; min-width:44px; padding-inline:10px; font-size:15px; }
+      .site-header .search-link,.site-header .theme-toggle { width:36px; }
+    }
+    @media (max-width:360px) { .site-header .brand { font-size:14px; gap:8px; } .site-header .brand>span:last-child { padding-left:8px; } }
+  </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"关于这几个月来的ai使用体验和感想","description":"这几个月来的 AI 使用体验：我用过的模型和工具、几种工作方式，还有用下来的一些感想。","image":"https://jiangnanqing188.github.io/img/posts/ai-use-experience-2026/cover-warm-desk.webp","url":"https://jiangnanqing188.github.io/2026/11/25/ai-use-experience-2026/","mainEntityOfPage":"https://jiangnanqing188.github.io/2026/11/25/ai-use-experience-2026/","datePublished":"2026-11-24T16:00:00.000Z","dateModified":"2026-11-24T16:00:00.000Z","author":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"publisher":{"@type":"Person","name":"江南","url":"https://jiangnanqing188.github.io/"},"keywords":"AI编程, Codex, DeepSeek, ChatGPT, AI工作流","articleSection":"成长记录"}</script></head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">jn.</span><span>江南的碎碎念<small>ROBOTICS FIELD NOTES</small></span></a>
+    <nav aria-label="主导航"><a href="/" >首页</a><a href="/projects/" >项目</a><a href="/archives/" aria-current="page">文章</a><a href="/daily/" >小记</a><a href="/about/" >关于</a></nav>
+    <a class="search-link" href="/archives/#search" aria-label="搜索文章"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg></a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式" title="切换到深色模式"><svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg><svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M2.6 12H5M19 12h2.4M5.4 5.4l1.7 1.7M16.9 16.9l1.7 1.7M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7"/></svg></button>
+  </div></header>
+  <main id="main" class="container" tabindex="-1" data-page="文章"><a class="breadcrumb" href="/archives/">← 全部文章</a><header class="article-heading"><img class="article-cover" src="/img/posts/ai-use-experience-2026/cover-warm-desk.webp" alt="关于这几个月来的ai使用体验和感想封面" width="1200" height="675"><div class="article-heading-copy"><div class="article-meta"><span class="category">成长记录</span><time datetime="2026-11-25">2026.11.25</time><span class="eyebrow">LOG 012</span></div><h1>关于这几个月来的ai使用体验和感想</h1><p>这几个月来的 AI 使用体验：我用过的模型和工具、几种工作方式，还有用下来的一些感想。</p><div class="tags"><span class="tag">AI编程</span><span class="tag">Codex</span><span class="tag">DeepSeek</span></div></div></header><div class="reading-layout"><article class="prose"><div class="entry-facts"><span><small>日志状态</small>已完成</span></div><p>书接上回。<a href="/2026/07/24/AI%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/">7 月 24 日发那篇帖子</a>的时候，我刚用 AI 辅助完成机器人比赛。实话讲，当时感觉自己接触到了 AI 的前沿，觉得很震撼。</p>
+<p>但我依旧认为，得有人，AI 才能发挥最大的作用。对吧，你不能说一句「帮我做一个翻译软件」，就指望 AI 完完全全给你搓一个好用的软件出来，不现实。前端、后端这些都不懂，你凭什么知道它做出来的东西好不好用？直到 2026 年 11 月 24 日，我依旧这么认为。但是，这几个月给了我一些不一样的认识。</p>
+<span id="more"></span>
+
+<p>先放一张图，证明我确实算个重度用户。就算不是重度，也算是中度，并且忠于 ChatGPT。</p>
+<p><img src="/img/posts/ai-use-experience-2026/usage-original.png" alt="Magpie 用量页面原截图：汇总活跃天数、会话、模型和项目用量"></p>
+<h2 id="先讲讲这几个月的模型" data-field-section data-field-heading><a href="#先讲讲这几个月的模型" class="headerlink" title="先讲讲这几个月的模型"></a>先讲讲这几个月的模型</h2><p>从 8 月说起。国产模型里，GLM、Kimi、DeepSeek 都发展得不错，混元也是，MiniMax 也是，甚至出了平价的视频模型。Qwen 在小模型上也很厉害。</p>
+<p>国产模型里我用得多的只有 DeepSeek，其他的我都是看别人在用，我不做评价。单说 DeepSeek，这几个月我印象最深的还是 Flash。有人会说不就是蒸馏出来的吗？比如 <a target="_blank" rel="noopener" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash">V4.1 Flash</a>，它是从头预训练，再在后训练里用蒸馏，不是把 Pro 直接压小。就算用了蒸馏，能把模型做得又便宜又好用，我也觉得是进步。实话讲，我通过 Magpie 用 DeepSeek 的那段时间，额度我用不完。好用，便宜，这就是优点。</p>
+<p>再说一说国外的，Claude、ChatGPT、Grok、Gemini。</p>
+<p><strong>Claude。</strong> <a target="_blank" rel="noopener" href="https://www.anthropic.com/news/redeploying-fable-5">Fable 5 在 7 月重新开放</a>，8 月底又出了 Fable 5.1。我记得那阵子大家聊 Fable，挺沸腾的，因为都见识过它的能力。看别人跑出来的结果，有些活儿确实比 GPT 做得强。</p>
+<p>（我没有沸腾，我没有账号用。）</p>
+<p><strong>ChatGPT。</strong> 我一直用的模型。实话讲，看她干活像是在看另一个我自己干活，有过之而无不及。太严谨了，我很喜欢，到现在还是我最喜欢的模型，没有之一。</p>
+<p>但有三个问题。第一个，看别人用 Claude，有些事 GPT 确实比不过。我看不惯 Dario 那个嘴脸，我希望 OpenAI 赢，超过 Claude。第二个，太慢了，而且不说人话。我真的很难接受，每次都要再问一遍到底做了什么。</p>
+<p>第三个，这模型为什么要校验那么久？我不理解。一个小脚本，为什么要校验四十多分钟？先给我，我自己跑一遍看看效果就知道了，结果还是在那儿校验。<strong>一个小问题，为什么要当一个核弹发射井去做？</strong></p>
+<p>虽然有过一段时间，Astra 给我的感觉是超过了 Claude，但是我不得不说，太贵了，也慢。我还是喜欢 Sol，没什么别的，就是感觉。</p>
+<p><strong>Grok：已找到片。</strong> 4.7 确实惊艳了一段时间，不过后来在我这儿还是让 Claude 和 GPT 当路边一条踢死了。那句「应该放慢 AI 的发展速度」，感觉只有 Musk 听进去了。</p>
+<p><strong>Gemini，哈基米。</strong> 11 月之前，我自己用得上的基本只有 Flash。本来以为以后也就用 Flash 了，结果人家照着元素周期表去发模型了，突然一波大的。我觉得 Gemini 已经追上来了，未来可期。</p>
+<h2 id="再来看看工具" data-field-section data-field-heading><a href="#再来看看工具" class="headerlink" title="再来看看工具"></a>再来看看工具</h2><p>到 11 月 24 日为止，至少在我平时做的事里，我觉得模型的能力已经没什么大问题了。再来看看工具。</p>
+<ul>
+<li><strong>Codex</strong>，我最喜欢的 CLI，没有之一，简洁，好用。ChatGPT 桌面端也好用，远程功能一开始觉得惊艳，中间断联了几次，给我整得挺恶心的，希望优化一下。</li>
+<li><strong>Claude Code</strong>，我一直拿来跑 DeepSeek，没用过别的模型。其实我最早也是在 Claude Code 上用 DeepSeek 的。</li>
+<li><strong>ZCode</strong>，仓库数据上传那事，不讲。</li>
+<li><strong>Pi 和 OMP</strong>。Pi 太简洁了，不想折腾。OMP 给我的感觉就是 Claude Code，我真心这么觉得，很好用，很喜欢，现在也是用来跑 DeepSeek 的。</li>
+<li><strong>DeepSeek Harness</strong>，插件系统很惊艳，类似于 MC 的 Mod 系统，真的很好。但我用的是 Ubuntu，有时候莫名其妙就崩溃了，我不理解为什么。尽快优化一下吧。</li>
+<li><strong>AGY CLI：请输入文本。</strong></li>
+</ul>
+<h2 id="再讲讲我怎么用-AI" data-field-section data-field-heading><a href="#再讲讲我怎么用-AI" class="headerlink" title="再讲讲我怎么用 AI"></a>再讲讲我怎么用 AI</h2><p><strong>Prompt Engineering</strong>，最常用的方式，一问一答，做点小脚本一点儿问题都没有。但是我觉得效率不够高，你遇见 ChatGPT 这个速度的模型，你不爆炸了吗？但实话讲，我确实用得最多。尤其是项目刚开始，方案怎么定，<code>AGENTS.md</code> 里具体写什么，基本都是这样聊出来的。</p>
+<p><strong>Loop Engineering 和 Goal Engineering</strong>，放在一起说。我就按我自己的用法讲。我觉得这俩有很多地方是一样的，都是让 AI 自己查、自己改，区别是项目接下来该做什么，由谁决定。一个 Goal 要是一轮就结束，我用起来觉得跟 Loop 没什么区别。一个 Goal 很长的时候，就不一样了。</p>
+<p>我们假定都是做一个博客网站。按我用 Loop 的习惯，我知道最后想要什么样子，然后让 AI 一个模块一个模块去做。做完导航，看了结果再决定下一步做什么，这个决定是我来做的。Goal 不是，我先说清楚要做哪些模块、做成什么样算完成，具体先做哪个、哪里不合适，让 AI 在这个范围里自己把握。</p>
+<p>这是我用下来的感受。<code>AGENTS.md</code> 足够清楚，我自己也知道怎么验收的时候，我觉得 Goal 更高效。如果没那么清楚，我还是建议用 Loop 来做。</p>
+<p><strong>Graph Engineering</strong>，我现在叫它「总工程师模式」。还是先定好 <code>AGENTS.md</code>，然后让不同的模型做不同的事。GPT 写方案，DeepSeek 执行。我提需求，最后看做出来的东西能不能用。不多说，我的软件《拾词》就用的这种模式，很高效。</p>
+<p><img src="/img/posts/ai-use-experience-2026/workflow.webp" alt="《拾词》的分工示意：GPT 出方案，DeepSeek 实现，我判断结果"></p>
+<p>以上就是我这几个月对 AI 发展的观察。今年发展得太快了，我都怀疑，明年是不是就有 AGI 了？我觉得有可能，但我希望不是，因为我还要吃饭，我不希望 AI 取代我。</p>
+<h2 id="用下来的感受：多、快、好、省" data-field-section data-field-heading><a href="#用下来的感受：多、快、好、省" class="headerlink" title="用下来的感受：多、快、好、省"></a>用下来的感受：多、快、好、省</h2><p>不说这个，说下感受。多、快、好、省。</p>
+<p><strong>多。</strong> AI 模型数量太多了，不存在一家独大，也不存在一无是处的 AI。我现在觉得最好用的还是 Graph 这种分工方式，按需要买不同的订阅，各自扬长避短。除了模型，还有 Harness，也太多了，每家公司有自己的，个人开发者也在做，比如 Pi。我觉得不用全装，选三五个就够了，最好是原生的，功能尽量全。最后是 AI 的配置，早期我用过 CC Switch，后来也用过 Magpie。萝卜白菜，各有所爱，我觉得都挺好用。Magpie 还能薅羊毛，看个人需求。</p>
+<p><strong>快。</strong> 我见过每秒十来个 token 的，也见过三百多个的。并且 AI 能更好地理解需求了，不怎么返工，处理工作的速度也就变快了。</p>
+<p><strong>好。</strong> 这个不用多解释。代码好，速度好，质量好。</p>
+<p><strong>省。</strong> 那确实。我有时候不理解，为什么模型能力强了，价格还能更低。不过，省！</p>
+<h2 id="还有，为什么我反而更累了？" data-field-section data-field-heading><a href="#还有，为什么我反而更累了？" class="headerlink" title="还有，为什么我反而更累了？"></a>还有，为什么我反而更累了？</h2><p>除了这些，用了 AI 以后，我感觉自己更累了。以前想学原理，现在更想学怎么使用 AI。因为有些原理，我问它，它基本都知道。我就觉得，我学了好像也没多大用。但还是那句话，你不学原理，凭什么知道方向对不对？所以原理也得学。累就累在这里，什么都得学，比原来要学的还多。</p>
+<p>有了 AI，效率高了，被分到的事和自己想做的事也多了，精力就更分散。一要做事，一看这么多，心累。真做起来，身体也累。</p>
+<p>然后就是黑盒。我改一点提示词或者调个参数，有时候结果就变了。到底哪句话、哪个参数起了作用？不知道。有时候跟抽卡一样，抽到对的就继续，抽不到就重新抽。</p>
+<p><img src="/img/posts/ai-use-experience-2026/black-box.webp" alt="黑盒插图：同一个问题送进去，可能拿到不同的答案"></p>
+<p>还有就是，学习的欲望真的减退了，总觉得有 AI 就能解决一切，但并不是。总之，AI 给了我效率，也给了我心累和恐惧。</p>
+<h2 id="最后，畅想一下" data-field-section data-field-heading><a href="#最后，畅想一下" class="headerlink" title="最后，畅想一下"></a>最后，畅想一下</h2><p>对我来说，AI 用起来确实是多快好省。但是，这么快的发展真的是对人类社会有好处的吗？我觉得不一定。就说失业吧，假如一个人能用 AI 处理以前五个人的工作，那另外四个人呢？不一定是现在就裁掉，也可能是以后不招了。我担心就业岗位会变少，赚到钱的更多是 AI 公司和会用 AI 的人。未来真不见得对所有人都是好的。</p>
+<p>还有数学问题。我看到 OpenAI 的模型能<a target="_blank" rel="noopener" href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/">给一个关于平面单位距离的猜想找到反例</a>。有些问题，人想了很久都没解出来，AI 却能给出以前没人想到的结果。那所有事情还是可控的吗？我不知道。</p>
+<p>以前我觉得 AI 就是个玩具，或者一个助手，帮人解决一些重复的事情，帮人理解一些概念。现在我很难想象，由人训练出来的一堆程序，为什么就能解开困惑人类许久的问题。我不知道它到底见过哪些数据。本来以为就是在学过的东西上做点发散，结果有些东西已经超出了我原来对「发散」的理解。这个黑盒到底怎么回事？为什么？凭什么？</p>
+<p>最后畅想一下。或许明年，或许后年，又或许是未来的某一天，不知道。但我觉得总有那么一天，AGI 要到来，我们的生产力能不能跟上，我也不知道。究竟是用 AI 加快生产力的发展，还是反过来被 AI 取代，连经济都崩了？不清楚，我希望是前者。</p>
+<p>要是跟上了，我希望那个时候已经实现了共产主义，人都能为自己而活。</p>
+<div class="article-end"><span class="eyebrow">END OF NOTE / 012</span><a class="text-link" href="/archives/">继续阅读其他记录 →︎</a></div><section id="post-comment" class="comments-section"><div class="comment-head"><h2 class="comment-headline">交流与评论</h2></div><div id="giscus-wrap"><button class="button" id="load-comments" type="button" data-repo="jiangnanqing188/jiangnanqing188.github.io" data-repo-id="R_kgDOPTMnKQ" data-category-id="DIC_kwDOPTMnKc4DEBUV" data-category="Announcements" data-mapping="pathname" data-strict="1" data-emit-metadata="1" data-lang="zh-CN">加载评论</button></div><p class="muted comment-note">使用 GitHub 账号参与讨论。</p></section></article><aside class="toc"><details open data-responsive-details><summary>本篇目录</summary><nav aria-label="文章目录"><a class="toc-level-2" href="#先讲讲这几个月的模型">先讲讲这几个月的模型</a><a class="toc-level-2" href="#再来看看工具">再来看看工具</a><a class="toc-level-2" href="#再讲讲我怎么用-AI">再讲讲我怎么用 AI</a><a class="toc-level-2" href="#用下来的感受：多、快、好、省">用下来的感受：多、快、好、省</a><a class="toc-level-2" href="#还有，为什么我反而更累了？">还有，为什么我反而更累了？</a><a class="toc-level-2" href="#最后，畅想一下">最后，畅想一下</a></nav></details><a class="back-top" href="#main">回到顶部 ↑</a></aside></div>
+</main>
+  <footer class="site-footer container"><span>© 2026 江南<span class="footer-note">把机器人调通，也把过程写清楚。</span></span><nav aria-label="更多内容"><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/downloads/">资源</a><a href="/music/">音乐</a></nav></footer>
+  <div class="pet-workstation container" aria-label="小江的纸边工位"><div class="pet-station-copy"><span>COMPANION / 纸边工位</span><p>读到这里，歇一会儿。</p><small>小江在这里陪你。点开小菜单，或把她拖到喜欢的位置。</small></div>
+<aside id="blog-pet" class="blog-pet is-flow" data-motion="idle" data-pose="20" aria-label="博客小伙伴：小江">
+  <div class="pet-stage">
+    <p id="pet-message" class="pet-bubble" role="status" hidden></p>
+    <button class="pet-avatar" type="button" aria-label="和小江打招呼；可拎起拖动或用方向键移动" aria-describedby="pet-help">
+      <span class="pet-visual" aria-hidden="true">
+        <img class="pet-art" src="/img/pet/field-notes/idle.webp" width="320" height="320" alt="" draggable="false" decoding="async">
+        <span class="pet-sprite" hidden></span>
+      </span>
+      <span class="pet-heart" aria-hidden="true">♡</span>
+      <span class="pet-sleep" aria-hidden="true">z Z z</span>
+      <span class="pet-hit" aria-hidden="true"></span>
+    </button>
+    <div class="pet-toolbar"><span class="pet-caption"><i aria-hidden="true"></i>小江</span><button class="pet-menu-toggle" type="button" aria-label="小江的小菜单" aria-controls="pet-menu" aria-expanded="false" title="小菜单">⋯</button><button class="pet-hide" type="button" aria-label="收起小江" title="收起">−</button></div>
+    <div id="pet-menu" class="pet-menu" role="group" aria-label="小江的小菜单" hidden>
+      <span class="pet-menu-heading">小江陪你读</span>
+      <button type="button" data-pet-action="jump">✦ 蹦一下</button>
+      <button type="button" data-pet-action="read">▤ 翻翻笔记</button>
+      <button type="button" data-pet-action="stretch">⌁ 伸个懒腰</button>
+      <button type="button" data-pet-action="nap">☾ 打个盹</button>
+      <button type="button" data-pet-action="stroll">→ 走两步</button>
+      <button type="button" data-pet-action="cheer">♡ 夸我一句</button>
+      <button type="button" data-pet-action="reset">↘ 回到不挡字的位置</button>
+      <button type="button" data-pet-action="top">↑ 回到顶部</button>
+      <a href="/archives/#search">⌕ 找文章</a>
+      <button type="button" data-pet-action="quiet" aria-pressed="false">安静陪伴</button>
+    </div>
+    <p id="pet-help" class="pet-help">小江是银发猫耳、戴耳机的工程手记小助手。点击挥手打招呼，双击蹦跳，连点几次她会有意见；右键也能开菜单；拖动时拎起衣领，快速甩出会飞起来落地；她也会自己走两步；菜单可让她翻笔记、伸懒腰或坐下打盹；点击后先起身再回应；手机上竖向滑动是翻页，横向拖动才会移动她；方向键移动，Shift 加方向键加速；Enter 或空格打招呼；Escape 关闭气泡和小菜单。</p>
+  </div>
+  <button class="pet-restore" type="button" aria-label="叫回小江" hidden><span aria-hidden="true">♧</span>小江</button>
+</aside>
+</div>
+
+</body>
+</html>
